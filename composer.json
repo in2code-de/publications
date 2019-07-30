@@ -1,0 +1,64 @@
+{
+  "name": "in2code/publications",
+  "description": "Publication reference extension with im- and export with bibtex and xml files",
+  "keywords": [
+    "typo3",
+    "bib",
+    "publication",
+    "bibliography",
+    "bibtex",
+    "bibtext"
+  ],
+  "homepage": "https://github.com/in2code-de/publications",
+  "authors": [
+    {
+      "name": "Alex Kellner",
+      "email": "alexander.kellner@in2code.de"
+    }
+  ],
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "typo3/cms-core": ">=8.7.0 <10.0.0"
+  },
+  "replace": {
+    "publications": "self.version",
+    "typo3-ter/publications": "self.version"
+  },
+  "require-dev": {
+    "typo3/cms-core": ">=8.7.0 <=8.7.99",
+    "nimut/testing-framework": "^4.0",
+    "mikey179/vfsStream": "^1.6",
+    "phpunit/phpunit": "^6.0",
+    "squizlabs/php_codesniffer": "^3.3",
+    "phpmd/phpmd": "@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "In2code\\Publications\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "In2code\\Publications\\Tests\\": "Tests",
+      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
+      "TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+    }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/publications ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/publications"
+    ]
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  }
+}
