@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+		<header/>
+		<body>
+			<trans-unit id="tx_publications_domain_model_publication">
+				<source>Publication</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype">
+				<source>Publication type</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.type">
+				<source>Tyoe</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.citeid">
+				<source>Citation ID</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status">
+				<source>Publication type</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.abstract">
+				<source>Abstract</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.journal">
+				<source>Journal</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.date">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.volume">
+				<source>Volume</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.number">
+				<source>Number</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.number2">
+				<source>Number 2</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.pages">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.affiliation">
+				<source>Affilation</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.note">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.annotation">
+				<source>Annotation</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.keywords">
+				<source>Keywords</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.file_url">
+				<source>File/URL</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url">
+				<source>Web URL</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url2">
+				<source>Web URL 2</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url_date">
+				<source>Web URL date</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.miscellaneous">
+				<source>Miscellaneous</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.miscellaneous2">
+				<source>Miscellaneous 2</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.editor">
+				<source>Editor</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.publisher">
+				<source>Publisher</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.series">
+				<source>Series</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.address">
+				<source>Publisher address</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.edition">
+				<source>Edition</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.chapter">
+				<source>Chapter</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.extern">
+				<source>Extern</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.reviewed">
+				<source>Reviewed</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.in_library">
+				<source>Available in library</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.borrowed_by">
+				<source>Borrowed by</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.howpublished">
+				<source>How published</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_name">
+				<source>Event name</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_place">
+				<source>Event location</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.language">
+				<source>Language</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.booktitle">
+				<source>Booktitle</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.organization">
+				<source>Organization</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.school">
+				<source>School</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.institution">
+				<source>Institution</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.isbn">
+				<source>ISBN</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.issn">
+				<source>ISSN</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.doi">
+				<source>DOI</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

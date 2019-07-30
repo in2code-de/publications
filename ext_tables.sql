@@ -35,7 +35,6 @@ CREATE TABLE tx_publications_domain_model_publication (
 	reviewed tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	in_library tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	borrowed_by varchar(255) DEFAULT '' NOT NULL,
-	number2 varchar(255) DEFAULT '' NOT NULL,
 	howpublished varchar(255) DEFAULT '' NOT NULL,
 	event_name varchar(255) DEFAULT '' NOT NULL,
 	event_place varchar(255) DEFAULT '' NOT NULL,

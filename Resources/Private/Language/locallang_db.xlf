@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+		<header/>
+		<body>
+			<trans-unit id="tx_publications_domain_model_publication">
+				<source>Publication</source>
+				<target state="translated">Publikation</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype">
+				<source>Publication type</source>
+				<target state="translated">Bibliographie-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.type">
+				<source>Tyoe</source>
+				<target state="translated">Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.citeid">
+				<source>Citation ID</source>
+				<target state="translated">Zitations-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status">
+				<source>Publication type</source>
+				<target state="translated">Publikationstyp</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.title">
+				<source>Title</source>
+				<target state="translated">Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.abstract">
+				<source>Abstract</source>
+				<target state="translated">Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.journal">
+				<source>Journal</source>
+				<target state="translated">Journal</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.date">
+				<source>Date</source>
+				<target state="translated">Datum</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.volume">
+				<source>Volume</source>
+				<target state="translated">Band</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.number">
+				<source>Number</source>
+				<target state="translated">Nummer</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.number2">
+				<source>Number 2</source>
+				<target state="translated">Nummer 2</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.pages">
+				<source>Pages</source>
+				<target state="translated">Seiten</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.affiliation">
+				<source>Affilation</source>
+				<target state="translated">Zugehörigkeit</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.note">
+				<source>Note</source>
+				<target state="translated">Bemerkung</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.annotation">
+				<source>Annotation</source>
+				<target state="translated">Anmerkung</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.keywords">
+				<source>Keywords</source>
+				<target state="translated">Schlüsselwörter</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tags">
+				<source>Tags</source>
+				<target state="translated">Marker</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.file_url">
+				<source>File/URL</source>
+				<target state="translated">Datei/URL</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url">
+				<source>Web URL</source>
+				<target state="translated">Web URL</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url2">
+				<source>Web URL 2</source>
+				<target state="translated">Web URL 2</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.web_url_date">
+				<source>Web URL date</source>
+				<target state="translated">Web URL Abrufdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.miscellaneous">
+				<source>Miscellaneous</source>
+				<target state="translated">Verschiedenes</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.miscellaneous2">
+				<source>Miscellaneous 2</source>
+				<target state="translated">Verschiedenes 2</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.editor">
+				<source>Editor</source>
+				<target state="translated">Editor</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.publisher">
+				<source>Publisher</source>
+				<target state="translated">Verlag</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.series">
+				<source>Series</source>
+				<target state="translated">Reihe</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.address">
+				<source>Publisher address</source>
+				<target state="translated">Verlagsort</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.edition">
+				<source>Edition</source>
+				<target state="translated">Edition</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.chapter">
+				<source>Chapter</source>
+				<target state="translated">Kapitel</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.extern">
+				<source>Extern</source>
+				<target state="translated">Extern</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.reviewed">
+				<source>Reviewed</source>
+				<target state="translated">Begutachtet</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.in_library">
+				<source>Available in library</source>
+				<target state="translated">In Bibliothek vorhanden</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.borrowed_by">
+				<source>Borrowed by</source>
+				<target state="translated">Ausgeliehen von</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.howpublished">
+				<source>How published</source>
+				<target state="translated">Wie publiziert</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_name">
+				<source>Event name</source>
+				<target state="translated">Veranstaltungsname</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_place">
+				<source>Event location</source>
+				<target state="translated">Veranstaltungsort</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.language">
+				<source>Language</source>
+				<target state="translated">Sprache</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.booktitle">
+				<source>Booktitle</source>
+				<target state="translated">Buchtitel</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.organization">
+				<source>Organization</source>
+				<target state="translated">Organisation</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.school">
+				<source>School</source>
+				<target state="translated">Schule</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.institution">
+				<source>Institution</source>
+				<target state="translated">Institution</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.isbn">
+				<source>ISBN</source>
+				<target state="translated">ISBN</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.issn">
+				<source>ISSN</source>
+				<target state="translated">ISSN</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.doi">
+				<source>DOI</source>
+				<target state="translated">DOI</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
