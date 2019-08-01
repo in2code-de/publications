@@ -187,6 +187,23 @@
 				<source>DOI</source>
 				<target state="translated">DOI</target>
 			</trans-unit>
+
+			<trans-unit id="tx_publications_domain_model_author">
+				<source>Author</source>
+				<target state="translated">Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.first_name">
+				<source>Firstname</source>
+				<target state="translated">Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.last_name">
+				<source>Lastname</source>
+				<target state="translated">Nachname</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.url">
+				<source>URL</source>
+				<target state="translated">URL</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

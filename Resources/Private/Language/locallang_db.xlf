@@ -141,6 +141,19 @@
 			<trans-unit id="tx_publications_domain_model_publication.doi">
 				<source>DOI</source>
 			</trans-unit>
+
+			<trans-unit id="tx_publications_domain_model_author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.first_name">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.last_name">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.url">
+				<source>URL</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
