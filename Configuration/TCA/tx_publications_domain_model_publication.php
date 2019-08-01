@@ -1,7 +1,7 @@
 <?php
 use In2code\Publications\Domain\Model\Publication;
 
-return [
+$tca = [
     'ctrl' => [
         'title' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME,
         'label' => 'status',
@@ -17,14 +17,69 @@ return [
         'rootLevel' => -1
     ],
     'interface' => [
-        'showRecordFieldList' => 'bibtype,file_url',
+        'showRecordFieldList' => 'will be filled below...',
     ],
     'types' => [
-        '1' => ['showitem' => 'bibtype,file_url'],
+        '1' => ['showitem' =>
+            '--palette--;;palette_title,' .
+            '--palette--;;palette_type,' .
+            '--palette--;;palette_status,' .
+            '--palette--;;palette_reviewed,' .
+            '--div--;Identification,' .
+            '--palette--;;palette_identification,' .
+            '--div--;Organization,' .
+            '--palette--;;palette_organization,' .
+            '--div--;Publishing,' .
+            '--palette--;;palette_publishing,' .
+            '--palette--;;palette_event,' .
+            '--palette--;;palette_number,' .
+            '--div--;Relations,' .
+            '--palette--;;palette_relations,' .
+            '--div--;Misc,' .
+            '--palette--;;palette_note,' .
+            '--palette--;;palette_library,' .
+            ''
+        ],
     ],
     'palettes' => [
-        'scoring' => [
-            'showitem' => 'scoring,identified'
+        'palette_title' => [
+            'showitem' => 'title,abstract'
+        ],
+        'palette_type' => [
+            'showitem' => 'bibtype,type'
+        ],
+        'palette_status' => [
+            'showitem' => 'status,date'
+        ],
+        'palette_reviewed' => [
+            'showitem' => 'reviewed,language'
+        ],
+        'palette_identification' => [
+            'showitem' => 'citeid,isbn,--linebreak--,issn,doi'
+        ],
+        'palette_organization' => [
+            'showitem' => 'organization,school,--linebreak--,institution,institute'
+        ],
+        'palette_publishing' => [
+            'showitem' =>
+                'booktitle,journal,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
+                '--linebreak--,chapter,series,--linebreak--,edition,howpublished,--linebreak--,editor,pages' .
+                '--linebreak--,affiliation,extern'
+        ],
+        'palette_event' => [
+            'showitem' => 'event_name,event_place'
+        ],
+        'palette_number' => [
+            'showitem' => 'number,number2'
+        ],
+        'palette_relations' => [
+            'showitem' => 'keywords,tags,--linebreak--,web_url,web_url2,--linebreak--,web_url_date,file_url'
+        ],
+        'palette_note' => [
+            'showitem' => 'note,annotation,--linebreak--,miscellaneous,miscellaneous2'
+        ],
+        'palette_library' => [
+            'showitem' => 'in_library,borrowed_by'
         ]
     ],
     'columns' => [
@@ -41,12 +96,9 @@ return [
                     ['Book', 'book'],
                     ['Booklet', 'booklet'],
                     ['Conference', 'conference'],
-                    ['Contribution to Book', 'contributiontobook'],
-                    ['Contribution to Collection', 'contributiontocollection'],
-                    ['Contribution to Proceeding', 'contributiontoproceeding'],
-                    ['Inbook', 'inbook'],
-                    ['Incollection', 'incollection'],
-                    ['Inproceedings', 'inproceedings'],
+                    ['Contribution to Book', 'inbook'],
+                    ['Contribution to Collection', 'incollection'],
+                    ['Contribution to Proceeding', 'inproceedings'],
                     ['Manual', 'manual'],
                     ['Manuscript', 'manuscript'],
                     ['Master-Thesis', 'mastersthesis'],
@@ -202,7 +254,9 @@ return [
             'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
                 . '.note',
             'config' => [
-                'type' => 'input',
+                'type' => 'text',
+                'cols' => 32,
+                'rows' => 5,
                 'eval' => 'trim',
                 'default' => ''
             ]
@@ -212,7 +266,9 @@ return [
             'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
                 . '.annotation',
             'config' => [
-                'type' => 'input',
+                'type' => 'text',
+                'cols' => 32,
+                'rows' => 5,
                 'eval' => 'trim',
                 'default' => ''
             ]
@@ -516,6 +572,16 @@ return [
                 'default' => ''
             ]
         ],
+        'institute' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
+                . '.institute',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
+            ]
+        ],
         'isbn' => [
             'exclude' => true,
             'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
@@ -548,3 +614,6 @@ return [
         ],
     ]
 ];
+
+$tca['interface']['showRecordFieldList'] = implode(',', array_keys($tca['columns']));
+return $tca;

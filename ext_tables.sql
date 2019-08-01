@@ -43,6 +43,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	organization varchar(255) DEFAULT '' NOT NULL,
 	school varchar(255) DEFAULT '' NOT NULL,
 	institution varchar(255) DEFAULT '' NOT NULL,
+	institute varchar(255) DEFAULT '' NOT NULL,
 	isbn varchar(255) DEFAULT '' NOT NULL,
 	issn varchar(255) DEFAULT '' NOT NULL,
 	doi varchar(255) DEFAULT '' NOT NULL,
