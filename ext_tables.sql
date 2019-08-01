@@ -47,6 +47,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	isbn varchar(255) DEFAULT '' NOT NULL,
 	issn varchar(255) DEFAULT '' NOT NULL,
 	doi varchar(255) DEFAULT '' NOT NULL,
+	authors int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

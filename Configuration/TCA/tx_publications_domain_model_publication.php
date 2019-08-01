@@ -1,5 +1,6 @@
 <?php
 use In2code\Publications\Domain\Model\Publication;
+use In2code\Publications\Domain\Model\Author;
 
 $tca = [
     'ctrl' => [
@@ -73,7 +74,9 @@ $tca = [
             'showitem' => 'number,number2'
         ],
         'palette_relations' => [
-            'showitem' => 'keywords,tags,--linebreak--,web_url,web_url2,--linebreak--,web_url_date,file_url'
+            'showitem' =>
+                'authors,--linebreak--,keywords,tags,--linebreak--,web_url,web_url2,' .
+                '--linebreak--,web_url_date,file_url'
         ],
         'palette_note' => [
             'showitem' => 'note,annotation,--linebreak--,miscellaneous,miscellaneous2'
@@ -612,6 +615,32 @@ $tca = [
                 'default' => ''
             ]
         ],
+        'authors' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
+                . '.authors',
+            'config' => [
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => Author::TABLE_NAME,
+                'foreign_table' => Author::TABLE_NAME,
+                'MM' => 'tx_publications_publication_author_mm',
+                'maxitems' => 9999,
+                'size' => 10,
+                'wizards' => [
+                    'edit' => [
+                        'type' => 'popup',
+                        'title' => 'Edit',
+                        'popup_onlyOpenIfSelected' => 1,
+                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+                        'module' => [
+                            'name' => 'wizard_edit',
+                        ],
+                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif'
+                    ]
+                ]
+            ]
+        ]
     ]
 ];
 
