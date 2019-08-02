@@ -154,6 +154,70 @@
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
 			</trans-unit>
+
+			<trans-unit id="backendModule.selectImportFormat">
+				<source>Select Import Format</source>
+				<target state="translated">Format für Import auswählen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.selectImportFile">
+				<source>Select file for import</source>
+				<target state="translated">Importdatei auswählen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.submit">
+				<source>Submit</source>
+				<target state="translated">Senden</target>
+			</trans-unit>
+
+			<trans-unit id="validator.class.notExist">
+				<source>Class do not exist</source>
+				<target state="translated">Klasse nicht gefunden</target>
+			</trans-unit>
+
+			<trans-unit id="validator.class.notExist">
+				<source>The specified import format class '%s' was not found.</source>
+				<target state="translated">Die angegebene Import Format Klasse '%s' wurde nicht gefunden.</target>
+			</trans-unit>
+			<trans-unit id="validator.class.notExist.title">
+				<source>Specified import format class not found</source>
+				<target state="translated">Angegebene Import Format Klasse nicht gefunden!</target>
+			</trans-unit>
+
+			<trans-unit id="validator.uploadValidator.maxFileSize.php">
+				<source>The uploaded file exceeds the upload_max_filesize directive in php.ini.</source>
+				<target state="translated">Die hochgeladene Datei überschreitet die in der Anweisung upload_max_filesize in php.ini festgelegte Größe.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.maxFileSize.html">
+				<source>The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</source>
+				<target state="translated">Die hochgeladene Datei überschreitet die in dem HTML Formular mittels der Anweisung MAX_FILE_SIZE angegebene maximale Dateigröße.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.partialUpload">
+				<source>The uploaded file was only partially uploaded.</source>
+				<target state="translated">Die Datei wurde nur teilweise hochgeladen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noFile">
+				<source>No file was uploaded.</source>
+				<target state="translated">Es wurde keine Datei hochgeladen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noTempDir">
+				<source>Missing a temporary folder.</source>
+				<target state="translated">Fehlender temporärer Ordner.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noWritePermission">
+				<source>Failed to write file to disk.</source>
+				<target state="translated">Speichern der Datei auf die Festplatte ist fehlgeschlagen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.extensionPreventUpload">
+				<source>A PHP extension stopped the file upload.</source>
+				<target state="translated">Eine PHP Erweiterung hat den Upload der Datei gestoppt. </target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.unknownError">
+				<source>An unknown error occurred when the file was uploaded.</source>
+				<target state="translated">Ein unbekannter Fehler ist beim Uplad der Datei aufgetreten.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.title">
+				<source>Error while uploading the file.</source>
+				<target state="translated">Fehler beim Upload der Datei.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

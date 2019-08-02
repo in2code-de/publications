@@ -204,6 +204,51 @@
 				<source>URL</source>
 				<target state="translated">URL</target>
 			</trans-unit>
+
+			<trans-unit id="backendModule.selectImportFormat">
+				<target>Format für Import auswählen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.selectImportFile">
+				<target>Importdatei auswählen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.submit">
+				<target>Senden</target>
+			</trans-unit>
+
+			<trans-unit id="validator.class.notExist">
+				<target>Die angegebene Import Format Klasse '%s' wurde nicht gefunden.</target>
+			</trans-unit>
+			<trans-unit id="validator.class.notExist.title">
+				<target>Angegebene Import Format Klasse nicht gefunden!</target>
+			</trans-unit>
+
+			<trans-unit id="validator.uploadValidator.maxFileSize.php">
+				<target state="translated">Die hochgeladene Datei überschreitet die in der Anweisung upload_max_filesize in php.ini festgelegte Größe.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.maxFileSize.html">
+				<target state="translated">Die hochgeladene Datei überschreitet die in dem HTML Formular mittels der Anweisung MAX_FILE_SIZE angegebene maximale Dateigröße.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.partialUpload">
+				<target state="translated">Die Datei wurde nur teilweise hochgeladen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noFile">
+				<target state="translated">Es wurde keine Datei hochgeladen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noTempDir">
+				<target state="translated">Fehlender temporärer Ordner.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.noWritePermission">
+				<target state="translated">Speichern der Datei auf die Festplatte ist fehlgeschlagen.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.extensionPreventUpload">
+				<target state="translated">Eine PHP Erweiterung hat den Upload der Datei gestoppt. </target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.unknownError">
+				<target state="translated">Ein unbekannter Fehler ist beim Uplad der Datei aufgetreten.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.title">
+				<target state="translated">Fehler beim Upload der Datei.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

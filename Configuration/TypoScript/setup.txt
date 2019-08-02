@@ -1,0 +1,32 @@
+plugin.tx_publications {
+	view {
+		templateRootPaths.0 = {$plugin.tx_publications.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_publications.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_publications.view.layoutRootPath}
+	}
+
+	persistence {
+
+	}
+
+	settings {
+
+	}
+}
+
+module.tx_publications {
+	settings < plugin.tx_publications.settings
+	persistence < plugin.tx_publications.persistence
+	view < plugin.tx_publications.view
+	view {
+		templateRootPaths {
+			10 = EXT:publications/Resources/Private/Templates/Backend/
+		}
+		partialRootPaths {
+			10 = EXT:publications/Resources/Private/Partials/Backend/
+		}
+		layoutRootPaths {
+			10 = EXT:publications/Resources/Private/Layouts/Backend/
+		}
+	}
+}

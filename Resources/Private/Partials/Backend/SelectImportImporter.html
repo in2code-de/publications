@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		1. <f:translate
+			key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.selectImportFormat"/>
+	</div>
+
+	<fieldset class="form-section">
+		<div class="form-group">
+			<div class="formengine-field-item">
+
+				<div class="form-control-wrap">
+					<div class="form-wizards-wrap">
+						<div class="form-wizards-element">
+							<div class="input-group">
+								<f:form.select name="importer" options="{availableImporter}" optionValueField="key"
+											   optionLabelField="value"
+											   class="form-control form-control-adapt"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+</html>

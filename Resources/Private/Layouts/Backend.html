@@ -1,0 +1,19 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:be.container>
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div class="typo3-docheader-functions">
+				<f:comment>
+					<f:render partial="Backend/Tabs"/>
+				</f:comment>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody">
+				<f:flashMessages/>
+				<f:render section="main"/>
+			</div>
+		</div>
+	</div>
+</f:be.container>
+</html>
