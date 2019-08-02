@@ -7,8 +7,8 @@ interface ImporterInterface
     /**
      * converts an given string into an array
      *
-     * @param string $data
+     * @param string $filePath absolute path to the uploaded file in the php temp dir
      * @return array
      */
-    public function convert(string $data): array;
+    public function convert(string $filePath): array;
 }

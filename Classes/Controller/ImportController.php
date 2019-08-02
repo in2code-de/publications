@@ -39,7 +39,7 @@ class ImportController extends ActionController
         $importService =
             $this->objectManager->get(
                 ImportService::class,
-                file_get_contents($file['tmp_name']),
+                $file['tmp_name'],
                 $this->objectManager->get($importer)
             );
 

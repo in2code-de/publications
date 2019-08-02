@@ -7,10 +7,10 @@ class BibImporter implements ImporterInterface
     const FORMAT = 'bib';
 
     /**
-     * @param string $data
+     * @param string $filePath
      * @return array
      */
-    public function convert(string $data): array
+    public function convert(string $filePath): array
     {
         // TODO: Implement convert() method.
         return [];
