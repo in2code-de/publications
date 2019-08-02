@@ -19,7 +19,8 @@
   "type": "typo3-cms-extension",
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": ">=8.7.0 <10.0.0"
+    "typo3/cms-core": ">=8.7.0 <10.0.0",
+    "renanbr/bibtex-parser": "^2"
   },
   "replace": {
     "publications": "self.version",
