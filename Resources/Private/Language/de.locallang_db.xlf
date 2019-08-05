@@ -187,6 +187,10 @@
 				<source>DOI</source>
 				<target state="translated">DOI</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.authors">
+				<source>Authors</source>
+				<target state="translated">Autoren</target>
+			</trans-unit>
 
 			<trans-unit id="tx_publications_domain_model_author">
 				<source>Author</source>

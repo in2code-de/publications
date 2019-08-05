@@ -5,6 +5,20 @@ call_user_func(
     function () {
 
         /**
+         * Include Frontend Plugins
+         */
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2code.publications',
+            'Pi1',
+            [
+                'Publication' => 'list'
+            ],
+            [
+                'Publication' => 'list'
+            ]
+        );
+
+        /**
          * PageTSConfig
          */
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(

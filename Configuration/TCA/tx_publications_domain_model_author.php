@@ -45,7 +45,7 @@ $tca = [
         'first_name' => [
             'exclude' => true,
             'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Author::TABLE_NAME
-                . '.last_name',
+                . '.first_name',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',

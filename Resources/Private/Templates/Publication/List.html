@@ -1,0 +1,8 @@
+<ul>
+	<f:for each="{publications}" as="publication">
+		<li>
+			{publication.title}
+			(<f:for each="{publication.authors}" as="author">{author.lastName},</f:for>)
+		</li>
+	</f:for>
+</ul>
