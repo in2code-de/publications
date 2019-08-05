@@ -249,6 +249,12 @@
 			<trans-unit id="flexform.pi1.filter.status.4">
 				<source>in preperation</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.keywords">
+				<source>Keywords (one per line)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.tags">
+				<source>Tags (one per line)</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.author">
 				<source>Author</source>
 			</trans-unit>

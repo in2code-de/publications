@@ -3,6 +3,77 @@
 		<langDisable>1</langDisable>
 	</meta>
 	<sheets>
+		<template>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.citestyle>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle</label>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.0</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</settings.citestyle>
+					<settings.groupby>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
+										<numIndex index="1">2</numIndex>
+									</numIndex>
+								</items>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</settings.groupby>
+					<settings.recordsPerPage>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.recordsPerPage</label>
+							<config>
+								<type>input</type>
+								<default>25</default>
+								<eval>trim,int</eval>
+								<range>
+									<lower>1</lower>
+									<upper>250</upper>
+								</range>
+							</config>
+						</TCEforms>
+					</settings.recordsPerPage>
+				</el>
+			</ROOT>
+		</template>
 		<main>
 			<ROOT>
 				<TCEforms>
@@ -187,6 +258,28 @@
 							</config>
 						</TCEforms>
 					</settings.status>
+					<settings.keywords>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.keywords</label>
+							<config>
+								<type>text</type>
+								<cols>50</cols>
+								<rows>5</rows>
+							</config>
+						</TCEforms>
+					</settings.keywords>
+					<settings.tags>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.tags</label>
+							<config>
+								<type>text</type>
+								<cols>50</cols>
+								<rows>5</rows>
+							</config>
+						</TCEforms>
+					</settings.tags>
 					<settings.author>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -220,76 +313,5 @@
 				</el>
 			</ROOT>
 		</main>
-		<template>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.citestyle>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-								</items>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-							</config>
-						</TCEforms>
-					</settings.citestyle>
-					<settings.groupby>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-								</items>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-							</config>
-						</TCEforms>
-					</settings.groupby>
-					<settings.recordsPerPage>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.recordsPerPage</label>
-							<config>
-								<type>input</type>
-								<default>25</default>
-								<eval>trim,int</eval>
-								<range>
-									<lower>1</lower>
-									<upper>250</upper>
-								</range>
-							</config>
-						</TCEforms>
-					</settings.recordsPerPage>
-				</el>
-			</ROOT>
-		</template>
 	</sheets>
 </T3DataStructure>

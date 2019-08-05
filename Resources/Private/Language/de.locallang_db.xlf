@@ -330,6 +330,14 @@
 				<source>in preperation</source>
 				<target state="translated">in Vorbereitung</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.keywords">
+				<source>Keywords (one per line)</source>
+				<target state="translated">Schlüsselwörter (eines pro Zeile)</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.tags">
+				<source>Tags (one per line)</source>
+				<target state="translated">Tags (eines pro Zeile)</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.author">
 				<source>Author</source>
 				<target state="translated">Autor</target>
