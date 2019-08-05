@@ -43,6 +43,11 @@ class PublicationRepository extends Repository
             $and = $this->filterQueryByAuthor($query, $filter, $and);
             $and = $this->filterQueryByRecords($query, $filter, $and);
         }
+        if ($filter->isFilterFrontendSet()) {
+            $and = $this->filterQueryBySearchterms($query, $filter, $and);
+            $and = $this->filterQueryByYear($query, $filter, $and);
+            $and = $this->filterQueryByAuthorstring($query, $filter, $and);
+        }
         if ($and !== []) {
             $query->matching($query->logicalAnd($and));
         }
@@ -162,6 +167,96 @@ class PublicationRepository extends Repository
     {
         if ($filter->isRecordsSet()) {
             $and[] = $query->equals('pid', $filter->getRecords());
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterQueryBySearchterms(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isSearchtermSet()) {
+            $or = [];
+            foreach ($filter->getSearchterms() as $searchterm) {
+                $or[] = $query->like('title', '%' . $searchterm . '%');
+                $or[] = $query->like('abstract', '%' . $searchterm . '%');
+                $or[] = $query->like('bibtype', '%' . $searchterm . '%');
+                $or[] = $query->like('type', '%' . $searchterm . '%');
+                $or[] = $query->like('language', '%' . $searchterm . '%');
+                $or[] = $query->like('citeid', '%' . $searchterm . '%');
+                $or[] = $query->like('isbn', '%' . $searchterm . '%');
+                $or[] = $query->like('issn', '%' . $searchterm . '%');
+                $or[] = $query->like('doi', '%' . $searchterm . '%');
+                $or[] = $query->like('organization', '%' . $searchterm . '%');
+                $or[] = $query->like('school', '%' . $searchterm . '%');
+                $or[] = $query->like('institution', '%' . $searchterm . '%');
+                $or[] = $query->like('institute', '%' . $searchterm . '%');
+                $or[] = $query->like('booktitle', '%' . $searchterm . '%');
+                $or[] = $query->like('journal', '%' . $searchterm . '%');
+                $or[] = $query->like('edition', '%' . $searchterm . '%');
+                $or[] = $query->like('volume', '%' . $searchterm . '%');
+                $or[] = $query->like('publisher', '%' . $searchterm . '%');
+                $or[] = $query->like('address', '%' . $searchterm . '%');
+                $or[] = $query->like('chapter', '%' . $searchterm . '%');
+                $or[] = $query->like('series', '%' . $searchterm . '%');
+                $or[] = $query->like('edition', '%' . $searchterm . '%');
+                $or[] = $query->like('howpublished', '%' . $searchterm . '%');
+                $or[] = $query->like('editor', '%' . $searchterm . '%');
+                $or[] = $query->like('affiliation', '%' . $searchterm . '%');
+                $or[] = $query->like('eventName', '%' . $searchterm . '%');
+                $or[] = $query->like('eventPlace', '%' . $searchterm . '%');
+                $or[] = $query->like('number', '%' . $searchterm . '%');
+                $or[] = $query->like('number2', '%' . $searchterm . '%');
+                $or[] = $query->like('keywords', '%' . $searchterm . '%');
+                $or[] = $query->like('tags', '%' . $searchterm . '%');
+                $or[] = $query->like('note', '%' . $searchterm . '%');
+                $or[] = $query->like('annotation', '%' . $searchterm . '%');
+                $or[] = $query->like('miscellaneous', '%' . $searchterm . '%');
+                $or[] = $query->like('miscellaneous2', '%' . $searchterm . '%');
+                $or[] = $query->like('borrowed_by', '%' . $searchterm . '%');
+            }
+            $and[] = $query->logicalOr($or);
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterQueryByYear(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isYearSet()) {
+            $and[] = $query->greaterThan('date', $filter->getYearFrom());
+            $and[] = $query->lessThan('date', $filter->getYearTo());
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterQueryByAuthorstring(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isAuthorstringSet()) {
+            $or = [];
+            foreach ($filter->getAuthorstrings() as $authorstring) {
+                $or[] = $query->like('authors.firstName', '%' . $authorstring . '%');
+                $or[] = $query->like('authors.lastName', '%' . $authorstring . '%');
+            }
+            $and[] = $query->logicalOr($or);
         }
         return $and;
     }

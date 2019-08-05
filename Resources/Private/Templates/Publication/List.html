@@ -1,8 +1,22 @@
-<ul>
-	<f:for each="{publications}" as="publication">
-		<li>
-			{publication.title}
-			(<f:for each="{publication.authors}" as="author">{author.lastName},</f:for>)
-		</li>
-	</f:for>
-</ul>
+<f:render partial="List/Filter" arguments="{_all}"/>
+
+<f:if condition="{publications}">
+	<f:then>
+		<f:widget.paginate
+				objects="{publications}"
+				as="publicationsPage"
+				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:1,maximumNumberOfLinks:10}">
+			<ul>
+				<f:for each="{publicationsPage}" as="publication">
+					<li>
+						<f:render partial="List/Citestyle{filter.citestyle}" arguments="{_all}" optional="1" />
+					</li>
+				</f:for>
+			</ul>
+		</f:widget.paginate>
+	</f:then>
+	<f:else>
+		Keine Publikationen gefunden
+	</f:else>
+</f:if>
+

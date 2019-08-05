@@ -63,6 +63,21 @@ class Filter
     protected $records = 0;
 
     /**
+     * @var string
+     */
+    protected $searchterm = '';
+
+    /**
+     * @var int
+     */
+    protected $year = 0;
+
+    /**
+     * @var string
+     */
+    protected $authorstring = '';
+
+    /**
      * Filter constructor.
      * @param array $settings
      */
@@ -369,6 +384,126 @@ class Filter
     }
 
     /**
+     * @return string
+     */
+    public function getSearchterm(): string
+    {
+        return $this->searchterm;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSearchtermSet(): bool
+    {
+        return $this->getSearchterm() !== '';
+    }
+
+    /**
+     * @return array
+     */
+    public function getSearchterms(): array
+    {
+        return GeneralUtility::trimExplode(' ', $this->getSearchterm(), true);
+    }
+
+    /**
+     * @param string $searchterm
+     * @return Filter
+     */
+    public function setSearchterm(string $searchterm): self
+    {
+        $this->searchterm = $searchterm;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYear(): int
+    {
+        return $this->year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isYearSet(): bool
+    {
+        return $this->getYear() !== 0;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getYearFrom()
+    {
+        try {
+            return new \DateTime('first day of January ' . $this->getYear());
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getYearTo()
+    {
+        try {
+            $date = new \DateTime('first day of January ' . ($this->getYear() + 1));
+            $date->modify('- 1 minute');
+            return $date;
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+
+    /**
+     * @param int $year
+     * @return Filter
+     */
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorstring(): string
+    {
+        return $this->authorstring;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAuthorstringSet(): bool
+    {
+        return $this->getAuthorstring() !== '';
+    }
+
+    /**
+     * @return array
+     */
+    public function getAuthorstrings(): array
+    {
+        return GeneralUtility::trimExplode(' ', $this->getAuthorstring(), true);
+    }
+
+    /**
+     * @param string $authorstring
+     * @return Filter
+     */
+    public function setAuthorstring(string $authorstring): self
+    {
+        $this->authorstring = $authorstring;
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isFilterFlexFormSet(): bool
@@ -383,5 +518,15 @@ class Filter
             || $this->isTagsSet()
             || $this->isAuthorSet()
             || $this->isRecordsSet();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterFrontendSet(): bool
+    {
+        return $this->isSearchtermSet()
+            || $this->isYearSet()
+            || $this->isAuthorstringSet();
     }
 }
