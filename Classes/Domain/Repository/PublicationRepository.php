@@ -219,6 +219,8 @@ class PublicationRepository extends Repository
                 $or[] = $query->like('miscellaneous', '%' . $searchterm . '%');
                 $or[] = $query->like('miscellaneous2', '%' . $searchterm . '%');
                 $or[] = $query->like('borrowed_by', '%' . $searchterm . '%');
+                $or[] = $query->like('authors.firstName', '%' . $searchterm . '%');
+                $or[] = $query->like('authors.lastName', '%' . $searchterm . '%');
             }
             $and[] = $query->logicalOr($or);
         }

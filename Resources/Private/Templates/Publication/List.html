@@ -5,7 +5,7 @@
 		<f:widget.paginate
 				objects="{publications}"
 				as="publicationsPage"
-				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:1,maximumNumberOfLinks:10}">
+				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
 			<ul>
 				<f:for each="{publicationsPage}" as="publication">
 					<li>

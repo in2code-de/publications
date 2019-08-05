@@ -11,10 +11,10 @@ call_user_func(
             'In2code.publications',
             'Pi1',
             [
-                'Publication' => 'list'
+                'Publication' => 'list,resetList'
             ],
             [
-                'Publication' => 'list'
+                'Publication' => 'list,resetList'
             ]
         );
 
