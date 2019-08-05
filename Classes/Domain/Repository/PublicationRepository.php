@@ -22,6 +22,10 @@ class PublicationRepository extends Repository
     {
         $query = $this->createQuery();
         $this->filterQuery($query, $filter);
+        $query->setOrderings([
+            'date' => QueryInterface::ORDER_DESCENDING,
+            'title' => QueryInterface::ORDER_ASCENDING
+        ]);
         return $query->execute();
     }
 

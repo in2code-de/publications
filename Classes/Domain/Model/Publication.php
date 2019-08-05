@@ -18,6 +18,11 @@ class Publication extends AbstractEntity
     protected $title = '';
 
     /**
+     * @var \DateTime
+     */
+    protected $date = null;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Publications\Domain\Model\Author>
      */
     protected $authors = null;
@@ -37,6 +42,24 @@ class Publication extends AbstractEntity
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return Publication
+     */
+    public function setDate(\DateTime $date): self
+    {
+        $this->date = $date;
         return $this;
     }
 
