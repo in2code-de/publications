@@ -155,68 +155,178 @@
 				<source>URL</source>
 			</trans-unit>
 
+			<trans-unit id="wizardTitlePi1">
+				<source>Publications</source>
+			</trans-unit>
+			<trans-unit id="wizardDescriptionsPi1">
+				<source>List of publications</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.pi1.filter">
+				<source>Filter</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframe">
+				<source>Choose a timeframe</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframe.0">
+				<source>all</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes">
+				<source>Publication types (empty = all)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.article">
+				<source>Article</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.book">
+				<source>Book</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.booklet">
+				<source>Booklet</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.conference">
+				<source>Conference</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.inbook">
+				<source>Contribution to Book</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.incollection">
+				<source>Contribution to Collection</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.inproceedings">
+				<source>Contribution to Proceeding</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.manual">
+				<source>Manual</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.manuscript">
+				<source>Manuscript</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.mastersthesis">
+				<source>Master-Thesis</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.misc">
+				<source>Miscellaneous</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.phdthesis">
+				<source>PhD-Thesis</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.poster">
+				<source>Poster</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.proceedings">
+				<source>Proceedings</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.report">
+				<source>Report</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.techreport">
+				<source>Techreport</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.thesis">
+				<source>Thesis</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.unpublished">
+				<source>Unpublished</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.url">
+				<source>URL</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status">
+				<source>Status (empty = all)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.0">
+				<source>published</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.1">
+				<source>accepted</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.2">
+				<source>submitted</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.3">
+				<source>to be published</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.4">
+				<source>in preperation</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.records">
+				<source>Show publications from this page only</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template">
+				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle">
+				<source>Cite style</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.0">
+				<source>Standard</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby">
+				<source>Group by</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.0">
+				<source>year</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.1">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.2">
+				<source>year and type</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.recordsPerPage">
+				<source>show this amount of records per page</source>
+			</trans-unit>
+
 			<trans-unit id="backendModule.selectImportFormat">
 				<source>Select Import Format</source>
-				<target state="translated">Format für Import auswählen</target>
 			</trans-unit>
 			<trans-unit id="backendModule.selectImportFile">
 				<source>Select file for import</source>
-				<target state="translated">Importdatei auswählen</target>
 			</trans-unit>
 			<trans-unit id="backendModule.submit">
 				<source>Submit</source>
-				<target state="translated">Senden</target>
 			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">
 				<source>Class do not exist</source>
-				<target state="translated">Klasse nicht gefunden</target>
 			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">
 				<source>The specified import format class '%s' was not found.</source>
-				<target state="translated">Die angegebene Import Format Klasse '%s' wurde nicht gefunden.</target>
 			</trans-unit>
 			<trans-unit id="validator.class.notExist.title">
 				<source>Specified import format class not found</source>
-				<target state="translated">Angegebene Import Format Klasse nicht gefunden!</target>
 			</trans-unit>
 
 			<trans-unit id="validator.uploadValidator.maxFileSize.php">
 				<source>The uploaded file exceeds the upload_max_filesize directive in php.ini.</source>
-				<target state="translated">Die hochgeladene Datei überschreitet die in der Anweisung upload_max_filesize in php.ini festgelegte Größe.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.maxFileSize.html">
 				<source>The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</source>
-				<target state="translated">Die hochgeladene Datei überschreitet die in dem HTML Formular mittels der Anweisung MAX_FILE_SIZE angegebene maximale Dateigröße.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.partialUpload">
 				<source>The uploaded file was only partially uploaded.</source>
-				<target state="translated">Die Datei wurde nur teilweise hochgeladen.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.noFile">
 				<source>No file was uploaded.</source>
-				<target state="translated">Es wurde keine Datei hochgeladen.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.noTempDir">
 				<source>Missing a temporary folder.</source>
-				<target state="translated">Fehlender temporärer Ordner.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.noWritePermission">
 				<source>Failed to write file to disk.</source>
-				<target state="translated">Speichern der Datei auf die Festplatte ist fehlgeschlagen.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.extensionPreventUpload">
 				<source>A PHP extension stopped the file upload.</source>
-				<target state="translated">Eine PHP Erweiterung hat den Upload der Datei gestoppt. </target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.unknownError">
 				<source>An unknown error occurred when the file was uploaded.</source>
-				<target state="translated">Ein unbekannter Fehler ist beim Uplad der Datei aufgetreten.</target>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.title">
 				<source>Error while uploading the file.</source>
-				<target state="translated">Fehler beim Upload der Datei.</target>
 			</trans-unit>
 		</body>
 	</file>
