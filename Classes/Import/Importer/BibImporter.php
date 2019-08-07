@@ -6,8 +6,6 @@ use In2code\Publications\Import\Processor\AuthorProcessor;
 use In2code\Publications\Import\Processor\SpecialCharProcessor;
 use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
-use RenanBr\BibTexParser\Processor\LatexToUnicodeProcessor;
-use RenanBr\BibTexParser\Processor\NamesProcessor;
 
 class BibImporter implements ImporterInterface
 {

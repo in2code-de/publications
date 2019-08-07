@@ -6,13 +6,14 @@ use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use In2code\Publications\Utility\DatabaseUtility;
+use Psr\Log\LogLevel;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-class ImportService
+class ImportService extends AbstractService
 {
     /**
      * @var ImporterInterface
@@ -23,11 +24,6 @@ class ImportService
      * @var array
      */
     protected $publicationsToImport = [];
-
-    /**
-     * @var ConnectionPool
-     */
-    protected $connectionPool;
 
     /**
      * @var int
@@ -43,12 +39,11 @@ class ImportService
      */
     public function __construct(string $data, ImporterInterface $importer)
     {
+        parent::__construct();
+
         $this->importer = $importer;
         $this->publicationsToImport = $this->importer->convert($data);
         $this->storagePid = $this->getStoragePid();
-
-        $this->connectionPool =
-            GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
     /**
@@ -91,7 +86,12 @@ class ImportService
 
         $this->removeAuthorRelations($publicationUid);
 
-        $this->connectionPool->getConnectionForTable($relationTable)->bulkInsert($relationTable, $relations);
+        $affectedRows = DatabaseUtility::getConnectionForTable($relationTable)->bulkInsert($relationTable, $relations);
+
+        $this->logger->log(
+            LogLevel::DEBUG,
+            $affectedRows . ' Author relations have bin created for publication #' . $publicationUid
+        );
     }
 
     /**
@@ -101,13 +101,18 @@ class ImportService
     {
         $relationTable = 'tx_publications_publication_author_mm';
 
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($relationTable);
-        $queryBuilder->delete($relationTable)->where(
+        $queryBuilder = DatabaseUtility::getQueryBuilderForTable($relationTable);
+        $affectedRows = $queryBuilder->delete($relationTable)->where(
             $queryBuilder->expr()->eq(
                 'uid_local',
                 $queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
             )
         )->execute();
+
+        $this->logger->log(
+            LogLevel::DEBUG,
+            $affectedRows . ' Author relations deleted from publication #' . $publicationUid
+        );
     }
 
     /**
@@ -135,7 +140,10 @@ class ImportService
         $publicationTableFields = $this->getDatabaseFieldsByTable(Publication::TABLE_NAME);
         foreach ($publication as $publicationField => $value) {
             if (!in_array($publicationField, $publicationTableFields)) {
-                // @todo log removed fields
+                $this->logger->log(
+                    LogLevel::INFO,
+                    'The field "' . $publicationField . '" from the raw publication record has bin ignored because there is no suitable counterpart in the database.'
+                );
                 unset($publication[$publicationField]);
             }
         }
@@ -175,8 +183,24 @@ class ImportService
 
         $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
 
-        $connection = $this->connectionPool->getConnectionForTable(Publication::TABLE_NAME);
-        $connection->update(Publication::TABLE_NAME, $fieldsToUpdate, ['uid' => $currentPublication['uid']]);
+        $affectedRows = DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->update(
+            Publication::TABLE_NAME,
+            $fieldsToUpdate,
+            ['uid' => $currentPublication['uid']]
+        );
+
+        if ($affectedRows > 0) {
+            $this->logger->log(
+                LogLevel::DEBUG,
+                'The following fields of the publication #' . $currentPublication['uid'] . ' where updated',
+                $fieldsToUpdate
+            );
+        } else {
+            $this->logger->log(
+                LogLevel::DEBUG,
+                'There was no updates for the publication #' . $currentPublication['uid']
+            );
+        }
 
         return $currentPublication['uid'];
     }
@@ -208,25 +232,32 @@ class ImportService
      */
     protected function insertPublication(array $publicationRecord)
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
-        $queryBuilder
+        DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME)
             ->insert(Publication::TABLE_NAME)
             ->values($publicationRecord)
             ->execute();
 
-        return (int)$this->connectionPool->getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(
-            Publication::TABLE_NAME
+        $publicationUid =
+            (int)DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(Publication::TABLE_NAME);
+
+        $this->logger->log(
+            LogLevel::DEBUG,
+            'The publication #' . $publicationUid . ' was created',
+            $publicationRecord
         );
+
+        return $publicationUid;
     }
 
     /**
      * @param array $publication
-     * @return int
+     * @return bool
      */
-    protected function existPublicationOnPid(array $publication): int
+    protected function existPublicationOnPid(array $publication): bool
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
-        return $queryBuilder
+        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
+
+        $publicationCount = $queryBuilder
             ->count('*')
             ->from(Publication::TABLE_NAME)
             ->where(
@@ -244,6 +275,12 @@ class ImportService
                 )
             )
             ->execute()->fetchColumn(0);
+
+        if ($publicationCount > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -264,14 +301,15 @@ class ImportService
             // add additional fields for typo3 e.g. pid, tstamp etc.
             $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
 
-            $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Author::TABLE_NAME);
             // insert author
-            $queryBuilder
+            DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME)
                 ->insert(Author::TABLE_NAME)
                 ->values($record)
                 ->execute();
 
             $author = $this->getAuthorByName($firstName, $lastName);
+
+            $this->logger->log(LogLevel::DEBUG, 'The author #' . $author['uid'] . ' was created.', $author);
         }
 
         return $author;
@@ -284,7 +322,7 @@ class ImportService
      */
     protected function getAuthorByName($firstName, $lastName)
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Author::TABLE_NAME);
+        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
 
         return $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
             $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
@@ -300,7 +338,7 @@ class ImportService
      */
     protected function getPublicationByIdentifier(int $pid, string $citeid, int $date): array
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
+        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
         $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
             $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, \PDO::PARAM_STR)),
@@ -334,13 +372,12 @@ class ImportService
      */
     protected function getDatabaseFieldsByTable(string $table): array
     {
-        $connection = $this->connectionPool->getConnectionForTable($table);
         $fields = [];
         /** @var Statement $statement */
         $statement = GeneralUtility::makeInstance(
             \Doctrine\DBAL\Statement::class,
             'SHOW COLUMNS FROM ' . $table,
-            $connection
+            DatabaseUtility::getConnectionForTable($table)
         );
 
         $statement->execute();
