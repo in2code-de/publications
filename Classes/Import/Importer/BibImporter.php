@@ -19,7 +19,8 @@ class BibImporter implements ImporterInterface
     protected $additionalPublicationMapping = [
         'citation-key' => 'citeid',
         'url' => 'web_url',
-        'author' => 'authors'
+        'author' => 'authors',
+        'type' => 'bibtype'
     ];
 
     /**
