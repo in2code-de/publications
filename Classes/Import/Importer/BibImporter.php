@@ -9,8 +9,6 @@ use RenanBr\BibTexParser\Parser;
 
 class BibImporter implements ImporterInterface
 {
-    const FORMAT = 'bib';
-
     /**
      * map publication fields from -> to
      *

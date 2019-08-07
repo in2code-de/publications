@@ -2,9 +2,8 @@
 
 namespace In2code\Publications\Controller;
 
-use In2code\Publications\Import\Importer\BibImporter;
-use In2code\Publications\Import\Importer\XmlImporter;
 use In2code\Publications\Service\ImportService;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Error;
@@ -15,11 +14,7 @@ class ImportController extends ActionController
     {
         $this->view->assignMultiple(
             [
-                'availableImporter' => [
-                    BibImporter::class => BibImporter::FORMAT,
-                    XmlImporter::class => XmlImporter::FORMAT,
-                    'In2code\Publications\Import\Importer\AbcImporter' => 'abc'
-                ]
+                'availableImporter' => $this->getExistingImporter()
             ]
         );
     }
@@ -27,7 +22,6 @@ class ImportController extends ActionController
     /**
      * @param array $file
      * @validate $file \In2code\Publications\Validation\Validator\UploadValidator
-
      * @param string $importer
      * @validate $importer \In2code\Publications\Validation\Validator\ClassValidator
      *
@@ -48,7 +42,7 @@ class ImportController extends ActionController
 
     /**
      * Error Action
-     * 
+     *
      * @return string
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
@@ -77,7 +71,7 @@ class ImportController extends ActionController
     {
         if ($this->controllerContext->getArguments()->getValidationResults()->hasErrors()) {
             $validationErrors = $this->controllerContext->getArguments()->getValidationResults()->getFlattenedErrors();
-            foreach ($validationErrors as $argument => $errors) {
+            foreach ($validationErrors as $errors) {
                 if (!empty($errors)) {
                     /** @var Error $error */
                     foreach ($errors as $error) {
@@ -94,5 +88,32 @@ class ImportController extends ActionController
                 }
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getExistingImporter(): array
+    {
+        $importer = [];
+
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['publications']['importer'])
+            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['publications']['importer'])
+        ) {
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['publications']['importer'] as $importerTitle => $importerClass) {
+                if (!class_exists($importerClass)) {
+                    $this->addFlashMessage(
+                        'Importer class "' . $importerClass . '" was not found',
+                        'Importer class not found',
+                        AbstractMessage::ERROR
+                    );
+                } else {
+                    $importer[$importerClass] = $importerTitle;
+                }
+            }
+
+        }
+
+        return $importer;
     }
 }

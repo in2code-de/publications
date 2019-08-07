@@ -31,5 +31,13 @@ call_user_func(
             \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
             ['source' => 'EXT:publications/Resources/Public/Icons/Extension.svg']
         );
+
+        /**
+         * Register default importer
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['publications']['importer']['BIB'] =
+            \In2code\Publications\Import\Importer\BibImporter::class;
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['publications']['importer']['XML'] =
+            \In2code\Publications\Import\Importer\XmlImporter::class;
     }
 );
