@@ -46,31 +46,152 @@ class ImportService
      */
     public function import()
     {
-        $publicationTableFields = $this->getDatabaseFieldsByTable(Publication::TABLE_NAME);
-        $authorTableFields = $this->getDatabaseFieldsByTable(Author::TABLE_NAME);
+        foreach ($this->publicationsToImport as $rawPublication) {
+            $publication = $this->addOrUpdatePublication(
+                $this->cleanupRawPublicationArray($rawPublication)
+            );
 
-        foreach ($this->publicationsToImport as $publication) {
-            if (array_key_exists('authors', $publication)) {
-                // @todo create authors + relations if not exist.
+            if (!empty($rawPublication['authors'])) {
+                $authors = $this->addAuthors($rawPublication['authors']);
+                $this->addAuthorRelations($publication, $authors);
             }
+        }
+    }
 
-            foreach ($publicationTableFields as $tableField) {
-                if (array_key_exists($tableField, $publication)) {
-                    // $record contains the actual data which can be imported to the database
-                    $record[$tableField] = $publication[$tableField];
-                } else {
-                    // @todo log not matching fields!
-                }
+    /**
+     * @param $publication
+     * @param $authors
+     */
+    protected function addAuthorRelations($publication, $authors)
+    {
+        $relationTable = 'tx_publications_publication_author_mm';
+        $sorting = 1;
+        $relations = [];
+
+        foreach ($authors as $author) {
+            $relations[] = [
+                'uid_local' => $publication['uid'],
+                'uid_foreign' => $author['uid'],
+                'sorting' => $sorting,
+                'sorting_foreign' => $sorting
+            ];
+
+            $sorting++;
+        }
+
+        $this->connectionPool->getConnectionForTable($relationTable)->bulkInsert($relationTable, $relations);
+    }
+
+    /**
+     * @param array $rawAuthors
+     * @return array an array with the associated authors
+     */
+    protected function addAuthors(array $rawAuthors): array
+    {
+        $authors = [];
+
+        foreach ($rawAuthors as $author) {
+            $authors[] = $this->addAuthorIfNotExist($author['first_name'], $author['last_name']);
+        }
+
+        return $authors;
+    }
+
+    /**
+     * @param array $publication
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    protected function cleanupRawPublicationArray(array $publication)
+    {
+        $publicationTableFields = $this->getDatabaseFieldsByTable(Publication::TABLE_NAME);
+
+        foreach ($publication as $publicationField => $value) {
+            if (!in_array($publicationField, $publicationTableFields)) {
+                // @todo log removed fields
+                unset($publication[$publicationField]);
             }
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
-            $record,
-            __CLASS__ . ' in der Zeile ' . __LINE__
-        );
-        die();
+        return $publication;
+    }
 
-        // @todo import the array to the database
+    protected function addOrUpdatePublication($record)
+    {
+        // set the author count
+        if (!empty($record['authors'])) {
+            $record['authors'] = count($record['authors']);
+        }
+
+        $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
+        $queryBuilder
+            ->insert(Publication::TABLE_NAME)
+            ->values($record)
+            ->execute();
+
+        $publicationUid =
+            (int)$this->connectionPool->getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(
+                Publication::TABLE_NAME
+            );
+
+        return $publicationUid;
+    }
+
+    /**
+     * @param string $firstName
+     * @param string $lastName
+     * @return array the affected author
+     */
+    protected function addAuthorIfNotExist(string $firstName, string $lastName): array
+    {
+        $author = $this->getAuthorByName($firstName, $lastName);
+
+        if (empty($author)) {
+            $record = [
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+            ];
+
+            // add additional fields for typo3 e.g. pid, tstamp etc.
+            $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
+
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Author::TABLE_NAME);
+            // insert author
+            $queryBuilder
+                ->insert(Author::TABLE_NAME)
+                ->values($record)
+                ->execute();
+
+            $author = $this->getAuthorByName($firstName, $lastName);
+        }
+
+        return $author;
+    }
+
+    /**
+     * @param $firstName
+     * @param $lastName
+     * @return mixed
+     */
+    protected function getAuthorByName($firstName, $lastName)
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Author::TABLE_NAME);
+
+        return $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
+            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
+        )->execute()->fetch();
+    }
+
+    protected function getAdditionalTypo3Fields()
+    {
+        return [
+            'tstamp' => time(),
+            'crdate' => time(),
+            'cruser_id' => $GLOBALS['BE_USER']->user['uid'],
+            'pid' => 1 // @todo get the current pid
+        ];
     }
 
     /**
