@@ -2,6 +2,8 @@
 
 namespace In2code\Publications\Import\Importer;
 
+use In2code\Publications\Import\Processor\AuthorProcessor;
+use In2code\Publications\Import\Processor\SpecialCharProcessor;
 use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
 use RenanBr\BibTexParser\Processor\LatexToUnicodeProcessor;
@@ -44,10 +46,13 @@ class BibImporter implements ImporterInterface
     {
         $parser = new Parser();
         $listener = new Listener();
-        $listener->addProcessor(new NamesProcessor());
+
+        $listener->addProcessor(new SpecialCharProcessor());
+        $listener->addProcessor(new AuthorProcessor());
+
         $parser->addListener($listener);
         $parser->parseFile($filePath);
-
+        
         $publications = $listener->export();
 
         return $this->mapping($publications);
