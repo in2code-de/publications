@@ -1,0 +1,24 @@
+<f:form name="filter">
+	<label for="searchterm">
+		Suchbegriff
+	</label>
+	<f:form.textfield property="searchterm" id="searchterm" value="{filter.searchterm}"/>
+
+	<label for="author">
+		Autor
+	</label>
+	<f:form.textfield property="authorstring" id="author" value="{filter.authorstring}"/>
+
+	<label for="year">
+		Jahr
+	</label>
+	<f:form.textfield type="number" property="year" id="year" value="{f:if(condition:filter.year,then:filter.year)}"/>
+
+	<f:if condition="{filter.filterFrontendSet}">
+		<f:link.action action="resetList" class="btn btn-default">
+			Reset
+		</f:link.action>
+	</f:if>
+
+	<f:form.submit value="absenden"/>
+</f:form>

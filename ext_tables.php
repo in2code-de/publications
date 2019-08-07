@@ -19,5 +19,17 @@ call_user_func(
                 ]
             );
         }
+
+        /**
+         * Register icons
+         */
+        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+            \TYPO3\CMS\Core\Imaging\IconRegistry::class
+        );
+        $iconRegistry->registerIcon(
+            'extension-publications',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:publications/Resources/Public/Icons/Extension.svg']
+        );
     }
 );

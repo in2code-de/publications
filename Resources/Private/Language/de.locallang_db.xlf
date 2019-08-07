@@ -187,6 +187,10 @@
 				<source>DOI</source>
 				<target state="translated">DOI</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.authors">
+				<source>Authors</source>
+				<target state="translated">Autoren</target>
+			</trans-unit>
 
 			<trans-unit id="tx_publications_domain_model_author">
 				<source>Author</source>
@@ -203,6 +207,180 @@
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
 				<target state="translated">URL</target>
+			</trans-unit>
+
+			<trans-unit id="wizardTitlePi1">
+				<source>Publications</source>
+				<target state="translated">Publikationen</target>
+			</trans-unit>
+			<trans-unit id="wizardDescriptionsPi1">
+				<source>List of publications</source>
+				<target state="translated">Auflistung von Publikationen</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.pi1.filter">
+				<source>Filter</source>
+				<target state="translated">Filter</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframe">
+				<source>Choose a timeframe</source>
+				<target state="translated">Zeitraum wählen</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframe.0">
+				<source>all</source>
+				<target state="translated">alle</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes">
+				<source>Publication types (empty = all)</source>
+				<target state="translated">Publikationstypen (leer = alle)</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.article">
+				<source>Article</source>
+				<target state="translated">Artikel</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.book">
+				<source>Book</source>
+				<target state="translated">Buch</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.booklet">
+				<source>Booklet</source>
+				<target state="translated">Broschüre</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.conference">
+				<source>Conference</source>
+				<target state="translated">Konferenz</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.inbook">
+				<source>Contribution to Book</source>
+				<target state="translated">Buchbeitrag</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.incollection">
+				<source>Contribution to Collection</source>
+				<target state="translated">Sammlungsbeitrag</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.inproceedings">
+				<source>Contribution to Proceeding</source>
+				<target state="translated">Protokollbeitrag</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.manual">
+				<source>Manual</source>
+				<target state="translated">Handbuch</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.manuscript">
+				<source>Manuscript</source>
+				<target state="translated">Manuskript</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.mastersthesis">
+				<source>Master-Thesis</source>
+				<target state="translated">Master-Thesis</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.misc">
+				<source>Miscellaneous</source>
+				<target state="translated">Diverses</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.phdthesis">
+				<source>PhD-Thesis</source>
+				<target state="translated">PhD-Thesis</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.poster">
+				<source>Poster</source>
+				<target state="translated">Poster</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.proceedings">
+				<source>Proceedings</source>
+				<target state="translated">Protokoll</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.report">
+				<source>Report</source>
+				<target state="translated">Report</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.techreport">
+				<source>Techreport</source>
+				<target state="translated">Techreport</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.thesis">
+				<source>Thesis</source>
+				<target state="translated">Thesis</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.unpublished">
+				<source>Unpublished</source>
+				<target state="translated">Nicht veröffentlicht</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.url">
+				<source>URL</source>
+				<target state="translated">URL</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status">
+				<source>Status (empty = all)</source>
+				<target state="translated">Status (leer = alle)</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.0">
+				<source>published</source>
+				<target state="translated">publiziert</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.1">
+				<source>accepted</source>
+				<target state="translated">akzeptiert</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.2">
+				<source>submitted</source>
+				<target state="translated">eingereicht</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.3">
+				<source>to be published</source>
+				<target state="translated">vor Publizierung</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.status.4">
+				<source>in preperation</source>
+				<target state="translated">in Vorbereitung</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.keywords">
+				<source>Keywords (one per line)</source>
+				<target state="translated">Schlüsselwörter (eines pro Zeile)</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.tags">
+				<source>Tags (one per line)</source>
+				<target state="translated">Tags (eines pro Zeile)</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.author">
+				<source>Author</source>
+				<target state="translated">Autor</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.records">
+				<source>Show publications from this page only</source>
+				<target state="translated">Zeige nur Publikationen aus dieser Seite</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template">
+				<source>Template</source>
+				<target state="translated">Ansicht</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle">
+				<source>Cite style</source>
+				<target state="translated">Zitierstil</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.0">
+				<source>Standard</source>
+				<target state="translated">Standard</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby">
+				<source>Group by</source>
+				<target state="translated">Gruppieren nach</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.0">
+				<source>year</source>
+				<target state="translated">Jahr</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.1">
+				<source>type</source>
+				<target state="translated">Typ</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.2">
+				<source>year and type</source>
+				<target state="translated">Jahr und Typ</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.recordsPerPage">
+				<source>show this amount of records per page</source>
+				<target state="translated">Anzahl Datensätze pro Seite</target>
 			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
