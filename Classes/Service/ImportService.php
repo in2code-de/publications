@@ -8,6 +8,9 @@ use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 class ImportService
 {
@@ -190,7 +193,7 @@ class ImportService
             'tstamp' => time(),
             'crdate' => time(),
             'cruser_id' => $GLOBALS['BE_USER']->user['uid'],
-            'pid' => 1 // @todo get the current pid
+            'pid' => $this->getStoragePid()
         ];
     }
 
@@ -217,5 +220,34 @@ class ImportService
         }
 
         return $fields;
+    }
+
+    /**
+     * @return int
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     */
+    protected function getStoragePid(): int
+    {
+        $settings = $this->getExtensionSettings();
+        $pid = (int)$settings['storagePid'];
+
+        if (!empty(GeneralUtility::_GET('id'))) {
+            $pid = (int)GeneralUtility::_GET('id');
+        }
+
+        return $pid;
+    }
+
+    /**
+     * @return array
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     */
+    protected function getExtensionSettings(): array
+    {
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        /** @var ConfigurationManager $configurationManager */
+        $configurationManager = $objectManager->get(ConfigurationManager::class);
+
+        return $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
     }
 }

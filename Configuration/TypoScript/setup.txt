@@ -10,7 +10,7 @@ plugin.tx_publications {
 	}
 
 	settings {
-
+		storagePid = {$plugin.tx_publications.settings.storagePid}
 	}
 }
 
