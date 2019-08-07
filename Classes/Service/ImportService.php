@@ -60,7 +60,7 @@ class ImportService
             $publicationUid = $this->addOrUpdatePublication(
                 $this->cleanupRawPublicationArray($rawPublication)
             );
-            
+
             if (!empty($rawPublication['authors'])) {
                 $authors = $this->addAuthors($rawPublication['authors']);
                 $this->addAuthorRelations($publicationUid, $authors);
@@ -89,7 +89,25 @@ class ImportService
             $sorting++;
         }
 
+        $this->removeAuthorRelations($publicationUid);
+
         $this->connectionPool->getConnectionForTable($relationTable)->bulkInsert($relationTable, $relations);
+    }
+
+    /**
+     * @param int $publicationUid
+     */
+    protected function removeAuthorRelations(int $publicationUid)
+    {
+        $relationTable = 'tx_publications_publication_author_mm';
+
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($relationTable);
+        $queryBuilder->delete($relationTable)->where(
+            $queryBuilder->expr()->eq(
+                'uid_local',
+                $queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
+            )
+        )->execute();
     }
 
     /**
