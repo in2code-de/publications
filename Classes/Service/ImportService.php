@@ -30,15 +30,22 @@ class ImportService
     protected $connectionPool;
 
     /**
+     * @var int
+     */
+    protected $storagePid;
+
+    /**
      * ImportService constructor.
      *
      * @param string $data
      * @param ImporterInterface $importer
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
     public function __construct(string $data, ImporterInterface $importer)
     {
         $this->importer = $importer;
         $this->publicationsToImport = $this->importer->convert($data);
+        $this->storagePid = $this->getStoragePid();
 
         $this->connectionPool =
             GeneralUtility::makeInstance(ConnectionPool::class);
@@ -50,22 +57,22 @@ class ImportService
     public function import()
     {
         foreach ($this->publicationsToImport as $rawPublication) {
-            $publication = $this->addOrUpdatePublication(
+            $publicationUid = $this->addOrUpdatePublication(
                 $this->cleanupRawPublicationArray($rawPublication)
             );
-
+            
             if (!empty($rawPublication['authors'])) {
                 $authors = $this->addAuthors($rawPublication['authors']);
-                $this->addAuthorRelations($publication, $authors);
+                $this->addAuthorRelations($publicationUid, $authors);
             }
         }
     }
 
     /**
-     * @param $publication
-     * @param $authors
+     * @param int $publicationUid
+     * @param array $authors
      */
-    protected function addAuthorRelations($publication, $authors)
+    protected function addAuthorRelations(int $publicationUid, array $authors)
     {
         $relationTable = 'tx_publications_publication_author_mm';
         $sorting = 1;
@@ -73,7 +80,7 @@ class ImportService
 
         foreach ($authors as $author) {
             $relations[] = [
-                'uid_local' => $publication['uid'],
+                'uid_local' => $publicationUid,
                 'uid_foreign' => $author['uid'],
                 'sorting' => $sorting,
                 'sorting_foreign' => $sorting
@@ -108,7 +115,6 @@ class ImportService
     protected function cleanupRawPublicationArray(array $publication)
     {
         $publicationTableFields = $this->getDatabaseFieldsByTable(Publication::TABLE_NAME);
-
         foreach ($publication as $publicationField => $value) {
             if (!in_array($publicationField, $publicationTableFields)) {
                 // @todo log removed fields
@@ -127,18 +133,99 @@ class ImportService
         }
 
         $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
+
+        if ($this->existPublicationOnPid($record)) {
+            $publicationUid = $this->updatePublication($record);
+        } else {
+            $publicationUid = $this->insertPublication($record);
+        }
+
+        return $publicationUid;
+    }
+
+    /**
+     * @param array $updatedPublication
+     * @return int
+     */
+    protected function updatePublication(array $updatedPublication): int
+    {
+        $currentPublication = $this->getPublicationByIdentifier(
+            $this->storagePid,
+            $updatedPublication['citeid'],
+            $updatedPublication['date']
+        );
+
+        $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
+
+        $connection = $this->connectionPool->getConnectionForTable(Publication::TABLE_NAME);
+        $connection->update(Publication::TABLE_NAME, $fieldsToUpdate, ['uid' => $currentPublication['uid']]);
+
+        return $currentPublication['uid'];
+    }
+
+    /**
+     * @param array $currentPublication
+     * @param array $updatedPublication
+     * @return array
+     */
+    protected function getFieldsToUpdate(array $currentPublication, array $updatedPublication): array
+    {
+        // fields which should not be updated.
+        $fieldsToIgnore = [
+            'uid',
+            'crdate'
+        ];
+
+        // remove fields to ignore
+        foreach ($fieldsToIgnore as $fieldToIgnore) {
+            unset($updatedPublication[$fieldToIgnore]);
+        }
+
+        return array_diff_assoc($updatedPublication, $currentPublication);
+    }
+
+    /**
+     * @param array $publicationRecord
+     * @return int
+     */
+    protected function insertPublication(array $publicationRecord)
+    {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
         $queryBuilder
             ->insert(Publication::TABLE_NAME)
-            ->values($record)
+            ->values($publicationRecord)
             ->execute();
 
-        $publicationUid =
-            (int)$this->connectionPool->getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(
-                Publication::TABLE_NAME
-            );
+        return (int)$this->connectionPool->getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(
+            Publication::TABLE_NAME
+        );
+    }
 
-        return $publicationUid;
+    /**
+     * @param array $publication
+     * @return int
+     */
+    protected function existPublicationOnPid(array $publication): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
+        return $queryBuilder
+            ->count('*')
+            ->from(Publication::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'pid',
+                    $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)
+                ),
+                $queryBuilder->expr()->eq(
+                    'citeid',
+                    $queryBuilder->createNamedParameter($publication['citeid'], \PDO::PARAM_INT)
+                ),
+                $queryBuilder->expr()->eq(
+                    'date',
+                    $queryBuilder->createNamedParameter($publication['date'], \PDO::PARAM_INT)
+                )
+            )
+            ->execute()->fetchColumn(0);
     }
 
     /**
@@ -187,13 +274,38 @@ class ImportService
         )->execute()->fetch();
     }
 
+    /**
+     * @param int $pid
+     * @param string $citeid
+     * @param int $date
+     * @return array
+     */
+    protected function getPublicationByIdentifier(int $pid, string $citeid, int $date): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(Publication::TABLE_NAME);
+        $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
+            $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
+            $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('date', $queryBuilder->createNamedParameter($date, \PDO::PARAM_INT))
+        )->execute()->fetch();
+
+        if (!empty($publication)) {
+            return $publication;
+        }
+
+        return [];
+    }
+
+    /**
+     * @return array
+     */
     protected function getAdditionalTypo3Fields()
     {
         return [
             'tstamp' => time(),
             'crdate' => time(),
             'cruser_id' => $GLOBALS['BE_USER']->user['uid'],
-            'pid' => $this->getStoragePid()
+            'pid' => $this->storagePid
         ];
     }
 
