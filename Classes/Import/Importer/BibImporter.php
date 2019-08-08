@@ -7,7 +7,7 @@ use In2code\Publications\Import\Processor\SpecialCharProcessor;
 use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
 
-class BibImporter implements ImporterInterface
+class BibImporter extends AbstractImporter
 {
     /**
      * map publication fields from -> to
@@ -48,33 +48,27 @@ class BibImporter implements ImporterInterface
 
         $parser->addListener($listener);
         $parser->parseFile($filePath);
-        
+
         $publications = $listener->export();
 
-        return $this->mapping($publications);
+        return $this->fieldMapping($publications);
     }
 
-    protected function mapping(array $publications)
+    /**
+     * @param array $publication
+     */
+    protected function specialMapping(array &$publication)
     {
-        $mappedPublications = [];
+        $this->authorMapping($publication);
+        $this->publishingDateMapping($publication);
+        $this->additionalTypeMapping($publication);
+    }
 
-        foreach ($publications as $publication) {
-            $mappedPublication = $publication;
-
-            foreach ($this->additionalPublicationMapping as $from => $to) {
-                if (array_key_exists($from, $mappedPublication)) {
-                    $mappedPublication[$to] = $mappedPublication[$from];
-                    unset($mappedPublication[$from]);
-                }
-            }
-
-            $this->authorMapping($mappedPublication);
-            $this->publishingDateMapping($mappedPublication);
-
-            $mappedPublications[] = $mappedPublication;
+    protected function additionalTypeMapping(array &$publication)
+    {
+        if ($publication['bibtype'] === 'Technical Report') {
+            $publication['bibtype'] = 'report';
         }
-
-        return $mappedPublications;
     }
 
     /**

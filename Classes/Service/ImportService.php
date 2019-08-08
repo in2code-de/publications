@@ -177,8 +177,7 @@ class ImportService extends AbstractService
     {
         $currentPublication = $this->getPublicationByIdentifier(
             $this->storagePid,
-            $updatedPublication['citeid'],
-            $updatedPublication['date']
+            $updatedPublication['title']
         );
 
         $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
@@ -266,12 +265,8 @@ class ImportService extends AbstractService
                     $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)
                 ),
                 $queryBuilder->expr()->eq(
-                    'citeid',
-                    $queryBuilder->createNamedParameter($publication['citeid'], \PDO::PARAM_INT)
-                ),
-                $queryBuilder->expr()->eq(
-                    'date',
-                    $queryBuilder->createNamedParameter($publication['date'], \PDO::PARAM_INT)
+                    'title',
+                    $queryBuilder->createNamedParameter($publication['title'], \PDO::PARAM_STR)
                 )
             )
             ->execute()->fetchColumn(0);
@@ -332,17 +327,15 @@ class ImportService extends AbstractService
 
     /**
      * @param int $pid
-     * @param string $citeid
-     * @param int $date
+     * @param string $title
      * @return array
      */
-    protected function getPublicationByIdentifier(int $pid, string $citeid, int $date): array
+    protected function getPublicationByIdentifier(int $pid, string $title): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
         $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
-            $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('date', $queryBuilder->createNamedParameter($date, \PDO::PARAM_INT))
+            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR))
         )->execute()->fetch();
 
         if (!empty($publication)) {
