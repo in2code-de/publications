@@ -160,7 +160,12 @@ class ImportService extends AbstractService
 
         $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
 
-        if ($this->existPublicationOnPid($record)) {
+        $currentPublication = $this->getPublicationByIdentifier(
+            $this->storagePid,
+            $record['title']
+        );
+
+        if (!empty($currentPublication)) {
             $publicationUid = $this->updatePublication($record);
         } else {
             $publicationUid = $this->insertPublication($record);
@@ -246,36 +251,6 @@ class ImportService extends AbstractService
         );
 
         return $publicationUid;
-    }
-
-    /**
-     * @param array $publication
-     * @return bool
-     */
-    protected function existPublicationOnPid(array $publication): bool
-    {
-        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
-
-        $publicationCount = $queryBuilder
-            ->count('*')
-            ->from(Publication::TABLE_NAME)
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'pid',
-                    $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)
-                ),
-                $queryBuilder->expr()->eq(
-                    'title',
-                    $queryBuilder->createNamedParameter($publication['title'], \PDO::PARAM_STR)
-                )
-            )
-            ->execute()->fetchColumn(0);
-
-        if ($publicationCount > 0) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
