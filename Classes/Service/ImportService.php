@@ -17,6 +17,11 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
+/**
+ * Class ImportService
+ *
+ * @package In2code\Publications\Service
+ */
 class ImportService extends AbstractService
 {
     /**
@@ -168,6 +173,8 @@ class ImportService extends AbstractService
      * @param array $publication
      * @return array
      * @throws DBALException
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     protected function cleanupRawPublicationArray(array $publication)
     {

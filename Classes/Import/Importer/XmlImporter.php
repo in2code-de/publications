@@ -2,6 +2,14 @@
 
 namespace In2code\Publications\Import\Importer;
 
+use DateTime;
+
+/**
+ * Class XmlImporter
+ *
+ * @package In2code\Publications\Import\Importer
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class XmlImporter extends AbstractImporter
 {
     /**
@@ -58,20 +66,20 @@ class XmlImporter extends AbstractImporter
 
             // format: Y-m-d e.g. 2019-08-09
             if (!empty($dateArray[1]) && !empty($dateArray[2])) {
-                $date = \DateTime::createFromFormat($format, $publication['date'] . ' 00:00:00');
+                $date = DateTime::createFromFormat($format, $publication['date'] . ' 00:00:00');
             }
 
             // format: Y-m e.g. 2019-08
             if (empty($dateArray[2]) && !empty($dateArray[1])) {
-                $date = \DateTime::createFromFormat($format, $publication['date'] . '-01 00:00:00');
+                $date = DateTime::createFromFormat($format, $publication['date'] . '-01 00:00:00');
             }
 
             // format: Y e.g. 2019
             if (empty($dateArray[1]) && empty($dateArray[2])) {
-                $date = \DateTime::createFromFormat($format, $publication['date'] . '-01-01 00:00:00');
+                $date = DateTime::createFromFormat($format, $publication['date'] . '-01-01 00:00:00');
             }
 
-            if ($date instanceof \DateTime) {
+            if ($date instanceof DateTime) {
                 $publication['date'] = $date->getTimestamp();
             }
         } else {

@@ -2,11 +2,20 @@
 
 namespace In2code\Publications\Import\Importer;
 
+use DateTime;
+use ErrorException;
 use In2code\Publications\Import\Processor\AuthorProcessor;
 use In2code\Publications\Import\Processor\SpecialCharProcessor;
+use RenanBr\BibTexParser\Exception\ParserException;
 use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
 
+/**
+ * Class BibImporter
+ *
+ * @package In2code\Publications\Import\Importer
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class BibImporter extends AbstractImporter
 {
     /**
@@ -35,8 +44,8 @@ class BibImporter extends AbstractImporter
      * @param string $filePath
      * @return array
      *
-     * @throws \ErrorException
-     * @throws \RenanBr\BibTexParser\Exception\ParserException
+     * @throws ErrorException
+     * @throws ParserException
      */
     public function convert(string $filePath): array
     {
@@ -103,7 +112,7 @@ class BibImporter extends AbstractImporter
     /**
      * @param $year
      * @param $month
-     * @return bool|\DateTime
+     * @return bool|DateTime
      */
     protected function createTimestamp($year, $month)
     {
@@ -130,6 +139,6 @@ class BibImporter extends AbstractImporter
         }
 
         $format = "d/m/Y H:i:s";
-        return \DateTime::createFromFormat($format, '1/' . $month . '/' . $year . ' 00:00:00');
+        return DateTime::createFromFormat($format, '1/' . $month . '/' . $year . ' 00:00:00');
     }
 }

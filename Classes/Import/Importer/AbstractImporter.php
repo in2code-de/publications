@@ -2,6 +2,12 @@
 
 namespace In2code\Publications\Import\Importer;
 
+/**
+ * Class AbstractImporter
+ *
+ * @package In2code\Publications\Import\Importer
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 abstract class AbstractImporter implements ImporterInterface
 {
     /**
@@ -38,6 +44,7 @@ abstract class AbstractImporter implements ImporterInterface
      * e.g. convert dates etc.
      *
      * @param array $publication
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function specialMapping(array &$publication)
     {
