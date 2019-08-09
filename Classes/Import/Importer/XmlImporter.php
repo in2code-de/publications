@@ -81,13 +81,13 @@ class XmlImporter extends AbstractImporter
 
     /**
      * @param array $publication
-     * @param string $key
+     * @param string $personKey
      */
     protected function personMapping(array &$publication, string $personKey)
     {
         if (!empty($publication[$personKey])) {
             $persons = $publication[$personKey]['item'];
-            unset ($publication[$personKey]['item']);
+            unset($publication[$personKey]['item']);
             foreach ($this->personMapping as $from => $to) {
                 // only one person
                 if (array_key_exists('name', $persons)) {
