@@ -2,16 +2,19 @@
 
 namespace In2code\Publications\Service;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
 use In2code\Publications\Utility\DatabaseUtility;
+use PDO;
 use Psr\Log\LogLevel;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 class ImportService extends AbstractService
@@ -51,7 +54,7 @@ class ImportService extends AbstractService
      *
      * @param string $data
      * @param ImporterInterface $importer
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @throws InvalidConfigurationTypeException
      */
     public function __construct(string $data, ImporterInterface $importer)
     {
@@ -64,7 +67,7 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function import()
     {
@@ -129,7 +132,7 @@ class ImportService extends AbstractService
         $affectedRows = $this->queryBuilder->delete($relationTable)->where(
             $this->queryBuilder->expr()->eq(
                 'uid_local',
-                $this->queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
+                $this->queryBuilder->createNamedParameter($publicationUid, PDO::PARAM_INT)
             )
         )->execute();
 
@@ -157,7 +160,7 @@ class ImportService extends AbstractService
     /**
      * @param array $publication
      * @return array
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     protected function cleanupRawPublicationArray(array $publication)
     {
@@ -323,11 +326,11 @@ class ImportService extends AbstractService
         return $this->queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
             $this->queryBuilder->expr()->eq(
                 'first_name',
-                $this->queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)
+                $this->queryBuilder->createNamedParameter($firstName, PDO::PARAM_STR)
             ),
             $this->queryBuilder->expr()->eq(
                 'last_name',
-                $this->queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR)
+                $this->queryBuilder->createNamedParameter($lastName, PDO::PARAM_STR)
             )
         )->execute()->fetch();
     }
@@ -342,11 +345,11 @@ class ImportService extends AbstractService
         $publication = $this->queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
             $this->queryBuilder->expr()->eq(
                 'pid',
-                $this->queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)
+                $this->queryBuilder->createNamedParameter($pid, PDO::PARAM_INT)
             ),
             $this->queryBuilder->expr()->eq(
                 'title',
-                $this->queryBuilder->createNamedParameter($title, \PDO::PARAM_STR)
+                $this->queryBuilder->createNamedParameter($title, PDO::PARAM_STR)
             )
         )->execute()->fetch();
 
@@ -373,14 +376,14 @@ class ImportService extends AbstractService
     /**
      * @param string $table
      * @return array
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     protected function getDatabaseFieldsByTable(string $table): array
     {
         $fields = [];
         /** @var Statement $statement */
         $statement = GeneralUtility::makeInstance(
-            \Doctrine\DBAL\Statement::class,
+            Statement::class,
             'SHOW COLUMNS FROM ' . $table,
             DatabaseUtility::getConnectionForTable($table)
         );
@@ -396,7 +399,7 @@ class ImportService extends AbstractService
 
     /**
      * @return int
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @throws InvalidConfigurationTypeException
      */
     protected function getStoragePid(): int
     {
@@ -412,7 +415,7 @@ class ImportService extends AbstractService
 
     /**
      * @return array
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @throws InvalidConfigurationTypeException
      */
     protected function getExtensionSettings(): array
     {
