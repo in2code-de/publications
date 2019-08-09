@@ -92,6 +92,9 @@ class ImportService extends AbstractService
     }
 
     /**
+     * create the author relations between the given publication and authors
+     * NOTE: existing relations will be deleted before new relations will be created
+     *
      * @param int $publicationUid
      * @param array $authors
      */
@@ -123,6 +126,8 @@ class ImportService extends AbstractService
     }
 
     /**
+     * deletes all existing author relations for an given publication
+     *
      * @param int $publicationUid
      */
     protected function removeAuthorRelations(int $publicationUid)
@@ -143,6 +148,8 @@ class ImportService extends AbstractService
     }
 
     /**
+     * create multiple authors
+     *
      * @param array $rawAuthors
      * @return array an array with the associated authors
      */
@@ -178,7 +185,11 @@ class ImportService extends AbstractService
         return $publication;
     }
 
-    protected function addOrUpdatePublication($record)
+    /**
+     * @param $record
+     * @return int
+     */
+    protected function addOrUpdatePublication($record): int
     {
         // set the author count
         if (!empty($record['authors'])) {
@@ -284,6 +295,8 @@ class ImportService extends AbstractService
     }
 
     /**
+     * creates an author if no matching author exists
+     *
      * @param string $firstName
      * @param string $lastName
      * @return array the affected author
@@ -319,11 +332,11 @@ class ImportService extends AbstractService
     /**
      * @param $firstName
      * @param $lastName
-     * @return mixed
+     * @return array
      */
-    protected function getAuthorByName($firstName, $lastName)
+    protected function getAuthorByName($firstName, $lastName): array
     {
-        return $this->queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
+        $author = $this->queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
             $this->queryBuilder->expr()->eq(
                 'first_name',
                 $this->queryBuilder->createNamedParameter($firstName, PDO::PARAM_STR)
@@ -333,6 +346,12 @@ class ImportService extends AbstractService
                 $this->queryBuilder->createNamedParameter($lastName, PDO::PARAM_STR)
             )
         )->execute()->fetch();
+
+        if (!empty($author)) {
+            return $author;
+        }
+
+        return [];
     }
 
     /**
@@ -362,6 +381,7 @@ class ImportService extends AbstractService
 
     /**
      * @return array
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     protected function getAdditionalTypo3Fields()
     {
@@ -374,6 +394,8 @@ class ImportService extends AbstractService
     }
 
     /**
+     * returns an array with all existing fields of an database table
+     *
      * @param string $table
      * @return array
      * @throws DBALException
@@ -398,6 +420,8 @@ class ImportService extends AbstractService
     }
 
     /**
+     * get the current selected pid with fallback auf an defined storagePid in the typoscript
+     *
      * @return int
      * @throws InvalidConfigurationTypeException
      */
