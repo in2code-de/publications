@@ -2,6 +2,7 @@
 
 namespace In2code\Publications\Service;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
@@ -41,6 +42,11 @@ class ImportService extends AbstractService
     ];
 
     /**
+     * @var QueryBuilder
+     */
+    protected $queryBuilder;
+
+    /**
      * ImportService constructor.
      *
      * @param string $data
@@ -54,6 +60,7 @@ class ImportService extends AbstractService
         $this->importer = $importer;
         $this->publicationsToImport = $this->importer->convert($data);
         $this->storagePid = $this->getStoragePid();
+        $this->queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
     }
 
     /**
@@ -119,11 +126,10 @@ class ImportService extends AbstractService
     {
         $relationTable = 'tx_publications_publication_author_mm';
 
-        $queryBuilder = DatabaseUtility::getQueryBuilderForTable($relationTable);
-        $affectedRows = $queryBuilder->delete($relationTable)->where(
-            $queryBuilder->expr()->eq(
+        $affectedRows = $this->queryBuilder->delete($relationTable)->where(
+            $this->queryBuilder->expr()->eq(
                 'uid_local',
-                $queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
+                $this->queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
             )
         )->execute();
 
@@ -256,7 +262,7 @@ class ImportService extends AbstractService
      */
     protected function insertPublication(array $publicationRecord)
     {
-        DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME)
+        $this->queryBuilder
             ->insert(Publication::TABLE_NAME)
             ->values($publicationRecord)
             ->execute();
@@ -293,7 +299,7 @@ class ImportService extends AbstractService
             $record = array_merge_recursive($record, $this->getAdditionalTypo3Fields());
 
             // insert author
-            DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME)
+            $this->queryBuilder
                 ->insert(Author::TABLE_NAME)
                 ->values($record)
                 ->execute();
@@ -314,11 +320,15 @@ class ImportService extends AbstractService
      */
     protected function getAuthorByName($firstName, $lastName)
     {
-        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
-
-        return $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
-            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
+        return $this->queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
+            $this->queryBuilder->expr()->eq(
+                'first_name',
+                $this->queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)
+            ),
+            $this->queryBuilder->expr()->eq(
+                'last_name',
+                $this->queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR)
+            )
         )->execute()->fetch();
     }
 
@@ -329,10 +339,15 @@ class ImportService extends AbstractService
      */
     protected function getPublicationByIdentifier(int $pid, string $title): array
     {
-        $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
-        $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
-            $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
-            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR))
+        $publication = $this->queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
+            $this->queryBuilder->expr()->eq(
+                'pid',
+                $this->queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)
+            ),
+            $this->queryBuilder->expr()->eq(
+                'title',
+                $this->queryBuilder->createNamedParameter($title, \PDO::PARAM_STR)
+            )
         )->execute()->fetch();
 
         if (!empty($publication)) {
