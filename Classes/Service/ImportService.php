@@ -31,6 +31,16 @@ class ImportService extends AbstractService
     protected $storagePid;
 
     /**
+     * @var array
+     */
+    protected $importInformation = [
+        'updatedPublications' => 0,
+        'createdPublications' => 0,
+        'publicationsWithNoUpdate' => 0,
+        'createdAuthors' => 0
+    ];
+
+    /**
      * ImportService constructor.
      *
      * @param string $data
@@ -61,6 +71,14 @@ class ImportService extends AbstractService
                 $this->addAuthorRelations($publicationUid, $authors);
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getImportInformation(): array
+    {
+        return $this->importInformation;
     }
 
     /**
@@ -194,12 +212,14 @@ class ImportService extends AbstractService
         );
 
         if ($affectedRows > 0) {
+            $this->importInformation['updatedPublications']++;
             $this->logger->log(
                 LogLevel::DEBUG,
                 'The following fields of the publication #' . $currentPublication['uid'] . ' where updated',
                 $fieldsToUpdate
             );
         } else {
+            $this->importInformation['publicationsWithNoUpdate']++;
             $this->logger->log(
                 LogLevel::DEBUG,
                 'There was no updates for the publication #' . $currentPublication['uid']
@@ -244,6 +264,7 @@ class ImportService extends AbstractService
         $publicationUid =
             (int)DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(Publication::TABLE_NAME);
 
+        $this->importInformation['createdPublications']++;
         $this->logger->log(
             LogLevel::DEBUG,
             'The publication #' . $publicationUid . ' was created',
@@ -279,6 +300,7 @@ class ImportService extends AbstractService
 
             $author = $this->getAuthorByName($firstName, $lastName);
 
+            $this->importInformation['createdAuthors']++;
             $this->logger->log(LogLevel::DEBUG, 'The author #' . $author['uid'] . ' was created.', $author);
         }
 
