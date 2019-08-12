@@ -359,8 +359,28 @@
 				<target state="translated">Zitierstil</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.0">
-				<source>Standard</source>
-				<target state="translated">Standard</target>
+				<source>Please choose a citestyle...</source>
+				<target state="translated">Bitte Zitierstil wählen...</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.1">
+				<source>Harvard</source>
+				<target state="translated">Harvard</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.2">
+				<source>IEEE</source>
+				<target state="translated">IEEE</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.3">
+				<source>Chicago</source>
+				<target state="translated">Chicago</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.4">
+				<source>APA</source>
+				<target state="translated">APA</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.5">
+				<source>Coming soon...</source>
+				<target state="translated">Kommt in Kürze...</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>

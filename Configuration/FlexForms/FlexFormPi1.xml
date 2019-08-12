@@ -17,15 +17,10 @@
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-								</items>
 								<size>1</size>
 								<minitems>1</minitems>
 								<maxitems>1</maxitems>
+								<itemsProcFunc>In2code\Publications\Tca\CitestyleSelection->getStyles</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</settings.citestyle>

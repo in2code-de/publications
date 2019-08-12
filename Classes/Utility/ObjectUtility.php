@@ -5,6 +5,7 @@ namespace In2code\Publications\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Class ObjectUtility
@@ -27,5 +28,13 @@ class ObjectUtility
     public static function getTyposcriptFrontendController()
     {
         return $GLOBALS['TSFE'];
+    }
+
+    /**
+     * @return LanguageService
+     */
+    public static function getLanguageService(): LanguageService
+    {
+        return $GLOBALS['LANG'];
     }
 }

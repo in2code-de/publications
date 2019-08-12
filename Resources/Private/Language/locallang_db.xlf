@@ -271,7 +271,22 @@
 				<source>Cite style</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.0">
-				<source>Standard</source>
+				<source>Please choose a citestyle...</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.1">
+				<source>Harvard</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.2">
+				<source>IEEE</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.3">
+				<source>Chicago</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.4">
+				<source>APA</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.5">
+				<source>Coming soon...</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
