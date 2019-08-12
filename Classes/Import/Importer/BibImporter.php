@@ -105,7 +105,9 @@ class BibImporter extends AbstractImporter
     {
         // create timestamp from fields month, year
         $timestamp = $this->createTimestamp($publication['year'], $publication['month']);
-        $publication['date'] = $timestamp->getTimestamp();
+        if (is_a($timestamp, \DateTime::class)) {
+            $publication['date'] = $timestamp->getTimestamp();
+        }
         unset($publication['month'], $publication['year']);
     }
 
