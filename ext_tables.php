@@ -16,6 +16,11 @@ call_user_func(
                 '',
                 [
                     'Import' => 'overview, import'
+                ],
+                [
+                    'access' => 'user,group',
+                    'icon' => 'EXT:publications/Resources/Public/Icons/ModuleImport.svg',
+                    'labels' => 'LLL:EXT:publications/Resources/Private/Language/locallang_mod_import.xlf',
                 ]
             );
         }
