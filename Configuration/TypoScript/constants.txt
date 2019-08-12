@@ -4,4 +4,8 @@ plugin.tx_publications {
 		partialRootPath = EXT:publications/Resources/Private/Partials/
 		layoutRootPath = EXT:publications/Resources/Private/Layouts/
 	}
+
+	settings {
+		storagePid = 0
+	}
 }

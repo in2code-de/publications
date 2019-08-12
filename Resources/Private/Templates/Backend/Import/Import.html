@@ -1,0 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:layout name="Backend"/>
+
+<f:section name="main">
+	<f:flashMessages/>
+	<f:for each="{messages}" as="message">
+		<div class="typo3-message message-error">
+			{message}
+		</div>
+	</f:for>
+
+	Import:<br/>
+	Publications Updated: {importInformation.updatedPublications} <br/>
+	Publications Created: {importInformation.createdPublications} <br/>
+	Publications with no Update: {importInformation.publicationsWithNoUpdate} <br/>
+	Authors Created: {importInformation.createdAuthors} <br/>
+</f:section>
+</html>

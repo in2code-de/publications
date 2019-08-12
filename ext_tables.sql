@@ -25,7 +25,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	web_url2 varchar(255) DEFAULT '' NOT NULL,
 	miscellaneous varchar(255) DEFAULT '' NOT NULL,
 	miscellaneous2 varchar(255) DEFAULT '' NOT NULL,
-	editor varchar(255) DEFAULT '' NOT NULL,
+	editor varchar(1000) DEFAULT '' NOT NULL,
 	publisher varchar(255) DEFAULT '' NOT NULL,
 	series varchar(255) DEFAULT '' NOT NULL,
 	address text NOT NULL,

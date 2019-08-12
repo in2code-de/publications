@@ -198,7 +198,8 @@ $tca = [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
+                'eval' => 'date',
                 'default' => 0
             ]
         ],

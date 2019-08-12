@@ -19,6 +19,10 @@
   "type": "typo3-cms-extension",
   "license": "GPL-2.0-or-later",
   "require": {
+    "ext-simplexml": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-pdo": "*",
     "typo3/cms-core": ">=8.7.0 <10.0.0",
     "renanbr/bibtex-parser": "^2"
   },
