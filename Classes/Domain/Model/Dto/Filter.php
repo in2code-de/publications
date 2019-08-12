@@ -6,6 +6,7 @@ use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
 use In2code\Publications\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Class Filter
@@ -127,6 +128,35 @@ class Filter
     public function getGroupby(): int
     {
         return $this->groupby;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGroupByArrayForQuery(): array
+    {
+        switch ($this->getGroupby()) {
+            case 0:
+                $orderings = [
+                    'date' => QueryInterface::ORDER_DESCENDING,
+                    'title' => QueryInterface::ORDER_ASCENDING
+                ];
+                break;
+            case 1:
+                $orderings = [
+                    'bibtype' => QueryInterface::ORDER_ASCENDING,
+                    'title' => QueryInterface::ORDER_ASCENDING
+                ];
+                break;
+            default:
+            case 2:
+                $orderings = [
+                    'date' => QueryInterface::ORDER_DESCENDING,
+                    'bibtype' => QueryInterface::ORDER_ASCENDING,
+                    'title' => QueryInterface::ORDER_ASCENDING
+                ];
+        }
+        return $orderings;
     }
 
     /**

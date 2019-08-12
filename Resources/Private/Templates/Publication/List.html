@@ -6,9 +6,9 @@
 				objects="{publications}"
 				as="publicationsPage"
 				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-			<ul>
+			<ul style="list-style-type: none; padding: 20px 0;">
 				<f:for each="{publicationsPage}" as="publication">
-					<li>
+					<li style="padding: 20px 0;">
 						<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
 					</li>
 				</f:for>

@@ -23,9 +23,20 @@ class Publication extends AbstractEntity
     protected $date = null;
 
     /**
+     * @var string
+     */
+    protected $bibtype = '';
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Publications\Domain\Model\Author>
      */
     protected $authors = null;
+
+    /**
+     * @var int
+     * @transient
+     */
+    protected $_number = 0;
 
     /**
      * @return string
@@ -54,12 +65,42 @@ class Publication extends AbstractEntity
     }
 
     /**
+     * @return int
+     */
+    public function getYearFromDate(): int
+    {
+        $date = $this->getDate();
+        if (is_a($date, \DateTime::class)) {
+            return (int)$date->format('Y');
+        }
+        return 0;
+    }
+
+    /**
      * @param \DateTime $date
      * @return Publication
      */
     public function setDate(\DateTime $date): self
     {
         $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBibtype(): string
+    {
+        return $this->bibtype;
+    }
+
+    /**
+     * @param string $bibtype
+     * @return Publication
+     */
+    public function setBibtype(string $bibtype): self
+    {
+        $this->bibtype = $bibtype;
         return $this;
     }
 
@@ -78,6 +119,24 @@ class Publication extends AbstractEntity
     public function setAuthors(ObjectStorage $authors): self
     {
         $this->authors = $authors;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->_number;
+    }
+
+    /**
+     * @param int $number
+     * @return Publication
+     */
+    public function setNumber(int $number): self
+    {
+        $this->_number = $number;
         return $this;
     }
 }

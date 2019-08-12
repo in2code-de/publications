@@ -57,7 +57,7 @@ class PublicationController extends ActionController
         $this->view->assignMultiple([
             'filter' => $filter,
             'publications' => $publications,
-            'showPagination' => $publications->count() > $filter->getRecordsPerPage()
+            'showPagination' => count($publications) > $filter->getRecordsPerPage()
         ]);
     }
 
