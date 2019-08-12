@@ -37,5 +37,11 @@ call_user_func(
                 ]
             ]
         ];
+
+        /**
+         * Fluid Namespace
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['publications'][]
+            = 'In2code\Publications\ViewHelpers';
     }
 );

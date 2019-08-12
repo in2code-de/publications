@@ -363,7 +363,7 @@ class PublicationRepository extends Repository
      */
     protected function compareCallbackYear(Publication $p1, Publication $p2): int
     {
-        return strcmp((string)$p2->getYearFromDate(), (string)$p1->getYearFromDate());
+        return strcasecmp((string)$p2->getYearFromDate(), (string)$p1->getYearFromDate());
     }
 
     /**
@@ -375,7 +375,7 @@ class PublicationRepository extends Repository
      */
     protected function compareCallbackBibtype(Publication $p1, Publication $p2): int
     {
-        return strcmp($p1->getBibtype(), $p2->getBibtype());
+        return strcasecmp($p1->getBibtype(), $p2->getBibtype());
     }
 
     /**
@@ -387,6 +387,6 @@ class PublicationRepository extends Repository
      */
     protected function compareCallbackTitle(Publication $p1, Publication $p2): int
     {
-        return strcmp($p1->getTitle(), $p2->getTitle());
+        return strcasecmp($p1->getTitle(), $p2->getTitle());
     }
 }

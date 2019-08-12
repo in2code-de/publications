@@ -6,13 +6,15 @@
 				objects="{publications}"
 				as="publicationsPage"
 				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-			<ul style="list-style-type: none; padding: 20px 0;">
+			<div>
 				<f:for each="{publicationsPage}" as="publication">
-					<li style="padding: 20px 0;">
+					<f:render section="GroupTitle" arguments="{_all}"/>
+
+					<div style="padding: 20px 0;">
 						<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
-					</li>
+					</div>
 				</f:for>
-			</ul>
+			</div>
 		</f:widget.paginate>
 	</f:then>
 	<f:else>
@@ -20,3 +22,19 @@
 	</f:else>
 </f:if>
 
+
+
+<f:section name="GroupTitle">
+	<f:switch expression="{filter.groupby}">
+		<f:case value="0">
+			<publications:groupTitle publication="{publication}" titleField="yearFromDate" before="<h3 style='color: red;'>" after="</h3>" />
+		</f:case>
+		<f:case value="1">
+			<publications:groupTitle publication="{publication}" titleField="bibtype" before="<h3 style='color: red;'>" after="</h3>" />
+		</f:case>
+		<f:case value="2">
+			<publications:groupTitle publication="{publication}" titleField="yearFromDate" before="<h3 style='color: red;'>" after="</h3>" />
+			<publications:groupTitle publication="{publication}" titleField="bibtype" singeltonKey="{publication.yearFromDate}{publication.bibtype}" before="<h4 style='color: grey;'>" after="</h4>" />
+		</f:case>
+	</f:switch>
+</f:section>
