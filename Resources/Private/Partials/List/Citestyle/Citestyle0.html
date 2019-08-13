@@ -1,5 +1,18 @@
-{publication.number}.
-<f:format.date format="d.m.Y">{publication.date}</f:format.date>
-<strong>{publication.bibtype}</strong>
-{publication.title}
-(<f:for each="{publication.authors}" as="author">{author.lastName},</f:for>)
+<div style="display: flex;">
+	<div style="padding-right: 10px;">{publication.numeration}.</div>
+
+	<div>
+		<f:for each="{publication.authors}" as="author" iteration="iteration">
+			{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+			{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+		</f:for>
+
+		<br/>
+		<i>{publication.title}</i>
+
+		<br/>
+		{publication.journal}, <strong>{publication.volume}</strong>({publication.number});
+		{publication.pages}
+	</div>
+</div>
+
