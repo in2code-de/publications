@@ -293,7 +293,7 @@ class PublicationRepository extends Repository
         usort($resultsRaw, [$this, 'compareCallback' . $filter->getGroupby()]);
         /** @var Publication $result */
         foreach ($resultsRaw as $result) {
-            $result->setNumber(count($resultsRaw) - $i);
+            $result->setNumeration(count($resultsRaw) - $i);
             $i++;
         }
         return $resultsRaw;
