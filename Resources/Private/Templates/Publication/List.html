@@ -1,40 +1,49 @@
-<f:render partial="List/Filter" arguments="{_all}"/>
+<f:layout name="Frontend"/>
 
-<f:if condition="{publications}">
-	<f:then>
-		<f:widget.paginate
-				objects="{publications}"
-				as="publicationsPage"
-				configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-			<div>
-				<f:for each="{publicationsPage}" as="publication">
-					<f:render section="GroupTitle" arguments="{_all}"/>
 
-					<div style="padding: 20px 0;">
-						<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
-					</div>
-				</f:for>
+
+<f:section name="Content">
+	<f:render partial="List/Filter" arguments="{_all}"/>
+
+	<f:if condition="{publications}">
+		<f:then>
+			<f:widget.paginate
+					objects="{publications}"
+					as="publicationsPage"
+					configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
+				<div>
+					<f:for each="{publicationsPage}" as="publication">
+						<f:render section="GroupTitle" arguments="{_all}"/>
+
+						<div style="padding: 20px 0;">
+							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
+						</div>
+					</f:for>
+				</div>
+			</f:widget.paginate>
+		</f:then>
+		<f:else>
+			<div class="alert alert-danger" role="alert">
+				<f:translate key="list.norecords">No records found</f:translate>
 			</div>
-		</f:widget.paginate>
-	</f:then>
-	<f:else>
-		Keine Publikationen gefunden
-	</f:else>
-</f:if>
+		</f:else>
+	</f:if>
+</f:section>
+
 
 
 
 <f:section name="GroupTitle">
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
-			<publications:groupTitle publication="{publication}" titleField="yearFromDate" before="<h3 style='color: red;'>" after="</h3>" />
+			<publications:groupTitle title="{publication.yearFromDate}" before="<h3 style='color: red;'>" after="</h3>" />
 		</f:case>
 		<f:case value="1">
-			<publications:groupTitle publication="{publication}" titleField="bibtype" before="<h3 style='color: red;'>" after="</h3>" />
+			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}')}" before="<h3 style='color: red;'>" after="</h3>" />
 		</f:case>
 		<f:case value="2">
-			<publications:groupTitle publication="{publication}" titleField="yearFromDate" before="<h3 style='color: red;'>" after="</h3>" />
-			<publications:groupTitle publication="{publication}" titleField="bibtype" singeltonKey="{publication.yearFromDate}{publication.bibtype}" before="<h4 style='color: grey;'>" after="</h4>" />
+			<publications:groupTitle title="{publication.yearFromDate}" before="<h3 style='color: red;'>" after="</h3>" />
+			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}')}" singeltonKey="{publication.yearFromDate}{publication.bibtype}" before="<h4 style='color: grey;'>" after="</h4>" />
 		</f:case>
 	</f:switch>
 </f:section>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+		<header/>
+		<body>
+			<trans-unit id="list.filter.searchterm">
+				<source>Searchterm</source>
+			</trans-unit>
+			<trans-unit id="list.filter.searchterm.placeholder">
+				<source>Publication title</source>
+			</trans-unit>
+			<trans-unit id="list.filter.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="list.filter.author.placeholder">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="list.filter.year">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="list.filter.year.placeholder">
+				<source>2019</source>
+			</trans-unit>
+			<trans-unit id="list.filter.reset">
+				<source>Reset</source>
+			</trans-unit>
+			<trans-unit id="list.filter.submit">
+				<source>Search now</source>
+			</trans-unit>
+			<trans-unit id="list.filter.extended">
+				<source>Extended search</source>
+			</trans-unit>
+			<trans-unit id="list.norecords">
+				<source>No publications found</source>
+			</trans-unit>
+
+			<trans-unit id="bibtype.article">
+				<source>Article</source>
+			</trans-unit>
+			<trans-unit id="bibtype.book">
+				<source>Book</source>
+			</trans-unit>
+			<trans-unit id="bibtype.booklet">
+				<source>Booklet</source>
+			</trans-unit>
+			<trans-unit id="bibtype.conference">
+				<source>Conference</source>
+			</trans-unit>
+			<trans-unit id="bibtype.inbook">
+				<source>Contribution to Book</source>
+			</trans-unit>
+			<trans-unit id="bibtype.incollection">
+				<source>Contribution to Collection</source>
+			</trans-unit>
+			<trans-unit id="bibtype.inproceedings">
+				<source>Contribution to Proceeding</source>
+			</trans-unit>
+			<trans-unit id="bibtype.manual">
+				<source>Manual</source>
+			</trans-unit>
+			<trans-unit id="bibtype.manuscript">
+				<source>Manuscript</source>
+			</trans-unit>
+			<trans-unit id="bibtype.mastersthesis">
+				<source>Master-Thesis</source>
+			</trans-unit>
+			<trans-unit id="bibtype.misc">
+				<source>Miscellaneous</source>
+			</trans-unit>
+			<trans-unit id="bibtype.phdthesis">
+				<source>PhD-Thesis</source>
+			</trans-unit>
+			<trans-unit id="bibtype.poster">
+				<source>Poster</source>
+			</trans-unit>
+			<trans-unit id="bibtype.proceedings">
+				<source>Proceedings</source>
+			</trans-unit>
+			<trans-unit id="bibtype.report">
+				<source>Report</source>
+			</trans-unit>
+			<trans-unit id="bibtype.techreport">
+				<source>Techreport</source>
+			</trans-unit>
+			<trans-unit id="bibtype.thesis">
+				<source>Thesis</source>
+			</trans-unit>
+			<trans-unit id="bibtype.unpublished">
+				<source>Unpublished</source>
+			</trans-unit>
+			<trans-unit id="bibtype.url">
+				<source>URL</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

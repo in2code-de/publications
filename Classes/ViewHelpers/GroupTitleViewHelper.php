@@ -2,13 +2,12 @@
 declare(strict_types=1);
 namespace In2code\Publications\ViewHelpers;
 
-use In2code\Publications\Domain\Model\Publication;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class GroupTitleViewHelper
+ * will only show a value once per runtime. So it can be used for showing a group title.
  */
 class GroupTitleViewHelper extends AbstractViewHelper implements SingletonInterface
 {
@@ -28,8 +27,7 @@ class GroupTitleViewHelper extends AbstractViewHelper implements SingletonInterf
     public function initializeArguments()
     {
         parent::initializeArguments();
-        $this->registerArgument('publication', Publication::class, 'Single Publication object', true);
-        $this->registerArgument('titleField', 'string', 'Propertyname of publications object', true);
+        $this->registerArgument('title', 'string', 'Title value', true);
         $this->registerArgument('before', 'string', 'Add this html before', false);
         $this->registerArgument('after', 'string', 'Add this html after', false);
         $this->registerArgument('singeltonKey', 'string', 'Any key in $titles that prevents duplicates', false);
@@ -67,9 +65,7 @@ class GroupTitleViewHelper extends AbstractViewHelper implements SingletonInterf
      */
     protected function getTitle(): string
     {
-        /** @var Publication $publication */
-        $publication = $this->arguments['publication'];
-        $title = (string)ObjectAccess::getProperty($publication, $this->arguments['titleField']);
+        $title = (string)$this->arguments['title'];
         if (empty($this->titles[$this->getSingeltonKey()])
             || in_array($title, $this->titles[$this->getSingeltonKey()]) === false) {
             $this->titles[$this->getSingeltonKey()][] = $title;
@@ -86,6 +82,6 @@ class GroupTitleViewHelper extends AbstractViewHelper implements SingletonInterf
         if (!empty($this->arguments['singeltonKey'])) {
             return (string)$this->arguments['singeltonKey'];
         }
-        return (string)$this->arguments['titleField'];
+        return (string)$this->arguments['title'];
     }
 }

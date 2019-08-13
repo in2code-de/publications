@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+		<header/>
+		<body>
+			<trans-unit id="list.filter.searchterm">
+				<source>Searchterm</source>
+				<target state="translated">Suchbegriff</target>
+			</trans-unit>
+			<trans-unit id="list.filter.searchterm.placeholder">
+				<source>Publication title</source>
+				<target state="translated">Name einer Publikation</target>
+			</trans-unit>
+			<trans-unit id="list.filter.author">
+				<source>Author</source>
+				<target state="translated">Autor</target>
+			</trans-unit>
+			<trans-unit id="list.filter.author.placeholder">
+				<source>Lastname</source>
+				<target state="translated">Nachname</target>
+			</trans-unit>
+			<trans-unit id="list.filter.year">
+				<source>Year</source>
+				<target state="translated">Erscheinungsjahr</target>
+			</trans-unit>
+			<trans-unit id="list.filter.year.placeholder">
+				<source>2019</source>
+				<target state="translated">2019</target>
+			</trans-unit>
+			<trans-unit id="list.filter.reset">
+				<source>Reset</source>
+				<target state="translated">Filter zurücksetzen</target>
+			</trans-unit>
+			<trans-unit id="list.filter.submit">
+				<source>Search now</source>
+				<target state="translated">Jetzt suchen</target>
+			</trans-unit>
+			<trans-unit id="list.filter.extended">
+				<source>Extended search</source>
+				<target state="translated">Erweiterte Suche</target>
+			</trans-unit>
+			<trans-unit id="list.norecords">
+				<source>No publications found</source>
+				<target state="translated">Keine Publikationen gefunden</target>
+			</trans-unit>
+
+			<trans-unit id="bibtype.article">
+				<source>Article</source>
+				<target state="translated">Artikel</target>
+			</trans-unit>
+			<trans-unit id="bibtype.book">
+				<source>Book</source>
+				<target state="translated">Buch</target>
+			</trans-unit>
+			<trans-unit id="bibtype.booklet">
+				<source>Booklet</source>
+				<target state="translated">Broschüre</target>
+			</trans-unit>
+			<trans-unit id="bibtype.conference">
+				<source>Conference</source>
+				<target state="translated">Konferenz</target>
+			</trans-unit>
+			<trans-unit id="bibtype.inbook">
+				<source>Contribution to Book</source>
+				<target state="translated">Buchbeitrag</target>
+			</trans-unit>
+			<trans-unit id="bibtype.incollection">
+				<source>Contribution to Collection</source>
+				<target state="translated">Sammlungsbeitrag</target>
+			</trans-unit>
+			<trans-unit id="bibtype.inproceedings">
+				<source>Contribution to Proceeding</source>
+				<target state="translated">Protokollbeitrag</target>
+			</trans-unit>
+			<trans-unit id="bibtype.manual">
+				<source>Manual</source>
+				<target state="translated">Handbuch</target>
+			</trans-unit>
+			<trans-unit id="bibtype.manuscript">
+				<source>Manuscript</source>
+				<target state="translated">Manuskript</target>
+			</trans-unit>
+			<trans-unit id="bibtype.mastersthesis">
+				<source>Master-Thesis</source>
+				<target state="translated">Master-Thesis</target>
+			</trans-unit>
+			<trans-unit id="bibtype.misc">
+				<source>Miscellaneous</source>
+				<target state="translated">Diverses</target>
+			</trans-unit>
+			<trans-unit id="bibtype.phdthesis">
+				<source>PhD-Thesis</source>
+				<target state="translated">PhD-Thesis</target>
+			</trans-unit>
+			<trans-unit id="bibtype.poster">
+				<source>Poster</source>
+				<target state="translated">Poster</target>
+			</trans-unit>
+			<trans-unit id="bibtype.proceedings">
+				<source>Proceedings</source>
+				<target state="translated">Protokoll</target>
+			</trans-unit>
+			<trans-unit id="bibtype.report">
+				<source>Report</source>
+				<target state="translated">Report</target>
+			</trans-unit>
+			<trans-unit id="bibtype.techreport">
+				<source>Techreport</source>
+				<target state="translated">Techreport</target>
+			</trans-unit>
+			<trans-unit id="bibtype.thesis">
+				<source>Thesis</source>
+				<target state="translated">Thesis</target>
+			</trans-unit>
+			<trans-unit id="bibtype.unpublished">
+				<source>Unpublished</source>
+				<target state="translated">Nicht veröffentlicht</target>
+			</trans-unit>
+			<trans-unit id="bibtype.url">
+				<source>URL</source>
+				<target state="translated">URL</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
