@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Service;
 
 use TYPO3\CMS\Core\Log\Logger;
@@ -8,8 +8,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class AbstractService
- *
- * @package In2code\Publications\Service
  */
 class AbstractService
 {

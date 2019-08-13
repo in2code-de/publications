@@ -1,11 +1,10 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
 /**
  * Class AbstractImporter
  *
- * @package In2code\Publications\Import\Importer
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 abstract class AbstractImporter implements ImporterInterface
@@ -17,6 +16,10 @@ abstract class AbstractImporter implements ImporterInterface
      */
     protected $additionalPublicationMapping = [];
 
+    /**
+     * @param array $publications
+     * @return array
+     */
     protected function fieldMapping(array $publications)
     {
         $mappedPublications = [];

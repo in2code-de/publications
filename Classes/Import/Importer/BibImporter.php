@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
 use DateTime;
@@ -13,7 +13,6 @@ use RenanBr\BibTexParser\Parser;
 /**
  * Class BibImporter
  *
- * @package In2code\Publications\Import\Importer
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 class BibImporter extends AbstractImporter
@@ -78,6 +77,7 @@ class BibImporter extends AbstractImporter
         if ($publication['bibtype'] === 'Technical Report') {
             $publication['bibtype'] = 'report';
         }
+        $publication['bibtype'] = strtolower($publication['bibtype']);
     }
 
     /**

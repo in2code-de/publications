@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
 use DateTime;
@@ -7,7 +7,6 @@ use DateTime;
 /**
  * Class XmlImporter
  *
- * @package In2code\Publications\Import\Importer
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 class XmlImporter extends AbstractImporter
@@ -37,6 +36,10 @@ class XmlImporter extends AbstractImporter
         'family' => 'last_name'
     ];
 
+    /**
+     * @param string $filePath
+     * @return array
+     */
     public function convert(string $filePath): array
     {
         $data = $this->xml2array(file_get_contents($filePath));
@@ -45,6 +48,10 @@ class XmlImporter extends AbstractImporter
         return $this->fieldMapping($publications);
     }
 
+    /**
+     * @param array $publication
+     * @return void
+     */
     protected function specialMapping(array &$publication)
     {
         $this->personMapping($publication, 'authors');
@@ -116,6 +123,10 @@ class XmlImporter extends AbstractImporter
         }
     }
 
+    /**
+     * @param string $xmlString
+     * @return mixed
+     */
     protected function xml2array(string $xmlString)
     {
         $xml = simplexml_load_string($xmlString, "SimpleXMLElement", LIBXML_NOCDATA);

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Import\Processor;
 
 use RenanBr\BibTexParser\Processor\TagCoverageTrait;
@@ -7,7 +7,6 @@ use RenanBr\BibTexParser\Processor\TagCoverageTrait;
 /**
  * Class SpecialCharProcessor
  *
- * @package In2code\Publications\Import\Processor
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class SpecialCharProcessor

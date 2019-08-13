@@ -1,15 +1,13 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Service;
 
 use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
 use In2code\Publications\Utility\DatabaseUtility;
-use PDO;
 use Psr\Log\LogLevel;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -19,8 +17,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Class ImportService
- *
- * @package In2code\Publications\Service
  */
 class ImportService extends AbstractService
 {
