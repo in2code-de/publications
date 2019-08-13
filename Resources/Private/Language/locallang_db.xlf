@@ -3,11 +3,86 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
 		<header/>
 		<body>
+			<trans-unit id="tx_publications_domain_model_publication.tab.main">
+				<source>Main</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.identification">
+				<source>Identification</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.organization">
+				<source>Organization</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.publishing">
+				<source>Publishing</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.relations">
+				<source>Relations</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.misc">
+				<source>Miscellaneous</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication">
 				<source>Publication</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.bibtype">
 				<source>Publication type</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.article">
+				<source>Article</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.book">
+				<source>Book</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.booklet">
+				<source>Booklet</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.conference">
+				<source>Conference</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.inbook">
+				<source>Contribution to Book</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.incollection">
+				<source>Contribution to Collection</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.inproceedings">
+				<source>Contribution to Proceeding</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.manual">
+				<source>Manual</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.manuscript">
+				<source>Manuscript</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.mastersthesis">
+				<source>Master-Thesis</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.misc">
+				<source>Miscellaneous</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.phdthesis">
+				<source>PhD-Thesis</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.poster">
+				<source>Poster</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.proceedings">
+				<source>Proceedings</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.report">
+				<source>Report</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.techreport">
+				<source>Techreport</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.thesis">
+				<source>Thesis</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.unpublished">
+				<source>Unpublished</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.url">
+				<source>URL</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.type">
 				<source>Tyoe</source>
@@ -16,7 +91,22 @@
 				<source>Citation ID</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.status">
-				<source>Publication type</source>
+				<source>Publication status</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status.0">
+				<source>published</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status.1">
+				<source>accepted</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status.2">
+				<source>submitted</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status.3">
+				<source>to be published</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.status.4">
+				<source>in preperation</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.title">
 				<source>Title</source>
@@ -52,10 +142,10 @@
 				<source>Annotation</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.keywords">
-				<source>Keywords</source>
+				<source>Keywords (one per line)</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.tags">
-				<source>Tags</source>
+				<source>Tags (one per line)</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.file_url">
 				<source>File/URL</source>
@@ -175,7 +265,7 @@
 				<source>all</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes">
-				<source>Publication types (empty = all)</source>
+				<source>Publication status (empty = all)</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.article">
 				<source>Article</source>

@@ -2,9 +2,12 @@
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Domain\Model\Author;
 
+$llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
+$llTable = $llPrefix . Publication::TABLE_NAME;
+
 $tca = [
     'ctrl' => [
-        'title' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME,
+        'title' => $llTable,
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -22,21 +25,22 @@ $tca = [
     ],
     'types' => [
         '1' => ['showitem' =>
+            '--div--;' . $llTable . '.tab.main,' .
             '--palette--;;palette_title,' .
             '--palette--;;palette_type,' .
             '--palette--;;palette_status,' .
             '--palette--;;palette_reviewed,' .
-            '--div--;Identification,' .
+            '--div--;' . $llTable . '.tab.identification,' .
             '--palette--;;palette_identification,' .
-            '--div--;Organization,' .
+            '--div--;' . $llTable . '.tab.organization,' .
             '--palette--;;palette_organization,' .
-            '--div--;Publishing,' .
+            '--div--;' . $llTable . '.tab.publishing,' .
             '--palette--;;palette_publishing,' .
             '--palette--;;palette_event,' .
             '--palette--;;palette_number,' .
-            '--div--;Relations,' .
+            '--div--;' . $llTable . '.tab.relations,' .
             '--palette--;;palette_relations,' .
-            '--div--;Misc,' .
+            '--div--;' . $llTable . '.tab.misc,' .
             '--palette--;;palette_note,' .
             '--palette--;;palette_library,' .
             ''
@@ -64,8 +68,8 @@ $tca = [
         'palette_publishing' => [
             'showitem' =>
                 'booktitle,journal,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
-                '--linebreak--,chapter,series,--linebreak--,edition,howpublished,--linebreak--,editor,pages' .
-                '--linebreak--,affiliation,extern'
+                '--linebreak--,chapter,series,--linebreak--,howpublished,editor,--linebreak--,pages,' .
+                'affiliation,--linebreak--,extern'
         ],
         'palette_event' => [
             'showitem' => 'event_name,event_place'
@@ -88,32 +92,91 @@ $tca = [
     'columns' => [
         'bibtype' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.bibtype',
+            'label' => $llTable. '.bibtype',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['Unknown', ''],
-                    ['Article', 'article'],
-                    ['Book', 'book'],
-                    ['Booklet', 'booklet'],
-                    ['Conference', 'conference'],
-                    ['Contribution to Book', 'inbook'],
-                    ['Contribution to Collection', 'incollection'],
-                    ['Contribution to Proceeding', 'inproceedings'],
-                    ['Manual', 'manual'],
-                    ['Manuscript', 'manuscript'],
-                    ['Master-Thesis', 'mastersthesis'],
-                    ['Miscellaneous', 'misc'],
-                    ['PhD-Thesis', 'phdthesis'],
-                    ['Poster', 'poster'],
-                    ['Proceedings', 'proceedings'],
-                    ['Report', 'report'],
-                    ['Techreport', 'techreport'],
-                    ['Thesis', 'thesis'],
-                    ['Unpublished', 'unpublished'],
-                    ['URL', 'url'],
+                    [
+                        '-',
+                        ''
+                    ],
+                    [
+                        $llTable . '.bibtype.article',
+                        'article'
+                    ],
+                    [
+                        $llTable . '.bibtype.book',
+                        'book',
+                    ],
+                    [
+                        $llTable . '.bibtype.booklet',
+                        'booklet'
+                    ],
+                    [
+                        $llTable . '.bibtype.conference',
+                        'conference'
+                    ],
+                    [
+                        $llTable . '.bibtype.inbook',
+                        'inbook'
+                    ],
+                    [
+                        $llTable . '.bibtype.incollection',
+                        'incollection'
+                    ],
+                    [
+                        $llTable . '.bibtype.inproceedings',
+                        'inproceedings'
+                    ],
+                    [
+                        $llTable . '.bibtype.manual',
+                        'manual'
+                    ],
+                    [
+                        $llTable . '.bibtype.manuscript',
+                        'manuscript'
+                    ],
+                    [
+                        $llTable . '.bibtype.mastersthesis',
+                        'mastersthesis'
+                    ],
+                    [
+                        $llTable . '.bibtype.misc',
+                        'misc'
+                    ],
+                    [
+                        $llTable . '.bibtype.phdthesis',
+                        'phdthesis'
+                    ],
+                    [
+                        $llTable . '.bibtype.poster',
+                        'poster'
+                    ],
+                    [
+                        $llTable . '.bibtype.proceedings',
+                        'proceedings'
+                    ],
+                    [
+                        $llTable . '.bibtype.report',
+                        'report'
+                    ],
+                    [
+                        $llTable . '.bibtype.techreport',
+                        'techreport'
+                    ],
+                    [
+                        $llTable . '.bibtype.thesis',
+                        'thesis'
+                    ],
+                    [
+                        $llTable . '.bibtype.unpublished',
+                        'unpublished'
+                    ],
+                    [
+                        $llTable . '.bibtype.url',
+                        'url'
+                    ],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
@@ -122,8 +185,7 @@ $tca = [
         ],
         'type' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.type',
+            'label' => $llTable . '.type',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -132,8 +194,7 @@ $tca = [
         ],
         'citeid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.citeid',
+            'label' => $llTable . '.citeid',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -142,17 +203,31 @@ $tca = [
         ],
         'status' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.status',
+            'label' => $llTable . '.status',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['Published', 0],
-                    ['Accepted', 1],
-                    ['Submitted', 2],
-                    ['To be published', 3],
-                    ['In preperation', 4]
+                    [
+                        $llTable . '.status.0',
+                        0
+                    ],
+                    [
+                        $llTable . '.status.1',
+                        1
+                    ],
+                    [
+                        $llTable . '.status.2',
+                        2
+                    ],
+                    [
+                        $llTable . '.status.3',
+                        3
+                    ],
+                    [
+                        $llTable . '.status.4',
+                        4
+                    ]
                 ],
                 'size' => 1,
                 'maxitems' => 1,
@@ -161,8 +236,7 @@ $tca = [
         ],
         'title' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.title',
+            'label' => $llTable . '.title',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -171,8 +245,7 @@ $tca = [
         ],
         'abstract' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.abstract',
+            'label' => $llTable . '.abstract',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -183,8 +256,7 @@ $tca = [
         ],
         'journal' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.journal',
+            'label' => $llTable . '.journal',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -193,8 +265,7 @@ $tca = [
         ],
         'date' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.date',
+            'label' => $llTable . '.date',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -205,8 +276,7 @@ $tca = [
         ],
         'volume' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.volume',
+            'label' => $llTable . '.volume',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -215,8 +285,7 @@ $tca = [
         ],
         'number' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.number',
+            'label' => $llTable . '.number',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -225,8 +294,7 @@ $tca = [
         ],
         'number2' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.number2',
+            'label' => $llTable . '.number2',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -235,8 +303,7 @@ $tca = [
         ],
         'pages' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.pages',
+            'label' => $llTable . '.pages',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -245,8 +312,7 @@ $tca = [
         ],
         'affiliation' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.affiliation',
+            'label' => $llTable . '.affiliation',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -255,8 +321,7 @@ $tca = [
         ],
         'note' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.note',
+            'label' => $llTable . '.note',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -267,8 +332,7 @@ $tca = [
         ],
         'annotation' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.annotation',
+            'label' => $llTable . '.annotation',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -279,8 +343,7 @@ $tca = [
         ],
         'keywords' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.keywords',
+            'label' => $llTable . '.keywords',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -291,8 +354,7 @@ $tca = [
         ],
         'tags' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.tags',
+            'label' => $llTable . '.tags',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -303,8 +365,7 @@ $tca = [
         ],
         'file_url' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.file_url',
+            'label' => $llTable . '.file_url',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -325,8 +386,7 @@ $tca = [
         ],
         'web_url' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.web_url',
+            'label' => $llTable . '.web_url',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -347,8 +407,7 @@ $tca = [
         ],
         'web_url2' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.web_url2',
+            'label' => $llTable . '.web_url2',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -369,8 +428,7 @@ $tca = [
         ],
         'web_url_date' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.web_url_date',
+            'label' => $llTable . '.web_url_date',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -379,8 +437,7 @@ $tca = [
         ],
         'miscellaneous' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.miscellaneous',
+            'label' => $llTable . '.miscellaneous',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -389,8 +446,7 @@ $tca = [
         ],
         'miscellaneous2' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.miscellaneous2',
+            'label' => $llTable . '.miscellaneous2',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -399,8 +455,7 @@ $tca = [
         ],
         'editor' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.editor',
+            'label' => $llTable . '.editor',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -409,8 +464,7 @@ $tca = [
         ],
         'publisher' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.publisher',
+            'label' => $llTable . '.publisher',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -419,8 +473,7 @@ $tca = [
         ],
         'series' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.series',
+            'label' => $llTable . '.series',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -429,8 +482,7 @@ $tca = [
         ],
         'address' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.address',
+            'label' => $llTable . '.address',
             'config' => [
                 'type' => 'text',
                 'cols' => 32,
@@ -441,8 +493,7 @@ $tca = [
         ],
         'edition' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.edition',
+            'label' => $llTable . '.edition',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -451,8 +502,7 @@ $tca = [
         ],
         'chapter' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.chapter',
+            'label' => $llTable . '.chapter',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -461,8 +511,7 @@ $tca = [
         ],
         'extern' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.extern',
+            'label' => $llTable . '.extern',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -470,8 +519,7 @@ $tca = [
         ],
         'reviewed' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.reviewed',
+            'label' => $llTable . '.reviewed',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -479,8 +527,7 @@ $tca = [
         ],
         'in_library' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.in_library',
+            'label' => $llTable . '.in_library',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -488,8 +535,7 @@ $tca = [
         ],
         'borrowed_by' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.borrowed_by',
+            'label' => $llTable . '.borrowed_by',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -498,8 +544,7 @@ $tca = [
         ],
         'howpublished' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.howpublished',
+            'label' => $llTable . '.howpublished',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -508,8 +553,7 @@ $tca = [
         ],
         'event_name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.event_name',
+            'label' => $llTable . '.event_name',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -518,8 +562,7 @@ $tca = [
         ],
         'event_place' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.event_place',
+            'label' => $llTable . '.event_place',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -528,8 +571,7 @@ $tca = [
         ],
         'language' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.language',
+            'label' => $llTable . '.language',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -538,8 +580,7 @@ $tca = [
         ],
         'booktitle' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.booktitle',
+            'label' => $llTable . '.booktitle',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -548,8 +589,7 @@ $tca = [
         ],
         'organization' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.organization',
+            'label' => $llTable . '.organization',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -558,8 +598,7 @@ $tca = [
         ],
         'school' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.school',
+            'label' => $llTable . '.school',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -568,8 +607,7 @@ $tca = [
         ],
         'institution' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.institution',
+            'label' => $llTable . '.institution',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -578,8 +616,7 @@ $tca = [
         ],
         'institute' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.institute',
+            'label' => $llTable . '.institute',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -588,8 +625,7 @@ $tca = [
         ],
         'isbn' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.isbn',
+            'label' => $llTable . '.isbn',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -598,8 +634,7 @@ $tca = [
         ],
         'issn' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.issn',
+            'label' => $llTable . '.issn',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -608,8 +643,7 @@ $tca = [
         ],
         'doi' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.doi',
+            'label' => $llTable . '.doi',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -618,8 +652,7 @@ $tca = [
         ],
         'authors' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Publication::TABLE_NAME
-                . '.authors',
+            'label' => $llTable . '.authors',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
