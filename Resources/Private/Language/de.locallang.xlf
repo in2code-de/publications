@@ -45,40 +45,40 @@
 			</trans-unit>
 
 			<trans-unit id="bibtype.article">
-				<source>Article</source>
+				<source>Articles</source>
 				<target state="translated">Artikel</target>
 			</trans-unit>
 			<trans-unit id="bibtype.book">
-				<source>Book</source>
-				<target state="translated">Buch</target>
+				<source>Books</source>
+				<target state="translated">Bücher</target>
 			</trans-unit>
 			<trans-unit id="bibtype.booklet">
-				<source>Booklet</source>
-				<target state="translated">Broschüre</target>
+				<source>Booklets</source>
+				<target state="translated">Broschüren</target>
 			</trans-unit>
 			<trans-unit id="bibtype.conference">
-				<source>Conference</source>
-				<target state="translated">Konferenz</target>
+				<source>Conferences</source>
+				<target state="translated">Konferenzen</target>
 			</trans-unit>
 			<trans-unit id="bibtype.inbook">
-				<source>Contribution to Book</source>
-				<target state="translated">Buchbeitrag</target>
+				<source>Contribution to Books</source>
+				<target state="translated">Buchbeiträge</target>
 			</trans-unit>
 			<trans-unit id="bibtype.incollection">
-				<source>Contribution to Collection</source>
-				<target state="translated">Sammlungsbeitrag</target>
+				<source>Contribution to Collections</source>
+				<target state="translated">Sammlungsbeiträge</target>
 			</trans-unit>
 			<trans-unit id="bibtype.inproceedings">
-				<source>Contribution to Proceeding</source>
-				<target state="translated">Protokollbeitrag</target>
+				<source>Contribution to Proceedings</source>
+				<target state="translated">Protokollbeiträge</target>
 			</trans-unit>
 			<trans-unit id="bibtype.manual">
-				<source>Manual</source>
-				<target state="translated">Handbuch</target>
+				<source>Manuals</source>
+				<target state="translated">Handbücher</target>
 			</trans-unit>
 			<trans-unit id="bibtype.manuscript">
-				<source>Manuscript</source>
-				<target state="translated">Manuskript</target>
+				<source>Manuscripts</source>
+				<target state="translated">Manuskripte</target>
 			</trans-unit>
 			<trans-unit id="bibtype.mastersthesis">
 				<source>Master-Thesis</source>
@@ -98,15 +98,15 @@
 			</trans-unit>
 			<trans-unit id="bibtype.proceedings">
 				<source>Proceedings</source>
-				<target state="translated">Protokoll</target>
+				<target state="translated">Protokolle</target>
 			</trans-unit>
 			<trans-unit id="bibtype.report">
-				<source>Report</source>
-				<target state="translated">Report</target>
+				<source>Reports</source>
+				<target state="translated">Reports</target>
 			</trans-unit>
 			<trans-unit id="bibtype.techreport">
-				<source>Techreport</source>
-				<target state="translated">Techreport</target>
+				<source>Techreports</source>
+				<target state="translated">Techreports</target>
 			</trans-unit>
 			<trans-unit id="bibtype.thesis">
 				<source>Thesis</source>
@@ -119,6 +119,55 @@
 			<trans-unit id="bibtype.url">
 				<source>URL</source>
 				<target state="translated">URL</target>
+			</trans-unit>
+
+			<trans-unit id="month.1">
+				<source>January</source>
+				<target state="translated">Januar</target>
+			</trans-unit>
+			<trans-unit id="month.2">
+				<source>February</source>
+				<target state="translated">Februar</target>
+			</trans-unit>
+			<trans-unit id="month.3">
+				<source>March</source>
+				<target state="translated">März</target>
+			</trans-unit>
+			<trans-unit id="month.4">
+				<source>April</source>
+				<target state="translated">April</target>
+			</trans-unit>
+			<trans-unit id="month.5">
+				<source>May</source>
+				<target state="translated">Mai</target>
+			</trans-unit>
+			<trans-unit id="month.6">
+				<source>June</source>
+				<target state="translated">Juni</target>
+			</trans-unit>
+			<trans-unit id="month.7">
+				<source>July</source>
+				<target state="translated">Juli</target>
+			</trans-unit>
+			<trans-unit id="month.8">
+				<source>August</source>
+				<target state="translated">August</target>
+			</trans-unit>
+			<trans-unit id="month.9">
+				<source>September</source>
+				<target state="translated">September</target>
+			</trans-unit>
+			<trans-unit id="month.10">
+				<source>October</source>
+				<target state="translated">Oktober</target>
+			</trans-unit>
+			<trans-unit id="month.11">
+				<source>November</source>
+				<target state="translated">November</target>
+			</trans-unit>
+			<trans-unit id="month.12">
+				<source>December</source>
+				<target state="translated">Dezember</target>
 			</trans-unit>
 		</body>
 	</file>

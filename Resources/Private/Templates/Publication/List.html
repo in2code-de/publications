@@ -15,7 +15,7 @@
 					<f:for each="{publicationsPage}" as="publication">
 						<f:render section="GroupTitle" arguments="{_all}"/>
 
-						<div style="padding: 20px 0;">
+						<div style="padding: 10px 0;">
 							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
 						</div>
 					</f:for>
@@ -36,14 +36,14 @@
 <f:section name="GroupTitle">
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
-			<publications:groupTitle title="{publication.year}" before="<h4>" after="</h4>" />
+			<publications:group.title title="{publication.year}" before="<h4>" after="</h4>" />
 		</f:case>
 		<f:case value="1">
-			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" before="<h4>" after="</h4>" />
+			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" before="<h4>" after="</h4>" />
 		</f:case>
 		<f:case value="2">
-			<publications:groupTitle title="{publication.year}" before="<h4>" after="</h4>" />
-			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}" before="<h5>" after="</h5>" />
+			<publications:group.title title="{publication.year}" before="<h4>" after="</h4>" />
+			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}" before="<h5>" after="</h5>" />
 		</f:case>
 	</f:switch>
 </f:section>

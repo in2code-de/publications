@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Publications\ViewHelpers;
+namespace In2code\Publications\ViewHelpers\Group;
 
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class GroupTitleViewHelper
+ * Class TitleViewHelper
  * will only show a value once per runtime. So it can be used for showing a group title.
  */
-class GroupTitleViewHelper extends AbstractViewHelper implements SingletonInterface
+class TitleViewHelper extends AbstractViewHelper implements SingletonInterface
 {
     /**
      * @var bool

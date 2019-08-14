@@ -35,31 +35,31 @@
 			</trans-unit>
 
 			<trans-unit id="bibtype.article">
-				<source>Article</source>
+				<source>Articles</source>
 			</trans-unit>
 			<trans-unit id="bibtype.book">
-				<source>Book</source>
+				<source>Books</source>
 			</trans-unit>
 			<trans-unit id="bibtype.booklet">
-				<source>Booklet</source>
+				<source>Booklets</source>
 			</trans-unit>
 			<trans-unit id="bibtype.conference">
-				<source>Conference</source>
+				<source>Conferences</source>
 			</trans-unit>
 			<trans-unit id="bibtype.inbook">
-				<source>Contribution to Book</source>
+				<source>Contribution to Books</source>
 			</trans-unit>
 			<trans-unit id="bibtype.incollection">
-				<source>Contribution to Collection</source>
+				<source>Contribution to Collections</source>
 			</trans-unit>
 			<trans-unit id="bibtype.inproceedings">
-				<source>Contribution to Proceeding</source>
+				<source>Contribution to Proceedings</source>
 			</trans-unit>
 			<trans-unit id="bibtype.manual">
-				<source>Manual</source>
+				<source>Manuals</source>
 			</trans-unit>
 			<trans-unit id="bibtype.manuscript">
-				<source>Manuscript</source>
+				<source>Manuscripts</source>
 			</trans-unit>
 			<trans-unit id="bibtype.mastersthesis">
 				<source>Master-Thesis</source>
@@ -77,10 +77,10 @@
 				<source>Proceedings</source>
 			</trans-unit>
 			<trans-unit id="bibtype.report">
-				<source>Report</source>
+				<source>Reports</source>
 			</trans-unit>
 			<trans-unit id="bibtype.techreport">
-				<source>Techreport</source>
+				<source>Techreports</source>
 			</trans-unit>
 			<trans-unit id="bibtype.thesis">
 				<source>Thesis</source>
@@ -90,6 +90,43 @@
 			</trans-unit>
 			<trans-unit id="bibtype.url">
 				<source>URL</source>
+			</trans-unit>
+
+			<trans-unit id="month.1">
+				<source>January</source>
+			</trans-unit>
+			<trans-unit id="month.2">
+				<source>February</source>
+			</trans-unit>
+			<trans-unit id="month.3">
+				<source>March</source>
+			</trans-unit>
+			<trans-unit id="month.4">
+				<source>April</source>
+			</trans-unit>
+			<trans-unit id="month.5">
+				<source>May</source>
+			</trans-unit>
+			<trans-unit id="month.6">
+				<source>June</source>
+			</trans-unit>
+			<trans-unit id="month.7">
+				<source>July</source>
+			</trans-unit>
+			<trans-unit id="month.8">
+				<source>August</source>
+			</trans-unit>
+			<trans-unit id="month.9">
+				<source>September</source>
+			</trans-unit>
+			<trans-unit id="month.10">
+				<source>October</source>
+			</trans-unit>
+			<trans-unit id="month.11">
+				<source>November</source>
+			</trans-unit>
+			<trans-unit id="month.12">
+				<source>December</source>
 			</trans-unit>
 		</body>
 	</file>
