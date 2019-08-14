@@ -4,6 +4,7 @@ namespace In2code\Publications\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Class Publication
@@ -259,6 +260,60 @@ class Publication extends AbstractEntity
     protected $_numeration = 0;
 
     /**
+     * Mapping for export. Which fields should be availbe in export files with which key.
+     *
+     * @var array
+     */
+    protected $propertiesMapping = [
+        'title' => 'title',
+        'abstract' => 'abstract',
+        'type' => 'type',
+        'status' => 'status',
+        'year' => 'year',
+        'month' => 'month',
+        'day' => 'day',
+        'reviewed' => 'reviewed',
+        'language' => 'language',
+        'isbn' => 'isbn',
+        'issn' => 'issn',
+        'doi' => 'doi',
+        'organization' => 'organization',
+        'school' => 'school',
+        'institution' => 'institution',
+        'institute' => 'institute',
+        'booktitle' => 'booktitle',
+        'journal' => 'journal',
+        'edition' => 'edition',
+        'volume' => 'volume',
+        'publisher' => 'publisher',
+        'address' => 'address',
+        'chapter' => 'chapter',
+        'series' => 'series',
+        'howpublished' => 'howpublished',
+        'editor' => 'editor',
+        'pages' => 'pages',
+        'affiliation' => 'affiliation',
+        'extern' => 'extern',
+        'eventName' => 'event_name',
+        'eventPlace' => 'event_place',
+        'number' => 'number',
+        'number2' => 'number2',
+        'keywords' => 'keywords',
+        'tags' => 'tags',
+        'webUrl' => 'web_url',
+        'webUrl2' => 'web_url2',
+        'webUrlDate' => 'web_url_date',
+        'fileUrl' => 'file_url',
+        'note' => 'note',
+        'annotation' => 'annotation',
+        'miscellaneous' => 'misc',
+        'miscellaneous2' => 'misc2',
+        'inLibrary' => 'in_library',
+        'borrowedBy' => 'borrowed_by',
+        'authorsForExport' => 'author'
+    ];
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -444,6 +499,18 @@ class Publication extends AbstractEntity
     public function getCiteid(): string
     {
         return $this->citeid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCiteidForExport(): string
+    {
+       $citeid = $this->getCiteid();
+       if (empty($citeid)) {
+           $citeid = $this->getUid();
+       }
+       return $citeid;
     }
 
     /**
@@ -897,6 +964,26 @@ class Publication extends AbstractEntity
     }
 
     /**
+     * Return author export string like "Kellner, Alexander and Pohl, Sandra"
+     *
+     * @return string
+     */
+    public function getAuthorsForExport(): string
+    {
+        $authors = $this->getAuthors();
+        $names = [];
+        foreach ($authors as $author) {
+            $name = $author->getLastName();
+            if ($author->getLastName() !== '' && $author->getFirstName() !== '') {
+                $name .= ', ';
+            }
+            $name .= $author->getFirstName();
+            $names[] = $name;
+        }
+        return implode(' and ', $names);
+    }
+
+    /**
      * @param ObjectStorage $authors
      * @return Publication
      */
@@ -1138,5 +1225,26 @@ class Publication extends AbstractEntity
     {
         $this->_numeration = $numeration;
         return $this;
+    }
+
+    /**
+     * Get Properties for exports
+     *
+     * @return array
+     */
+    public function getProperties()
+    {
+        $properties = [];
+        foreach ($this->propertiesMapping as $property => $field) {
+            try {
+                $value = ObjectAccess::getProperty($this, $property);
+            } catch (\Exception $exception) {
+                throw new \LogicException($exception->getMessage(), 1565809183);
+            }
+            if (!empty($value)) {
+                $properties[$field] = (string)$value;
+            }
+        }
+        return $properties;
     }
 }

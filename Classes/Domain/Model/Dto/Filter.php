@@ -79,6 +79,11 @@ class Filter
     protected $authorstring = '';
 
     /**
+     * @var array
+     */
+    protected $export = [];
+
+    /**
      * Filter constructor.
      * @param array $settings
      */
@@ -94,6 +99,7 @@ class Filter
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
         $this->setAuthor((int)$settings['author']);
         $this->setRecords((int)$settings['records']);
+        $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
     }
 
     /**
@@ -530,6 +536,24 @@ class Filter
     public function setAuthorstring(string $authorstring): self
     {
         $this->authorstring = $authorstring;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExport(): array
+    {
+        return $this->export;
+    }
+
+    /**
+     * @param array $export
+     * @return Filter
+     */
+    public function setExport(array $export): self
+    {
+        $this->export = $export;
         return $this;
     }
 

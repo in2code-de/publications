@@ -399,6 +399,15 @@
 			<trans-unit id="flexform.pi1.template.recordsPerPage">
 				<source>show this amount of records per page</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export">
+				<source>Allow an export of the publications</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export.0">
+				<source>BibTeX</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export.1">
+				<source>EP3 XML</source>
+			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
 				<source>Select Import Format</source>

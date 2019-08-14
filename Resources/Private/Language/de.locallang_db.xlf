@@ -530,6 +530,18 @@
 				<source>show this amount of records per page</source>
 				<target state="translated">Anzahl Datensätze pro Seite</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export">
+				<source>Allow an export of the publications</source>
+				<target state="translated">Export der Publikationen erlauben</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export.0">
+				<source>BibTeX</source>
+				<target state="translated">BibTeX</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.export.1">
+				<source>EP3 XML</source>
+				<target state="translated">EP3 XML</target>
+			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
 				<target>Format für Import auswählen</target>

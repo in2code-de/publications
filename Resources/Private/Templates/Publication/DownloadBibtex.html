@@ -1,0 +1,15 @@
+%
+% This file was created by the TYPO3 extension
+% publications
+% --- Timezone: CEST
+% Creation date: <f:format.date format="Y-m-d" date="now"/>
+% Creation time: <f:format.date format="H:i:s" date="now"/>
+% --- Number of references
+% <f:count>{publications}</f:count>
+%
+
+<f:for each="{publications}" as="publication">
+@<publications:format.ucfirst>{publication.bibtype}</publications:format.ucfirst> <publications:render.ascii code="123"/> {publication.citeidForExport},
+<f:for each="{publication.properties}" as="value" key="property" iteration="iteration">    {property} = <publications:render.ascii code="123"/><publications:format.encodeBibTex>{value}</publications:format.encodeBibTex><publications:render.ascii code="125"/><f:if condition="{iteration.isLast} == 0">,<publications:render.eol/></f:if></f:for>
+<publications:render.ascii code="125"/>
+</f:for>

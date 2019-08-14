@@ -18,11 +18,114 @@ use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 class PublicationController extends ActionController
 {
     /**
+     * @var PublicationRepository
+     */
+    protected $publicationRepository = null;
+
+    /**
      * @return void
      * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
     public function initializeListAction()
+    {
+        $this->setFilterArguments();
+    }
+
+    /**
+     * @param Filter $filter
+     * @return void
+     * @throws InvalidQueryException
+     */
+    public function listAction(Filter $filter)
+    {
+        $publications = $this->publicationRepository->findByFilter($filter);
+        $this->view->assignMultiple([
+            'filter' => $filter,
+            'publications' => $publications,
+            'showPagination' => count($publications) > $filter->getRecordsPerPage()
+        ]);
+    }
+
+    /**
+     * @return void
+     * @throws StopActionException
+     * @throws UnsupportedRequestTypeException
+     */
+    public function resetListAction()
+    {
+        FrontendUserUtility::saveValueToSession('filter', []);
+        $this->redirect('list');
+    }
+
+    /**
+     * @return void
+     * @throws InvalidArgumentNameException
+     * @throws NoSuchArgumentException
+     */
+    public function initializeDownloadBibtexAction()
+    {
+        $this->setFilterArguments();
+    }
+
+    /**
+     * @param Filter $filter
+     * @return void
+     * @throws InvalidQueryException
+     */
+    public function downloadBibtexAction(Filter $filter)
+    {
+        $publications = $this->publicationRepository->findByFilter($filter);
+        $this->view->assignMultiple([
+            'filter' => $filter,
+            'publications' => $publications
+        ]);
+
+        $this->response->setHeader('Content-Type', 'application/x-bibtex');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.bib"');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->sendHeaders();
+        echo $this->view->render();
+        exit;
+    }
+
+    /**
+     * @return void
+     * @throws InvalidArgumentNameException
+     * @throws NoSuchArgumentException
+     */
+    public function initializeDownloadXmlAction()
+    {
+        $this->setFilterArguments();
+    }
+
+    /**
+     * @param Filter $filter
+     * @return void
+     * @throws InvalidQueryException
+     */
+    public function downloadXmlAction(Filter $filter)
+    {
+        $publications = $this->publicationRepository->findByFilter($filter);
+        $this->view->assignMultiple([
+            'filter' => $filter,
+            'publications' => $publications
+        ]);
+
+        $this->response->setHeader('Content-Type', 'text/xml');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.bib"');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->sendHeaders();
+        echo $this->view->render();
+        exit;
+    }
+
+    /**
+     * @return void
+     * @throws InvalidArgumentNameException
+     * @throws NoSuchArgumentException
+     */
+    protected function setFilterArguments(): void
     {
         if ($this->request->hasArgument('filter') === false) {
             $filterArguments = FrontendUserUtility::getSessionValue('filter');
@@ -46,29 +149,11 @@ class PublicationController extends ActionController
     }
 
     /**
-     * @param Filter $filter
+     * @param PublicationRepository $publicationRepository
      * @return void
-     * @throws InvalidQueryException
      */
-    public function listAction(Filter $filter)
+    public function injectPublicationRepository(PublicationRepository $publicationRepository)
     {
-        $publicationRepository = $this->objectManager->get(PublicationRepository::class);
-        $publications = $publicationRepository->findByFilter($filter);
-        $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications,
-            'showPagination' => count($publications) > $filter->getRecordsPerPage()
-        ]);
-    }
-
-    /**
-     * @return void
-     * @throws StopActionException
-     * @throws UnsupportedRequestTypeException
-     */
-    public function resetListAction()
-    {
-        FrontendUserUtility::saveValueToSession('filter', []);
-        $this->redirect('list');
+        $this->publicationRepository = $publicationRepository;
     }
 }
