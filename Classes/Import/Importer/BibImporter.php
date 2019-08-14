@@ -25,7 +25,8 @@ class BibImporter extends AbstractImporter
         'citation-key' => 'citeid',
         'url' => 'web_url',
         'author' => 'authors',
-        'type' => 'bibtype'
+        'type' => 'bibtype',
+        'DOI' => 'doi'
     ];
 
     /**
