@@ -2,23 +2,1246 @@
 	<div style="padding-right: 10px;">{publication.numeration}.</div>
 
 	<div>
-		<f:for each="{publication.authors}" as="author" iteration="iteration">
-			{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-			{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-		</f:for>
-
-		<br/>
-		<i>{publication.title}</i>
-
-		<br/>
-		{publication.journal}, <strong>{publication.volume}</strong>({publication.number});
-		{publication.pages}
-
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-
-		<br/>
-		DOI: {publication.doi}
+		<f:render section="{publication.bibtype}" optional="1" arguments="{_all}" />
 	</div>
 </div>
 
+
+
+
+
+
+
+<f:section name="article">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.affiliation}">
+		<br/>
+		{publication.journal}<f:if condition="{publication.journal} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}"><strong>{publication.volume}</strong></f:if><f:if condition="{publication.number}">({publication.number})</f:if><f:if condition="{publication.pages}">:{publication.pages}</f:if>
+		<f:if condition="{publication.affiliation}">{publication.affiliation}</f:if>
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.issn}">
+		<br/>
+		ISSN: {publication.issn}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="book">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="booklet">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.howpublished}">
+		<br/>
+		{publication.howpublished}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="conference">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="inbook">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.chapter} || {publication.pages}">
+		<br/>
+		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+	</f:if>
+
+	<f:if condition="{publication.type} || {publication.affiliation}">
+		<br/>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="incollection">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.chapter} || {publication.pages}">
+		<br/>
+		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+	</f:if>
+
+	<f:if condition="{publication.type} || {publication.affiliation}">
+		<br/>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="inproceedings">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="manual">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor}">
+		<br/>
+		In {publication.editor}, Editor
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}<f:if condition="{publication.organization} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="manuscript">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.series}">
+		<br/>
+		aus <i>{publication.series}</i>
+	</f:if>
+
+	<f:if condition="{publication.type}">
+		<br/>
+		<i>{publication.type}</i>
+	</f:if>
+
+	<f:if condition="{publication.institution}">
+		<br/>
+		{publication.institution}
+	</f:if>
+
+	<f:if condition="{publication.institute}">
+		<br/>
+		{publication.institute}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="mastersthesis">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.type} || {publication.affiliation}">
+		<br/>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.school} || {publication.address}">
+		<br/>
+		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="misc">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.howpublished}">
+		<br/>
+		{publication.howpublished}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="phdthesis">
+
+	<f:render section="mastersthesis" arguments="{_all}" />
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="poster">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor}">
+		<br/>
+		In {publication.editor}, Editor
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="proceedings">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.eventName}">
+		<br/>
+		{publication.eventName}
+	</f:if>
+
+	<f:if condition="{publication.eventPlace} || {publication.eventDate}">
+		<br/>
+		{publication.eventPlace}<f:if condition="{publication.eventPlace} && {publication.eventDate}">,</f:if>
+		{publication.eventDate}
+	</f:if>
+
+	<f:if condition="{publication.organization}">
+		<br/>
+		{publication.organization}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="report">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.series}">
+		<br/>
+		aus <i>{publication.series}</i>
+	</f:if>
+
+	<f:if condition="{publication.type}">
+		<br/>
+		<i>{publication.type}</i>
+	</f:if>
+
+	<f:if condition="{publication.number}">
+		<br/>
+		Dokument Nummer: {publication.number}
+	</f:if>
+
+	<f:if condition="{publication.number2}">
+		<br/>
+		Report Nummer: {publication.number2}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.institution}">
+		<br/>
+		{publication.institution}
+	</f:if>
+
+	<f:if condition="{publication.institute}">
+		<br/>
+		{publication.institute}
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="techreport">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.type}">
+		<br/>
+		aus <i>{publication.type}</i>
+	</f:if>
+
+	<f:if condition="{publication.number}">
+		<br/>
+		Dokument Nummer: {publication.number}
+	</f:if>
+
+	<f:if condition="{publication.number2}">
+		<br/>
+		Report Nummer: {publication.number2}
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.institution} || {publication.address}">
+		<br/>
+		{publication.institution}<f:if condition="{publication.institution} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="thesis">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.type}">
+		<br/>
+		<i>{publication.type}</i>
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.school} || {publication.address}">
+		<br/>
+		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.institute}">
+		<br/>
+		{publication.institute}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="unpublished">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.affiliation}">
+		<br/>
+		{publication.affiliation}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
+
+
+
+
+
+
+
+<f:section name="url">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	</f:if>
+
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
+	</f:if>
+
+</f:section>
