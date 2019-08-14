@@ -155,9 +155,17 @@
 				<source>Journal</source>
 				<target state="translated">Journal</target>
 			</trans-unit>
-			<trans-unit id="tx_publications_domain_model_publication.date">
-				<source>Date</source>
-				<target state="translated">Datum</target>
+			<trans-unit id="tx_publications_domain_model_publication.year">
+				<source>Year</source>
+				<target state="translated">Jahr</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.month">
+				<source>Month</source>
+				<target state="translated">Monat</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.day">
+				<source>Day</source>
+				<target state="translated">Tag</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.volume">
 				<source>Volume</source>

@@ -25,7 +25,7 @@ class PublicationRepository extends Repository
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
         $results = $query->execute();
-        $results = $this->convertToAscendingArray($results, $filter);
+        $results = $this->convertToAscendingArray($results);
         return $results;
     }
 
@@ -278,115 +278,20 @@ class PublicationRepository extends Repository
     }
 
     /**
-     * Convert results to array and
-     * - add a number to the records
-     * - sort by filter settings
+     * Convert results to array and add a number to the records
      *
      * @param QueryResultInterface $results
-     * @param Filter $filter
      * @return array
      */
-    protected function convertToAscendingArray(QueryResultInterface $results, Filter $filter): array
+    protected function convertToAscendingArray(QueryResultInterface $results): array
     {
         $i = 0;
         $resultsRaw = $results->toArray();
-        usort($resultsRaw, [$this, 'compareCallback' . $filter->getGroupby()]);
         /** @var Publication $result */
         foreach ($resultsRaw as $result) {
             $result->setNumeration(count($resultsRaw) - $i);
             $i++;
         }
         return $resultsRaw;
-    }
-
-    /**
-     * Callback strcmp function for a simulated "group by year"
-     * Order by "Year DESC" and if equal by "Title ASC"
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    public function compareCallback0(Publication $p1, Publication $p2): int
-    {
-        $comparedByYear = $this->compareCallbackYear($p1, $p2);
-        if ($comparedByYear === 0) {
-            return $this->compareCallbackTitle($p1, $p2);
-        }
-        return $comparedByYear;
-    }
-
-    /**
-     * Callback strcmp function for a simulated "group by bibtype"
-     * Order by "Bibtype ASC" and if equal by "Title ASC"
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    public function compareCallback1(Publication $p1, Publication $p2): int
-    {
-        $comparedByBibtype = $this->compareCallbackBibtype($p1, $p2);
-        if ($comparedByBibtype === 0) {
-            return $this->compareCallbackTitle($p1, $p2);
-        }
-        return $comparedByBibtype;
-    }
-
-    /**
-     * Callback strcmp function for a simulated "group by year and within group by bibtype"
-     * Order by "Year DESC" and if equal by "Bibtype ASC" and if equal by "Title ASC"
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    public function compareCallback2(Publication $p1, Publication $p2): int
-    {
-        $comparedByYear = $this->compareCallbackYear($p1, $p2);
-        if ($comparedByYear === 0) {
-            $comparedByBibtype = $this->compareCallbackBibtype($p1, $p2);
-            if ($comparedByBibtype === 0) {
-                return $this->compareCallbackTitle($p1, $p2);
-            }
-            return $comparedByBibtype;
-        }
-        return $comparedByYear;
-    }
-
-    /**
-     * Order by Year DESC
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    protected function compareCallbackYear(Publication $p1, Publication $p2): int
-    {
-        return strcasecmp((string)$p2->getYearFromDate(), (string)$p1->getYearFromDate());
-    }
-
-    /**
-     * Order by Bibtype ASC
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    protected function compareCallbackBibtype(Publication $p1, Publication $p2): int
-    {
-        return strcasecmp($p1->getBibtype(), $p2->getBibtype());
-    }
-
-    /**
-     * Order by Title ASC
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    protected function compareCallbackTitle(Publication $p1, Publication $p2): int
-    {
-        return strcasecmp($p1->getTitle(), $p2->getTitle());
     }
 }

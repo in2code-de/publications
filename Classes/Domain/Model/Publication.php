@@ -38,9 +38,19 @@ class Publication extends AbstractEntity
     protected $status = 0;
 
     /**
-     * @var \DateTime
+     * @var string
      */
-    protected $date = null;
+    protected $year = '';
+
+    /**
+     * @var string
+     */
+    protected $month = '';
+
+    /**
+     * @var string
+     */
+    protected $day = '';
 
     /**
      * @var bool
@@ -339,32 +349,56 @@ class Publication extends AbstractEntity
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getYear(): string
     {
-        return $this->date;
+        return $this->year;
     }
 
     /**
-     * @return int
-     */
-    public function getYearFromDate(): int
-    {
-        $date = $this->getDate();
-        if (is_a($date, \DateTime::class)) {
-            return (int)$date->format('Y');
-        }
-        return 0;
-    }
-
-    /**
-     * @param \DateTime $date
+     * @param string $year
      * @return Publication
      */
-    public function setDate(\DateTime $date): self
+    public function setYear(string $year): self
     {
-        $this->date = $date;
+        $this->year = $year;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMonth(): string
+    {
+        return $this->month;
+    }
+
+    /**
+     * @param string $month
+     * @return Publication
+     */
+    public function setMonth(string $month): self
+    {
+        $this->month = $month;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDay(): string
+    {
+        return $this->day;
+    }
+
+    /**
+     * @param string $day
+     * @return Publication
+     */
+    public function setDay(string $day): self
+    {
+        $this->day = $day;
         return $this;
     }
 

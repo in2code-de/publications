@@ -29,6 +29,7 @@ $tca = [
             '--palette--;;palette_title,' .
             '--palette--;;palette_type,' .
             '--palette--;;palette_status,' .
+            '--palette--;;palette_date,' .
             '--palette--;;palette_reviewed,' .
             '--div--;' . $llTable . '.tab.identification,' .
             '--palette--;;palette_identification,' .
@@ -54,10 +55,13 @@ $tca = [
             'showitem' => 'bibtype,type'
         ],
         'palette_status' => [
-            'showitem' => 'status,date'
+            'showitem' => 'status,language'
+        ],
+        'palette_date' => [
+            'showitem' => 'year,month,day,'
         ],
         'palette_reviewed' => [
-            'showitem' => 'reviewed,language'
+            'showitem' => 'reviewed,'
         ],
         'palette_identification' => [
             'showitem' => 'citeid,isbn,--linebreak--,issn,doi'
@@ -263,15 +267,30 @@ $tca = [
                 'default' => ''
             ]
         ],
-        'date' => [
+        'year' => [
             'exclude' => true,
-            'label' => $llTable . '.date',
+            'label' => $llTable . '.year',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'renderType' => 'inputDateTime',
-                'eval' => 'date',
-                'default' => 0
+                'size' => 4,
+                'eval' => 'year',
+                'default' => date('Y')
+            ]
+        ],
+        'month' => [
+            'exclude' => true,
+            'label' => $llTable . '.month',
+            'config' => [
+                'type' => 'input',
+                'size' => 2
+            ]
+        ],
+        'day' => [
+            'exclude' => true,
+            'label' => $llTable . '.day',
+            'config' => [
+                'type' => 'input',
+                'size' => 2
             ]
         ],
         'volume' => [

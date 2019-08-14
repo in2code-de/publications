@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
-use DateTime;
 use ErrorException;
 use In2code\Publications\Import\Processor\AuthorProcessor;
 use In2code\Publications\Import\Processor\SpecialCharProcessor;
@@ -68,10 +67,13 @@ class BibImporter extends AbstractImporter
     protected function specialMapping(array &$publication)
     {
         $this->authorMapping($publication);
-        $this->publishingDateMapping($publication);
         $this->additionalTypeMapping($publication);
     }
 
+    /**
+     * @param array $publication
+     * @return void
+     */
     protected function additionalTypeMapping(array &$publication)
     {
         if ($publication['bibtype'] === 'Technical Report') {
@@ -95,52 +97,5 @@ class BibImporter extends AbstractImporter
                 }
             }
         }
-    }
-
-    /**
-     * @param array $publication
-     * @return void
-     */
-    protected function publishingDateMapping(array &$publication)
-    {
-        // create timestamp from fields month, year
-        $timestamp = $this->createTimestamp($publication['year'], $publication['month']);
-        if (is_a($timestamp, \DateTime::class)) {
-            $publication['date'] = $timestamp->getTimestamp();
-        }
-        unset($publication['month'], $publication['year']);
-    }
-
-    /**
-     * @param $year
-     * @param $month
-     * @return bool|DateTime
-     */
-    protected function createTimestamp($year, $month)
-    {
-        $monthMapping = [
-            'January' => 1,
-            'February' => 2,
-            'March' => 3,
-            'April' => 4,
-            'May' => 5,
-            'June' => 6,
-            'July' => 7,
-            'August' => 8,
-            'September' => 9,
-            'October' => 10,
-            'November' => 11,
-            'December' => 12,
-        ];
-
-        if (!empty($month)) {
-            $month = $monthMapping[$month];
-        } else {
-            // if no month is set we use january as default
-            $month = 1;
-        }
-
-        $format = "d/m/Y H:i:s";
-        return DateTime::createFromFormat($format, '1/' . $month . '/' . $year . ' 00:00:00');
     }
 }

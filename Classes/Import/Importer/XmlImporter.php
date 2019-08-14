@@ -56,42 +56,6 @@ class XmlImporter extends AbstractImporter
     {
         $this->personMapping($publication, 'authors');
         $this->personMapping($publication, 'editors');
-        $this->publishingDateMapping($publication);
-    }
-
-    /**
-     * @param array $publication
-     * @return void
-     */
-    protected function publishingDateMapping(array &$publication)
-    {
-        if (!empty($publication['date'])) {
-            $date = null;
-            $format = 'Y-m-d H:i:s';
-            // key 0 = year, key 1 = month, key 2 = day
-            $dateArray = explode('-', $publication['date']);
-
-            // format: Y-m-d e.g. 2019-08-09
-            if (!empty($dateArray[1]) && !empty($dateArray[2])) {
-                $date = DateTime::createFromFormat($format, $publication['date'] . ' 00:00:00');
-            }
-
-            // format: Y-m e.g. 2019-08
-            if (empty($dateArray[2]) && !empty($dateArray[1])) {
-                $date = DateTime::createFromFormat($format, $publication['date'] . '-01 00:00:00');
-            }
-
-            // format: Y e.g. 2019
-            if (empty($dateArray[1]) && empty($dateArray[2])) {
-                $date = DateTime::createFromFormat($format, $publication['date'] . '-01-01 00:00:00');
-            }
-
-            if ($date instanceof DateTime) {
-                $publication['date'] = $date->getTimestamp();
-            }
-        } else {
-            unset($publication['date']);
-        }
     }
 
     /**

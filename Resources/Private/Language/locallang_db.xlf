@@ -117,8 +117,14 @@
 			<trans-unit id="tx_publications_domain_model_publication.journal">
 				<source>Journal</source>
 			</trans-unit>
-			<trans-unit id="tx_publications_domain_model_publication.date">
-				<source>Date</source>
+			<trans-unit id="tx_publications_domain_model_publication.year">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.month">
+				<source>Month</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.day">
+				<source>Day</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.volume">
 				<source>Volume</source>

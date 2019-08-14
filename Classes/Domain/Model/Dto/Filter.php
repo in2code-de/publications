@@ -138,7 +138,7 @@ class Filter
         switch ($this->getGroupby()) {
             case 0:
                 $orderings = [
-                    'date' => QueryInterface::ORDER_DESCENDING,
+                    'year' => QueryInterface::ORDER_DESCENDING,
                     'title' => QueryInterface::ORDER_ASCENDING
                 ];
                 break;
@@ -151,7 +151,7 @@ class Filter
             default:
             case 2:
                 $orderings = [
-                    'date' => QueryInterface::ORDER_DESCENDING,
+                    'year' => QueryInterface::ORDER_DESCENDING,
                     'bibtype' => QueryInterface::ORDER_ASCENDING,
                     'title' => QueryInterface::ORDER_ASCENDING
                 ];

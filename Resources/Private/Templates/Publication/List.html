@@ -36,14 +36,14 @@
 <f:section name="GroupTitle">
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
-			<publications:groupTitle title="{publication.yearFromDate}" before="<h4>" after="</h4>" />
+			<publications:groupTitle title="{publication.year}" before="<h4>" after="</h4>" />
 		</f:case>
 		<f:case value="1">
 			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" before="<h4>" after="</h4>" />
 		</f:case>
 		<f:case value="2">
-			<publications:groupTitle title="{publication.yearFromDate}" before="<h4>" after="</h4>" />
-			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.yearFromDate}{publication.bibtype}" before="<h5>" after="</h5>" />
+			<publications:groupTitle title="{publication.year}" before="<h4>" after="</h4>" />
+			<publications:groupTitle title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}" before="<h5>" after="</h5>" />
 		</f:case>
 	</f:switch>
 </f:section>
