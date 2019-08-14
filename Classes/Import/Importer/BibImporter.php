@@ -23,10 +23,14 @@ class BibImporter extends AbstractImporter
      */
     protected $additionalPublicationMapping = [
         'citation-key' => 'citeid',
-        'url' => 'web_url',
+        'url' => 'file_url',
+        'web_url' => 'web_url',
         'author' => 'authors',
-        'type' => 'bibtype',
-        'DOI' => 'doi'
+        'DOI' => 'doi',
+        'ISSN' => 'issn',
+        'ISBN' => 'isbn',
+        'misc' => 'miscellaneous',
+        'misc2' => 'miscellaneous2'
     ];
 
     /**
@@ -72,15 +76,42 @@ class BibImporter extends AbstractImporter
     }
 
     /**
+     * Add bibtype
+     *
      * @param array $publication
      * @return void
      */
     protected function additionalTypeMapping(array &$publication)
     {
+        $this->addBibType($publication);
+        $this->removeTypeIfEmpty($publication);
+    }
+
+    /**
+     * @param array $publication
+     * @return void
+     */
+    protected function addBibType(array &$publication)
+    {
+        $publication['bibtype'] = $this->getBibTypeFromPublication($publication);
         if ($publication['bibtype'] === 'Technical Report') {
             $publication['bibtype'] = 'report';
         }
         $publication['bibtype'] = strtolower($publication['bibtype']);
+    }
+
+    /**
+     * Because the parser automatically uses key "type" for bibtype and because there is already another field with
+     * the same key, we have to use it in a different way.
+     *
+     * @param array $publication
+     * @return void
+     */
+    protected function removeTypeIfEmpty(array &$publication)
+    {
+        if ($this->isTypeFieldInPublication($publication) === false) {
+            unset($publication['type']);
+        }
     }
 
     /**
@@ -98,5 +129,24 @@ class BibImporter extends AbstractImporter
                 }
             }
         }
+    }
+
+    /**
+     * @param array $publication
+     * @return bool
+     */
+    protected function isTypeFieldInPublication(array &$publication): bool
+    {
+        return stristr($publication['_original'], 'type = {') !== false;
+    }
+
+    /**
+     * @param array $publication
+     * @return string
+     */
+    protected function getBibTypeFromPublication(array &$publication): string
+    {
+        preg_match('~@([a-zA-Z0-9]+)~', $publication['_original'], $result);
+        return (string)$result[1];
     }
 }
