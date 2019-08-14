@@ -96,6 +96,7 @@ $tca = [
     'columns' => [
         'bibtype' => [
             'exclude' => true,
+            'onChange' => 'reload',
             'label' => $llTable. '.bibtype',
             'config' => [
                 'type' => 'select',
@@ -571,6 +572,7 @@ $tca = [
             ]
         ],
         'event_name' => [
+            'displayCond' => 'FIELD:bibtype:=:conference',
             'exclude' => true,
             'label' => $llTable . '.event_name',
             'config' => [
@@ -580,6 +582,7 @@ $tca = [
             ]
         ],
         'event_place' => [
+            'displayCond' => 'FIELD:bibtype:=:conference',
             'exclude' => true,
             'label' => $llTable . '.event_place',
             'config' => [
