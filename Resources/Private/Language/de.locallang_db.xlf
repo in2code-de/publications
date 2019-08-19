@@ -491,12 +491,12 @@
 				<target state="translated">Bitte Zitierstil wählen...</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.1">
-				<source>Harvard</source>
-				<target state="translated">Harvard</target>
-			</trans-unit>
-			<trans-unit id="flexform.pi1.template.citestyle.2">
 				<source>IEEE</source>
 				<target state="translated">IEEE</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.2">
+				<source>Harvard</source>
+				<target state="translated">Harvard</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.3">
 				<source>Chicago</source>
@@ -539,8 +539,8 @@
 				<target state="translated">BibTeX</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.export.1">
-				<source>EP3 XML</source>
-				<target state="translated">EP3 XML</target>
+				<source>XML</source>
+				<target state="translated">XML</target>
 			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
