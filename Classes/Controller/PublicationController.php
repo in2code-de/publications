@@ -113,7 +113,7 @@ class PublicationController extends ActionController
         ]);
 
         $this->response->setHeader('Content-Type', 'text/xml');
-        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.bib"');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.xml"');
         $this->response->setHeader('Pragma', 'no-cache');
         $this->response->sendHeaders();
         echo $this->view->render();

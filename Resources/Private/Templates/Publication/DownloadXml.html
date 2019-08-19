@@ -1,0 +1,27 @@
+<publications:format.removeEmptyLines><bib>
+	<comment>
+		This file was created by the TYPO3 extension publications
+		--- Timezone: CEST
+		Creation date: <f:format.date format="Y-m-d" date="now"/>
+		Creation time: <f:format.date format="H:i:s" date="now"/>
+		--- Number of references
+		<f:count>{publications}</f:count>
+	</comment>
+	<f:for each="{publications}" as="publication">
+	<reference>
+	<f:for each="{publication.propertiesForXmlExport}" as="value" key="property" iteration="iteration">
+		<{property}>{value}</{property}>
+	</f:for>
+	<f:if condition="{publication.authors}">
+		<authors>
+		<f:for each="{publication.authors}" as="author">
+			<person>
+				<fn>{author.firstName}</fn>
+				<sn>{author.lastName}</sn>
+			</person>
+		</f:for>
+		</authors>
+	</f:if>
+	</reference>
+	</f:for>
+</bib></publications:format.removeEmptyLines>

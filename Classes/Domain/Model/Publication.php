@@ -260,7 +260,8 @@ class Publication extends AbstractEntity
     protected $_numeration = 0;
 
     /**
-     * Mapping for export. Which fields should be availbe in export files with which key.
+     * Basic mapping for any export. Which fields should be available in export files with which key.
+     * ModelProperty => KeyNameInExport
      *
      * @var array
      */
@@ -276,7 +277,7 @@ class Publication extends AbstractEntity
         'language' => 'language',
         'isbn' => 'isbn',
         'issn' => 'issn',
-        'doi' => 'doi',
+        'doi' => 'DOI',
         'organization' => 'organization',
         'school' => 'school',
         'institution' => 'institution',
@@ -309,8 +310,22 @@ class Publication extends AbstractEntity
         'miscellaneous' => 'misc',
         'miscellaneous2' => 'misc2',
         'inLibrary' => 'in_library',
-        'borrowedBy' => 'borrowed_by',
-        'authorsForExport' => 'author'
+        'borrowedBy' => 'borrowed_by'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $propertiesMappingBib = [
+        'authorsForBibExport' => 'author'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $propertiesMappingXml = [
+        'bibtype' => 'bibtype',
+        'citeid' => 'citeid'
     ];
 
     /**
@@ -970,7 +985,7 @@ class Publication extends AbstractEntity
      *
      * @return string
      */
-    public function getAuthorsForExport(): string
+    public function getAuthorsForBibExport(): string
     {
         $authors = $this->getAuthors();
         $names = [];
@@ -1230,14 +1245,31 @@ class Publication extends AbstractEntity
     }
 
     /**
-     * Get Properties for exports
-     *
      * @return array
      */
-    public function getProperties()
+    public function getPropertiesForBibExport(): array
+    {
+        $mapping = $this->propertiesMappingBib + $this->propertiesMapping;
+        return $this->getPropertiesForExport($mapping);
+    }
+
+    /**
+     * @return array
+     */
+    public function getPropertiesForXmlExport(): array
+    {
+        $mapping = $this->propertiesMappingXml + $this->propertiesMapping;
+        return $this->getPropertiesForExport($mapping);
+    }
+
+    /**
+     * @param array $mapping
+     * @return array
+     */
+    protected function getPropertiesForExport(array $mapping): array
     {
         $properties = [];
-        foreach ($this->propertiesMapping as $property => $field) {
+        foreach ($mapping as $property => $field) {
             try {
                 $value = ObjectAccess::getProperty($this, $property);
             } catch (\Exception $exception) {
