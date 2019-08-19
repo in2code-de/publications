@@ -502,13 +502,15 @@ class Publication extends AbstractEntity
     }
 
     /**
+     * Always get a citeid for export (to not break the bibtex files)
+     *
      * @return string
      */
     public function getCiteidForExport(): string
     {
        $citeid = $this->getCiteid();
        if (empty($citeid)) {
-           $citeid = $this->getUid();
+           $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
        }
        return $citeid;
     }
