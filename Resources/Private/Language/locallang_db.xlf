@@ -370,10 +370,10 @@
 				<source>Please choose a citestyle...</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.1">
-				<source>Harvard</source>
+				<source>IEEE</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.2">
-				<source>IEEE</source>
+				<source>Harvard</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.3">
 				<source>Chicago</source>
@@ -406,7 +406,7 @@
 				<source>BibTeX</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.export.1">
-				<source>EP3 XML</source>
+				<source>XML</source>
 			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">

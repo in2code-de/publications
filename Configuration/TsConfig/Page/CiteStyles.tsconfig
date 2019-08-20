@@ -1,8 +1,8 @@
 tx_publications.flexForm.citestyle {
     0 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.0
     1 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.1
-    2 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.2
-    3 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.3
-    4 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.4
+#    2 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.2
+#    3 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.3
+#    4 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.4
 #    5 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.5
 }
