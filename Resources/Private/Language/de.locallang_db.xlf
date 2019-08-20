@@ -552,6 +552,22 @@
 			<trans-unit id="backendModule.submit">
 				<target>Senden</target>
 			</trans-unit>
+			<trans-unit id="backendModule.note.pid.title">
+				<source>Page to insert records</source>
+				<target state="translated">Seite für das Einfügen neuer Datensätze</target>
+			</trans-unit>
+			<trans-unit id="backendModule.note.pid.text">
+				<source>Please choose a different location, if records should be imported into another place.</source>
+				<target state="translated">Bitte wählen Sie einen anderen Ort aus, wenn die Datensätze woanders gespeichert werden sollen.</target>
+			</trans-unit>
+			<trans-unit id="backendModule.note.nopid.title">
+				<source>No page selected</source>
+				<target state="translated">Keine Seite ausgewählt</target>
+			</trans-unit>
+			<trans-unit id="backendModule.note.nopid.text">
+				<source>Please choose a page on the left where records should be imported into.</source>
+				<target state="translated">Bitte wählen Sie zuerst eine Seite aus, in die Datensätze importiert werden sollen.</target>
+			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">
 				<target>Die angegebene Import Format Klasse '%s' wurde nicht gefunden.</target>

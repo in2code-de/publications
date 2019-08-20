@@ -1,7 +1,8 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Controller;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -12,16 +13,18 @@ use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
  * Class ImportController
- *
- * @package In2code\Publications\Controller
  */
 class ImportController extends ActionController
 {
+    /**
+     * @return void
+     */
     public function overviewAction()
     {
         $this->view->assignMultiple(
             [
-                'availableImporter' => $this->getExistingImporter()
+                'availableImporter' => $this->getExistingImporter(),
+                'pid' => GeneralUtility::_GP('id')
             ]
         );
     }
@@ -31,19 +34,17 @@ class ImportController extends ActionController
      * @param string $importer
      * @validate $file \In2code\Publications\Validation\Validator\UploadValidator
      * @validate $importer \In2code\Publications\Validation\Validator\ClassValidator
-     *
+     * @throws DBALException
      */
     public function importAction(array $file, string $importer)
     {
-        $importService =
-            $this->objectManager->get(
-                ImportService::class,
-                $file['tmp_name'],
-                $this->objectManager->get($importer)
-            );
-
+        /** @noinspection PhpMethodParametersCountMismatchInspection */
+        $importService = $this->objectManager->get(
+            ImportService::class,
+            $file['tmp_name'],
+            $this->objectManager->get($importer)
+        );
         $importService->import();
-
         $this->view->assignMultiple(
             [
                 'importInformation' => $importService->getImportInformation()
@@ -52,8 +53,6 @@ class ImportController extends ActionController
     }
 
     /**
-     * Error Action
-     *
      * @return string
      * @throws StopActionException
      */

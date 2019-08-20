@@ -1,0 +1,14 @@
+<f:if condition="{pid}">
+	<f:then>
+		<div class="alert alert-info" role="alert">
+			<h4 class="alert-heading"><strong><f:be.pagePath/></strong> - {f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.note.pid.title')}</h4>
+			{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.note.pid.text')}
+		</div>
+	</f:then>
+	<f:else>
+		<div class="alert alert-danger" role="alert">
+			<h4 class="alert-heading">{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.note.nopid.title')}</h4>
+			{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.note.nopid.text')}
+		</div>
+	</f:else>
+</f:if>

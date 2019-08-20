@@ -418,6 +418,18 @@
 			<trans-unit id="backendModule.submit">
 				<source>Submit</source>
 			</trans-unit>
+			<trans-unit id="backendModule.note.pid.title">
+				<source>Page to insert records</source>
+			</trans-unit>
+			<trans-unit id="backendModule.note.pid.text">
+				<source>Please choose a different location, if records should be imported into another place.</source>
+			</trans-unit>
+			<trans-unit id="backendModule.note.nopid.title">
+				<source>No page selected</source>
+			</trans-unit>
+			<trans-unit id="backendModule.note.nopid.text">
+				<source>Please choose a page on the left where records should be imported into.</source>
+			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">
 				<source>Class do not exist</source>
