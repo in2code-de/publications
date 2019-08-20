@@ -2,10 +2,8 @@
 declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
-use ErrorException;
 use In2code\Publications\Import\Processor\AuthorProcessor;
 use In2code\Publications\Import\Processor\SpecialCharProcessor;
-use RenanBr\BibTexParser\Exception\ParserException;
 use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
 
@@ -46,24 +44,25 @@ class BibImporter extends AbstractImporter
     /**
      * @param string $filePath
      * @return array
-     *
-     * @throws ErrorException
-     * @throws ParserException
      */
     public function convert(string $filePath): array
     {
-        $parser = new Parser();
-        $listener = new Listener();
+        try {
+            $parser = new Parser();
+            $listener = new Listener();
 
-        $listener->addProcessor(new SpecialCharProcessor());
-        $listener->addProcessor(new AuthorProcessor());
+            $listener->addProcessor(new SpecialCharProcessor());
+            $listener->addProcessor(new AuthorProcessor());
 
-        $parser->addListener($listener);
-        $parser->parseFile($filePath);
+            $parser->addListener($listener);
+            $parser->parseFile($filePath);
 
-        $publications = $listener->export();
+            $publications = $listener->export();
 
-        return $this->fieldMapping($publications);
+            return $this->fieldMapping($publications);
+        } catch (\Exception $exception) {
+            throw new \LogicException('File could not be imported: ' . $exception->getMessage(), 1566308498);
+        }
     }
 
     /**

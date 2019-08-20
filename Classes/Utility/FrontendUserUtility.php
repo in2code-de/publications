@@ -13,7 +13,7 @@ class FrontendUserUtility
      * @param array $data
      * @return void
      */
-    public static function saveValueToSession(string $key, array $data): void
+    public static function saveValueToSession(string $key, array $data)
     {
         ObjectUtility::getTyposcriptFrontendController()->fe_user->setKey('ses', $key . '_publications', $data);
     }

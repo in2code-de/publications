@@ -87,6 +87,17 @@ class ImportService extends AbstractService
     }
 
     /**
+     * @return bool
+     */
+    public function isImported(): bool
+    {
+        return $this->importInformation['updatedPublications'] > 0
+            || $this->importInformation['createdPublications'] > 0
+            || $this->importInformation['publicationsWithNoUpdate'] > 0
+            || $this->importInformation['createdAuthors'] > 0;
+    }
+
+    /**
      * create the author relations between the given publication and authors
      * NOTE: existing relations will be deleted before new relations will be created
      *

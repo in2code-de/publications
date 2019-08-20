@@ -416,7 +416,7 @@
 				<source>Select file for import</source>
 			</trans-unit>
 			<trans-unit id="backendModule.submit">
-				<source>Submit</source>
+				<source>Start import</source>
 			</trans-unit>
 			<trans-unit id="backendModule.note.pid.title">
 				<source>Page to insert records</source>
@@ -429,6 +429,34 @@
 			</trans-unit>
 			<trans-unit id="backendModule.note.nopid.text">
 				<source>Please choose a page on the left where records should be imported into.</source>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.size">
+				<source>File is too big. Please respect the 2MB limitations.</source>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.extension">
+				<source>File extension is not allowed. Please use a .bib or .xml file.</source>
+			</trans-unit>
+			<trans-unit id="backendModule.import.success">
+				<source>Import successful</source>
+			</trans-unit>
+			<trans-unit id="backendModule.import.failure">
+				<source>Import failure</source>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationscreated">
+				<source>Publications created</source>
+				<target state="translated">Neu importierte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationsupdated">
+				<source>Publications updated</source>
+				<target state="translated">Aktualisierte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationsunchanged">
+				<source>Unchanged publications</source>
+				<target state="translated">Unveränderte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.authorscreated">
+				<source>Authors created</source>
+				<target state="translated">Neu importierte Autoren</target>
 			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">

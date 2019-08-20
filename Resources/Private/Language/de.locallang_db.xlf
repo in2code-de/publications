@@ -550,7 +550,8 @@
 				<target>Importdatei auswählen</target>
 			</trans-unit>
 			<trans-unit id="backendModule.submit">
-				<target>Senden</target>
+				<source>Start import</source>
+				<target state="translated">Start Import</target>
 			</trans-unit>
 			<trans-unit id="backendModule.note.pid.title">
 				<source>Page to insert records</source>
@@ -567,6 +568,30 @@
 			<trans-unit id="backendModule.note.nopid.text">
 				<source>Please choose a page on the left where records should be imported into.</source>
 				<target state="translated">Bitte wählen Sie zuerst eine Seite aus, in die Datensätze importiert werden sollen.</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.success">
+				<source>Import successful</source>
+				<target state="translated">Import erfolgreich</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.failure">
+				<source>Import failure</source>
+				<target state="translated">Import fehlgeschlagen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationscreated">
+				<source>Publications created</source>
+				<target state="translated">Neu importierte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationsupdated">
+				<source>Publications updated</source>
+				<target state="translated">Aktualisierte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.publicationsunchanged">
+				<source>Unchanged publications</source>
+				<target state="translated">Unveränderte Publikationen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.import.authorscreated">
+				<source>Authors created</source>
+				<target state="translated">Neu importierte Autoren</target>
 			</trans-unit>
 
 			<trans-unit id="validator.class.notExist">
@@ -602,6 +627,14 @@
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.title">
 				<target state="translated">Fehler beim Upload der Datei.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.size">
+				<source>File is too big. Please respect the 2MB limitations.</source>
+				<target state="translated">Datei ist zu groß. Bitte beachten Sie die 2MB Limitierung.</target>
+			</trans-unit>
+			<trans-unit id="validator.uploadValidator.extension">
+				<source>File extension is not allowed. Please use a .bib or .xml file.</source>
+				<target state="translated">Datei Erweiterung ist nicht zulässig. Bitte .bib oder .xml Dateien nutzen.</target>
 			</trans-unit>
 		</body>
 	</file>

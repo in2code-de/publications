@@ -5,12 +5,19 @@ plugin.tx_publications {
 		layoutRootPaths.0 = {$plugin.tx_publications.view.layoutRootPath}
 	}
 
-	persistence {
-
+	features {
+		skipDefaultArguments = 1
 	}
 
 	settings {
 		storagePid = {$plugin.tx_publications.settings.storagePid}
+		upload.validation {
+			# Maximum upload size for bib and xml files in import module
+			size = 2000000
+
+			# Allowed file extensions for uploading
+			extensions = bib,xml
+		}
 	}
 }
 

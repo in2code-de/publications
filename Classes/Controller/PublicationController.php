@@ -125,7 +125,7 @@ class PublicationController extends ActionController
      * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
-    protected function setFilterArguments(): void
+    protected function setFilterArguments()
     {
         if ($this->request->hasArgument('filter') === false) {
             $filterArguments = FrontendUserUtility::getSessionValue('filter');

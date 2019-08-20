@@ -1,13 +1,82 @@
 <?php
-
+declare(strict_types=1);
 namespace In2code\Publications\Validation\Validator;
 
+use In2code\Publications\Utility\ConfigurationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
+/**
+ * Class UploadValidator
+ */
 class UploadValidator extends AbstractValidator
 {
+
+    /**
+     * @param mixed $value
+     * @return void
+     */
     public function isValid($value)
+    {
+        $this->validateForIndividualUploadErrors($value);
+        $this->validateForSystemUploadErrors($value);
+    }
+
+    /**
+     * @param array $value
+     * @return void
+     */
+    protected function validateForIndividualUploadErrors(array $value)
+    {
+        $this->validateFileExtension($value);
+        $this->validateSize($value);
+    }
+
+    /**
+     * @param array $value
+     * @return void
+     */
+    protected function validateFileExtension(array $value)
+    {
+        $allowedExtensions = GeneralUtility::trimExplode(
+            ',',
+            strtolower(ConfigurationUtility::getSetting('upload.validation.extensions')),
+            true
+        );
+        $extension = strtolower(pathinfo($value['name'])['extension']);
+        if (in_array($extension, $allowedExtensions) === false) {
+            $this->addError(
+                LocalizationUtility::translate(
+                    'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' .
+                    'validator.uploadValidator.extension'
+                ),
+                1566309068
+            );
+        }
+    }
+
+    /**
+     * @param array $value
+     * @return void
+     */
+    protected function validateSize(array $value)
+    {
+        if ($value['size'] > (int)ConfigurationUtility::getSetting('upload.validation.size')) {
+            $this->addError(
+                LocalizationUtility::translate(
+                    'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:validator.uploadValidator.size'
+                ),
+                1566307831
+            );
+        }
+    }
+
+    /**
+     * @param array $value
+     * @return void
+     */
+    protected function validateForSystemUploadErrors(array $value)
     {
         if ($value['error'] !== 0) {
             switch ($value['error']) {

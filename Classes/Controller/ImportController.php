@@ -47,7 +47,7 @@ class ImportController extends ActionController
         $importService->import();
         $this->view->assignMultiple(
             [
-                'importInformation' => $importService->getImportInformation()
+                'import' => $importService
             ]
         );
     }
