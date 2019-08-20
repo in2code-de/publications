@@ -1,8 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Publications\Import\Importer;
 
-use DateTime;
+namespace In2code\Publications\Import\Importer;
 
 /**
  * Class XmlImporter
@@ -17,13 +16,11 @@ class XmlImporter extends AbstractImporter
      * @var array
      */
     protected $additionalPublicationMapping = [
-        'type' => 'bibtype',
-        'creators' => 'authors',
-        'date_type' => 'status',
-        'publication' => 'journal',
-        'official_url' => 'web_url2',
-        'event_title' => 'event_name',
-        'event_location' => 'event_place',
+        'ISBN' => 'isbn',
+        'ISSN' => 'issn',
+        'DOI' => 'doi',
+        'misc' => 'miscellaneous',
+        'misc2' => 'miscellaneous2'
     ];
 
     /**
@@ -32,8 +29,8 @@ class XmlImporter extends AbstractImporter
      * @var array
      */
     protected $personMapping = [
-        'given' => 'first_name',
-        'family' => 'last_name'
+        'fn' => 'first_name',
+        'sn' => 'last_name'
     ];
 
     /**
@@ -43,7 +40,7 @@ class XmlImporter extends AbstractImporter
     public function convert(string $filePath): array
     {
         $data = $this->xml2array(file_get_contents($filePath));
-        $publications = $data['eprint'];
+        $publications = $data['reference'];
 
         return $this->fieldMapping($publications);
     }
@@ -55,7 +52,6 @@ class XmlImporter extends AbstractImporter
     protected function specialMapping(array &$publication)
     {
         $this->personMapping($publication, 'authors');
-        $this->personMapping($publication, 'editors');
     }
 
     /**
@@ -65,25 +61,22 @@ class XmlImporter extends AbstractImporter
     protected function personMapping(array &$publication, string $personKey)
     {
         if (!empty($publication[$personKey])) {
-            $persons = $publication[$personKey]['item'];
-            unset($publication[$personKey]['item']);
             foreach ($this->personMapping as $from => $to) {
-                // only one person
-                if (array_key_exists('name', $persons)) {
-                    $personInformation = $persons['name'];
-                    if (array_key_exists($from, $personInformation)) {
-                        $publication[$personKey][0][$to] = $personInformation[$from];
+                if (array_key_exists('fn', $publication[$personKey]['person'])) {
+                    // single author
+                    if (array_key_exists($from, $publication[$personKey]['person'])) {
+                        $publication[$personKey][0][$to] = $publication[$personKey]['person'][$from];
                     }
                 } else {
-                    // multiple persons
-                    foreach ($persons as $key => $person) {
-                        $personInformation = $person['name'];
-                        if (array_key_exists($from, $personInformation)) {
-                            $publication[$personKey][$key][$to] = $personInformation[$from];
+                    // multiple authors
+                    foreach ($publication[$personKey]['person'] as $key => $person) {
+                        if (array_key_exists($from, $person)) {
+                            $publication[$personKey][$key][$to] = $person[$from];
                         }
                     }
                 }
             }
+            unset($publication[$personKey]['person']);
         }
     }
 
