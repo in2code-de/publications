@@ -20,6 +20,7 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
     {
         parent::initializeArguments();
         $this->registerArgument('month', 'string', 'Name or number', true);
+        $this->registerArgument('limit', 'int', 'Optional limit for characters', false, 0);
     }
 
     /**
@@ -30,6 +31,10 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
         $month = $this->arguments['month'];
         if (MathUtility::canBeInterpretedAsInteger($month)) {
             $month = LocalizationUtility::translate('month.' . $month, 'publications');
+        }
+        if ($this->arguments['limit'] > 0 && strlen($month) > $this->arguments['limit']) {
+            $month = substr($month, 0, (int)$this->arguments['limit']);
+            $month .= '.';
         }
         return $month;
     }
