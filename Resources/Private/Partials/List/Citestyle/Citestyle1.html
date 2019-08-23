@@ -1,0 +1,412 @@
+<div style="display: flex;">
+	<div style="padding-right: 10px;">{publication.numeration}.</div>
+
+	<div>
+		<f:render section="{publication.bibtype}" optional="1" arguments="{_all}" />
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<f:comment>
+	S. Pohl,
+	S. Pohl and A.Kellner,
+	S. Pohl, A.Kellner, M.Muster and S.Stein,
+</f:comment>
+
+<f:section name="authors">
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		<f:if condition="{publication.authors -> f:count()} == 1">
+			<publications:format.initials>{author.firstName}</publications:format.initials>
+			{author.lastName},
+		</f:if>
+		<f:if condition="{publication.authors -> f:count()} == 2">
+			<f:if condition="{iteration.isFirst}">
+				<publications:format.initials>{author.firstName}</publications:format.initials>
+				{author.lastName} and
+			</f:if>
+			<f:if condition="{iteration.isLast}">
+				<publications:format.initials>{author.firstName}</publications:format.initials>
+				{author.lastName},
+			</f:if>
+		</f:if>
+		<f:if condition="{publication.authors -> f:count()} > 2">
+			<f:comment>If author is last before</f:comment>
+			<f:if condition="{iteration.cycle + 1} == {publication.authors -> f:count()}">
+				<f:then>
+					<publications:format.initials>{author.firstName}</publications:format.initials>
+					{author.lastName} and
+				</f:then>
+				<f:else>
+					<publications:format.initials>{author.firstName}</publications:format.initials>
+					{author.lastName},
+				</f:else>
+			</f:if>
+		</f:if>
+	</f:for>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="article">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass das , innerhalb der "" ist? -->
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<!-- @Klaus: Das Wort vol. kommt automatisch dazu? -->
+	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.number}">no. {publication.number}<f:if condition="{publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished}<f:if condition="{publication.publisher} || {publication.webUrl}"><f:then>:</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.webUrl}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlLastChecked}"><f:then></f:then><f:else>.</f:else></f:if></f:if>
+	<!-- @Klaus: Das Feld gibt es bisher nicht, weil nicht gefüllt? -->
+	<f:if condition="{publication.webUrlLastChecked}">[{publication.webUrlLastChecked}].</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="book">
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}"><i>{publication.title}.</i></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="booklet">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="conference">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass hier eine , vor "in" kommt? -->
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:then></f:then><f:else><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventName}">{publication.eventName}<f:if condition="{publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventPlace}">{publication.eventPlace}<f:if condition="{publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<!-- @Klaus: + Eds. ist immer da? -->
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="inbook">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass hier ein , innerhalb "" kommt? -->
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:then></f:then><f:else><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<!-- @Klaus: + Eds. ist immer da? -->
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
+	</f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="incollection">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="inproceedings">
+	<f:render section="conference" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="manual">
+	<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.title} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="manuscript">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="mastersthesis">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass hier ein , innerhalb "" kommt? -->
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.type} || {publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.type}">{publication.type}<f:if condition="{publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.school}">{publication.school}<f:if condition="{publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<!-- @Klaus: Misc haben wir jetzt Standard (oder so ähnlich) genommen -->
+<f:section name="misc">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass hier ein , innerhalb "" kommt? -->
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+
+<f:section name="phdthesis">
+	<f:render section="mastersthesis" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="poster">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="proceedings">
+	<!-- @Klaus: Sicher Editor und nicht Author? -->
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.,</f:if>
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.series}"><f:then>:</f:then><f:else><f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.series}">{publication.series}<f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventPlace}">{publication.eventPlace}.
+		<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher} || {publication.organization}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+		<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.organization} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+		<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+		<f:if condition="{publication.month} || {publication.year}">
+			<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+			<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+			{publication.year}.
+		</f:if>
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="report">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="techreport">
+	<f:render section="authors" arguments="{_all}" />
+	<!-- @Klaus: Sicher, dass hier eine , vor "in" kommt? -->
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.publisher} || {publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">{publication.booktitle}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<!-- @Klaus: Sicher, dass hier nur das Jahr ohne Monat rauskommt -->
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+
+<f:section name="thesis">
+	<f:render section="mastersthesis" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="unpublished">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="url">
+	TODO
+	<!-- @Klaus: Fehlt in der Liste -->
+</f:section>
