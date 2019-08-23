@@ -40,9 +40,19 @@ class ClearCommand extends Command {
         ];
         foreach ($tables as $table) {
             $connection = DatabaseUtility::getConnectionForTable($table);
-            $connection->query('delete from ' . $table . ' where pid=' . $pid);
+            if ($pid > 0) {
+                $connection->query('delete from ' . $table . ' where pid=' . $pid);
+            } else {
+                $connection->truncate($table);
+            }
         }
-        $output->writeln('Removed all records from page with UID=' . $pid);
+        if ($pid === 0) {
+            $connection = DatabaseUtility::getConnectionForTable('tx_publications_publication_author_mm');
+            $connection->truncate('tx_publications_publication_author_mm');
+        }
+        $output->writeln(
+            $pid > 0 ? 'Removed all records from page with UID=' . $pid : 'Truncated all publication tables'
+        );
         return 0;
     }
 }
