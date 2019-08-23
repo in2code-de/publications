@@ -76,7 +76,7 @@ $tca = [
                 'affiliation,--linebreak--,extern'
         ],
         'palette_event' => [
-            'showitem' => 'event_name,event_place'
+            'showitem' => 'event_name,event_place,--linebreak--,event_date'
         ],
         'palette_number' => [
             'showitem' => 'number,number2'
@@ -585,6 +585,16 @@ $tca = [
             'displayCond' => 'FIELD:bibtype:=:conference',
             'exclude' => true,
             'label' => $llTable . '.event_place',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
+            ]
+        ],
+        'event_date' => [
+            'displayCond' => 'FIELD:bibtype:=:conference',
+            'exclude' => true,
+            'label' => $llTable . '.event_date',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',

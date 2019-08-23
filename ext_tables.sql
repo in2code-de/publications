@@ -40,6 +40,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	howpublished varchar(255) DEFAULT '' NOT NULL,
 	event_name varchar(255) DEFAULT '' NOT NULL,
 	event_place varchar(255) DEFAULT '' NOT NULL,
+	event_date varchar(255) DEFAULT '' NOT NULL,
 	language varchar(255) DEFAULT '' NOT NULL,
 	booktitle text NOT NULL,
 	organization varchar(255) DEFAULT '' NOT NULL,

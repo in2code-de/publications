@@ -279,6 +279,10 @@
 				<source>Event location</source>
 				<target state="translated">Veranstaltungsort</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_date">
+				<source>Event date</source>
+				<target state="translated">Veranstaltungsdatum</target>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.language">
 				<source>Language</source>
 				<target state="translated">Sprache</target>

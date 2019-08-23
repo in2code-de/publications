@@ -210,6 +210,9 @@
 			<trans-unit id="tx_publications_domain_model_publication.event_place">
 				<source>Event location</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.event_date">
+				<source>Event date</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.language">
 				<source>Language</source>
 			</trans-unit>

@@ -181,6 +181,11 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
+    protected $eventDate = '';
+
+    /**
+     * @var string
+     */
     protected $number = '';
 
     /**
@@ -933,6 +938,24 @@ class Publication extends AbstractEntity
     public function setEventPlace(string $eventPlace): self
     {
         $this->eventPlace = $eventPlace;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEventDate(): string
+    {
+        return $this->eventDate;
+    }
+
+    /**
+     * @param string $eventDate
+     * @return Publication
+     */
+    public function setEventDate(string $eventDate): self
+    {
+        $this->eventDate = $eventDate;
         return $this;
     }
 
