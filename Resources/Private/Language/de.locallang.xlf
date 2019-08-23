@@ -70,7 +70,7 @@
 			</trans-unit>
 			<trans-unit id="bibtype.inproceedings">
 				<source>Contribution to Proceedings</source>
-				<target state="translated">Protokollbeiträge</target>
+				<target state="translated">Beiträge zu Verhandlungen</target>
 			</trans-unit>
 			<trans-unit id="bibtype.manual">
 				<source>Manuals</source>
@@ -98,7 +98,7 @@
 			</trans-unit>
 			<trans-unit id="bibtype.proceedings">
 				<source>Proceedings</source>
-				<target state="translated">Protokolle</target>
+				<target state="translated">Verhandlungen</target>
 			</trans-unit>
 			<trans-unit id="bibtype.report">
 				<source>Reports</source>

@@ -61,7 +61,7 @@
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.bibtype.inproceedings">
 				<source>Contribution to Proceeding</source>
-				<target state="translated">Protokollbeitrag</target>
+				<target state="translated">Beitrag zur Verhandlung</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.bibtype.manual">
 				<source>Manual</source>
@@ -89,7 +89,7 @@
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.bibtype.proceedings">
 				<source>Proceedings</source>
-				<target state="translated">Protokoll</target>
+				<target state="translated">Verhandlung</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.bibtype.report">
 				<source>Report</source>
@@ -388,7 +388,7 @@
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.inproceedings">
 				<source>Contribution to Proceeding</source>
-				<target state="translated">Protokollbeitrag</target>
+				<target state="translated">Beitrag zur Verhandlung</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.manual">
 				<source>Manual</source>
@@ -416,7 +416,7 @@
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.proceedings">
 				<source>Proceedings</source>
-				<target state="translated">Protokoll</target>
+				<target state="translated">Verhandlung</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.report">
 				<source>Report</source>
