@@ -46,6 +46,7 @@ At the moment it's not possible to use publications without **composer mode**! C
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 0.4.0      | 2019-08-26 | Task       | 4. prerelease with documentation                                                   |
 | 0.3.0      | 2019-08-26 | Task       | 3. prerelease with a finalized citestyles                                          |
 | 0.2.0      | 2019-08-26 | Task       | 2. prerelease with a basic IEEE citestyle                                          |
 | 0.1.0      | 2019-08-21 | Task       | First prerelease with a default citestyle only                                     |
