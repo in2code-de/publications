@@ -327,6 +327,10 @@
 				<source>Authors</source>
 				<target state="translated">Autoren</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.patent">
+				<source>Patent</source>
+				<target state="translated">Patent</target>
+			</trans-unit>
 
 			<trans-unit id="tx_publications_domain_model_author">
 				<source>Author</source>
@@ -445,6 +449,10 @@
 			<trans-unit id="flexform.pi1.filter.bibtypes.url">
 				<source>URL</source>
 				<target state="translated">URL</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.bibtypes.patent">
+				<source>Patent</source>
+				<target state="translated">Patent</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.status">
 				<source>Status (empty = all)</source>

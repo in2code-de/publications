@@ -44,18 +44,19 @@ $tca = [
             '--div--;' . $llTable . '.tab.misc,' .
             '--palette--;;palette_note,' .
             '--palette--;;palette_library,' .
+            '--palette--;;palette_patent,' .
             ''
         ],
     ],
     'palettes' => [
         'palette_title' => [
-            'showitem' => 'title,abstract'
+            'showitem' => 'title,abstract,'
         ],
         'palette_type' => [
-            'showitem' => 'bibtype,type'
+            'showitem' => 'bibtype,type,'
         ],
         'palette_status' => [
-            'showitem' => 'status,language'
+            'showitem' => 'status,language,'
         ],
         'palette_date' => [
             'showitem' => 'year,month,day,'
@@ -64,33 +65,36 @@ $tca = [
             'showitem' => 'reviewed,'
         ],
         'palette_identification' => [
-            'showitem' => 'citeid,isbn,--linebreak--,issn,doi'
+            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,'
         ],
         'palette_organization' => [
-            'showitem' => 'organization,school,--linebreak--,institution,institute'
+            'showitem' => 'organization,school,--linebreak--,institution,institute,'
         ],
         'palette_publishing' => [
             'showitem' =>
                 'booktitle,journal,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
                 '--linebreak--,chapter,series,--linebreak--,howpublished,editor,--linebreak--,pages,' .
-                'affiliation,--linebreak--,extern'
+                'affiliation,--linebreak--,extern,'
         ],
         'palette_event' => [
-            'showitem' => 'event_name,event_place,--linebreak--,event_date'
+            'showitem' => 'event_name,event_place,--linebreak--,event_date,'
         ],
         'palette_number' => [
-            'showitem' => 'number,number2'
+            'showitem' => 'number,number2,'
         ],
         'palette_relations' => [
             'showitem' =>
                 'authors,--linebreak--,keywords,tags,--linebreak--,web_url,web_url2,' .
-                '--linebreak--,web_url_date,file_url'
+                '--linebreak--,web_url_date,file_url,'
         ],
         'palette_note' => [
-            'showitem' => 'note,annotation,--linebreak--,miscellaneous,miscellaneous2'
+            'showitem' => 'note,annotation,--linebreak--,miscellaneous,miscellaneous2,'
         ],
         'palette_library' => [
-            'showitem' => 'in_library,borrowed_by'
+            'showitem' => 'in_library,borrowed_by,'
+        ],
+        'palette_patent' => [
+            'showitem' => 'patent,'
         ]
     ],
     'columns' => [
@@ -248,7 +252,7 @@ $tca = [
             'label' => $llTable . '.title',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'trim,required',
                 'default' => ''
             ]
         ],
@@ -709,6 +713,16 @@ $tca = [
                         'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif'
                     ]
                 ]
+            ]
+        ],
+        'patent' => [
+        'displayCond' => 'FIELD:bibtype:=:patent',
+            'exclude' => true,
+            'label' => $llTable . '.patent',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
             ]
         ]
     ]
