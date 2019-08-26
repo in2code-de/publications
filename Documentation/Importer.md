@@ -5,7 +5,7 @@ per default are two importer available (BibTex, XML).
 the BibTex format must correspond to the BibTex format *http://www.bibtex.org/Format/*.    
 
 ## XML
-the XML format must correspond to the eprints format *http://eprints.org/ep2/data/2.0*.
+the XML format is a simple format that mirrors all fields.
 
 ## Own Importer
 
@@ -27,7 +27,9 @@ The array which are returned from the function *convert* must correspond to a ce
 2. the array key *authors* contains an array of the publication authors
 3. array keys which are matching the database fields will be ignored at the import 
 
+
 example: 
+
 ```php
 $returnArray = [
     0 => [

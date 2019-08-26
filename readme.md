@@ -1,6 +1,6 @@
 # publications is an TYPO3 extension to list academic publications
 
-Inspired by the outdated bib extension in TYPO3
+Inspired by the - meanwhile outdated - TYPO3 bib extension
 
 ## Introduction
 
@@ -9,10 +9,38 @@ Show academic publications in a listview with some filter possibilities in the p
 Im- and export BibTeX or XML files (Import via Backend Module, Export in Frontend) to list publications.
 Easily extend this extension with own importers or own citestyles. 
 
+At the moment we support a default and the IEEE citestyle.
+
+## Screenshots
+
+Example list view:
+![Example listview](Documentation/Images/screenshot_frontend_listview.png "Listview")
+
+Plugin:
+![Plugin](Documentation/Images/screenshot_backend_plugin.png "Plugin")
+
+Import module:
+![Module](Documentation/Images/screenshot_backend_module.png "Module")
+
 ## Technical requirements
 
 This extension needs minimum *TYPO3 8.7* and PHP 7.0.
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
+
+## Installation
+
+* First of all, intall the extension via composer: `composer require in2code/publications`
+* Clean caches
+* Add the static TypoScript of the extension to your installation root template
+* Add some publication and author records to a sysfolder
+* Add the publication plugin to a default page 
+* That's it
+
+## Extending publications
+
+* Look at the [importer documentation](Documentation/Importer.md) to see how you can add own importers
+* Look at the [citestyle documentation](Documentation/Citestyles.md) to see how you can add your own cite styles
+
 
 ## Changelog
 
