@@ -379,7 +379,7 @@
 				<source>Cite style</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.0">
-				<source>Please choose a citestyle...</source>
+				<source>Default</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.1">
 				<source>IEEE</source>

@@ -503,8 +503,8 @@
 				<target state="translated">Zitierstil</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.0">
-				<source>Please choose a citestyle...</source>
-				<target state="translated">Bitte Zitierstil wählen...</target>
+				<source>Default</source>
+				<target state="translated">Standard</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle.1">
 				<source>IEEE</source>
