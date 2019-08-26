@@ -1245,3 +1245,35 @@
 	</f:if>
 
 </f:section>
+
+
+
+
+
+
+
+
+<f:section name="patent">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.patent}">
+		<br/>
+		{publication.patent}
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+</f:section>
