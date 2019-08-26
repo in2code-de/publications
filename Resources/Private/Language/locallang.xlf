@@ -91,6 +91,9 @@
 			<trans-unit id="bibtype.url">
 				<source>URL</source>
 			</trans-unit>
+			<trans-unit id="bibtype.patent">
+				<source>Patents</source>
+			</trans-unit>
 
 			<trans-unit id="month.1">
 				<source>January</source>

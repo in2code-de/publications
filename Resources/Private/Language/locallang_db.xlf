@@ -84,6 +84,9 @@
 			<trans-unit id="tx_publications_domain_model_publication.bibtype.url">
 				<source>URL</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.patent">
+				<source>Patent</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.type">
 				<source>Tyoe</source>
 			</trans-unit>

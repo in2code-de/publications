@@ -111,6 +111,10 @@
 				<source>URL</source>
 				<target state="translated">URL</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.bibtype.patent">
+				<source>Patent</source>
+				<target state="translated">Patent</target>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.type">
 				<source>Tyoe</source>
 				<target state="translated">Typ</target>

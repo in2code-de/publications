@@ -182,6 +182,10 @@ $tca = [
                         $llTable . '.bibtype.url',
                         'url'
                     ],
+                    [
+                        $llTable . '.bibtype.patent',
+                        'patent'
+                    ],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
