@@ -77,9 +77,8 @@
 	</f:if>
 	<f:if condition="{publication.howpublished}">{publication.howpublished}<f:if condition="{publication.publisher} || {publication.webUrl}"><f:then>:</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.webUrl}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlLastChecked}"><f:then></f:then><f:else>.</f:else></f:if></f:if>
-	<!-- @Klaus: Das Feld gibt es bisher nicht, weil nicht gefüllt? -->
-	<f:if condition="{publication.webUrlLastChecked}">[{publication.webUrlLastChecked}].</f:if>
+	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
 </f:section>
 
 
