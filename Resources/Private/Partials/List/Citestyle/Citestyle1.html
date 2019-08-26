@@ -93,7 +93,7 @@
 <f:section name="book">
 	<f:render section="authors" arguments="{_all}" />
 	<f:if condition="{publication.title}"><i>{publication.title}.</i></f:if> ....
-	<f:if condition="{publication.volume}">{publication.volume}</f:if>
+	<f:if condition="{publication.edition}">{publication.edition}</f:if>
 	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
 	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.month} || {publication.year}">
