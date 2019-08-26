@@ -29,12 +29,16 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
     public function render(): string
     {
         $month = $this->arguments['month'];
-        if (MathUtility::canBeInterpretedAsInteger($month)) {
-            $month = LocalizationUtility::translate('month.' . $month, 'publications');
-        }
-        if ($this->arguments['limit'] > 0 && strlen($month) > $this->arguments['limit']) {
-            $month = substr($month, 0, (int)$this->arguments['limit']);
-            $month .= '.';
+        if ($month > 0) {
+            if (MathUtility::canBeInterpretedAsInteger($month)) {
+                $month = LocalizationUtility::translate('month.' . $month, 'publications');
+            }
+            if ($this->arguments['limit'] > 0 && strlen($month) > $this->arguments['limit']) {
+                $month = substr($month, 0, (int)$this->arguments['limit']);
+                $month .= '.';
+            }
+        } else {
+            $month = '';
         }
         return $month;
     }
