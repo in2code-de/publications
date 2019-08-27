@@ -129,7 +129,7 @@ class MigrateFromBib
         17 => 'thesis',
         18 => 'manuscript',
         19 => 'report',
-        20 => 'Miscellaneous',
+        20 => 'misc',
         21 => 'url',
     ];
 
