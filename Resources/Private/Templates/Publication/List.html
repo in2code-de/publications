@@ -15,7 +15,7 @@
 					<f:for each="{publicationsPage}" as="publication">
 						<f:render section="GroupTitle" arguments="{_all}"/>
 
-						<div style="padding: 10px 0;">
+						<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
 							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
 						</div>
 					</f:for>
