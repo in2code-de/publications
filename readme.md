@@ -2,6 +2,8 @@
 
 Inspired by the - meanwhile outdated - TYPO3 bib extension
 
+
+
 ## Introduction
 
 Target group of this extension are universities and colleges:
@@ -10,6 +12,8 @@ Im- and export BibTeX or XML files (Import via Backend Module, Export in Fronten
 Easily extend this extension with own importers or own citestyles. 
 
 At the moment we support a default and the IEEE citestyle.
+
+
 
 ## Screenshots
 
@@ -22,10 +26,14 @@ Plugin:
 Import module:
 ![Module](Documentation/Images/screenshot_backend_module.png "Module")
 
+
+
 ## Technical requirements
 
 This extension needs minimum *TYPO3 8.7* and PHP 7.0.
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
+
+
 
 ## Installation
 
@@ -36,10 +44,33 @@ At the moment it's not possible to use publications without **composer mode**! C
 * Add the publication plugin to a default page 
 * That's it
 
+
+
 ## Extending publications
 
 * Look at the [importer documentation](Documentation/Importer.md) to see how you can add own importers
 * Look at the [citestyle documentation](Documentation/Citestyles.md) to see how you can add your own cite styles
+
+
+
+## Migration from bib
+
+If you want to migrate records from extension bib to publications, there is a Command Controller for doing this
+
+```
+./vendor/bin/typo3cms publications:migrate
+```
+
+**Note:** If you want to delete all publications records before (to minimize uid conflicts), you can use
+
+```
+# Delete all records (truncate all tables)
+./vendor/bin/typo3cms publications:clean 0
+
+# Delete all records on page with uid 123
+./vendor/bin/typo3cms publications:clean 123
+```
+
 
 
 ## Changelog
@@ -50,6 +81,8 @@ At the moment it's not possible to use publications without **composer mode**! C
 | 0.3.0      | 2019-08-26 | Task       | 3. prerelease with a finalized citestyles                                          |
 | 0.2.0      | 2019-08-26 | Task       | 2. prerelease with a basic IEEE citestyle                                          |
 | 0.1.0      | 2019-08-21 | Task       | First prerelease with a default citestyle only                                     |
+
+
 
 ## Patrons
 
