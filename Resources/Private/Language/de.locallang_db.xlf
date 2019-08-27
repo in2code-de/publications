@@ -116,7 +116,7 @@
 				<target state="translated">Patent</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.type">
-				<source>Tyoe</source>
+				<source>Type</source>
 				<target state="translated">Typ</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.citeid">

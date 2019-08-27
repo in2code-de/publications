@@ -88,7 +88,7 @@
 				<source>Patent</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.type">
-				<source>Tyoe</source>
+				<source>Type</source>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.citeid">
 				<source>Citation ID</source>
