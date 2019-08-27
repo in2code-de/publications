@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.0.1      | 2019-08-27 | Bugfix     | Fix some small typos                                                               |
 | 1.0.0      | 2019-08-27 | Task       | First stable release                                                               |
 | 0.4.0      | 2019-08-26 | Task       | 4. prerelease with documentation                                                   |
 | 0.3.0      | 2019-08-26 | Task       | 3. prerelease with a finalized citestyles                                          |
