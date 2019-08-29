@@ -2,12 +2,379 @@
 	<div style="padding-right: 10px;">{publication.numeration}.</div>
 
 	<div>
-		<f:render section="{publication.bibtype}" optional="1" arguments="{_all}" />
+		<f:render section="bibtype_{publication.bibtype}" optional="1" arguments="{_all}" />
 	</div>
 </div>
 
 
 
+
+
+
+
+
+<f:section name="bibtype_article">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.number}">no. {publication.number}<f:if condition="{publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished}<f:if condition="{publication.publisher} || {publication.webUrl}"><f:then>:</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.webUrl}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrl}"><f:link.typolink parameter="{publication.webUrl}" target="_blank" /><f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
+	<f:render section="additional" arguments="{publication:publication,showWebUrl:false}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_book">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}"><i>{publication.title}.</i></f:if> ....
+	<f:if condition="{publication.edition}">{publication.edition}</f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished}</f:if>
+	<f:render section="additional" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_booklet">
+	TODO
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_conference">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:else><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventName}">{publication.eventName}<f:if condition="{publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventPlace}">{publication.eventPlace}<f:if condition="{publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
+	<f:render section="additional" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_inbook">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:else><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
+	</f:if>
+	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
+	<f:render section="additional" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_incollection">
+	<f:render section="bibtype_inbook" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_inproceedings">
+	<f:render section="bibtype_conference" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_manual">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.title} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}
+	</f:if>
+	<f:render section="additional" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_manuscript">
+	TODO
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_mastersthesis">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.type} || {publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.type}">{publication.type}<f:if condition="{publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.school}">{publication.school}<f:if condition="{publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_misc">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_phdthesis">
+	<f:render section="bibtype_mastersthesis" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_poster">
+	<f:render section="bibtype_conference" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_proceedings">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:if condition="{publication.editor}">{publication.editor}, Eds.,</f:if>
+	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.series}"><f:then>:</f:then><f:else><f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+	<f:if condition="{publication.series}">{publication.series}<f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.eventPlace}">{publication.eventPlace}.
+		<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher} || {publication.organization}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
+		<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.organization} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+		<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+		<f:if condition="{publication.month} || {publication.year}">
+			<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+			{publication.year}.
+		</f:if>
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_report">
+	<f:render section="bibtype_techreport" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_techreport">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.publisher} || {publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.booktitle}">{publication.booktitle}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
+
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_thesis">
+	<f:render section="bibtype_mastersthesis" arguments="{_all}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_unpublished">
+	TODO
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_url">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.webUrl} || {publication.webUrlDate}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
+	<f:render section="additional" arguments="{publication:publication,showWebUrl:false}" />
+</f:section>
+
+
+
+
+
+
+
+
+
+
+<f:section name="bibtype_patent">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}" />
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.patent} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.patent}">{publication.patent}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+</f:section>
 
 
 
@@ -58,352 +425,24 @@
 
 
 
-
-
-
-
-<f:section name="article">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.number}">no. {publication.number}<f:if condition="{publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.pages}">pp. {publication.pages}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+<f:section name="additional">
+	<f:if condition="{publication.doi}">
+		<br/>
+		DOI: <f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
 	</f:if>
-	<f:if condition="{publication.howpublished}">{publication.howpublished}<f:if condition="{publication.publisher} || {publication.webUrl}"><f:then>:</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.webUrl}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-</f:section>
 
-
-
-
-
-
-
-
-
-
-<f:section name="book">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}"><i>{publication.title}.</i></f:if> ....
-	<f:if condition="{publication.edition}">{publication.edition}</f:if>
-	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+	<f:if condition="{showWebUrl} && {publication.webUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl}" target="_blank" />
 	</f:if>
-	<f:if condition="{publication.howpublished}">{publication.howpublished}</f:if>
-</f:section>
 
-
-
-
-
-
-
-
-
-
-<f:section name="booklet">
-	TODO
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="conference">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:else><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.eventName}">{publication.eventName}<f:if condition="{publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.eventPlace}">{publication.eventPlace}<f:if condition="{publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
-	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+	<f:if condition="{publication.webUrl2}">
+		<br/>
+		<f:link.typolink parameter="{publication.webUrl2}" target="_blank" />
 	</f:if>
-	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-</f:section>
 
-
-
-
-
-
-
-
-
-
-<f:section name="inbook">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:else><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
-	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
-	</f:if>
-	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="incollection">
-	<f:render section="inbook" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="inproceedings">
-	<f:render section="conference" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="manual">
-	<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.title} || {publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
-	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.publisher} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else></f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}
-	</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="manuscript">
-	TODO
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="mastersthesis">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.type} || {publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.type}">{publication.type}<f:if condition="{publication.school} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.school}">{publication.school}<f:if condition="{publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
-	</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="misc">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
-	</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-
-<f:section name="phdthesis">
-	<f:render section="mastersthesis" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="poster">
-	<f:render section="conference" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="proceedings">
-	<f:if condition="{publication.editor}">{publication.editor}, Eds.,</f:if>
-	<f:if condition="{publication.title}"><i>{publication.title}</i><f:if condition="{publication.series}"><f:then>:</f:then><f:else><f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.series}">{publication.series}<f:if condition="{publication.eventDate} || {publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.eventDate}">{publication.eventDate}<f:if condition="{publication.eventPlace}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.eventPlace}">{publication.eventPlace}.
-		<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher} || {publication.organization}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-		<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.organization} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-		<f:if condition="{publication.organization}">{publication.organization}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-		<f:if condition="{publication.month} || {publication.year}">
-			<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-			{publication.year}.
-		</f:if>
-	</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="report">
-	<f:render section="techreport" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="techreport">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.publisher} || {publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.address} || {publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.booktitle} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.booktitle}">{publication.booktitle}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
-	</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-
-<f:section name="thesis">
-	<f:render section="mastersthesis" arguments="{_all}" />
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="unpublished">
-	TODO
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="url">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.webUrl} || {publication.webUrlDate}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-</f:section>
-
-
-
-
-
-
-
-
-
-
-<f:section name="patent">
-	<f:render section="authors" arguments="{_all}" />
-	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.patent} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.patent}">{publication.patent}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
-	<f:if condition="{publication.month} || {publication.year}">
-		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+	<f:if condition="{publication.fileUrl}">
+		<br/>
+		<f:link.typolink parameter="{publication.fileUrl}" target="_blank" />
 	</f:if>
 </f:section>
