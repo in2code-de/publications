@@ -11,6 +11,7 @@ use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Class PublicationController
@@ -43,7 +44,8 @@ class PublicationController extends ActionController
         $this->view->assignMultiple([
             'filter' => $filter,
             'publications' => $publications,
-            'showPagination' => count($publications) > $filter->getRecordsPerPage()
+            'showPagination' => count($publications) > $filter->getRecordsPerPage(),
+            'data' => $this->getContentObject()->data
         ]);
     }
 
@@ -54,7 +56,7 @@ class PublicationController extends ActionController
      */
     public function resetListAction()
     {
-        SessionUtility::saveValueToSession('filter', []);
+        SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], []);
         $this->redirect('list');
     }
 
@@ -128,11 +130,11 @@ class PublicationController extends ActionController
     protected function setFilterArguments()
     {
         if ($this->request->hasArgument('filter') === false) {
-            $filterArguments = SessionUtility::getSessionValue('filter');
+            $filterArguments = SessionUtility::getSessionValue('filter_' . $this->getContentObject()->data['uid']);
         } else {
             /** @var array $filterArguments */
             $filterArguments = $this->request->getArgument('filter');
-            SessionUtility::saveValueToSession('filter', $filterArguments);
+            SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], $filterArguments);
         }
         /** @noinspection PhpMethodParametersCountMismatchInspection */
         $filter = $this->objectManager->get(Filter::class, $this->settings);
@@ -155,5 +157,13 @@ class PublicationController extends ActionController
     public function injectPublicationRepository(PublicationRepository $publicationRepository)
     {
         $this->publicationRepository = $publicationRepository;
+    }
+
+    /**
+     * @return ContentObjectRenderer
+     */
+    protected function getContentObject(): ContentObjectRenderer
+    {
+        return $this->configurationManager->getContentObject();
     }
 }
