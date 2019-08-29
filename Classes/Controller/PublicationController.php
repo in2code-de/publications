@@ -4,7 +4,7 @@ namespace In2code\Publications\Controller;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
-use In2code\Publications\Utility\FrontendUserUtility;
+use In2code\Publications\Utility\SessionUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
@@ -54,7 +54,7 @@ class PublicationController extends ActionController
      */
     public function resetListAction()
     {
-        FrontendUserUtility::saveValueToSession('filter', []);
+        SessionUtility::saveValueToSession('filter', []);
         $this->redirect('list');
     }
 
@@ -128,11 +128,11 @@ class PublicationController extends ActionController
     protected function setFilterArguments()
     {
         if ($this->request->hasArgument('filter') === false) {
-            $filterArguments = FrontendUserUtility::getSessionValue('filter');
+            $filterArguments = SessionUtility::getSessionValue('filter');
         } else {
             /** @var array $filterArguments */
             $filterArguments = $this->request->getArgument('filter');
-            FrontendUserUtility::saveValueToSession('filter', $filterArguments);
+            SessionUtility::saveValueToSession('filter', $filterArguments);
         }
         /** @noinspection PhpMethodParametersCountMismatchInspection */
         $filter = $this->objectManager->get(Filter::class, $this->settings);
