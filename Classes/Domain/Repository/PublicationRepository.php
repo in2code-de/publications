@@ -105,7 +105,7 @@ class PublicationRepository extends Repository
     protected function filterQueryByTimeframe(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isTimeFrameSet()) {
-            $and[] = $query->greaterThan('date', $filter->getDateFromTimeFrame());
+            $and[] = $query->greaterThan('year', $filter->getDateFromTimeFrame()->format('Y'));
         }
         return $and;
     }
@@ -241,8 +241,7 @@ class PublicationRepository extends Repository
     protected function filterQueryByYear(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isYearSet()) {
-            $and[] = $query->greaterThan('date', $filter->getYearFrom());
-            $and[] = $query->lessThan('date', $filter->getYearTo());
+            $and[] = $query->equals('year', $filter->getYear());
         }
         return $and;
     }
