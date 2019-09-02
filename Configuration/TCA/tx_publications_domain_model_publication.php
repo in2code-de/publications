@@ -98,7 +98,7 @@ $tca = [
     ],
     'columns' => [
         'bibtype' => [
-            'exclude' => true,
+            'exclude' => false,
             'onChange' => 'reload',
             'label' => $llTable. '.bibtype',
             'config' => [
@@ -247,7 +247,7 @@ $tca = [
             ]
         ],
         'title' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => $llTable . '.title',
             'config' => [
                 'type' => 'input',
