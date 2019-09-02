@@ -15,8 +15,7 @@ $tca = [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY last_name ASC',
         'delete' => 'deleted',
-        'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Author::TABLE_NAME . '.svg',
-        'rootLevel' => -1
+        'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Author::TABLE_NAME . '.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
