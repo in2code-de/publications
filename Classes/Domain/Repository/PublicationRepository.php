@@ -45,6 +45,7 @@ class PublicationRepository extends Repository
             $and = $this->filterQueryByBibtypes($query, $filter, $and);
             $and = $this->filterQueryByStatus($query, $filter, $and);
             $and = $this->filterQueryByAuthor($query, $filter, $and);
+            $and = $this->filterQueryByExternFilter($query, $filter, $and);
             $and = $this->filterQueryByRecords($query, $filter, $and);
         }
         if ($filter->isFilterFrontendSet()) {
@@ -156,7 +157,25 @@ class PublicationRepository extends Repository
     protected function filterQueryByAuthor(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isAuthorSet()) {
-            $and[] = $query->contains('authors', $filter->getAuthorObject());
+            $or = [];
+            foreach ($filter->getAuthors() as $author) {
+                $or[] = $query->contains('authors', $author);
+            }
+            $and[] = $query->logicalOr($or);
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     */
+    protected function filterQueryByExternFilter(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isExternOrIntern()) {
+            $and[] = $query->equals('extern', ($filter->isIntern() ? 0 : 1));
         }
         return $and;
     }

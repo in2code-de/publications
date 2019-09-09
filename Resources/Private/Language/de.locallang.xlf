@@ -16,8 +16,8 @@
 				<target state="translated">Autor</target>
 			</trans-unit>
 			<trans-unit id="list.filter.author.placeholder">
-				<source>Lastname</source>
-				<target state="translated">Nachname</target>
+				<source>e.g. "Klaus Fumy, Bernd Aumann"</source>
+				<target state="translated">z.B. "Klaus Fumy, Bernd Aumann"</target>
 			</trans-unit>
 			<trans-unit id="list.filter.year">
 				<source>Year</source>

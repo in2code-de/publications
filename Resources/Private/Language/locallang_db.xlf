@@ -369,6 +369,18 @@
 			<trans-unit id="flexform.pi1.filter.author">
 				<source>Author</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern">
+				<source>Intern/Extern</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.0">
+				<source>Show all</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.1">
+				<source>Intern only</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.2">
+				<source>Extern only</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.records">
 				<source>Show publications from this page only</source>
 			</trans-unit>
