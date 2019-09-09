@@ -54,9 +54,11 @@ class Filter
     protected $tags = [];
 
     /**
-     * @var int
+     * Commaseparated identifiers of author objects
+     *
+     * @var string "123,345,678"
      */
-    protected $author = 0;
+    protected $author = '';
 
     /**
      * @var int 0=off, 1=intern, 2=extern
@@ -102,7 +104,7 @@ class Filter
         $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
         $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
-        $this->setAuthor((int)$settings['author']);
+        $this->setAuthor($settings['author']);
         $this->setExternFilter((int)$settings['extern']);
         $this->setRecords((int)$settings['records']);
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
@@ -362,23 +364,26 @@ class Filter
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getAuthor(): int
+    public function getAuthor(): string
     {
         return $this->author;
     }
 
     /**
-     * @return null|Author
+     * @return Author[]
      */
-    public function getAuthorObject()
+    public function getAuthors()
     {
+        $authors = [];
         if ($this->isAuthorSet()) {
             $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
-            return $authorRepository->findByUid($this->getAuthor());
+            foreach (GeneralUtility::intExplode(',', $this->getAuthor(), true) as $identifier) {
+                $authors[] = $authorRepository->findByUid($identifier);
+            }
         }
-        return null;
+        return $authors;
     }
 
     /**
@@ -386,14 +391,14 @@ class Filter
      */
     public function isAuthorSet(): bool
     {
-        return $this->getAuthor() !== 0;
+        return $this->getAuthor() !== '';
     }
 
     /**
-     * @param int $author
+     * @param string $author
      * @return Filter
      */
-    public function setAuthor(int $author): self
+    public function setAuthor(string $author): self
     {
         $this->author = $author;
         return $this;

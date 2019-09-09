@@ -157,7 +157,11 @@ class PublicationRepository extends Repository
     protected function filterQueryByAuthor(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isAuthorSet()) {
-            $and[] = $query->contains('authors', $filter->getAuthorObject());
+            $or = [];
+            foreach ($filter->getAuthors() as $author) {
+                $or[] = $query->contains('authors', $author);
+            }
+            $and[] = $query->logicalOr($or);
         }
         return $and;
     }
