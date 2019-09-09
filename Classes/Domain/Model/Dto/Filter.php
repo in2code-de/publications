@@ -59,6 +59,11 @@ class Filter
     protected $author = 0;
 
     /**
+     * @var int 0=off, 1=intern, 2=extern
+     */
+    protected $externFilter = 0;
+
+    /**
      * @var int
      */
     protected $records = 0;
@@ -98,6 +103,7 @@ class Filter
         $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
         $this->setAuthor((int)$settings['author']);
+        $this->setExternFilter((int)$settings['extern']);
         $this->setRecords((int)$settings['records']);
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
     }
@@ -390,6 +396,48 @@ class Filter
     public function setAuthor(int $author): self
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExternFilter(): int
+    {
+        return $this->externFilter;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExternOrIntern(): bool
+    {
+        return $this->isIntern() || $this->isExtern();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIntern(): bool
+    {
+        return $this->getExternFilter() === 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExtern(): bool
+    {
+        return $this->getExternFilter() === 2;
+    }
+
+    /**
+     * @param int $externFilter
+     * @return Filter
+     */
+    public function setExternFilter(int $externFilter): self
+    {
+        $this->externFilter = $externFilter;
         return $this;
     }
 

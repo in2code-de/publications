@@ -490,6 +490,22 @@
 				<source>Author</source>
 				<target state="translated">Autor</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern">
+				<source>Intern/Extern</source>
+				<target state="translated">Intern/Extern</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.0">
+				<source>Show all</source>
+				<target state="translated">Keine Einschränkung</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.1">
+				<source>Intern only</source>
+				<target state="translated">Nur Intern</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.extern.2">
+				<source>Extern only</source>
+				<target state="translated">Nur Extern</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.records">
 				<source>Show publications from this page only</source>
 				<target state="translated">Zeige nur Publikationen aus dieser Seite</target>
