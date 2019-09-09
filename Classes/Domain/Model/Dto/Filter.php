@@ -575,11 +575,14 @@ class Filter
     }
 
     /**
+     * Split on space and remove comma to allow a search for e.g. "Bernd Aumann, Klaus Fumy"
+     *
      * @return array
      */
     public function getAuthorstrings(): array
     {
-        return GeneralUtility::trimExplode(' ', $this->getAuthorstring(), true);
+        $authorstring = str_replace(',', '', $this->getAuthorstring());
+        return GeneralUtility::trimExplode(' ', $authorstring, true);
     }
 
     /**

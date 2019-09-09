@@ -13,7 +13,7 @@
 				<source>Author</source>
 			</trans-unit>
 			<trans-unit id="list.filter.author.placeholder">
-				<source>Lastname</source>
+				<source>e.g. "Klaus Fumy, Bernd Aumann"</source>
 			</trans-unit>
 			<trans-unit id="list.filter.year">
 				<source>Year</source>
