@@ -7,12 +7,11 @@ use In2code\Publications\Domain\Model\Publication;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Class PublicationRepository
  */
-class PublicationRepository extends Repository
+class PublicationRepository extends AbstractRepository
 {
     /**
      * @param Filter $filter
