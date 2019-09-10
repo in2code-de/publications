@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.3.1      | 2019-09-10 | Bugfix     | Don't respect storage page in all repository functions                             |
 | 1.3.0      | 2019-09-09 | Feature    | Allow multiple authors for filtering be+fe, Prefilter with extern/intern in plugin |
 | 1.2.0      | 2019-09-02 | Task       | Allow table wide exclude field definition, small change for title and bibtype tca  |
 | 1.1.0      | 2019-08-29 | Task       | Fix issue with staticfilecache, use individual filter cookie per ce, year bugfix   |
