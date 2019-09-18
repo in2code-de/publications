@@ -5,4 +5,5 @@ tx_publications.flexForm.citestyle {
 #    3 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.3
 #    4 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.4
 #    5 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.5
+    6 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle.6
 }

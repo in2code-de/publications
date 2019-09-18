@@ -1,0 +1,134 @@
+<div style="display: flex;">
+	<div style="padding-right: 10px;">{publication.numeration}.</div>
+
+	<div>
+		<f:render section="bibtype_{publication.bibtype}" optional="1" arguments="{_all}"/>
+	</div>
+</div>
+
+
+<f:section name="extensionsForAllTypes">
+	<f:if condition="{publication.abstract}">
+		&nbsp;{publication.abstract}
+	</f:if>
+</f:section>
+
+
+<f:section name="bibtype_article">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_article" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_book">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_book" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_booklet">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_booklet" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_conference">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_conference" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_inbook">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_inbook" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_incollection">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_incollection" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_inproceedings">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_inproceedings" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_manual">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_manual" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_manuscript">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_manuscript" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_mastersthesis">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_mastersthesis" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_misc">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_misc" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_phdthesis">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_phdthesis" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_poster">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_poster" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_proceedings">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_proceedings" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_report">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_report" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_techreport">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_techreport" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_thesis">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_thesis" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_unpublished">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_unpublished" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_url">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_url" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_patent">
+	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_patent" arguments="{_all}"/>
+	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
+</f:section>

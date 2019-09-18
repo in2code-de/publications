@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z"
+		  product-name="publications">
 		<header/>
 		<body>
 			<trans-unit id="tx_publications_domain_model_publication.tab.main">
@@ -408,6 +409,9 @@
 			<trans-unit id="flexform.pi1.template.citestyle.5">
 				<source>Coming soon...</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.6">
+				<source>IEEE with abstract</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 			</trans-unit>
@@ -498,7 +502,8 @@
 				<source>The uploaded file exceeds the upload_max_filesize directive in php.ini.</source>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.maxFileSize.html">
-				<source>The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</source>
+				<source>The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+				</source>
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.partialUpload">
 				<source>The uploaded file was only partially uploaded.</source>
