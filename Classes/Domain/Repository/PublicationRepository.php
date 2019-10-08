@@ -304,11 +304,24 @@ class PublicationRepository extends AbstractRepository
     {
         $i = 0;
         $resultsRaw = $results->toArray();
+        usort($resultsRaw, [$this, 'compareCallbackByDate']);
         /** @var Publication $result */
         foreach ($resultsRaw as $result) {
             $result->setNumeration(count($resultsRaw) - $i);
             $i++;
         }
         return $resultsRaw;
+    }
+
+    /**
+     * Callback function to sort by a date
+     *
+     * @param Publication $p1
+     * @param Publication $p2
+     * @return int 0 or -1 or 1
+     */
+    public function compareCallbackByDate(Publication $p1, Publication $p2): int
+    {
+        return strcmp((string)$p2->getDate()->format('U'), (string)$p1->getDate()->format('U'));
     }
 }
