@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.5.0      | 2019-10-08 | Feature    | Add a sorting by date (if no date, take 1.1.currentyear)                           |
 | 1.4.0      | 2019-10-07 | Feature    | Add new cite style (IEEE with abstract)                                            |
 | 1.3.1      | 2019-09-10 | Bugfix     | Don't respect storage page in all repository functions                             |
 | 1.3.0      | 2019-09-09 | Feature    | Allow multiple authors for filtering be+fe, Prefilter with extern/intern in plugin |
