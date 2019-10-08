@@ -478,6 +478,36 @@ class Publication extends AbstractEntity
     }
 
     /**
+     * Always return a (virtual) publication date calculated by year, month and day (even if some of them are empty)
+     *
+     * @return \DateTime
+     */
+    public function getDate(): \DateTime
+    {
+        $day = (int)$this->getDay();
+        if ($day === 0) {
+            $day = 1;
+        }
+        $month = (int)$this->getMonth();
+        if ($month === 0) {
+            $month = 1;
+        }
+        $year = (int)$this->getYear();
+        if ($year === 0) {
+            $year = date('Y');
+        }
+        $date = \DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $day);
+        if (is_a($date, \DateTime::class) === false) {
+            throw new \LogicException(
+                'DateTime could not be calculated for publication with uid ' . $this->getUid(),
+                1570545740
+            );
+        }
+        $date->modify('midnight');
+        return $date;
+    }
+
+    /**
      * @return bool
      */
     public function isReviewed(): bool
