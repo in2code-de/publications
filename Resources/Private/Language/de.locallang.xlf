@@ -173,6 +173,11 @@
 				<source>December</source>
 				<target state="translated">Dezember</target>
 			</trans-unit>
+
+			<trans-unit id="citestyle6.abstract">
+				<source>Abstract:</source>
+				<target>Abstrakt:</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
