@@ -131,6 +131,10 @@
 			<trans-unit id="month.12">
 				<source>December</source>
 			</trans-unit>
+
+			<trans-unit id="citestyle6.abstract">
+				<source>Abstract:</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
