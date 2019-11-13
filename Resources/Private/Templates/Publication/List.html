@@ -3,7 +3,9 @@
 
 
 <f:section name="Content">
+	<f:if condition="{settings.hideFilter} != true">
 	<f:render partial="List/Filter" arguments="{_all}"/>
+	</f:if>
 
 	<f:if condition="{publications}">
 		<f:then>
