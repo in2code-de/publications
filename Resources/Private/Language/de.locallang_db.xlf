@@ -578,7 +578,7 @@
 				<source>XML</source>
 				<target state="translated">XML</target>
 			</trans-unit>
-			<trans-unit id="flexform.pi1.template.showFilter">
+			<trans-unit id="flexform.pi1.template.hideFilter">
 				<source>Hide filter?</source>
 				<target state="translated">Filter verbergen?</target>
 			</trans-unit>
