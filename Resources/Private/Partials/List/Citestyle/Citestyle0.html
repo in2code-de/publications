@@ -1,3 +1,7 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
 <div style="display: flex;">
 	<div style="padding-right: 10px;">{publication.numeration}.</div>
 
@@ -5,6 +9,64 @@
 		<f:render section="{publication.bibtype}" optional="1" arguments="{_all}"/>
 	</div>
 </div>
+
+
+<f:section name="book">
+
+	<f:for each="{publication.authors}" as="author" iteration="iteration">
+		{author.lastName}
+		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}
+		<f:if condition="{iteration.isLast} == 0">;</f:if>
+	</f:for>
+
+	<f:if condition="{publication.title}">
+		<br/>
+		<i>{publication.title}</i>
+	</f:if>
+
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
+		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+	</f:if>
+
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/>
+		Herausgeber:
+		{publication.publisher}
+		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+
+	<f:if condition="{publication.edition}">
+		<br/>
+		{publication.edition} Edition
+	</f:if>
+
+	<f:if condition="{publication.month} || {publication.year}">
+		<br/>
+		<publications:format.monthNameFromNumber month="{publication.month}"/>
+		{publication.year}
+	</f:if>
+
+	<f:if condition="{publication.howpublished}">
+		<br/>
+		{publication.howpublished}
+	</f:if>
+
+	<f:if condition="{publication.isbn}">
+		<br/>
+		ISBN: {publication.isbn}
+	</f:if>
+
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
+	</f:if>
+
+</f:section>
 
 
 <f:section name="article">
@@ -54,105 +116,14 @@
 		ISSN: {publication.issn}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
+
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
-	</f:if>
-
-</f:section>
-
-
-<f:section name="book">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
-	<f:if condition="{publication.isbn}">
-		<br/>
-		ISBN: {publication.isbn}
-	</f:if>
-
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -209,30 +180,13 @@
 		{publication.affiliation}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -316,30 +270,13 @@
 		{publication.affiliation}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -405,30 +342,13 @@
 		{publication.pages}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -500,31 +420,13 @@
 		{publication.pages}
 	</f:if>
 
-
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -603,30 +505,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -675,30 +560,13 @@
 		{publication.publisher}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -757,30 +625,13 @@
 		{publication.affiliation}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -824,30 +675,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -883,30 +717,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -992,30 +809,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -1084,30 +884,13 @@
 		{publication.affiliation}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -1181,30 +964,12 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
-
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -1268,30 +1033,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -1339,30 +1087,13 @@
 		{publication.year}
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
 
 </f:section>
@@ -1436,37 +1167,14 @@
 		<i>{publication.title}</i>
 	</f:if>
 
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
 	<f:if condition="{publication.isbn}">
 		<br/>
 		ISBN: {publication.isbn}
 	</f:if>
 
-	<f:if condition="{publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+	<f:if condition="{publication.doi} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{_all}" />
 	</f:if>
-
-	<f:if condition="{publication.webUrlDate}">
-		<br/>
-		[{publication.webUrlDate}]
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink>
-	</f:if>
-
 
 </f:section>
 
@@ -1497,3 +1205,4 @@
 	</f:if>
 
 </f:section>
+</html>

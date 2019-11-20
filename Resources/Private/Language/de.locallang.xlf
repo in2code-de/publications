@@ -174,6 +174,23 @@
 				<target state="translated">Dezember</target>
 			</trans-unit>
 
+			<trans-unit id="linkblock.doi">
+				<source>DOI</source>
+				<target>DOI</target>
+			</trans-unit>
+			<trans-unit id="linkblock.file">
+				<source>File</source>
+				<target>Datei</target>
+			</trans-unit>
+			<trans-unit id="linkblock.weblink1">
+				<source>Weblink 1</source>
+				<target>Weblink 1</target>
+			</trans-unit>
+			<trans-unit id="linkblock.weblink2">
+				<source>Weblink 2</source>
+				<target>Weblink 2</target>
+			</trans-unit>
+
 			<trans-unit id="citestyle6.abstract">
 				<source>Abstract:</source>
 				<target>Abstrakt:</target>

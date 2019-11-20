@@ -135,6 +135,20 @@
 			<trans-unit id="citestyle6.abstract">
 				<source>Abstract:</source>
 			</trans-unit>
+
+			<trans-unit id="linkblock.doi">
+				<source>Doi</source>
+			</trans-unit>
+			<trans-unit id="linkblock.file">
+				<source>File</source>
+			</trans-unit>
+			<trans-unit id="linkblock.weblink1">
+				<source>Weblink 1</source>
+			</trans-unit>
+			<trans-unit id="linkblock.weblink2">
+				<source>Weblink 2</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

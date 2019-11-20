@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:section name="linkblock">
+	<f:spaceless>
+		<table>
+			<f:if condition="{publication.doi}">
+				<tr>
+					<td>DOI:</td>
+					<td><f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external></td>
+				</tr>
+			</f:if>
+			<f:if condition="{publication.webUrl}">
+				<tr>
+					<td><f:translate key="linkblock.weburl1"/></td>
+					<td><f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
+						<f:if condition="{publication.webUrlDate}">
+							{publication.webUrlDate}
+						</f:if>
+					</td>
+				</tr>
+			</f:if>
+			<f:if condition="{publication.webUrl2}">
+				<tr>
+					<td><f:translate key="linkblock.weburl2" /></td>
+					<td><f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink></td>
+			</f:if>
+			<f:if condition="{publication.fileUrl}">
+				<tr>
+					<td><f:translate key="linkblock.file" /></td>
+					<td><f:link.typolink parameter="{publication.fileUrl}" target="_blank">{publication.fileUrl}</f:link.typolink></td>
+				</tr>
+			</f:if>
+		</table>
+	</f:spaceless>
+</f:section>
+
+</html>
