@@ -10,7 +10,7 @@
 					<td><f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external></td>
 				</tr>
 			</f:if>
-			<f:if condition="{publication.webUrl}">
+			<f:if condition="{publication.webUrl} && {showWebUrl} == true">
 				<tr>
 					<td><f:translate key="linkblock.weburl1"/></td>
 					<td><f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
