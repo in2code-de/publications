@@ -96,3 +96,10 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 * <a href="https://www.uni-ulm.de" target="_blank">University of Ulm</a> as the main sponsor of this extension
 * <a href="https://www.in2code.de" target="_blank" title="Wir leben TYPO3">in2code GmbH</a> as the development partner of this extension
+
+
+## Credits 
+
+The icons 
+* docx icon was made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> 
+* pdf icon was  made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
