@@ -1,5 +1,7 @@
 <div style="display: flex;">
-	<div style="padding-right: 10px;">{publication.numeration}.</div>
+	<f:if condition="{settings.hideEnumeration} != true">
+		<div style="padding-right: 10px;">{publication.numeration}.</div>
+	</f:if>
 
 	<div>
 		<f:render section="{publication.bibtype}" optional="1" arguments="{_all}"/>
