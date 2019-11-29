@@ -86,7 +86,7 @@ class XmlImporter extends AbstractImporter
      */
     protected function xml2array(string $xmlString)
     {
-        $xml = simplexml_load_string($xmlString, "SimpleXMLElement", LIBXML_NOCDATA);
+        $xml = simplexml_load_string($xmlString, 'SimpleXMLElement', LIBXML_NOCDATA);
         $json = json_encode($xml);
         return json_decode($json, true);
     }
