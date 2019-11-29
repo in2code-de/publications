@@ -439,6 +439,9 @@
 			<trans-unit id="flexform.pi1.template.hideFilter">
 				<source>Hide filter?</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.hideEnumeration">
+				<source>Hide enumeration?</source>
+			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
 				<source>Select Import Format</source>

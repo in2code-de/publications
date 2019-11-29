@@ -1,5 +1,11 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
 <div style="display: flex;">
-	<div style="padding-right: 10px;">{publication.numeration}.</div>
+	<f:if condition="{settings.hideEnumeration} != true">
+		<div style="padding-right: 10px;">{publication.numeration}.</div>
+	</f:if>
 
 	<div>
 		<f:render section="bibtype_{publication.bibtype}" optional="1" arguments="{_all}"/>
@@ -136,3 +142,5 @@
 	<f:render partial="List/Citestyle/Citestyle1" section="bibtype_patent" arguments="{_all}"/>
 	<f:render section="extensionsForAllTypes" arguments="{_all}"/>
 </f:section>
+
+</html>

@@ -20,6 +20,16 @@
 							</config>
 						</TCEforms>
 					</settings.hideFilter>
+					<settings.hideEnumeration>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.hideEnumeration</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.hideEnumeration>
 					<settings.citestyle>
 						<TCEforms>
 							<exclude>1</exclude>

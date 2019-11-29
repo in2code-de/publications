@@ -77,6 +77,14 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.12.0     | 2019-11-29 | Feature    | Make enumeration toggleble, bugfix with SQL mode strict and importers              |
+| 1.11.0     | 2019-11-19 | Feature    | Make filter toggleble                                                              |
+| 1.10.0     | 2019-11-19 | Feature    | Add additional section to some bibtypes                                            |
+| 1.9.1      | 2019-11-19 | Bugfix     | Fix orderings bug                                                                  |
+| 1.9.0      | 2019-10-29 | Feature    | Add localization for abstract label                                                |
+| 1.8.0      | 2019-10-19 | Feature    | Adjust styling                                                                     |
+| 1.7.0      | 2019-10-18 | Feature    | Add missing label                                                                  |
+| 1.6.0      | 2019-10-18 | Feature    | Add abstract field in FE output                                                    |
 | 1.5.0      | 2019-10-08 | Feature    | Add a sorting by date (if no date, take 1.1.currentyear)                           |
 | 1.4.0      | 2019-10-07 | Feature    | Add new cite style (IEEE with abstract)                                            |
 | 1.3.1      | 2019-09-10 | Bugfix     | Don't respect storage page in all repository functions                             |
