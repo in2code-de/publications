@@ -582,6 +582,10 @@
 				<source>Hide filter?</source>
 				<target state="translated">Filter verbergen?</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.hideEnumeration">
+				<source>Hide enumeration?</source>
+				<target state="translated">Nummerierung verbergen?</target>
+			</trans-unit>
 
 			<trans-unit id="backendModule.selectImportFormat">
 				<target>Format für Import auswählen</target>
