@@ -5,6 +5,7 @@ namespace In2code\Publications\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 
 /**
  * Class Publication
@@ -260,7 +261,7 @@ class Publication extends AbstractEntity
 
     /**
      * @var int
-     * @transient
+     * @Transient
      */
     protected $_numeration = 0;
 
