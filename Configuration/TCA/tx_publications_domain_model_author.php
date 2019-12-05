@@ -4,9 +4,8 @@ use In2code\Publications\Domain\Model\Author;
 $tca = [
     'ctrl' => [
         'title' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Author::TABLE_NAME,
-        'label' => 'first_name',
-        'label_alt' => 'last_name',
-        'label_alt_force' => true,
+        'label' => 'last_name',
+        'label_userFunc' => 'In2code\\Publications\\Utility\\Labels->getAuthorLabel',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
