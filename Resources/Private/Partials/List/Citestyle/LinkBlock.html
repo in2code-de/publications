@@ -4,6 +4,7 @@
 
 <f:section name="linkblock">
 	<f:spaceless>
+		<hr>
 		<table class="publications publications__linkblock-container">
 			<f:if condition="{publication.doi}">
 				<tr>
@@ -19,7 +20,7 @@
 			</f:if>
 			<f:if condition="{publication.webUrl} && {showWebUrl} == true">
 				<tr>
-					<td class="publications publications__linkblock"><f:translate key="linkblock.weburl1"/></td>
+					<td class="publications publications__linkblock"><f:translate key="linkblock.weburl1"/>:</td>
 					<td class="publications publications__linkblock"><f:link.typolink parameter="{publication.webUrl}" target="_blank">{publication.webUrl}</f:link.typolink>
 						<f:if condition="{publication.webUrlDate}">
 							{publication.webUrlDate}
@@ -29,12 +30,12 @@
 			</f:if>
 			<f:if condition="{publication.webUrl2}">
 				<tr>
-					<td class="publications publications__linkblock"><f:translate key="linkblock.weburl2" /></td>
+					<td class="publications publications__linkblock"><f:translate key="linkblock.weburl2" />:</td>
 					<td class="publications publications__linkblock"><f:link.typolink parameter="{publication.webUrl2}" target="_blank">{publication.webUrl2}</f:link.typolink></td>
 			</f:if>
 			<f:if condition="{publication.fileUrl}">
 				<tr>
-					<td class="publications publications__linkblock"><f:translate key="linkblock.file" /></td>
+					<td class="publications publications__linkblock"><f:translate key="linkblock.file" />:</td>
 					<td class="publications publications__linkblock">
 						<f:format.raw>
 							<publications:render.icon filename="{publication.fileUrl}" style="height: 18px; padding:0 3px 0 0;"/>
