@@ -1,3 +1,7 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
 <div style="display: flex;">
 	<f:if condition="{settings.hideEnumeration} != true">
 		<div style="padding-right: 10px;">{publication.numeration}.</div>
@@ -67,7 +71,9 @@
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-	<f:render section="additional" arguments="{publication:publication,showWebUrl:false}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false}"/>
+	</f:if>
 </f:section>
 
 
@@ -99,7 +105,9 @@
 		{publication.year}.
 	</f:if>
 	<f:if condition="{publication.howpublished}">{publication.howpublished}</f:if>
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -173,7 +181,9 @@
 		{publication.year}.
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -225,7 +235,9 @@
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -263,7 +275,9 @@
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}
 	</f:if>
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -304,8 +318,9 @@
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}.
 	</f:if>
-
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -390,8 +405,9 @@
 			{publication.year}.
 		</f:if>
 	</f:if>
-
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -433,7 +449,9 @@
 		{publication.year}.
 	</f:if>
 
-	<f:render section="additional" arguments="{_all}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	</f:if>
 </f:section>
 
 
@@ -462,7 +480,9 @@
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-	<f:render section="additional" arguments="{publication:publication,showWebUrl:false}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false}"/>
+	</f:if>
 </f:section>
 
 
@@ -526,26 +546,4 @@
 	</f:for>
 </f:section>
 
-
-<f:section name="additional">
-	<f:if condition="{publication.doi}">
-		<br/>
-		DOI:
-		<f:link.external uri="https://dx.doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external>
-	</f:if>
-
-	<f:if condition="{showWebUrl} && {publication.webUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl}" target="_blank"/>
-	</f:if>
-
-	<f:if condition="{publication.webUrl2}">
-		<br/>
-		<f:link.typolink parameter="{publication.webUrl2}" target="_blank"/>
-	</f:if>
-
-	<f:if condition="{publication.fileUrl}">
-		<br/>
-		<f:link.typolink parameter="{publication.fileUrl}" target="_blank"/>
-	</f:if>
-</f:section>
+</html>
