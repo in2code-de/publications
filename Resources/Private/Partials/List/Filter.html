@@ -20,6 +20,33 @@
 			<f:translate key="list.filter.year">Year</f:translate>
 		</label>
 		<f:form.textfield type="number" property="year" id="year" placeholder="{f:translate(key:'list.filter.year.placeholder')}" value="{f:if(condition:filter.year,then:filter.year)}"/>
+
+		<label for="documenttype">
+            <f:translate key="list.filter.documenttype">Publication type</f:translate>
+        </label>
+        <f:form.select value="{f:if(condition:filter.documenttype,then:filter.documenttype)}" property="documenttype" options="{
+	        all:            '{f:translate(key:\'list.filter.showalldocumenttypes\')}',
+	        article:        '{f:translate(key:\'bibtype.article\')}',
+	        book:           '{f:translate(key:\'bibtype.book\')}',
+	        booklet:        '{f:translate(key:\'bibtype.booklet\')}',
+	        conference:     '{f:translate(key:\'bibtype.conference\')}',
+	        inbook:         '{f:translate(key:\'bibtype.inbook\')}',
+	        incollection:   '{f:translate(key:\'bibtype.incollection\')}',
+	        inproceedings:  '{f:translate(key:\'bibtype.inproceedings\')}',
+	        manual:         '{f:translate(key:\'bibtype.manual\')}',
+	        manuscript:     '{f:translate(key:\'bibtype.manuscript\')}',
+	        mastersthesis:  '{f:translate(key:\'bibtype.mastersthesis\')}',
+	        misc:           '{f:translate(key:\'bibtype.misc\')}',
+	        phdthesis:      '{f:translate(key:\'bibtype.phdthesis\')}',
+	        poster:         '{f:translate(key:\'bibtype.poster\')}',
+	        proceedings:    '{f:translate(key:\'bibtype.proceedings\')}',
+	        report:         '{f:translate(key:\'bibtype.report\')}',
+	        techreport:     '{f:translate(key:\'bibtype.techreport\')}',
+	        thesis:         '{f:translate(key:\'bibtype.thesis\')}',
+	        unpublished:    '{f:translate(key:\'bibtype.unpublished\')}',
+	        url:            '{f:translate(key:\'bibtype.url\')}',
+	        patent:         '{f:translate(key:\'bibtype.patent\')}'
+	        }" />
 	</div>
 
 
