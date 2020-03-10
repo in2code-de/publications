@@ -182,13 +182,13 @@
 				<source>File</source>
 				<target>Datei</target>
 			</trans-unit>
-			<trans-unit id="linkblock.weblink1">
-				<source>Weblink 1</source>
-				<target>Weblink 1</target>
+			<trans-unit id="linkblock.weburl1">
+				<source>Weblink</source>
+				<target>Weblink</target>
 			</trans-unit>
-			<trans-unit id="linkblock.weblink2">
-				<source>Weblink 2</source>
-				<target>Weblink 2</target>
+			<trans-unit id="linkblock.weburl2">
+				<source>Weblink</source>
+				<target>Weblink</target>
 			</trans-unit>
 
 			<trans-unit id="citestyle6.abstract">

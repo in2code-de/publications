@@ -142,10 +142,10 @@
 			<trans-unit id="linkblock.file">
 				<source>File</source>
 			</trans-unit>
-			<trans-unit id="linkblock.weblink1">
-				<source>Weblink 1</source>
+			<trans-unit id="linkblock.weburl1">
+				<source>Weblink</source>
 			</trans-unit>
-			<trans-unit id="linkblock.weblink2">
+			<trans-unit id="linkblock.weburl2">
 				<source>Weblink 2</source>
 			</trans-unit>
 
