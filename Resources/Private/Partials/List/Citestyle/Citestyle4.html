@@ -256,22 +256,13 @@
 <f:section name="bibtype_manual">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:if condition="{publication.organization}">{publication.organization}
-		<f:if condition="{publication.title} || {publication.publisher} || {publication.month} || {publication.year}">
-			<f:then>,</f:then>
-
-		</f:if>
+		<f:if condition="{publication.title} || {publication.publisher} || {publication.month} || {publication.year}">,</f:if>
 	</f:if>
 	<f:if condition="{publication.title}"><i>{publication.title}</i>
-		<f:if condition="{publication.publisher} || {publication.month} || {publication.year}">
-			<f:then>,</f:then>
-
-		</f:if>
+		<f:if condition="{publication.publisher} || {publication.month} || {publication.year}">,</f:if>
 	</f:if>
 	<f:if condition="{publication.publisher}">{publication.publisher}
-		<f:if condition="{publication.month} || {publication.year}">
-			<f:then>,</f:then>
-
-		</f:if>
+		<f:if condition="{publication.month} || {publication.year}">,</f:if>
 	</f:if>
 	<f:if condition="{publication.year} || {publication.month}">
 		<f:if condition="{publication.month}">
@@ -308,8 +299,7 @@
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.title}">"{publication.title}"
-		<f:if
-				condition="{publication.type} || {publication.school} || {publication.address}">
+		<f:if condition="{publication.type} || {publication.school} || {publication.address}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
@@ -326,9 +316,7 @@
 			<f:else>.</f:else>
 		</f:if>
 	</f:if>
-	<f:if condition="{publication.address}">{publication.address}
-		.
-	</f:if>
+	<f:if condition="{publication.address}">{publication.address}.</f:if>
 
 	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
 		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
@@ -345,7 +333,6 @@
 				({publication.year},
 				<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>).
 			</f:then>
-
 			<f:else>
 				({publication.year}).
 			</f:else>
