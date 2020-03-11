@@ -16,10 +16,8 @@
 <f:section name="book">
 
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -29,17 +27,14 @@
 
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}">Band {publication.volume}</f:if><f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
 	</f:if>
 
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -50,8 +45,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.howpublished}">
@@ -71,10 +65,8 @@
 <f:section name="article">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -85,8 +77,7 @@
 	<f:if
 		condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.affiliation}">
 		<br/>
-		{publication.journal}
-		<f:if condition="{publication.journal} && {publication.volume}">,</f:if>
+		{publication.journal}<f:if condition="{publication.journal} && {publication.volume}">,</f:if>
 		<f:if condition="{publication.volume}"><strong>{publication.volume}</strong></f:if>
 		<f:if condition="{publication.number}">({publication.number})</f:if>
 		<f:if condition="{publication.pages}">:{publication.pages}</f:if>
@@ -95,8 +86,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.howpublished}">
@@ -106,8 +96,7 @@
 
 	<f:if condition="{publication.publisher}">
 		<br/>
-		Herausgeber:
-		{publication.publisher}
+		Herausgeber: {publication.publisher}
 	</f:if>
 
 	<f:if condition="{publication.issn}">
@@ -127,10 +116,8 @@
 <f:section name="booklet">
 
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -140,8 +127,7 @@
 
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
 		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
 	</f:if>
@@ -154,15 +140,13 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.howpublished}">
@@ -187,10 +171,8 @@
 <f:section name="conference">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -201,14 +183,12 @@
 	<f:if
 		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
 		{publication.booktitle}
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
 		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
 		<f:if
-			condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">
-			,
+			condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,
 		</f:if>
 		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
 	</f:if>
@@ -241,8 +221,7 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -253,8 +232,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.affiliation}">
@@ -274,10 +252,8 @@
 <f:section name="inbook">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -287,8 +263,7 @@
 
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
 		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
 	</f:if>
@@ -296,22 +271,19 @@
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
 		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if>
-		<f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.chapter} && {publication.pages}">,</f:if><f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
 	</f:if>
 
 	<f:if condition="{publication.type} || {publication.affiliation}">
 		<br/>
-		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if>
-		<f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
 		{publication.affiliation}
 	</f:if>
 
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -343,10 +315,8 @@
 <f:section name="incollection">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -356,8 +326,7 @@
 
 	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
 		{publication.booktitle}
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
 		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
@@ -365,15 +334,13 @@
 
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if>
-		<f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
 		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
 	</f:if>
 
 	<f:if condition="{publication.type} || {publication.affiliation}">
 		<br/>
-		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if>
-		<f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
 		{publication.affiliation}
 	</f:if>
 
@@ -385,8 +352,7 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -418,10 +384,8 @@
 <f:section name="inproceedings">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -432,15 +396,10 @@
 	<f:if
 		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
 		{publication.booktitle}
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-		<f:if
-			condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">
-			,
-		</f:if>
+		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
 		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
 	</f:if>
 
@@ -472,8 +431,7 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -484,8 +442,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -500,10 +457,8 @@
 <f:section name="manual">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -518,8 +473,7 @@
 
 	<f:if condition="{publication.organization}">
 		<br/>
-		{publication.organization}
-		<f:if condition="{publication.organization} && {publication.address}">,</f:if>
+		{publication.organization}<f:if condition="{publication.organization} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -530,14 +484,12 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.publisher}">
 		<br/>
-		Herausgeber:
-		{publication.publisher}
+		Herausgeber: {publication.publisher}
 	</f:if>
 
 
@@ -552,10 +504,8 @@
 <f:section name="manuscript">
 
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -585,16 +535,13 @@
 
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
-		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		Herausgeber:{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.affiliation}">
@@ -614,10 +561,8 @@
 <f:section name="mastersthesis">
 
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -638,15 +583,13 @@
 
 	<f:if condition="{publication.school} || {publication.address}">
 		<br/>
-		{publication.school}
-		<f:if condition="{publication.school} && {publication.address}">,</f:if>
+		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -661,10 +604,8 @@
 <f:section name="misc">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -684,8 +625,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -707,10 +647,8 @@
 <f:section name="poster">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -766,15 +704,13 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -789,10 +725,8 @@
 <f:section name="proceedings">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -802,8 +736,7 @@
 
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if>
-		<f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
 		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
 		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
 	</f:if>
@@ -815,8 +748,7 @@
 
 	<f:if condition="{publication.eventPlace} || {publication.eventDate}">
 		<br/>
-		{publication.eventPlace}
-		<f:if condition="{publication.eventPlace} && {publication.eventDate}">,</f:if>
+		{publication.eventPlace}<f:if condition="{publication.eventPlace} && {publication.eventDate}">,</f:if>
 		{publication.eventDate}
 	</f:if>
 
@@ -828,8 +760,7 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -840,8 +771,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 	<f:if condition="{publication.affiliation}">
@@ -861,10 +791,8 @@
 <f:section name="report">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -910,8 +838,7 @@
 	<f:if condition="{publication.publisher} || {publication.address}">
 		<br/>
 		Herausgeber:
-		{publication.publisher}
-		<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -922,8 +849,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -937,10 +863,8 @@
 <f:section name="techreport">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -976,8 +900,7 @@
 
 	<f:if condition="{publication.institution} || {publication.address}">
 		<br/>
-		{publication.institution}
-		<f:if condition="{publication.institution} && {publication.address}">,</f:if>
+		{publication.institution}<f:if condition="{publication.institution} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -988,8 +911,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/>{publication.year}
 	</f:if>
 
 
@@ -1004,10 +926,8 @@
 <f:section name="thesis">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -1027,8 +947,7 @@
 
 	<f:if condition="{publication.school} || {publication.address}">
 		<br/>
-		{publication.school}
-		<f:if condition="{publication.school} && {publication.address}">,</f:if>
+		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
 
@@ -1039,8 +958,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -1055,10 +973,8 @@
 <f:section name="unpublished">
 
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -1073,8 +989,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
 
 
@@ -1089,10 +1004,8 @@
 <f:section name="url">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -1112,10 +1025,8 @@
 <f:section name="patent">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}
-		<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}
-		<f:if condition="{iteration.isLast} == 0">;</f:if>
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
 
 	<f:if condition="{publication.title}">
@@ -1130,8 +1041,7 @@
 
 	<f:if condition="{publication.month} || {publication.year}">
 		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
+		<publications:format.monthNameFromNumber month="{publication.month}"/>{publication.year}
 	</f:if>
 
 </f:section>
