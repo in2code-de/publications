@@ -22,7 +22,8 @@
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
 		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if><f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
 	</f:if>
 
 	<f:render section="publisher" arguments="{_all}"/>
@@ -69,7 +70,7 @@
 	<f:render section="publisher" arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
 	<f:render section="howpublished" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
@@ -79,17 +80,11 @@
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
 
-	<f:if
-		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
+	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
-		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-		<f:if
-			condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,
-		</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
 	<f:render section="eventname"  arguments="{_all}"/>
@@ -100,7 +95,7 @@
 	<f:render section="publisher" arguments="{_all}"/>
 	<f:render section="edition" arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
@@ -113,8 +108,8 @@
 
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if>
-		<f:if condition="{publication.chapter} && {publication.pages}">,</f:if><f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.chapter}"><f:translate key="citestyle0.chapter"/> {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
 	<f:render section="type_affiliation"  arguments="{_all}"/>
@@ -135,14 +130,14 @@
 		<br/>
 		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
 		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
 	</f:if>
 
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.chapter}"><f:translate key="citestyle0.chapter"/> {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
 	<f:render section="type_affiliation"  arguments="{_all}"/>
@@ -163,11 +158,9 @@
 	<f:if
 		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
-		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/>{publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/><i>{publication.series}</i></f:if><f:if condition="({publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}) && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
 	<f:render section="eventname"  arguments="{_all}"/>
@@ -210,7 +203,7 @@
 	<f:render section="institute"  arguments="{_all}"/>
 	<f:render section="publisher" arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
@@ -240,7 +233,7 @@
 	<f:render section="language"  arguments="{_all}"/>
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="howpublished" arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
@@ -257,7 +250,7 @@
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
 	<f:render section="editor_simple"  arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="organization"  arguments="{_all}"/>
 	<f:render section="pages"  arguments="{_all}"/>
 	<f:render section="eventname"  arguments="{_all}"/>
@@ -288,7 +281,7 @@
 	<f:render section="publisher" arguments="{_all}"/>
 	<f:render section="edition" arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
@@ -301,7 +294,7 @@
 	<f:render section="type"  arguments="{_all}"/>
 	<f:render section="number"  arguments="{_all}"/>
 	<f:render section="number2"  arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="institution"  arguments="{_all}"/>
 	<f:render section="institute"  arguments="{_all}"/>
 	<f:render section="publisher" arguments="{_all}"/>
@@ -317,14 +310,13 @@
 	<f:render section="title" arguments="{_all}"/>
 
 	<f:if condition="{publication.type}">
-		<br/>
-		aus <i>{publication.type}</i>
+		<br/><f:translate key="citestyle0.from"/> <i>{publication.type}</i>
 	</f:if>
 
 	<f:render section="number"  arguments="{_all}"/>
 	<f:render section="number2"  arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
-	<f:render section="publisher_simple"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="publisher-simple"  arguments="{_all}"/>
 
 	<f:if condition="{publication.institution} || {publication.address}">
 		<br/>
@@ -343,7 +335,7 @@
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
 	<f:render section="type"  arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="school-address"  arguments="{_all}"/>
 	<f:render section="institute"  arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
@@ -354,7 +346,7 @@
 <f:section name="unpublished">
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
-	<f:render section="affliliation"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
@@ -397,7 +389,7 @@
 
 <f:section name="publisher">
 	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>Herausgeber:
+		<br/><f:translate key="citestyle0.publisher"/>:
 		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
 		{publication.address}
 	</f:if>
@@ -405,7 +397,7 @@
 
 <f:section name="edition">
 	<f:if condition="{publication.edition}">
-		<br/>{publication.edition} Edition
+		<br/>{publication.edition} <f:translate key="citestyle0.edition"/>
 	</f:if>
 </f:section>
 
@@ -431,9 +423,9 @@
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 </f:section>
 
-<f:section name="publisher_simple">
+<f:section name="publisher-simple">
 	<f:if condition="{publication.publisher}">
-		<br/>Herausgeber: {publication.publisher}
+		<br/><f:translate key="citestyle0.publisher"/>: {publication.publisher}
 	</f:if>
 </f:section>
 
@@ -469,7 +461,7 @@
 
 <f:section name="editor_simple">
 	<f:if condition="{publication.editor}">
-		<br/>In {publication.editor}, Editor
+		<br/>In {publication.editor}, <f:translate key="citestyle0.editor"/>
 	</f:if>
 </f:section>
 
@@ -495,15 +487,15 @@
 <f:section name="editor_volume_series">
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
 	</f:if>
 </f:section>
 
 <f:section name="series">
 	<f:if condition="{publication.series}">
-		<br/>aus <i>{publication.series}</i>
+		<br/><f:translate key="citestyle0.from"/> <i>{publication.series}</i>
 	</f:if>
 </f:section>
 
@@ -527,13 +519,13 @@
 
 <f:section name="number">
 	<f:if condition="{publication.number}">
-		<br/>Dokument Nummer: {publication.number}
+		<br/><f:translate key="citestyle0.documentnumber"/>: {publication.number}
 	</f:if>
 </f:section>
 
 <f:section name="number2">
 	<f:if condition="{publication.number2}">
-		<br/>Report Nummer: {publication.number2}
+		<br/><f:translate key="citestyle0.reportnumber"/>: {publication.number2}
 	</f:if>
 </f:section>
 
