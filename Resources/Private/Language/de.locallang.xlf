@@ -191,9 +191,50 @@
 				<target>Web</target>
 			</trans-unit>
 
+			<trans-unit id="citestyle0.volume">
+				<source>Volume</source>
+				<target>Band</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.from">
+				<source>from</source>
+				<target>aus</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.page">
+				<source>Page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.chapter">
+				<source>Chapter</source>
+				<target>Kapitel</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.publisher">
+				<source>Publisher</source>
+				<target>Herausgeber</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.edition">
+				<source>Edition</source>
+				<target>Edition</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.editor">
+				<source>Editor</source>
+				<target>Editor</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.chapter">
+				<source>Chapter</source>
+				<target>Kapitel</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.documentnumber">
+				<source>Document Number</source>
+				<target>Dokument Nummer</target>
+			</trans-unit>
+			<trans-unit id="citestyle0.reportnumber">
+				<source>Report Number</source>
+				<target>Report Nummer</target>
+			</trans-unit>
+
 			<trans-unit id="citestyle6.abstract">
 				<source>Abstract</source>
-				<target>Abstrakt</target>
+				<target>Abstract</target>
 			</trans-unit>
 		</body>
 	</file>

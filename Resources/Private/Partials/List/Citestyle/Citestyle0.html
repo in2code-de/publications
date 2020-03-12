@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers"
+	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers" xmlns:_f="http://www.w3.org/1999/html"
 	  data-namespace-typo3-fluid="true">
 
 <div style="display: flex;">
@@ -12,67 +12,32 @@
 	</div>
 </div>
 
+<f:comment><!-- Bibtypes --></f:comment>
+<f:comment><!-- For sections of bibtypes, pls see end of the file. --></f:comment>
 
 <f:section name="book">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
 		<br/>
 		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if><f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
 	</f:if>
 
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="howpublished" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="article">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if
 		condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.affiliation}">
@@ -84,392 +49,136 @@
 		<f:if condition="{publication.affiliation}">{publication.affiliation}</f:if>
 	</f:if>
 
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-	<f:if condition="{publication.publisher}">
-		<br/>
-		Herausgeber: {publication.publisher}
-	</f:if>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="howpublished" arguments="{_all}"/>
+	<f:render section="publisher-simple"  arguments="{_all}"/>
 
 	<f:if condition="{publication.issn}">
 		<br/>
 		ISSN: {publication.issn}
 	</f:if>
 
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="booklet">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="editor_volume_series"  arguments="{_all}"/>
+	<f:render section="howpublished" arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="howpublished" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="conference">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
-	<f:if condition="{publication.title}">
+	<f:if condition="{publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<i>{publication.title}</i>
+		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if><f:if condition="{publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
-	<f:if
-		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
-		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-		<f:if
-			condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,
-		</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
-	</f:if>
-
-	<f:if condition="{publication.eventName}">
-		<br/>
-		{publication.eventName}
-	</f:if>
-
-	<f:if condition="{publication.eventPlace}">
-		<br/>
-		{publication.eventPlace}
-	</f:if>
-
-	<f:if condition="{publication.eventDate}">
-		<br/>
-		{publication.eventDate}
-	</f:if>
-
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.editor}">
-		<br/>
-		In {publication.editor}, Editor
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="eventname"  arguments="{_all}"/>
+	<f:render section="eventplace"  arguments="{_all}"/>
+	<f:render section="eventdate"  arguments="{_all}"/>
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="editor_simple"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="inbook">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="editor_volume_series"  arguments="{_all}"/>
 
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if>
-		<f:if condition="{publication.chapter} && {publication.pages}">,</f:if><f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.chapter}"><f:translate key="citestyle0.chapter"/> {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
-	<f:if condition="{publication.type} || {publication.affiliation}">
-		<br/>
-		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
-	</f:if>
-
-	<f:if condition="{publication.pages}">
-		<br/>
-		{publication.pages}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="type_affiliation"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}" />
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="pages"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="incollection">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}">
 		<br/>
 		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
 		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
 	</f:if>
 
 	<f:if condition="{publication.chapter} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.chapter}">Kapitel {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.chapter}"><f:translate key="citestyle0.chapter"/> {publication.chapter}</f:if><f:if condition="{publication.chapter} && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
-	<f:if condition="{publication.type} || {publication.affiliation}">
-		<br/>
-		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>
-		{publication.year}
-	</f:if>
-
-	<f:if condition="{publication.pages}">
-		<br/>
-		{publication.pages}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="type_affiliation"  arguments="{_all}"/>
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="pages"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="inproceedings">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if
 		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
-		{publication.booktitle}
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if><f:if condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
-		<f:if condition="{publication.pages}">Seite {publication.pages}</f:if>
+		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
+		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/>{publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/><i>{publication.series}</i></f:if><f:if condition="({publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}) && {publication.pages}">,</f:if>
+		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
-	<f:if condition="{publication.eventName}">
-		<br/>
-		{publication.eventName}
-	</f:if>
-
-	<f:if condition="{publication.eventPlace}">
-		<br/>
-		{publication.eventPlace}
-	</f:if>
-
-	<f:if condition="{publication.eventDate}">
-		<br/>
-		{publication.eventDate}
-	</f:if>
-
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.editor}">
-		<br/>
-		In {publication.editor}, Editor
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="eventname"  arguments="{_all}"/>
+	<f:render section="eventplace"  arguments="{_all}"/>
+	<f:render section="eventdate"  arguments="{_all}"/>
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="editor_simple"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="manual">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor}">
-		<br/>
-		In {publication.editor}, Editor
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="editor_simple"  arguments="{_all}"/>
 
 	<f:if condition="{publication.organization}">
 		<br/>
@@ -477,98 +186,30 @@
 		{publication.address}
 	</f:if>
 
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.publisher}">
-		<br/>
-		Herausgeber: {publication.publisher}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="publisher-simple"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="manuscript">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.series}">
-		<br/>
-		aus <i>{publication.series}</i>
-	</f:if>
-
-	<f:if condition="{publication.type}">
-		<br/>
-		<i>{publication.type}</i>
-	</f:if>
-
-	<f:if condition="{publication.institution}">
-		<br/>
-		{publication.institution}
-	</f:if>
-
-	<f:if condition="{publication.institute}">
-		<br/>
-		{publication.institute}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="series"  arguments="{_all}"/>
+	<f:render section="type"  arguments="{_all}"/>
+	<f:render section="institution"  arguments="{_all}"/>
+	<f:render section="institute"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="mastersthesis">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if condition="{publication.type}">
 		<br/>
@@ -581,170 +222,53 @@
 		{publication.affiliation}
 	</f:if>
 
-	<f:if condition="{publication.school} || {publication.address}">
-		<br/>
-		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="school-address"  arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="misc">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.howpublished}">
-		<br/>
-		{publication.howpublished}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="howpublished" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="phdthesis">
-
 	<f:render section="mastersthesis" arguments="{_all}"/>
-
 </f:section>
 
 
 <f:section name="poster">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor}">
-		<br/>
-		In {publication.editor}, Editor
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.pages}">
-		<br/>
-		{publication.pages}
-	</f:if>
-
-	<f:if condition="{publication.eventName}">
-		<br/>
-		{publication.eventName}
-	</f:if>
-
-	<f:if condition="{publication.eventPlace}">
-		<br/>
-		{publication.eventPlace}
-	</f:if>
-
-	<f:if condition="{publication.eventDate}">
-		<br/>
-		{publication.eventDate}
-	</f:if>
-
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.editor}">
-		<br/>
-		In {publication.editor}, Editor
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="editor_simple"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="pages"  arguments="{_all}"/>
+	<f:render section="eventname"  arguments="{_all}"/>
+	<f:render section="eventplace"  arguments="{_all}"/>
+	<f:render section="eventdate"  arguments="{_all}"/>
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="editor_simple"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="proceedings">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, Editor</f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}">Band {publication.volume}</f:if>
-		<f:if condition="{publication.series}">aus <i>{publication.series}</i></f:if>
-	</f:if>
-
-	<f:if condition="{publication.eventName}">
-		<br/>
-		{publication.eventName}
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="editor_volume_series"  arguments="{_all}"/>
+	<f:render section="eventname"  arguments="{_all}"/>
 
 	<f:if condition="{publication.eventPlace} || {publication.eventDate}">
 		<br/>
@@ -752,151 +276,46 @@
 		{publication.eventDate}
 	</f:if>
 
-	<f:if condition="{publication.organization}">
-		<br/>
-		{publication.organization}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.edition}">
-		<br/>
-		{publication.edition} Edition
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="organization"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="edition" arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="report">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.series}">
-		<br/>
-		aus <i>{publication.series}</i>
-	</f:if>
-
-	<f:if condition="{publication.type}">
-		<br/>
-		<i>{publication.type}</i>
-	</f:if>
-
-	<f:if condition="{publication.number}">
-		<br/>
-		Dokument Nummer: {publication.number}
-	</f:if>
-
-	<f:if condition="{publication.number2}">
-		<br/>
-		Report Nummer: {publication.number2}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.institution}">
-		<br/>
-		{publication.institution}
-	</f:if>
-
-	<f:if condition="{publication.institute}">
-		<br/>
-		{publication.institute}
-	</f:if>
-
-	<f:if condition="{publication.publisher} || {publication.address}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.booktitle}">
-		<br/>
-		{publication.booktitle}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="series"  arguments="{_all}"/>
+	<f:render section="type"  arguments="{_all}"/>
+	<f:render section="number"  arguments="{_all}"/>
+	<f:render section="number2"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="institution"  arguments="{_all}"/>
+	<f:render section="institute"  arguments="{_all}"/>
+	<f:render section="publisher" arguments="{_all}"/>
+	<f:render section="booktitle"  arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="techreport">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
 
 	<f:if condition="{publication.type}">
-		<br/>
-		aus <i>{publication.type}</i>
+		<br/><f:translate key="citestyle0.from"/> <i>{publication.type}</i>
 	</f:if>
 
-	<f:if condition="{publication.number}">
-		<br/>
-		Dokument Nummer: {publication.number}
-	</f:if>
-
-	<f:if condition="{publication.number2}">
-		<br/>
-		Report Nummer: {publication.number2}
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.publisher}">
-		<br/>
-		Herausgeber:
-		{publication.publisher}
-	</f:if>
+	<f:render section="number"  arguments="{_all}"/>
+	<f:render section="number2"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="publisher-simple"  arguments="{_all}"/>
 
 	<f:if condition="{publication.institution} || {publication.address}">
 		<br/>
@@ -904,145 +323,216 @@
 		{publication.address}
 	</f:if>
 
-	<f:if condition="{publication.booktitle}">
-		<br/>
-		{publication.booktitle}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>{publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="booktitle"  arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="thesis">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.type}">
-		<br/>
-		<i>{publication.type}</i>
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.school} || {publication.address}">
-		<br/>
-		{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
-		{publication.address}
-	</f:if>
-
-	<f:if condition="{publication.institute}">
-		<br/>
-		{publication.institute}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="type"  arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="school-address"  arguments="{_all}"/>
+	<f:render section="institute"  arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="unpublished">
-
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-	<f:if condition="{publication.affiliation}">
-		<br/>
-		{publication.affiliation}
-	</f:if>
-
-	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="affiliation"  arguments="{_all}"/>
+	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="url">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
-	</f:for>
-
-	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
-	</f:if>
-
-
-
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
-	</f:if>
-
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 
 <f:section name="patent">
-	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="language"  arguments="{_all}"/>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:render section="title" arguments="{_all}"/>
+
+	<f:if condition="{publication.patent}">
+		<br/>{publication.patent}
+	</f:if>
+
+	<f:render section="date_year-month" arguments="{_all}"/>
+</f:section>
+
+<f:comment><!-- Sections for data in bibtypes --></f:comment>
+
+<f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
 		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
 		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
 	</f:for>
+</f:section>
 
+<f:section name="title">
 	<f:if condition="{publication.title}">
-		<br/>
-		<i>{publication.title}</i>
+		<br/><i>{publication.title}</i>
 	</f:if>
+</f:section>
 
-	<f:if condition="{publication.patent}">
-		<br/>
-		{publication.patent}
+<f:section name="publisher">
+	<f:if condition="{publication.publisher} || {publication.address}">
+		<br/><f:translate key="citestyle0.publisher"/>:
+		{publication.publisher}<f:if condition="{publication.publisher} && {publication.address}">,</f:if>
+		{publication.address}
 	</f:if>
+</f:section>
 
+<f:section name="edition">
+	<f:if condition="{publication.edition}">
+		<br/>{publication.edition} <f:translate key="citestyle0.edition"/>
+	</f:if>
+</f:section>
+
+<f:section name="date_year-month">
 	<f:if condition="{publication.month} || {publication.year}">
-		<br/>
-		<publications:format.monthNameFromNumber month="{publication.month}"/>{publication.year}
+		<br/><publications:format.monthNameFromNumber month="{publication.month}"/> {publication.year}
 	</f:if>
+</f:section>
 
+<f:section name="howpublished">
+	<f:if condition="{publication.howpublished}">
+		<br/>{publication.howpublished}
+	</f:if>
+</f:section>
+
+<f:section name="linkblock">
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
+	</f:if>
+</f:section>
+
+<f:section name="language">
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+</f:section>
+
+<f:section name="publisher-simple">
+	<f:if condition="{publication.publisher}">
+		<br/><f:translate key="citestyle0.publisher"/>: {publication.publisher}
+	</f:if>
+</f:section>
+
+<f:section name="affiliation">
+	<f:if condition="{publication.affiliation}">
+		<br/>{publication.affiliation}
+	</f:if>
+</f:section>
+
+<f:section name="eventname">
+	<f:if condition="{publication.eventName}">
+		<br/>{publication.eventName}
+	</f:if>
+</f:section>
+
+<f:section name="eventplace">
+	<f:if condition="{publication.eventPlace}">
+		<br/>{publication.eventPlace}
+	</f:if>
+</f:section>
+
+<f:section name="eventdate">
+	<f:if condition="{publication.eventDate}">
+		<br/>{publication.eventDate}
+	</f:if>
+</f:section>
+
+<f:section name="organization">
+	<f:if condition="{publication.organization}">
+		<br/>{publication.organization}
+	</f:if>
+</f:section>
+
+<f:section name="editor_simple">
+	<f:if condition="{publication.editor}">
+		<br/>In {publication.editor}, <f:translate key="citestyle0.editor"/>
+	</f:if>
+</f:section>
+
+<f:section name="pages">
+	<f:if condition="{publication.pages}">
+		<br/>{publication.pages}
+	</f:if>
+</f:section>
+
+<f:section name="institute">
+	<f:if condition="{publication.institute}">
+		<br/>{publication.institute}
+	</f:if>
+</f:section>
+
+<f:section name="school-address">
+	<f:if condition="{publication.school} || {publication.address}">
+		<br/>{publication.school}<f:if condition="{publication.school} && {publication.address}">,</f:if>
+		{publication.address}
+	</f:if>
+</f:section>
+
+<f:section name="editor_volume_series">
+	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
+		<br/>
+		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
+		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
+		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
+	</f:if>
+</f:section>
+
+<f:section name="series">
+	<f:if condition="{publication.series}">
+		<br/><f:translate key="citestyle0.from"/> <i>{publication.series}</i>
+	</f:if>
+</f:section>
+
+<f:section name="type">
+	<f:if condition="{publication.type}">
+		<br/><i>{publication.type}</i>
+	</f:if>
+</f:section>
+
+<f:section name="institution">
+	<f:if condition="{publication.institution}">
+		<br/>{publication.institution}
+	</f:if>
+</f:section>
+
+<f:section name="booktitle">
+	<f:if condition="{publication.booktitle}">
+		<br/>{publication.booktitle}
+	</f:if>
+</f:section>
+
+<f:section name="number">
+	<f:if condition="{publication.number}">
+		<br/><f:translate key="citestyle0.documentnumber"/>: {publication.number}
+	</f:if>
+</f:section>
+
+<f:section name="number2">
+	<f:if condition="{publication.number2}">
+		<br/><f:translate key="citestyle0.reportnumber"/>: {publication.number2}
+	</f:if>
+</f:section>
+
+<f:section name="type_affiliation">
+	<f:if condition="{publication.type} || {publication.affiliation}">
+		<br/>
+		<f:if condition="{publication.type}"><i>{publication.type}</i></f:if><f:if condition="{publication.type} && {publication.affiliation}">,</f:if>
+		{publication.affiliation}
+	</f:if>
 </f:section>
 </html>
