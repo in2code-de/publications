@@ -184,6 +184,7 @@ class PublicationRepository extends AbstractRepository
      * @param Filter $filter
      * @param array $and
      * @return array
+     * @throws InvalidQueryException
      */
     protected function filterQueryByRecords(QueryInterface $query, Filter $filter, array $and): array
     {

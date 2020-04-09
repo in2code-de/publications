@@ -6,6 +6,7 @@ namespace In2code\Publications\Domain\Model\Dto;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
 use In2code\Publications\Utility\ObjectUtility;
+use In2code\Publications\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -92,6 +93,11 @@ class Filter
     protected $export = [];
 
     /**
+     * @var int recursive level
+     */
+    protected $recursive = 0;
+
+    /**
      * Filter constructor.
      *
      * @param array $settings
@@ -108,6 +114,7 @@ class Filter
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
         $this->setAuthor($settings['author']);
         $this->setExternFilter((int)$settings['extern']);
+        $this->setRecursive((int)$settings['recursive']);
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
     }
@@ -470,7 +477,7 @@ class Filter
      */
     public function setRecords(array $records): self
     {
-        $this->records = $records;
+        $this->records = PageUtility::extendPidListByChildren($records, $this->getRecursive());
         return $this;
     }
 
@@ -612,6 +619,24 @@ class Filter
     public function setExport(array $export): self
     {
         $this->export = $export;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRecursive(): int
+    {
+        return $this->recursive;
+    }
+
+    /**
+     * @param int $recursive
+     * @return Filter
+     */
+    public function setRecursive(int $recursive): self
+    {
+        $this->recursive = $recursive;
         return $this;
     }
 
