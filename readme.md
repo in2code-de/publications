@@ -77,6 +77,11 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.15.0     | 2020-04-09 | Feature    | Allow multiple record storage pages, add recursive storage page loading            |
+| 1.14.0     | 2020-03-12 | Feature    | Use sections for data elements, Translate labels in standard citestyles            |
+| 1.13.2     | 2019-03-11 | Bugfix     | Make composer.json compatible to composer 2.0                                      |
+| 1.13.1     | 2019-03-11 | Bugfix     | Remove wrong whitespaces, fix translation keys                                     |
+| 1.13.0     | 2019-12-11 | Feature    | Improve layout and add missing colons, render partial "LinkBlock" only if needed   |
 | 1.12.0     | 2019-11-29 | Feature    | Make enumeration toggleble, bugfix with SQL mode strict and importers              |
 | 1.11.0     | 2019-11-19 | Feature    | Make filter toggleble                                                              |
 | 1.10.0     | 2019-11-19 | Feature    | Add additional section to some bibtypes                                            |
