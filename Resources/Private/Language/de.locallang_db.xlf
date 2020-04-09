@@ -507,8 +507,8 @@
 				<target state="translated">Nur Extern</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.records">
-				<source>Show publications from this page only</source>
-				<target state="translated">Zeige nur Publikationen aus dieser Seite</target>
+				<source>Show publications from this pages only</source>
+				<target state="translated">Zeige nur Publikationen von diesen Seites</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>

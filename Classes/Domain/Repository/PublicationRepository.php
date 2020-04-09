@@ -188,7 +188,7 @@ class PublicationRepository extends AbstractRepository
     protected function filterQueryByRecords(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isRecordsSet()) {
-            $and[] = $query->equals('pid', $filter->getRecords());
+            $and[] = $query->in('pid', $filter->getRecords());
         }
         return $and;
     }

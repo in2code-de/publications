@@ -383,7 +383,7 @@
 				<source>Extern only</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.records">
-				<source>Show publications from this page only</source>
+				<source>Show publications from this pages only</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>

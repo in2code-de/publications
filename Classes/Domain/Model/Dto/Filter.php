@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace In2code\Publications\Domain\Model\Dto;
 
 use In2code\Publications\Domain\Model\Author;
@@ -66,9 +67,9 @@ class Filter
     protected $externFilter = 0;
 
     /**
-     * @var int
+     * @var array
      */
-    protected $records = 0;
+    protected $records = [];
 
     /**
      * @var string
@@ -92,6 +93,7 @@ class Filter
 
     /**
      * Filter constructor.
+     *
      * @param array $settings
      */
     public function __construct(array $settings)
@@ -106,7 +108,7 @@ class Filter
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
         $this->setAuthor($settings['author']);
         $this->setExternFilter((int)$settings['extern']);
-        $this->setRecords((int)$settings['records']);
+        $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
     }
 
@@ -447,9 +449,9 @@ class Filter
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getRecords(): int
+    public function getRecords(): array
     {
         return $this->records;
     }
@@ -459,14 +461,14 @@ class Filter
      */
     public function isRecordsSet(): bool
     {
-        return $this->getRecords() !== 0;
+        return $this->getRecords() !== [];
     }
 
     /**
-     * @param int $records
+     * @param array $records
      * @return Filter
      */
-    public function setRecords(int $records): self
+    public function setRecords(array $records): self
     {
         $this->records = $records;
         return $this;
