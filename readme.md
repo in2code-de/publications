@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.16.0     | 2020-04-14 | Feature    | Add system fields (hidden, sys_language_uid, starttime, endtime)                   |
 | 1.15.0     | 2020-04-09 | Feature    | Allow multiple record storage pages, add recursive storage page loading            |
 | 1.14.0     | 2020-03-12 | Feature    | Use sections for data elements, Translate labels in standard citestyles            |
 | 1.13.2     | 2019-03-11 | Bugfix     | Make composer.json compatible to composer 2.0                                      |

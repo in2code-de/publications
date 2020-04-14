@@ -331,6 +331,10 @@
 				<source>Patent</source>
 				<target state="translated">Patent</target>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.system">
+				<source>System</source>
+				<target state="translated">System</target>
+			</trans-unit>
 
 			<trans-unit id="tx_publications_domain_model_author">
 				<source>Author</source>
@@ -347,6 +351,10 @@
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
 				<target state="translated">URL</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.tab.system">
+				<source>System</source>
+				<target state="translated">System</target>
 			</trans-unit>
 
 			<trans-unit id="wizardTitlePi1">
