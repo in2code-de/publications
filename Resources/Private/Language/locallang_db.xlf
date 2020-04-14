@@ -250,6 +250,9 @@
 			<trans-unit id="tx_publications_domain_model_publication.patent">
 				<source>Patent</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.tab.system">
+				<source>System</source>
+			</trans-unit>
 
 			<trans-unit id="tx_publications_domain_model_author">
 				<source>Author</source>
@@ -262,6 +265,9 @@
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.tab.system">
+				<source>System</source>
 			</trans-unit>
 
 			<trans-unit id="wizardTitlePi1">

@@ -1,6 +1,9 @@
 <?php
 use In2code\Publications\Domain\Model\Author;
 
+$llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
+$llTable = $llPrefix . Author::TABLE_NAME;
+
 $tca = [
     'ctrl' => [
         'title' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Author::TABLE_NAME,
@@ -22,15 +25,77 @@ $tca = [
     ],
     'types' => [
         '1' => [
-            'showitem' => '--palette--;;palette_author,url'
+            'showitem' =>
+                '--palette--;;palette_author,url,--div--;' . $llTable . '.tab.system,--palette--;;palette_system,'
         ],
     ],
     'palettes' => [
         'palette_author' => [
             'showitem' => 'first_name,last_name'
+        ],
+        'palette_system' => [
+            'showitem' => 'hidden,sys_language_uid,l10n_parent'
         ]
     ],
     'columns' => [
+        'sys_language_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'special' => 'languages',
+                'renderType' => 'selectSingle',
+
+                'foreign_table' => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'default' => 0,
+                'items' => [
+                    [
+                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ]
+                ]
+            ]
+        ],
+        'l10n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => Author::TABLE_NAME,
+                'foreign_table_where' => 'AND ' . Author::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
+                    Author::TABLE_NAME . '.sys_language_uid IN (-1,0)',
+                'default' => 0
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough',
+            ]
+        ],
+        'hidden' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'default' => 0,
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
+            ]
+        ],
+
         'last_name' => [
             'exclude' => true,
             'label' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Author::TABLE_NAME
