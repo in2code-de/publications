@@ -672,7 +672,7 @@ $tca = [
             ]
         ],
         'event_name' => [
-            'displayCond' => 'FIELD:bibtype:=:conference',
+            'displayCond' => 'FIELD:bibtype:IN:conference,poster',
             'exclude' => true,
             'label' => $llTable . '.event_name',
             'config' => [
@@ -682,7 +682,7 @@ $tca = [
             ]
         ],
         'event_place' => [
-            'displayCond' => 'FIELD:bibtype:=:conference',
+            'displayCond' => 'FIELD:bibtype:IN:conference,poster',
             'exclude' => true,
             'label' => $llTable . '.event_place',
             'config' => [
@@ -692,7 +692,7 @@ $tca = [
             ]
         ],
         'event_date' => [
-            'displayCond' => 'FIELD:bibtype:=:conference',
+            'displayCond' => 'FIELD:bibtype:IN:conference,poster',
             'exclude' => true,
             'label' => $llTable . '.event_date',
             'config' => [

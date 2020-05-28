@@ -139,10 +139,10 @@
 				<source>File</source>
 			</trans-unit>
 			<trans-unit id="linkblock.weburl1">
-				<source>Web</source>
+				<source>Weblink</source>
 			</trans-unit>
 			<trans-unit id="linkblock.weburl2">
-				<source>Web</source>
+				<source>Weblink</source>
 			</trans-unit>
 
 			<trans-unit id="citestyle0.volume">

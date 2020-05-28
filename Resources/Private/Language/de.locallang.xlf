@@ -183,12 +183,12 @@
 				<target>Datei</target>
 			</trans-unit>
 			<trans-unit id="linkblock.weburl1">
-				<source>Web</source>
-				<target>Web</target>
+				<source>Weblink</source>
+				<target>Weblink</target>
 			</trans-unit>
 			<trans-unit id="linkblock.weburl2">
-				<source>Web</source>
-				<target>Web</target>
+				<source>Weblink</source>
+				<target>Weblink</target>
 			</trans-unit>
 
 			<trans-unit id="citestyle0.volume">
