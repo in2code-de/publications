@@ -132,10 +132,6 @@
 				<source>December</source>
 			</trans-unit>
 
-			<trans-unit id="citestyle6.abstract">
-				<source>Abstract:</source>
-			</trans-unit>
-
 			<trans-unit id="linkblock.doi">
 				<source>Doi</source>
 			</trans-unit>
@@ -149,6 +145,40 @@
 				<source>Weblink</source>
 			</trans-unit>
 
+			<trans-unit id="citestyle0.volume">
+				<source>Volume</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.from">
+				<source>from</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.chapter">
+				<source>Chapter</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.publisher">
+				<source>Publisher</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.edition">
+				<source>Edition</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.editor">
+				<source>Editor</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.chapter">
+				<source>Chapter</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.documentnumber">
+				<source>Document Number</source>
+			</trans-unit>
+			<trans-unit id="citestyle0.reportnumber">
+				<source>Report Number</source>
+			</trans-unit>
+
+			<trans-unit id="citestyle6.abstract">
+				<source>Abstract</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
