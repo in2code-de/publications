@@ -260,7 +260,7 @@ class Publication extends AbstractEntity
 
     /**
      * @var int
-     * @transient
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
     protected $_numeration = 0;
 
