@@ -10,6 +10,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Validation\Error;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Class ImportController
@@ -32,8 +33,8 @@ class ImportController extends ActionController
     /**
      * @param array $file
      * @param string $importer
-     * @validate $file \In2code\Publications\Validation\Validator\UploadValidator
-     * @validate $importer \In2code\Publications\Validation\Validator\ClassValidator
+     * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
+     * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
     public function importAction(array $file, string $importer)
