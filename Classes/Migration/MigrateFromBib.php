@@ -158,9 +158,7 @@ class MigrateFromBib
                         $value = $this->mappingBibTypes[(int)$value];
                     }
                     $fieldName = $this->mappingPublicationFields[$field];
-                    if (!empty($fieldName) && !empty($value)) {
-                        $properties[$fieldName] = $value;
-                    }
+                    $properties[$fieldName] = $value;
                 }
             }
             /** @var string $tableName */
