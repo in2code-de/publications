@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Controller;
 
+use In2code\Publications\Adapter\PaginationAdapter;
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Utility\SessionUtility;
+use Pagerfanta\Pagerfanta;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -111,28 +114,24 @@ class PublicationController extends ActionController
     /**
      * @return void
      *
-     * @throws InvalidQueryException
+     * @throws NoSuchArgumentException
      */
     public function listAction(Filter $filter)
     {
-        if ($this->request->hasArgument('page')) {
-            $page = $this->request->getArgument('page');
-        } else {
-            $page = 1;
-        }
+        $page = $this->request->hasArgument('page') ? $this->request->getArgument('page') : 1;
 
         $filter->setPage((int) $page);
 
-        $publications = $this->publicationRepository->findByFilter($filter);
-        $counter = $this->publicationRepository->countPublications($filter);
-        $lastPage = ceil($counter / $filter->getRecordsPerPage());
+        $adapter = new PaginationAdapter($filter, $this->publicationRepository);
+        $pagination = new Pagerfanta($adapter);
+        $pagination->setMaxPerPage($filter->getRecordsPerPage());
+        $pagination->setCurrentPage($filter->getPage());
+
         $this->view->assignMultiple([
-            'total' => $counter,
             'filter' => $filter,
-            'publications' => $publications,
-            'publicationsPage' => $page,
-            'previousPage' => $page > 1 ? $page - 1 : 1,
-            'nextPage' => ($page + 1 < $lastPage) ? $page + 1 : $lastPage,
+            'hasPreviousPage' => $pagination->hasPreviousPage(),
+            'hasNextPage' => $pagination->hasNextPage(),
+            'pagination' => $pagination,
             'data' => $this->getContentObject()->data,
         ]);
     }
