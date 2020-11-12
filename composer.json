@@ -23,14 +23,14 @@
     "ext-json": "*",
     "ext-libxml": "*",
     "ext-pdo": "*",
-    "typo3/cms-core": ">=8.7.0 <10.0.0",
+    "typo3/cms-core": ">=9.5.0 <10.9.99",
     "renanbr/bibtex-parser": "^2"
   },
   "replace": {
     "typo3-ter/publications": "self.version"
   },
   "require-dev": {
-    "typo3/cms-core": ">=8.7.0 <=8.7.99",
+    "typo3/cms-core": ">=9.5.0 <=10.9.99",
     "nimut/testing-framework": "^4.0",
     "mikey179/vfsstream": "^1.6",
     "phpunit/phpunit": "^6.0",
