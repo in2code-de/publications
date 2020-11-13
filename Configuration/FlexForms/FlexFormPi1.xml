@@ -64,6 +64,10 @@
 										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
 										<numIndex index="1">2</numIndex>
 									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.3</numIndex>
+										<numIndex index="1">3</numIndex>
+									</numIndex>
 								</items>
 								<size>1</size>
 								<minitems>1</minitems>
@@ -86,6 +90,21 @@
 							</config>
 						</TCEforms>
 					</settings.recordsPerPage>
+					<settings.maximumNumberOfLinks>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.maximumNumberOfLinks</label>
+							<config>
+								<type>input</type>
+								<default>10</default>
+								<eval>trim,int</eval>
+								<range>
+									<lower>1</lower>
+									<upper>99</upper>
+								</range>
+							</config>
+						</TCEforms>
+					</settings.maximumNumberOfLinks>
 					<settings.export>
 						<TCEforms>
 							<exclude>1</exclude>

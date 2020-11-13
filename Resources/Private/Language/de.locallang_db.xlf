@@ -570,9 +570,17 @@
 				<source>year and type</source>
 				<target state="translated">Jahr und Typ</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.3">
+				<source>year, author and type</source>
+				<target state="translated">Jahr, Autor und Typ</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.recordsPerPage">
 				<source>show this amount of records per page</source>
 				<target state="translated">Anzahl Datensätze pro Seite</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.maximumNumberOfLinks">
+				<source>maximum number of page links shown at the same time</source>
+				<target state="translated">maximale Anzahl gleichzeitig angezeigter Seitenlinks</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.export">
 				<source>Allow an export of the publications</source>

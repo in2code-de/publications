@@ -33,6 +33,15 @@
 			<trans-unit id="list.norecords">
 				<source>No publications found</source>
 			</trans-unit>
+			<trans-unit id="list.results.total">
+				<source>Total</source>
+			</trans-unit>
+			<trans-unit id="list.results.pagination.previous">
+				<source>Previous</source>
+			</trans-unit>
+			<trans-unit id="list.results.pagination.next">
+				<source>Next</source>
+			</trans-unit>
 
 			<trans-unit id="bibtype.article">
 				<source>Articles</source>

@@ -4,26 +4,32 @@
 
 <f:section name="Content">
 	<f:if condition="{settings.hideFilter} != true">
-	<f:render partial="List/Filter" arguments="{_all}"/>
+		<f:render partial="List/Filter" arguments="{_all}"/>
 	</f:if>
 
-	<f:if condition="{publications}">
-		<f:then>
-			<f:widget.paginate
-					objects="{publications}"
-					as="publicationsPage"
-					configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-				<div>
-					<f:for each="{publicationsPage}" as="publication">
-						<f:render section="GroupTitle" arguments="{_all}"/>
+	<f:if condition="{pagination.nbResults} > 0">
+		<p>{f:translate(key:'list.results.total', default:'Total')}: {pagination.nbResults}</p>
+	</f:if>
 
-						<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
-							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
-						</div>
-					</f:for>
-					<f:render partial="List/Export" arguments="{_all}"/>
-				</div>
-			</f:widget.paginate>
+	<f:if condition="{pagination.nbResults > 0}">
+		<f:then>
+			<f:if condition="{showPagination}">
+				<f:render section="Paginator" arguments="{_all}"/>
+			</f:if>
+
+				<f:for each="{pagination.currentPageResults}" as="publication">
+					<f:render section="GroupTitle" arguments="{_all}"/>
+
+					<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
+						<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
+					</div>
+				</f:for>
+
+			<f:if condition="{showPagination}">
+				<f:render section="Paginator" arguments="{_all}"/>
+			</f:if>
+
+			<f:render partial="List/Export" arguments="{_all}"/>
 		</f:then>
 		<f:else>
 			<div class="alert alert-danger" role="alert">
@@ -49,4 +55,60 @@
 			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}" before="<h5>" after="</h5>" />
 		</f:case>
 	</f:switch>
+</f:section>
+
+
+
+
+<f:section name="Paginator">
+	<ul class="f3-widget-paginator">
+		<li class="previous">
+			<f:if condition="{hasPreviousPage}">
+				<f:link.action rel="prev" arguments="{page: pagination.previousPage}">{f:translate(key:'list.results.pagination.previous', default:'Previous')}</f:link.action>
+			</f:if>
+		</li>
+
+		<f:if condition="{displayRangeStart} > 1">
+			<li class="first">
+				<f:link.action rel="first" arguments="{page: 1}">1</f:link.action>
+			</li>
+		</f:if>
+		<f:if condition="{hasLessPages}">
+			<li>…</li>
+		</f:if>
+		<f:for each="{pages}" as="page">
+			<f:if condition="{page.isCurrent}">
+				<f:then>
+					<li class="current">
+						{page.number}
+					</li>
+				</f:then>
+				<f:else>
+					<li>
+						<f:if condition="{page.number} >= 1">
+							<f:then>
+								<f:link.action arguments="{page: page.number}">{page.number}</f:link.action>
+							</f:then>
+						</f:if>
+					</li>
+				</f:else>
+			</f:if>
+		</f:for>
+		<f:if condition="{hasMorePages}">
+			<li>…</li>
+		</f:if>
+		<f:if condition="{displayRangeEnd} < {numberOfPages}">
+			<li class="last">
+				<f:link.action rel="last" arguments="{page: numberOfPages}">{numberOfPages}</f:link.action>
+			</li>
+		</f:if>
+
+		<f:if condition="{hasNextPage}">
+			<f:then>
+				<li class="next">
+					<f:link.action rel="next" arguments="{page: pagination.nextPage}">{f:translate(key:'list.results.pagination.next', default:'Next')}</f:link.action>
+				</li>
+			</f:then>
+		</f:if>
+	</ul>
 </f:section>

@@ -57,6 +57,8 @@ class Filter
      */
     protected $keywords = [];
 
+    protected int $maximumNumberOfLinks = 10;
+
     protected int $page = 0;
 
     /**
@@ -107,6 +109,7 @@ class Filter
         $this->setCitestyle((int) $settings['citestyle']);
         $this->setGroupby((int) $settings['groupby']);
         $this->setRecordsPerPage((int) $settings['recordsPerPage']);
+        $this->setMaximumNumberOfLinks((int) $settings['maximumNumberOfLinks']);
         $this->setTimeframe((int) $settings['timeframe']);
         $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'], true));
         $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
@@ -212,11 +215,19 @@ class Filter
                     'title' => QueryInterface::ORDER_ASCENDING,
                 ];
                 break;
-            default:
             case 2:
                 $orderings = [
                     'year' => QueryInterface::ORDER_DESCENDING,
                     'bibtype' => QueryInterface::ORDER_ASCENDING,
+                    'title' => QueryInterface::ORDER_ASCENDING,
+                ];
+                break;
+            default:
+            case 3:
+                $orderings = [
+                    'year' => QueryInterface::ORDER_DESCENDING,
+                    'authors.lastName' => QueryInterface::ORDER_ASCENDING,
+                    'authors.firstName' => QueryInterface::ORDER_ASCENDING,
                     'title' => QueryInterface::ORDER_ASCENDING,
                 ];
         }
@@ -227,6 +238,11 @@ class Filter
     public function getKeywords(): array
     {
         return $this->keywords;
+    }
+
+    public function getMaximumNumberOfLinks(): int
+    {
+        return $this->maximumNumberOfLinks;
     }
 
     public function getPage(): int
@@ -340,6 +356,7 @@ class Filter
     {
         return $this->isCitestyleSet()
             || $this->isGroupbySet()
+            || $this->isMaximumNumberOfLinksSet()
             || $this->isRecordsPerPageSet()
             || $this->isTimeFrameSet()
             || $this->isBibtypesSet()
@@ -370,6 +387,11 @@ class Filter
     public function isKeywordsSet(): bool
     {
         return $this->getKeywords() !== [];
+    }
+
+    public function isMaximumNumberOfLinksSet(): bool
+    {
+        return $this->getMaximumNumberOfLinks() !== 10;
     }
 
     public function isRecordsPerPageSet(): bool
@@ -485,6 +507,11 @@ class Filter
         $this->keywords = $keywords;
 
         return $this;
+    }
+
+    public function setMaximumNumberOfLinks(int $maximumNumberOfLinks): void
+    {
+        $this->maximumNumberOfLinks = $maximumNumberOfLinks;
     }
 
     public function setPage(int $page): void

@@ -43,6 +43,18 @@
 				<source>No publications found</source>
 				<target state="translated">Keine Publikationen gefunden</target>
 			</trans-unit>
+			<trans-unit id="list.results.total">
+				<source>Total</source>
+				<target state="translated">Gesamt</target>
+			</trans-unit>
+			<trans-unit id="list.results.pagination.previous">
+				<source>Previous</source>
+				<target state="translated">Vorherige</target>
+			</trans-unit>
+			<trans-unit id="list.results.pagination.next">
+				<source>Next</source>
+				<target state="translated">Nächste</target>
+			</trans-unit>
 
 			<trans-unit id="bibtype.article">
 				<source>Articles</source>

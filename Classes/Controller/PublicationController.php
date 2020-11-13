@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -23,6 +22,16 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class PublicationController extends ActionController
 {
+    /**
+     * @var int
+     */
+    protected $displayRangeEnd;
+
+    /**
+     * @var int
+     */
+    protected $displayRangeStart;
+
     /**
      * @var PublicationRepository
      */
@@ -124,13 +133,29 @@ class PublicationController extends ActionController
 
         $adapter = new PaginationAdapter($filter, $this->publicationRepository);
         $pagination = new Pagerfanta($adapter);
+
         $pagination->setMaxPerPage($filter->getRecordsPerPage());
         $pagination->setCurrentPage($filter->getPage());
 
+        $this->calculateDisplayRange($filter->getPage(), $pagination->getNbPages(), $filter->getMaximumNumberOfLinks());
+        $pages = [];
+        for ($i = $this->displayRangeStart; $i <= $this->displayRangeEnd; ++$i) {
+            $pages[] = ['number' => $i, 'isCurrent' => $i === $filter->getPage()];
+        }
+
         $this->view->assignMultiple([
             'filter' => $filter,
+            'maxNumberLinks' => $filter->getMaximumNumberOfLinks(),
+            'pages' => $pages,
+            'showPagination' => $pagination->haveToPaginate(),
             'hasPreviousPage' => $pagination->hasPreviousPage(),
             'hasNextPage' => $pagination->hasNextPage(),
+            'current' => $pagination->getCurrentPage(),
+            'numberOfPages' => $pagination->getNbPages(),
+            'displayRangeStart' => $this->displayRangeStart,
+            'displayRangeEnd' => $this->displayRangeEnd,
+            'hasLessPages' => $this->displayRangeStart > 2,
+            'hasMorePages' => $this->displayRangeEnd + 1 < $pagination->getNbPages(),
             'pagination' => $pagination,
             'data' => $this->getContentObject()->data,
         ]);
@@ -146,6 +171,29 @@ class PublicationController extends ActionController
     {
         SessionUtility::saveValueToSession('filter_'.$this->getContentObject()->data['uid'], []);
         $this->redirect('list');
+    }
+
+    /**
+     * If a certain number of links should be displayed, adjust before and after
+     * amounts accordingly.
+     */
+    protected function calculateDisplayRange(int $currentPage, int $nbPages, int $maxNbLinks)
+    {
+        $maximumNumberOfLinks = $maxNbLinks;
+        if ($maximumNumberOfLinks > $nbPages) {
+            $maximumNumberOfLinks = $nbPages;
+        }
+        $delta = floor($maximumNumberOfLinks / 2);
+        $this->displayRangeStart = $currentPage - $delta;
+        $this->displayRangeEnd = $currentPage + $delta - ($maximumNumberOfLinks % 2 === 0 ? 1 : 0);
+        if ($this->displayRangeStart < 1) {
+            $this->displayRangeEnd -= $this->displayRangeStart - 1;
+        }
+        if ($this->displayRangeEnd > $nbPages) {
+            $this->displayRangeStart -= $this->displayRangeEnd - $nbPages;
+        }
+        $this->displayRangeStart = (int) max($this->displayRangeStart, 1);
+        $this->displayRangeEnd = (int) min($this->displayRangeEnd, $nbPages);
     }
 
     protected function getContentObject(): ContentObjectRenderer
