@@ -30,7 +30,7 @@ Import module:
 
 ## Technical requirements
 
-This extension needs minimum *TYPO3 8.7* and PHP 7.0.
+This extension needs minimum *TYPO3 9* or *TYPO3 10*
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
 
 
@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 2.0.0      | 2020-11-25 | Task       | Support TYPO3 10 and drop support for 8, Space in IEEE between month and year now  |
 | 1.17.0     | 2020-05-28 | Feature    | Add new citestyle APA                                                              |
 | 1.16.0     | 2020-04-14 | Feature    | Add system fields (hidden, sys_language_uid, starttime, endtime)                   |
 | 1.15.0     | 2020-04-09 | Feature    | Allow multiple record storage pages, add recursive storage page loading            |
