@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 2.1.0      | 2020-12-03 | Feature    | Allow backend search for publications and authors                                  |
 | 2.0.0      | 2020-11-25 | Task       | Support TYPO3 10 and drop support for 8, Space in IEEE between month and year now  |
 | 1.17.0     | 2020-05-28 | Feature    | Add new citestyle APA                                                              |
 | 1.16.0     | 2020-04-14 | Feature    | Add system fields (hidden, sys_language_uid, starttime, endtime)                   |
