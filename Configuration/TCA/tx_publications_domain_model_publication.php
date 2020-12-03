@@ -17,7 +17,9 @@ $tca = [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY title ASC',
         'delete' => 'deleted',
-        'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg',
+        'searchFields' =>
+            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi'
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
