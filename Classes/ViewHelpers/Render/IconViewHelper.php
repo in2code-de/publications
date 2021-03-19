@@ -35,12 +35,12 @@ class IconViewHelper extends AbstractViewHelper
             case 'docx':
             $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/docx.svg" '
                 . $this->buildAttributes()
-                . ';">';
+                . ' alt="'. $fileType .'">';
             break;
             case 'pdf':
                 $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/pdf.svg" '
                     . $this->buildAttributes()
-                    . ';">';
+                    . ' alt="'. $fileType .'">';
                 break;
         }
 
