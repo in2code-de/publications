@@ -147,6 +147,9 @@ class PublicationController extends ActionController
         if (!empty($filterArguments['authorstring'])) {
             $filter->setAuthorstring($filterArguments['authorstring']);
         }
+        if (!empty($filterArguments['documenttype'])) {
+            $filter->setDocumenttype($filterArguments['documenttype']);
+        }
         $this->request->setArgument('filter', $filter);
     }
 
