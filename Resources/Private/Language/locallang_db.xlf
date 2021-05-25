@@ -421,6 +421,9 @@
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.-1">
+				<source>none</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby.0">
 				<source>year</source>
 			</trans-unit>
@@ -448,7 +451,12 @@
 			<trans-unit id="flexform.pi1.template.hideEnumeration">
 				<source>Hide enumeration?</source>
 			</trans-unit>
-
+			<trans-unit id="flexform.pi1.template.showGroupLinks">
+				<source>Header with Links</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.showGroupLinks.label">
+				<source>Display links to grouped sections. Only active when 'Group by' selected. </source>
+			</trans-unit>
 			<trans-unit id="backendModule.selectImportFormat">
 				<source>Select Import Format</source>
 			</trans-unit>
