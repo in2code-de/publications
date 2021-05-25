@@ -266,6 +266,9 @@
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.orcid">
+				<source>ORCID</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_author.tab.system">
 				<source>System</source>
 			</trans-unit>
@@ -459,6 +462,13 @@
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.hideEnumeration">
 				<source>Hide enumeration?</source>
+			</trans-unit>
+
+			<trans-unit id="flexform.pi1.template.linkNames">
+				<source>Link names</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.linkNames.label">
+				<source>Adds a link where name URL or ORCID database entry is set.</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.showGroupLinks">
 				<source>Header with Links</source>
