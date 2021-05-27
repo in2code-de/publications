@@ -88,7 +88,7 @@ class Author extends AbstractEntity
     /**
      * @return string
      */
-    public function getORCID(): string
+    public function getOrcid(): string
     {
         return $this->orcid;
     }
@@ -97,7 +97,7 @@ class Author extends AbstractEntity
      * @param string $url
      * @return Author
      */
-    public function setORCID(string $orcid): self
+    public function setOrcid(string $orcid): self
     {
         $this->orcid = $orcid;
         return $this;
