@@ -10,7 +10,7 @@ use In2code\Publications\Utility\ObjectUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class HighlightViewHelper
+ * Class HighlightAuthorViewHelper
  * wraps html around search terms
  */
 class HighlightAuthorViewHelper extends AbstractViewHelper
