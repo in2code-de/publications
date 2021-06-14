@@ -75,7 +75,7 @@
 	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.month} || {publication.year}">
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
 	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
