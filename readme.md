@@ -30,7 +30,7 @@ Import module:
 
 ## Technical requirements
 
-This extension needs minimum *TYPO3 8.7* and PHP 7.0.
+This extension needs minimum *TYPO3 9* or *TYPO3 10*
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
 
 
@@ -77,6 +77,11 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 2.3.0      | 2021-03-19 | Feature    | Special character support for bib import, Fix generated icon tags                  |
+| 2.2.0      | 2021-03-17 | Task       | Add auto deployment to TER, Add extension key in composer.json                     |
+| 2.1.0      | 2020-12-03 | Feature    | Allow backend search for publications and authors                                  |
+| 2.0.0      | 2020-11-25 | Task       | Support TYPO3 10 and drop support for 8, Space in IEEE between month and year now  |
+| 1.17.0     | 2020-05-28 | Feature    | Add new citestyle APA                                                              |
 | 1.16.0     | 2020-04-14 | Feature    | Add system fields (hidden, sys_language_uid, starttime, endtime)                   |
 | 1.15.0     | 2020-04-09 | Feature    | Allow multiple record storage pages, add recursive storage page loading            |
 | 1.14.0     | 2020-03-12 | Feature    | Use sections for data elements, Translate labels in standard citestyles            |
