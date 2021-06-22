@@ -1,6 +1,6 @@
 # publications is an TYPO3 extension to list academic publications
 
-Inspired by the - meanwhile outdated - TYPO3 bib extension
+Inspired by the TYPO3 **bib** extension
 
 
 
