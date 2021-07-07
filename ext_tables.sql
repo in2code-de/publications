@@ -77,6 +77,7 @@ CREATE TABLE tx_publications_domain_model_author (
 	first_name varchar(255) DEFAULT '' NOT NULL,
 	last_name varchar(255) DEFAULT '' NOT NULL,
 	url varchar(255) DEFAULT '' NOT NULL,
+	orcid varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

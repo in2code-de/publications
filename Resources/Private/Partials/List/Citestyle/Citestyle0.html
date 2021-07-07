@@ -375,8 +375,13 @@
 
 <f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
-		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-		{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+	<f:if condition="{author.url} && {settings.linkNames}">
+		<f:then> <a href="{author.url}" target="_self"></f:then>
+	  <f:else if="{author.orcid} && {settings.linkNames}"><a href="https://orcid.org/{author.orcid}" target="_blank"></f:else></f:if>
+			{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
+			{author.firstName}<f:if condition="{iteration.isLast} == 0">;</f:if>
+			<f:if condition="{author.url} && {settings.linkNames}"><f:then></a></f:then>
+		 <f:else if="{author.orcid} && {settings.linkNames}"></a></f:else></f:if>
 	</f:for>
 </f:section>
 
