@@ -558,6 +558,10 @@
 				<source>Group by</source>
 				<target state="translated">Gruppieren nach</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.-1">
+				<source>none</source>
+				<target state="translated">Keine Grupierung</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby.0">
 				<source>year</source>
 				<target state="translated">Jahr</target>
@@ -594,7 +598,14 @@
 				<source>Hide enumeration?</source>
 				<target state="translated">Nummerierung verbergen?</target>
 			</trans-unit>
-
+			<trans-unit id="flexform.pi1.template.showGroupLinks">
+				<source>Header with Links</source>
+				<target state="translated">Kopfleiste mit Links</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.showGroupLinks.label">
+				<source>Display links to grouped sections. Only active when 'Group by' selected. </source>
+				<target state="translated">Links zu groupierten Kapitel anzeigen. Nur aktiv wenn 'Grupieren nach' ausgewählt.</target>
+			</trans-unit>
 			<trans-unit id="backendModule.selectImportFormat">
 				<target>Format für Import auswählen</target>
 			</trans-unit>

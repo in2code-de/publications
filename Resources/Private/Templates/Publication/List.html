@@ -1,10 +1,12 @@
 <f:layout name="Frontend"/>
 
-
-
 <f:section name="Content">
 	<f:if condition="{settings.hideFilter} != true">
-	<f:render partial="List/Filter" arguments="{_all}"/>
+		<f:render partial="List/Filter" arguments="{_all}"/>
+	</f:if>
+
+	<f:if condition="{settings.showGroupLinks} == true">
+		<f:render partial="List/GroupLinks" arguments="{_all}"/>
 	</f:if>
 
 	<f:if condition="{publications}">
@@ -39,14 +41,14 @@
 <f:section name="GroupTitle">
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
-			<publications:group.title title="{publication.year}" before="<h4>" after="</h4>" />
+			<publications:group.title title="{publication.year}" singeltonKey="{publication.year}-{data.uid}" before='<h4 id="c{publication.year}-{data.uid}">' after="</h4>" />
 		</f:case>
 		<f:case value="1">
-			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" before="<h4>" after="</h4>" />
+			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.bibtype}-{data.uid}" before='<h4 id="{publication.bibtype}-{data.uid}">' after="</h4>" />
 		</f:case>
 		<f:case value="2">
-			<publications:group.title title="{publication.year}" before="<h4>" after="</h4>" />
-			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}" before="<h5>" after="</h5>" />
+			<publications:group.title title="{publication.year}" singeltonKey="{publication.year}-{data.uid}" before='<h4 id="c{publication.year}-{data.uid}">' after="</h4>" />
+			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}-{data.uid}" before="<h5>" after="</h5>" />
 		</f:case>
 	</f:switch>
 </f:section>
