@@ -254,30 +254,30 @@
 
 <f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
+
+		<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" >
+			<publications:format.initials>{author.firstName} </publications:format.initials>{author.lastName}
+		</publications:format.highlightAuthor>
+
 		<f:if condition="{publication.authors -> f:count()} == 1">
-			<publications:format.initials>{author.firstName}</publications:format.initials>
-			{author.lastName},
+		,
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} == 2">
 			<f:if condition="{iteration.isFirst}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName} and
+			  and
 			</f:if>
 			<f:if condition="{iteration.isLast}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName},
+			,
 			</f:if>
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} > 2">
 			<f:comment>If author is last before</f:comment>
 			<f:if condition="{iteration.cycle + 1} == {publication.authors -> f:count()}">
 				<f:then>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName} and
+				and
 				</f:then>
 				<f:else>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName},
+				,
 				</f:else>
 			</f:if>
 		</f:if>
