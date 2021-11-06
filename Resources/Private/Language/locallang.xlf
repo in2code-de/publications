@@ -135,7 +135,7 @@
 			<trans-unit id="linkblock.doi">
 				<source>DOI</source>
 			</trans-unit>
-			<trans-unit id="linkblock.pubmed">
+			<trans-unit id="linkblock.pmid">
 				<source>Pubmed</source>
 			</trans-unit>
 			<trans-unit id="linkblock.file">

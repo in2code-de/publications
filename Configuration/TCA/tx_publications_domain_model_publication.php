@@ -19,7 +19,7 @@ $tca = [
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg',
         'searchFields' =>
-            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi,pubmed'
+            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi,pmid'
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
@@ -68,7 +68,7 @@ $tca = [
             'showitem' => 'reviewed,'
         ],
         'palette_identification' => [
-            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,pubmed,'
+            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,pmid,'
         ],
         'palette_organization' => [
             'showitem' => 'organization,school,--linebreak--,institution,institute,'
@@ -784,9 +784,9 @@ $tca = [
                 'default' => ''
             ]
         ],
-        'pubmed' => [
+        'pmid' => [
             'exclude' => true,
-            'label' => $llTable . '.pubmed',
+            'label' => $llTable . '.pmid',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
