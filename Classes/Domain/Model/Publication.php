@@ -86,7 +86,7 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
-    protected $pubmed = '';
+    protected $pmid = '';
 
     /**
      * @var string
@@ -288,7 +288,7 @@ class Publication extends AbstractEntity
         'isbn' => 'isbn',
         'issn' => 'issn',
         'doi' => 'DOI',
-        'pubmed' => 'pubmed',
+        'pmid' => 'pmid',
         'organization' => 'organization',
         'school' => 'school',
         'institution' => 'institution',
@@ -638,18 +638,18 @@ class Publication extends AbstractEntity
     /**
      * @return string
      */
-    public function getPubmed(): string
+    public function getPmid(): string
     {
-        return $this->pubmed;
+        return $this->pmid;
     }
 
     /**
-     * @param string $pubmed
+     * @param string $pmid
      * @return Publication
      */
-    public function setPubmed(string $pubmed): self
+    public function setPmid(string $pmid): self
     {
-        $this->pubmed = $pubmed;
+        $this->pmid = $pmid;
         return $this;
     }
 
