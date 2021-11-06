@@ -133,7 +133,10 @@
 			</trans-unit>
 
 			<trans-unit id="linkblock.doi">
-				<source>Doi</source>
+				<source>DOI</source>
+			</trans-unit>
+			<trans-unit id="linkblock.pubmed">
+				<source>Pubmed</source>
 			</trans-unit>
 			<trans-unit id="linkblock.file">
 				<source>File</source>
