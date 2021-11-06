@@ -50,6 +50,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	isbn varchar(255) DEFAULT '' NOT NULL,
 	issn varchar(255) DEFAULT '' NOT NULL,
 	doi varchar(255) DEFAULT '' NOT NULL,
+	pubmed varchar(255) DEFAULT '',
 	authors int(11) unsigned DEFAULT '0' NOT NULL,
 	patent varchar(255) DEFAULT '' NOT NULL,
 

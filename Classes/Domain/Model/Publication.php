@@ -86,6 +86,11 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
+    protected $pubmed = '';
+
+    /**
+     * @var string
+     */
     protected $organization = '';
 
     /**
@@ -283,6 +288,7 @@ class Publication extends AbstractEntity
         'isbn' => 'isbn',
         'issn' => 'issn',
         'doi' => 'DOI',
+        'pubmed' => 'pubmed',
         'organization' => 'organization',
         'school' => 'school',
         'institution' => 'institution',
@@ -626,6 +632,24 @@ class Publication extends AbstractEntity
     public function setDoi(string $doi): self
     {
         $this->doi = $doi;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPubmed(): string
+    {
+        return $this->pubmed;
+    }
+
+    /**
+     * @param string $pubmed
+     * @return Publication
+     */
+    public function setPubmed(string $pubmed): self
+    {
+        $this->pubmed = $pubmed;
         return $this;
     }
 

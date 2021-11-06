@@ -25,6 +25,7 @@ class BibImporter extends AbstractImporter
         'web_url' => 'web_url',
         'author' => 'authors',
         'DOI' => 'doi',
+        'pubmed' => 'pubmed',
         'ISSN' => 'issn',
         'ISBN' => 'isbn',
         'misc' => 'miscellaneous',
