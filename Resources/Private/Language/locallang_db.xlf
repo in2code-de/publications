@@ -418,9 +418,6 @@
 			<trans-unit id="flexform.pi1.template.citestyle.6">
 				<source>IEEE with abstract</source>
 			</trans-unit>
-			<trans-unit id="flexform.pi1.template.citestyle.9">
-				<source>Karliwalti with icons</source>
-			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 			</trans-unit>
