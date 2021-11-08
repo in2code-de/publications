@@ -178,6 +178,10 @@
 				<source>DOI</source>
 				<target>DOI</target>
 			</trans-unit>
+			<trans-unit id="linkblock.pmid">
+				<source>Pubmed</source>
+				<target>Pubmed</target>
+			</trans-unit>
 			<trans-unit id="linkblock.file">
 				<source>File</source>
 				<target>Datei</target>

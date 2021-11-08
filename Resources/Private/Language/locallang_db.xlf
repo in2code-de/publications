@@ -244,6 +244,9 @@
 			<trans-unit id="tx_publications_domain_model_publication.doi">
 				<source>DOI</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.pmid">
+				<source>Pubmed Id</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.authors">
 				<source>Authors</source>
 			</trans-unit>
