@@ -554,6 +554,18 @@
 				<source>IEEE with abstract</source>
 				<target state="translated">IEEE mit abstract</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.7">
+				<source>Coming soon...</source>
+				<target state="translated">Kommt in Kürze...</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.8">
+				<source>Coming soon...</source>
+				<target state="translated">Kommt in Kürze...</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.9">
+				<source>Vancouver for web</source>
+				<target state="translated">Vancouver for Web</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 				<target state="translated">Gruppieren nach</target>
