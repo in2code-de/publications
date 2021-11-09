@@ -418,6 +418,15 @@
 			<trans-unit id="flexform.pi1.template.citestyle.6">
 				<source>IEEE with abstract</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.7">
+				<source>Coming soon...</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.8">
+				<source>Coming soon...</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.9">
+				<source>Vancouver for Web</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 			</trans-unit>
