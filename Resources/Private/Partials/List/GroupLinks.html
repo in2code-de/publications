@@ -1,0 +1,24 @@
+<div id="grouplinks-{data.uid}" style="padding: 15px 0;">
+	<f:if condition="{publications}">
+		<f:for each="{publications}" as="publication">
+			<f:render section="GroupLink" arguments="{_all}"/>
+		</f:for>
+	</f:if>
+</div>
+
+
+
+
+<f:section name="GroupLink">
+	<f:switch expression="{filter.groupby}">
+		<f:case value="0">
+			<publications:group.title title="{publication.year}" singeltonKey="grouplink-{data.uid}" before='[<a href="#c{publication.year}-{data.uid}">' after='</a>] &nbsp;' />
+		</f:case>
+		<f:case value="1">
+			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="grouplink-{data.uid}" before='[<a href="#{publication.bibtype}-{data.uid}">' after='</a>] &nbsp;'  />
+		</f:case>
+		<f:case value="2">
+			<publications:group.title title="{publication.year}" singeltonKey="grouplink-{data.uid}" before='[<a href="#c{publication.year}-{data.uid}">' after='</a>] &nbsp;' />
+		</f:case>
+	</f:switch>
+</f:section>
