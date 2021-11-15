@@ -12,6 +12,15 @@
 	</div>
 </div>
 
+<f:section name="bibtype_incollection">
+	<f:render section="bibtype_inbook" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_inproceedings">
+	<f:render section="bibtype_conference" arguments="{_all}"/>
+</f:section>
+
 
 <f:section name="bibtype_article">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
@@ -102,14 +111,7 @@
 </f:section>
 
 
-<f:section name="bibtype_incollection">
-	<f:render section="bibtype_inbook" arguments="{_all}"/>
-</f:section>
 
-
-<f:section name="bibtype_inproceedings">
-	<f:render section="bibtype_conference" arguments="{_all}"/>
-</f:section>
 
 
 <f:section name="bibtype_manual">
@@ -255,33 +257,38 @@
 <f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
 		<f:if condition="{publication.authors -> f:count()} == 1">
-			<publications:format.initials>{author.firstName}</publications:format.initials>
-			{author.lastName},
+				<f:render section="namestring"  arguments="{_all}"/>,
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} == 2">
 			<f:if condition="{iteration.isFirst}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName} and
+				<f:render section="namestring"  arguments="{_all}"/> and
 			</f:if>
 			<f:if condition="{iteration.isLast}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName},
+				<f:render section="namestring"  arguments="{_all}"/>,
 			</f:if>
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} > 2">
 			<f:comment>If author is last before</f:comment>
 			<f:if condition="{iteration.cycle + 1} == {publication.authors -> f:count()}">
 				<f:then>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName} and
+					<f:render section="namestring"  arguments="{_all}"/> and
 				</f:then>
 				<f:else>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName},
+					<f:render section="namestring"  arguments="{_all}"/>,
 				</f:else>
 			</f:if>
 		</f:if>
 	</f:for>
+</f:section>
+
+
+<f:section name="namestring">
+	<f:if condition="{author.url} && {settings.linkNames}">
+		<f:then> <a href="{author.url}" target="_self"></f:then>
+			<f:else if="{author.orcid} && {settings.linkNames}"><a href="https://orcid.org/{author.orcid}" target="_blank"></f:else></f:if>
+	<publications:format.initials>{author.firstName}</publications:format.initials>{author.lastName}
+	<f:if condition="{author.url} && {settings.linkNames}"><f:then></a></f:then>
+ <f:else if="{author.orcid} && {settings.linkNames}"></a></f:else></f:if>
 </f:section>
 
 </html>
