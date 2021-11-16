@@ -12,16 +12,22 @@
   "homepage": "https://github.com/in2code-de/publications",
   "authors": [
     {
+      "name": "Klaus Fumy",
+      "email": "klaus.fumy@uni-ulm.de",
+      "role": "Product owner",
+      "homepage": "https://www.uni-ulm.de"
+    },
+    {
       "name": "Alex Kellner",
-      "email": "alexander.kellner@in2code.de"
+      "email": "alexander.kellner@in2code.de",
+      "role": "Technical owner",
+      "homepage": "https://www.uni-ulm.de"
     },
     {
       "name": "Sebastian Stein",
-      "email": "sebastian.stein@in2code.de"
-    },
-    {
-      "name": "Klaus Fumy",
-      "email": "klaus.fumy@uni-ulm.de"
+      "email": "sebastian.stein@in2code.de",
+      "role": "Developer",
+      "homepage": "https://www.uni-ulm.de"
     }
   ],
   "type": "typo3-cms-extension",

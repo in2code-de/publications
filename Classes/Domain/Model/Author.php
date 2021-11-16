@@ -27,6 +27,11 @@ class Author extends AbstractEntity
     protected $url = '';
 
     /**
+     * @var string
+     */
+    protected $orcid = '';
+
+    /**
      * @return string
      */
     public function getLastName(): string
@@ -77,6 +82,24 @@ class Author extends AbstractEntity
     public function setUrl(string $url): self
     {
         $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrcid(): string
+    {
+        return $this->orcid;
+    }
+
+    /**
+     * @param string $url
+     * @return Author
+     */
+    public function setOrcid(string $orcid): self
+    {
+        $this->orcid = $orcid;
         return $this;
     }
 }
