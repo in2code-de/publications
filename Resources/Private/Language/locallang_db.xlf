@@ -379,6 +379,12 @@
 			<trans-unit id="flexform.pi1.filter.author">
 				<source>Author</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors">
+				<source>Highlight Author?</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
+				<source>Makes filtered Authors stand out from others</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.extern">
 				<source>Intern/Extern</source>
 			</trans-unit>
