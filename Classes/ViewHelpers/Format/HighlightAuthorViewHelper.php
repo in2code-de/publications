@@ -1,7 +1,8 @@
 <?php
-declare(strict_types=1);
-namespace In2code\Publications\ViewHelpers\Format;
 
+declare(strict_types=1);
+
+namespace In2code\Publications\ViewHelpers\Format;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use In2code\Publications\Domain\Model\Author;
@@ -15,11 +16,10 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class HighlightAuthorViewHelper extends AbstractViewHelper
 {
-
   /**
    * @var bool
    */
-  protected $escapeOutput = false;
+    protected $escapeOutput = false;
 
     /**
      * @return void
@@ -30,7 +30,7 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
         $this->registerArgument('author', 'mixed', 'Author array', true);
         $this->registerArgument('before', 'string', 'Add this html before Author of interest', false);
         $this->registerArgument('after', 'string', 'Add this html after', false);
-        $this->registerArgument('searchterms','mixed', 'Searchterms, Authors selected in Filter in flexform/TS ', false);
+        $this->registerArgument('searchterms', 'mixed', 'Searchterms, Authors selected in Filter in flexform/TS ', false);
     }
 
     /**
@@ -39,16 +39,16 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
     public function render(): string
     {
         $value = implode(PHP_EOL, GeneralUtility::trimExplode(PHP_EOL, $this->renderChildren(), true));
-        if (!empty($value))  {
-          if (!empty($this->arguments['searchterms'])) {
-            $filterauthors=$this->getAuthors($this->arguments['searchterms']);
-            $author[]= $this->arguments['author'];
-            $match = array_intersect($filterauthors,$author); //intersect_assoc is too strict
-            if(!empty($match)) {
-             return $this->wrapText($value);
-           }
+        if (!empty($value)) {
+            if (!empty($this->arguments['searchterms'])) {
+                $filterauthors = $this->getAuthors($this->arguments['searchterms']);
+                $author[] = $this->arguments['author'];
+                $match = array_intersect($filterauthors, $author); //intersect_assoc is too strict
+                if (!empty($match)) {
+                    return $this->wrapText($value);
+                }
+            }
         }
-      }
         return $value;
     }
 
@@ -74,13 +74,11 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
      */
     protected function getAuthors(string $filter): array
     {
-          $authors = [];
-          $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
-          foreach (GeneralUtility::intExplode(',', $filter, true) as $identifier) {
-              $authors[] = $authorRepository->findByUid($identifier);
-          }
-    //  }
-      return $authors;
+        $authors = [];
+        $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
+        foreach (GeneralUtility::intExplode(',', $filter, true) as $identifier) {
+            $authors[] = $authorRepository->findByUid($identifier);
+        }
+        return $authors;
     }
-
 }
