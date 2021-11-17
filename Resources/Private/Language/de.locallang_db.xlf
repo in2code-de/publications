@@ -518,6 +518,14 @@
 				<source>Show publications from this pages only</source>
 				<target state="translated">Zeige nur Publikationen von diesen Seites</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors">
+				<source>Highlight Author?</source>
+				<target state="translated">Author hervorheben?</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
+				<source>Makes filtered Authors stand out from others</source>
+				<target state="translated">Hebt gefilterten Author gegenüber anderen hervor.</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>
 				<target state="translated">Ansicht</target>
@@ -617,14 +625,6 @@
 			<trans-unit id="flexform.pi1.template.showGroupLinks.label">
 				<source>Display links to grouped sections. Only active when 'Group by' selected. </source>
 				<target state="translated">Links zu groupierten Kapitel anzeigen. Nur aktiv wenn 'Grupieren nach' ausgewählt.</target>
-			</trans-unit>
-			<trans-unit id="flexform.pi1.filter.highlightAuthors">
-				<source>Highlight Author?</source>
-				<target state="translated">Author hervorheben?</target>
-			</trans-unit>
-			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
-				<source>Makes filtered Authors stand out from others</source>
-				<target state="translated">Hebt gefilterten Author gegenüber anderen hervor.</target>
 			</trans-unit>
 			<trans-unit id="backendModule.selectImportFormat">
 				<target>Format für Import auswählen</target>
