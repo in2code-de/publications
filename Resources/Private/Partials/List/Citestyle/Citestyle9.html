@@ -204,7 +204,7 @@ TODO
 
 
 <f:section name="date">
-<f:if condition="{publication.year}">{publication.year}<f:if condition="{publication.month}"><f:then><publications:format.monthNameFromNumber month=" {publication.month}" limit="3" /><f:if condition="{publication.day}"> {publication.day}</f:if></f:then></f:if><f:if condition="{publication.bibtype} == article"><f:then>;</f:then><f:else>.</f:else></f:if></f:if><f:comment> add suffix="" when available</f:comment>
+<f:if condition="{publication.year}">{publication.year}<f:if condition="{publication.month}"><f:then> <publications:format.monthNameFromNumber month="{publication.month}" limit="3" /><f:if condition="{publication.day}"> {publication.day}</f:if></f:then></f:if><f:if condition="{publication.bibtype} == article"><f:then>;</f:then><f:else>.</f:else></f:if></f:if><f:comment> add suffix="" when available</f:comment>
 </f:section>
 
 <f:comment>
