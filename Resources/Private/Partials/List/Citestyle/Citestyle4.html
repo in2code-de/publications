@@ -518,49 +518,53 @@
 
 <f:comment>
 	Pohl, S.
-	Pohl, S. and Kellner, A.
-	Pohl, S., Kellner, A., Muster, M. and Stein, S.
+	Pohl, S. & Kellner, A.
+	Pohl, S., Kellner, A., Muster, M. & Stein, S.
 </f:comment>
 
 <f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
 		<f:if condition="{publication.authors -> f:count()} == 1">
-			{author.lastName},
-			<publications:format.initials>{author.firstName}</publications:format.initials>
+			<f:render section="namestring"  arguments="{_all}"/>
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} == 2">
 			<f:if condition="{iteration.isFirst}">
-				{author.lastName},
-				<publications:format.initials>{author.firstName}</publications:format.initials>, &
+				<f:render section="namestring"  arguments="{_all}"/>, &
 			</f:if>
 			<f:if condition="{iteration.isLast}">
-				{author.lastName},
-				<publications:format.initials>{author.firstName}</publications:format.initials>
+				<f:render section="namestring"  arguments="{_all}"/>
 			</f:if>
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} > 2">
 			<f:comment>If author is last before</f:comment>
 			<f:if condition="{iteration.cycle + 1} == {publication.authors -> f:count()}">
 				<f:then>
-					{author.lastName},
-					<publications:format.initials>{author.firstName}</publications:format.initials>, &
+					<f:render section="namestring"  arguments="{_all}"/>, &
 				</f:then>
 				<f:else>
 					<f:if condition="{iteration.isLast}">
 						<f:then>
-							{author.lastName},
-							<publications:format.initials>{author.firstName}</publications:format.initials>
+							<f:render section="namestring"  arguments="{_all}"/>
 						</f:then>
 						<f:else>
-							{author.lastName},
-							<publications:format.initials>{author.firstName}</publications:format.initials>,
+							<f:render section="namestring"  arguments="{_all}"/>,
 						</f:else>
 					</f:if>
 				</f:else>
 			</f:if>
-
 		</f:if>
 	</f:for>
+</f:section>
+
+<f:section name="namestring">
+	<f:if condition="{author.url} && {settings.linkNames}">
+		<f:then> <a href="{author.url}" target="_self"></f:then>
+			<f:else if="{author.orcid} && {settings.linkNames}"><a href="https://orcid.org/{author.orcid}" target="_blank"></f:else></f:if>
+				<f:if condition="{settings.highlightAuthors}">
+					<f:then><publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" >{author.lastName}, <publications:format.initials>{author.firstName}</publications:format.initials></publications:format.highlightAuthor></f:then>
+				<f:else>{author.lastName}, <publications:format.initials>{author.firstName}</publications:format.initials></f:else></f:if>
+	<f:if condition="{author.url} && {settings.linkNames}"><f:then></a></f:then>
+ <f:else if="{author.orcid} && {settings.linkNames}"></a></f:else></f:if>
 </f:section>
 
 </html>

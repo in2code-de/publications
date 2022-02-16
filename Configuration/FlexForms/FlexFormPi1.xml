@@ -30,6 +30,21 @@
 							</config>
 						</TCEforms>
 					</settings.hideEnumeration>
+					<settings.showGroupLinks>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+								<items type="array">
+										<numIndex index="0" type="array">
+											<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks.label</numIndex>
+										</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.showGroupLinks>
 					<settings.citestyle>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -52,6 +67,10 @@
 								<type>select</type>
 								<renderType>selectSingle</renderType>
 								<items type="array">
+									<numIndex index="-1" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.-1</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
 										<numIndex index="1">0</numIndex>
@@ -86,6 +105,21 @@
 							</config>
 						</TCEforms>
 					</settings.recordsPerPage>
+					<settings.linkNames>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames.label</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.linkNames>
 					<settings.export>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -337,6 +371,21 @@
 							</config>
 						</TCEforms>
 					</settings.author>
+					<settings.highlightAuthors>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors.label</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.highlightAuthors>
 					<settings.extern>
 						<TCEforms>
 							<exclude>1</exclude>

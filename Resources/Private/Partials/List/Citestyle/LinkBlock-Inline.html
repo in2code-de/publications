@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:publications="http://typo3.org/ns/In2code/Publications/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+		<f:comment><!-- Link Block for Citestyle9: Icons for publications in line with pub--></f:comment>
+		<f:comment><!-- Author: Walter Karlen, karliwalti.ch --></f:comment>
+		<f:comment><!-- Icons:  --></f:comment>
+		<f:comment><!--  Academicons is licensed under the SIL OFL 1.1 https://jpswalsh.github.io/academicons/ --></f:comment>
+		<f:comment><!--  Fontawsome 5 free is licensed under the SIL OFL 1.1 https://github.com/FortAwesome/Font-Awesome --></f:comment>
+		<f:comment><!-- Instructions: add following to header	-->
+	<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">-->
+	<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">--></f:comment>
+
+<f:section name="linkblock-inline">
+<f:if condition="{publication.doi} || {publication.pmid} || {publication.webUrl} || {publication.webUrl2} ">
+&nbsp;&nbsp;&nbsp;<i class="fas fa-link "></i>&nbsp;
+</f:if>
+			<f:if condition="{publication.doi}">
+					<f:link.typolink parameter="https://dx.doi.org/{publication.doi}" target="_blank"><span class="publications-link"><i class="ai ai-doi-square ai-lg" title="{f:translate(key:'linkblock.doi')}"></i><span class="sr-only">[{f:translate(key:'linkblock.doi')}]</span></span></f:link.typolink>&nbsp;
+			</f:if>
+			<f:if condition="{publication.pmid}">
+						<f:link.typolink parameter="https://pubmed.ncbi.nlm.nih.gov/{publication.pmid}" target="_blank"><span class="publications-link"><i class="ai ai-pubmed-square ai-lg" title="{f:translate(key:'linkblock.pmid')}"></i><span class="sr-only">[{f:translate(key:'linkblock.pmid')}]</span></span></f:link.typolink>&nbsp;
+				</f:if>
+				<f:if condition="{publication.webUrl} ">
+						<f:link.typolink parameter="{publication.webUrl}" target="_blank"><span class="publications-link"><i class="fas fa-external-link-square-alt fa-lg" title="{f:translate(key:'linkblock.weburl1')}"></i><span class="sr-only">[{f:translate(key:'linkblock.weburl1')}]</span></span></f:link.typolink>&nbsp;
+				</f:if>
+				<f:if condition="{publication.webUrl2}">
+						<f:link.typolink parameter="{publication.webUrl2}" target="_blank"><span class="publications-link"><i class="fas fa-external-link-square-alt fa-lg" title="{f:translate(key:'linkblock.weburl2')}"></i><span class="sr-only">[{f:translate(key:'linkblock.weburl2')}]</span></span></f:link.typolink>&nbsp;
+				</f:if>
+				<f:if condition="{publication.fileUrl}">
+						&nbsp;&nbsp;&nbsp;<i class="ai ai-open-access ai-lg"></i>&nbsp;<f:link.typolink parameter="{publication.fileUrl}" target="_blank"><span class="publications-link"><i class="fas fa-file-alt " title="{f:translate(key:'linkblock.file')}"></i><span class="sr-only">[{f:translate(key:'linkblock.file')}]</span></span></f:link.typolink>&nbsp;
+						<!--	<f:link.typolink parameter="{publication.fileUrl}" target="_blank" /> -->
+				</f:if>
+</f:section>
+
+</html>

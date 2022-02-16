@@ -12,12 +12,20 @@
 	</div>
 </div>
 
+<f:section name="bibtype_incollection">
+	<f:render section="bibtype_inbook" arguments="{_all}"/>
+</f:section>
+
+
+<f:section name="bibtype_inproceedings">
+	<f:render section="bibtype_conference" arguments="{_all}"/>
+</f:section>
+
 
 <f:section name="bibtype_article">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:render section="authors" arguments="{_all}"/>
-	<f:if condition="{publication.title}">"{publication.title}"
-		<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if>
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>, </f:then><f:else>. </f:else></f:if>
 	</f:if>
 	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else>
@@ -75,7 +83,7 @@
 	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.month} || {publication.year}">
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
-		{publication.year}.
+		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
 	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
@@ -88,7 +96,7 @@
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:render section="authors" arguments="{_all}"/>
 	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.booktitle}"><f:else><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
-	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if><f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
+	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i><f:if condition="{publication.editor} || {publication.address} || {publication.publisher} || {publication.month} || {publication.year} || {publication.pages}"><f:then>, </f:then><f:else>. </f:else></f:if></f:if><f:if condition="{publication.editor}">{publication.editor}, Eds.</f:if>
 	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.publisher}"><f:then>:</f:then><f:else><f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:else></f:if></f:if>
 	<f:if condition="{publication.publisher}">{publication.publisher}<f:if condition="{publication.month} || {publication.year} || {publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.month} || {publication.year}">
@@ -102,14 +110,7 @@
 </f:section>
 
 
-<f:section name="bibtype_incollection">
-	<f:render section="bibtype_inbook" arguments="{_all}"/>
-</f:section>
 
-
-<f:section name="bibtype_inproceedings">
-	<f:render section="bibtype_conference" arguments="{_all}"/>
-</f:section>
 
 
 <f:section name="bibtype_manual">
@@ -255,33 +256,36 @@
 <f:section name="authors">
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
 		<f:if condition="{publication.authors -> f:count()} == 1">
-			<publications:format.initials>{author.firstName}</publications:format.initials>
-			{author.lastName},
+				<f:render section="namestring"  arguments="{_all}"/>,
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} == 2">
 			<f:if condition="{iteration.isFirst}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName} and
+				<f:render section="namestring"  arguments="{_all}"/> and
 			</f:if>
 			<f:if condition="{iteration.isLast}">
-				<publications:format.initials>{author.firstName}</publications:format.initials>
-				{author.lastName},
+				<f:render section="namestring"  arguments="{_all}"/>,
 			</f:if>
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} > 2">
 			<f:comment>If author is last before</f:comment>
 			<f:if condition="{iteration.cycle + 1} == {publication.authors -> f:count()}">
 				<f:then>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName} and
+					<f:render section="namestring"  arguments="{_all}"/> and
 				</f:then>
 				<f:else>
-					<publications:format.initials>{author.firstName}</publications:format.initials>
-					{author.lastName},
+					<f:render section="namestring"  arguments="{_all}"/>,
 				</f:else>
 			</f:if>
 		</f:if>
 	</f:for>
 </f:section>
+
+
+<f:section name="namestring">
+	<f:if condition="{author.url} && {settings.linkNames}">
+		<f:then> <a href="{author.url}" target="_self"></f:then>
+			<f:else if="{author.orcid} && {settings.linkNames}"><a href="https://orcid.org/{author.orcid}" target="_blank"></f:else></f:if>
+<f:if condition="{settings.highlightAuthors}">
+<f:then><publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" ><publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</publications:format.highlightAuthor></f:then><f:else><publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</f:else></f:if><f:if condition="{author.url} && {settings.linkNames}"><f:then></a></f:then><f:else if="{author.orcid} && {settings.linkNames}"></a></f:else></f:if></f:section>
 
 </html>

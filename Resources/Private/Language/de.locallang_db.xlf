@@ -518,6 +518,14 @@
 				<source>Show publications from this pages only</source>
 				<target state="translated">Zeige nur Publikationen von diesen Seites</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors">
+				<source>Highlight Author?</source>
+				<target state="translated">Author hervorheben?</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
+				<source>Makes filtered Authors stand out from others</source>
+				<target state="translated">Hebt gefilterten Author gegenüber anderen hervor.</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>
 				<target state="translated">Ansicht</target>
@@ -554,9 +562,25 @@
 				<source>IEEE with abstract</source>
 				<target state="translated">IEEE mit abstract</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.7">
+				<source>Coming soon...</source>
+				<target state="translated">Kommt in Kürze...</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.8">
+				<source>Coming soon...</source>
+				<target state="translated">Kommt in Kürze...</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.9">
+				<source>Vancouver for web</source>
+				<target state="translated">Vancouver for Web</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
 				<target state="translated">Gruppieren nach</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.-1">
+				<source>none</source>
+				<target state="translated">Keine Grupierung</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby.0">
 				<source>year</source>
@@ -594,7 +618,14 @@
 				<source>Hide enumeration?</source>
 				<target state="translated">Nummerierung verbergen?</target>
 			</trans-unit>
-
+			<trans-unit id="flexform.pi1.template.showGroupLinks">
+				<source>Header with Links</source>
+				<target state="translated">Kopfleiste mit Links</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.showGroupLinks.label">
+				<source>Display links to grouped sections. Only active when 'Group by' selected. </source>
+				<target state="translated">Links zu groupierten Kapitel anzeigen. Nur aktiv wenn 'Grupieren nach' ausgewählt.</target>
+			</trans-unit>
 			<trans-unit id="backendModule.selectImportFormat">
 				<target>Format für Import auswählen</target>
 			</trans-unit>

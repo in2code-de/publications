@@ -266,6 +266,9 @@
 			<trans-unit id="tx_publications_domain_model_author.url">
 				<source>URL</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_author.orcid">
+				<source>ORCID</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_author.tab.system">
 				<source>System</source>
 			</trans-unit>
@@ -376,6 +379,12 @@
 			<trans-unit id="flexform.pi1.filter.author">
 				<source>Author</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors">
+				<source>Highlight Author?</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
+				<source>Makes filtered Authors stand out from others</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.extern">
 				<source>Intern/Extern</source>
 			</trans-unit>
@@ -418,8 +427,20 @@
 			<trans-unit id="flexform.pi1.template.citestyle.6">
 				<source>IEEE with abstract</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.7">
+				<source>Coming soon...</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.8">
+				<source>Coming soon...</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.citestyle.9">
+				<source>Vancouver for Web</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby">
 				<source>Group by</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupby.-1">
+				<source>none</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.groupby.0">
 				<source>year</source>
@@ -449,6 +470,18 @@
 				<source>Hide enumeration?</source>
 			</trans-unit>
 
+			<trans-unit id="flexform.pi1.template.linkNames">
+				<source>Link names</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.linkNames.label">
+				<source>Adds a link where name URL or ORCID database entry is set.</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.showGroupLinks">
+				<source>Header with Links</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.showGroupLinks.label">
+				<source>Display links to grouped sections. Only active when 'Group by' selected. </source>
+			</trans-unit>
 			<trans-unit id="backendModule.selectImportFormat">
 				<source>Select Import Format</source>
 			</trans-unit>
