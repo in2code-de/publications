@@ -44,10 +44,7 @@
     "typo3-ter/publications": "self.version"
   },
   "require-dev": {
-    "typo3/cms-core": ">=9.5.0 <=10.9.99",
-    "nimut/testing-framework": "^4.0",
-    "mikey179/vfsstream": "^1.6",
-    "phpunit/phpunit": "^6.0",
+    "nimut/testing-framework": "^6.0",
     "squizlabs/php_codesniffer": "^3.3",
     "phpmd/phpmd": "@stable"
   },
