@@ -16,7 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class ClearCommand
  */
-class ClearCommand extends Command {
+class ClearCommand extends Command
+{
 
     /**
      * Configure the command by defining the name, options and arguments
