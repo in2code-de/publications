@@ -25,8 +25,8 @@ class PublicationRepository extends AbstractRepository
         $query = $this->createQuery();
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
-        // ToDo: Fix sorting via DB-Query
-        return $query->execute();
+        $results = $query->execute();
+        return $this->convertToAscendingArray($results);
     }
 
     /**
@@ -307,11 +307,6 @@ class PublicationRepository extends AbstractRepository
         $i = 0;
         $resultsRaw = $results->toArray();
         usort($resultsRaw, [$this, 'compareCallbackByDate']);
-        /** @var Publication $result */
-        foreach ($resultsRaw as $result) {
-            $result->setNumeration(count($resultsRaw) - $i);
-            $i++;
-        }
         return $resultsRaw;
     }
 

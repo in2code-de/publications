@@ -8,6 +8,7 @@ use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
@@ -48,7 +49,7 @@ class PublicationController extends ActionController
         $maximumLinks = 10;
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-        $paginator = new QueryResultPaginator($publications, $currentPage, $itemsPerPage);
+        $paginator = new ArrayPaginator($publications, $currentPage, $itemsPerPage);
         $pagination = new NumberedPagination($paginator, $maximumLinks);
 
         $this->view->assign('pagination', [
