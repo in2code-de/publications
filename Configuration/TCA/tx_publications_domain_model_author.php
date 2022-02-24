@@ -1,4 +1,5 @@
 <?php
+
 use In2code\Publications\Domain\Model\Author;
 
 $llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';

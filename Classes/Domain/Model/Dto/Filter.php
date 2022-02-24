@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace In2code\Publications\Domain\Model\Dto;
@@ -18,84 +19,84 @@ class Filter
     /**
      * @var int
      */
-    protected $citestyle = 0;
+    protected int $citestyle = 0;
 
     /**
      * @var int
      */
-    protected $groupby = 0;
+    protected int $groupby = 0;
 
     /**
      * @var int
      */
-    protected $recordsPerPage = 25;
+    protected int $recordsPerPage = 25;
 
     /**
      * @var int
      */
-    protected $timeframe = 0;
+    protected int $timeframe = 0;
 
     /**
      * @var array
      */
-    protected $bibtypes = [];
+    protected array $bibtypes = [];
 
     /**
      * @var int[]
      */
-    protected $status = [];
+    protected array $status = [];
 
     /**
      * @var array
      */
-    protected $keywords = [];
+    protected array $keywords = [];
 
     /**
      * @var array
      */
-    protected $tags = [];
+    protected array $tags = [];
 
     /**
      * Commaseparated identifiers of author objects
      *
      * @var string "123,345,678"
      */
-    protected $author = '';
+    protected string $author = '';
 
     /**
      * @var int 0=off, 1=intern, 2=extern
      */
-    protected $externFilter = 0;
+    protected int $externFilter = 0;
 
     /**
      * @var array
      */
-    protected $records = [];
+    protected array $records = [];
 
     /**
      * @var string
      */
-    protected $searchterm = '';
+    protected string $searchterm = '';
 
     /**
      * @var int
      */
-    protected $year = 0;
+    protected int $year = 0;
 
     /**
      * @var string
      */
-    protected $authorstring = '';
+    protected string $authorstring = '';
 
     /**
      * @var array
      */
-    protected $export = [];
+    protected array $export = [];
 
     /**
      * @var int recursive level
      */
-    protected $recursive = 0;
+    protected int $recursive = 0;
 
     /**
      * Filter constructor.
@@ -245,7 +246,7 @@ class Filter
     /**
      * @return \DateTime
      */
-    public function getDateFromTimeFrame()
+    public function getDateFromTimeFrame(): ?\DateTime
     {
         $date = null;
         try {
@@ -382,8 +383,9 @@ class Filter
 
     /**
      * @return Author[]
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
-    public function getAuthors()
+    public function getAuthors(): array
     {
         $authors = [];
         if ($this->isAuthorSet()) {
@@ -532,9 +534,9 @@ class Filter
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getYearFrom()
+    public function getYearFrom(): ?\DateTime
     {
         try {
             return new \DateTime('first day of January ' . $this->getYear());
@@ -546,7 +548,7 @@ class Filter
     /**
      * @return \DateTime|null
      */
-    public function getYearTo()
+    public function getYearTo(): ?\DateTime
     {
         try {
             $date = new \DateTime('first day of January ' . ($this->getYear() + 1));

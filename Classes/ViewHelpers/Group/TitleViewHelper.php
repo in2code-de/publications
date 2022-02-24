@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\ViewHelpers\Group;
 
 use TYPO3\CMS\Core\SingletonInterface;

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\ViewHelpers\Format;
 
 use TYPO3\CMS\Core\SingletonInterface;
@@ -12,7 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class MonthNameFromNumberViewHelper extends AbstractViewHelper implements SingletonInterface
 {
-
     /**
      * @return void
      */

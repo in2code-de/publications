@@ -1,4 +1,5 @@
 <?php
+
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Domain\Model\Author;
 

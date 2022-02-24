@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,7 +27,7 @@ class ObjectUtility
      * @return TypoScriptFrontendController
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public static function getTyposcriptFrontendController()
+    public static function getTyposcriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

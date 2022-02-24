@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
 use In2code\Publications\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -67,10 +68,10 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
         return $text;
     }
 
-
     /**
      * @param string $filter
      * @return array
+     * @throws Exception
      */
     protected function getAuthors(string $filter): array
     {

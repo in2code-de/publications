@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\ViewHelpers\Format;
 
 use In2code\Publications\Utility\BibTexUtility;

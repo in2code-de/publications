@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Service;
 
 use Doctrine\DBAL\DBALException;
@@ -23,22 +25,22 @@ class ImportService extends AbstractService
     /**
      * @var ImporterInterface
      */
-    protected $importer;
+    protected ImporterInterface $importer;
 
     /**
      * @var array
      */
-    protected $publicationsToImport = [];
+    protected array $publicationsToImport = [];
 
     /**
      * @var int
      */
-    protected $storagePid;
+    protected int $storagePid;
 
     /**
      * @var array
      */
-    protected $importInformation = [
+    protected array $importInformation = [
         'updatedPublications' => 0,
         'createdPublications' => 0,
         'publicationsWithNoUpdate' => 0,

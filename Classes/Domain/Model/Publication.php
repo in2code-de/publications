@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -16,182 +18,182 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
-    protected $title = '';
+    protected string $title = '';
 
     /**
      * @var string
      */
-    protected $abstract = '';
+    protected string $abstract = '';
 
     /**
      * @var string
      */
-    protected $bibtype = '';
+    protected string $bibtype = '';
 
     /**
      * @var string
      */
-    protected $type = '';
+    protected string $type = '';
 
     /**
      * @var int
      */
-    protected $status = 0;
+    protected int $status = 0;
 
     /**
      * @var string
      */
-    protected $year = '';
+    protected string $year = '';
 
     /**
      * @var string
      */
-    protected $month = '';
+    protected string $month = '';
 
     /**
      * @var string
      */
-    protected $day = '';
+    protected string $day = '';
 
     /**
      * @var bool
      */
-    protected $reviewed = false;
+    protected bool $reviewed = false;
 
     /**
      * @var string
      */
-    protected $language = '';
+    protected string $language = '';
 
     /**
      * @var string
      */
-    protected $citeid = '';
+    protected string $citeid = '';
 
     /**
      * @var string
      */
-    protected $isbn = '';
+    protected string $isbn = '';
 
     /**
      * @var string
      */
-    protected $issn = '';
+    protected string $issn = '';
 
     /**
      * @var string
      */
-    protected $doi = '';
+    protected string $doi = '';
 
     /**
      * @var string
      */
-    protected $organization = '';
+    protected string $organization = '';
 
     /**
      * @var string
      */
-    protected $school = '';
+    protected string $school = '';
 
     /**
      * @var string
      */
-    protected $institution = '';
+    protected string $institution = '';
 
     /**
      * @var string
      */
-    protected $institute = '';
+    protected string $institute = '';
 
     /**
      * @var string
      */
-    protected $booktitle = '';
+    protected string $booktitle = '';
 
     /**
      * @var string
      */
-    protected $journal = '';
+    protected string $journal = '';
 
     /**
      * @var string
      */
-    protected $edition = '';
+    protected string $edition = '';
 
     /**
      * @var string
      */
-    protected $volume = '';
+    protected string $volume = '';
 
     /**
      * @var string
      */
-    protected $publisher = '';
+    protected string $publisher = '';
 
     /**
      * @var string
      */
-    protected $address = '';
+    protected string $address = '';
 
     /**
      * @var string
      */
-    protected $chapter = '';
+    protected string $chapter = '';
 
     /**
      * @var string
      */
-    protected $series = '';
+    protected string $series = '';
 
     /**
      * @var string
      */
-    protected $howpublished = '';
+    protected string $howpublished = '';
 
     /**
      * @var string
      */
-    protected $editor = '';
+    protected string $editor = '';
 
     /**
      * @var string
      */
-    protected $pages = '';
+    protected string $pages = '';
 
     /**
      * @var string
      */
-    protected $affiliation = '';
+    protected string $affiliation = '';
 
     /**
      * @var bool
      */
-    protected $extern = false;
+    protected bool $extern = false;
 
     /**
      * @var string
      */
-    protected $eventName = '';
+    protected string $eventName = '';
 
     /**
      * @var string
      */
-    protected $eventPlace = '';
+    protected string $eventPlace = '';
 
     /**
      * @var string
      */
-    protected $eventDate = '';
+    protected string $eventDate = '';
 
     /**
      * @var string
      */
-    protected $number = '';
+    protected string $number = '';
 
     /**
      * @var string
      */
-    protected $number2 = '';
+    protected string $number2 = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Publications\Domain\Model\Author>
@@ -201,68 +203,62 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
-    protected $keywords = '';
+    protected string $keywords = '';
 
     /**
      * @var string
      */
-    protected $tags = '';
+    protected string $tags = '';
 
     /**
      * @var string
      */
-    protected $webUrl = '';
+    protected string $webUrl = '';
 
     /**
      * @var string
      */
-    protected $webUrl2 = '';
+    protected string $webUrl2 = '';
 
     /**
      * @var string
      */
-    protected $webUrlDate = '';
+    protected string $webUrlDate = '';
 
     /**
      * @var string
      */
-    protected $fileUrl = '';
+    protected string $fileUrl = '';
 
     /**
      * @var string
      */
-    protected $note = '';
+    protected string $note = '';
 
     /**
      * @var string
      */
-    protected $annotation = '';
+    protected string $annotation = '';
 
     /**
      * @var string
      */
-    protected $miscellaneous = '';
+    protected string $miscellaneous = '';
 
     /**
      * @var string
      */
-    protected $miscellaneous2 = '';
+    protected string $miscellaneous2 = '';
 
     /**
      * @var bool
      */
-    protected $inLibrary = false;
+    protected bool $inLibrary = false;
 
     /**
      * @var string
      */
-    protected $borrowedBy = '';
-
-    /**
-     * @var int
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
-     */
-    protected $_numeration = 0;
+    protected string $borrowedBy = '';
 
     /**
      * Basic mapping for any export. Which fields should be available in export files with which key.
@@ -270,7 +266,7 @@ class Publication extends AbstractEntity
      *
      * @var array
      */
-    protected $propertiesMapping = [
+    protected array $propertiesMapping = [
         'title' => 'title',
         'abstract' => 'abstract',
         'type' => 'type',
@@ -321,14 +317,14 @@ class Publication extends AbstractEntity
     /**
      * @var array
      */
-    protected $propertiesMappingBib = [
+    protected array $propertiesMappingBib = [
         'authorsForBibExport' => 'author'
     ];
 
     /**
      * @var array
      */
-    protected $propertiesMappingXml = [
+    protected array $propertiesMappingXml = [
         'bibtype' => 'bibtype',
         'citeid' => 'citeid'
     ];

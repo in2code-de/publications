@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\ViewHelpers\Render;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -9,7 +11,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class IconViewHelper extends AbstractViewHelper
 {
-
     /**
      * @return void
      */
@@ -47,7 +48,10 @@ class IconViewHelper extends AbstractViewHelper
         return $iconCode;
     }
 
-    protected function buildAttributes()
+    /**
+     * @return string
+     */
+    protected function buildAttributes(): string
     {
         $attributes = '';
 

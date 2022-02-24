@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Command;
 
 use In2code\Publications\Migration\MigrateFromBib;
@@ -24,7 +26,8 @@ class MigrationCommand extends Command {
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|null
+     * @return int
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
