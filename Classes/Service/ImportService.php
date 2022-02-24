@@ -443,10 +443,8 @@ class ImportService extends AbstractService
      */
     protected function getExtensionSettings(): array
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         /** @var ConfigurationManager $configurationManager */
-        $configurationManager = $objectManager->get(ConfigurationManager::class);
-
+        $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
         return $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
     }
 }

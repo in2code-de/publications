@@ -994,6 +994,7 @@ class Publication extends AbstractEntity
      */
     public function getNumber(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->number;
     }
 

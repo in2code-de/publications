@@ -11,21 +11,16 @@
 
 	<f:if condition="{publications}">
 		<f:then>
-			<f:widget.paginate
-					objects="{publications}"
-					as="publicationsPage"
-					configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-				<div>
-					<f:for each="{publicationsPage}" as="publication">
-						<f:render section="GroupTitle" arguments="{_all}"/>
-
-						<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
-							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
-						</div>
-					</f:for>
-					<f:render partial="List/Export" arguments="{_all}"/>
+			<f:for each="{pagination.paginator.paginatedItems}" as="publication" iteration="iterator">
+				<f:render section="GroupTitle" arguments="{_all}"/>
+				<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
+					<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{publication: publication, keyOfFirstPaginatedItem: pagination.paginator.keyOfFirstPaginatedItem, index:iterator.index, maxItems:maxItems}" />
 				</div>
-			</f:widget.paginate>
+			</f:for>
+			<f:if condition="{pagination.paginator.numberOfPages} > 1">
+				<f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+			</f:if>
+			<f:render partial="List/Export" arguments="{_all}"/>
 		</f:then>
 		<f:else>
 			<div class="alert alert-danger" role="alert">

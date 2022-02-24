@@ -9,7 +9,7 @@
 <div style="display: flex;">
 	<f:if condition="{settings.hideEnumeration} != true">
 		<f:then>
-			<div style="padding-right: 10px;">{publication.numeration}.</div>
+			<div style="padding-right: 10px;">{maxItems - keyOfFirstPaginatedItem - index}.</div>
 		</f:then>
 		<f:else>
 			<div style="padding-right: 10px;"></div>

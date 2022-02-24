@@ -4,12 +4,12 @@ namespace In2code\Publications\Controller;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
+use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -21,11 +21,10 @@ class PublicationController extends ActionController
     /**
      * @var PublicationRepository
      */
-    protected $publicationRepository = null;
+    protected ?PublicationRepository $publicationRepository = null;
 
     /**
      * @return void
-     * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
     public function initializeListAction()
@@ -37,22 +36,35 @@ class PublicationController extends ActionController
      * @param Filter $filter
      * @return void
      * @throws InvalidQueryException
+     * @throws NoSuchArgumentException
      */
     public function listAction(Filter $filter)
     {
         $publications = $this->publicationRepository->findByFilter($filter);
+
+        $itemsPerPage =  $filter->getRecordsPerPage();
+        $maximumLinks = 10;
+
+        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $paginator = new QueryResultPaginator($publications, $currentPage, $itemsPerPage);
+        $pagination = new NumberedPagination($paginator, $maximumLinks);
+
+        $this->view->assign('pagination', [
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ]);
+
         $this->view->assignMultiple([
             'filter' => $filter,
             'publications' => $publications,
-            'showPagination' => count($publications) > $filter->getRecordsPerPage(),
-            'data' => $this->getContentObject()->data
+            'data' => $this->getContentObject()->data,
+            'maxItems' => count($publications),
         ]);
     }
 
     /**
      * @return void
      * @throws StopActionException
-     * @throws UnsupportedRequestTypeException
      */
     public function resetListAction()
     {
@@ -62,7 +74,6 @@ class PublicationController extends ActionController
 
     /**
      * @return void
-     * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
     public function initializeDownloadBibtexAction()
@@ -93,7 +104,6 @@ class PublicationController extends ActionController
 
     /**
      * @return void
-     * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
     public function initializeDownloadXmlAction()
@@ -124,7 +134,6 @@ class PublicationController extends ActionController
 
     /**
      * @return void
-     * @throws InvalidArgumentNameException
      * @throws NoSuchArgumentException
      */
     protected function setFilterArguments()

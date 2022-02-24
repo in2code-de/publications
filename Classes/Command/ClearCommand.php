@@ -41,7 +41,7 @@ class ClearCommand extends Command {
         foreach ($tables as $table) {
             $connection = DatabaseUtility::getConnectionForTable($table);
             if ($pid > 0) {
-                $connection->query('delete from ' . $table . ' where pid=' . $pid);
+                $connection->executeQuery('delete from ' . $table . ' where pid=' . $pid);
             } else {
                 $connection->truncate($table);
             }

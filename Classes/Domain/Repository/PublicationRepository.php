@@ -15,17 +15,16 @@ class PublicationRepository extends AbstractRepository
 {
     /**
      * @param Filter $filter
-     * @return array
+     * @return object[]|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findByFilter(Filter $filter): array
+    public function findByFilter(Filter $filter)
     {
         $query = $this->createQuery();
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
-        $results = $query->execute();
-        $results = $this->convertToAscendingArray($results);
-        return $results;
+        // ToDo: Fix sorting via DB-Query
+        return $query->execute();
     }
 
     /**
