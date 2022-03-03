@@ -18,3 +18,8 @@ node_modules/
 .Build/
 composer.lock
 package-lock.json
+/.ddev/**
+!/.ddev/config.yaml
+!/.ddev/docker-compose.typo3.yaml
+config
+var
