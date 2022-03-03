@@ -20,7 +20,13 @@ $tca = [
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg',
         'searchFields' =>
-            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi'
+            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',

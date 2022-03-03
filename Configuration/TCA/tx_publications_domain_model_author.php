@@ -20,7 +20,13 @@ $tca = [
         'default_sortby' => 'ORDER BY last_name ASC',
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Author::TABLE_NAME . '.svg',
-        'searchFields' => 'last_name,first_name,url,orcid'
+        'searchFields' => 'last_name,first_name,url,orcid',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
