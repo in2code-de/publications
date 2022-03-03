@@ -15,7 +15,11 @@ mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
-
+hooks:
+  post-start:
+    - exec: composer install
+    - exec: cp .project/config/typo3/DdevConfiguration.php .Build/public/typo3conf/AdditionalConfiguration.php
+host_db_port: "49179"
 # Key features of ddev's config.yaml:
 
 # name: <projectname> # Name of the project, automatically provides
