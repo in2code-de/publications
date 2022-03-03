@@ -90,7 +90,13 @@ class BibTexUtility
         '½',
         '¼',
         '…',
-        '…'
+        '…',
+        'Ä',
+        'Ö',
+        'Ü',
+        'ä',
+        'ö',
+        'ü',
     ];
 
     /**
@@ -173,7 +179,13 @@ class BibTexUtility
         '{\\textonehalf}',
         '{\\textonequarter}',
         '[$\ldots$]',
-        '$\ldots$'
+        '$\ldots$',
+        '{\"{A}}',
+        '{\"{O}}',
+        '{\"{U}}',
+        '{\"{a}}',
+        '{\"{o}}',
+        '{\"{u}}',
     ];
 
     /**
