@@ -8,11 +8,11 @@ use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -41,11 +41,11 @@ class PublicationController extends ActionController
      * @throws InvalidQueryException
      * @throws NoSuchArgumentException
      */
-    public function listAction(Filter $filter)
+    public function listAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
 
-        $itemsPerPage =  $filter->getRecordsPerPage();
+        $itemsPerPage = $filter->getRecordsPerPage();
         $maximumLinks = 10;
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
@@ -56,13 +56,13 @@ class PublicationController extends ActionController
             'paginator' => $paginator,
             'pagination' => $pagination,
         ]);
-
         $this->view->assignMultiple([
             'filter' => $filter,
             'publications' => $publications,
             'data' => $this->getContentObject()->data,
             'maxItems' => count($publications),
         ]);
+        return $this->htmlResponse();
     }
 
     /**
@@ -82,14 +82,15 @@ class PublicationController extends ActionController
     public function initializeDownloadBibtexAction()
     {
         $this->setFilterArguments();
+        $this->request->setFormat('xml');
     }
 
     /**
      * @param Filter $filter
-     * @return void
+     * @return ResponseInterface
      * @throws InvalidQueryException
      */
-    public function downloadBibtexAction(Filter $filter)
+    public function downloadBibtexAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
         $this->view->assignMultiple([
@@ -97,12 +98,12 @@ class PublicationController extends ActionController
             'publications' => $publications
         ]);
 
-        $this->response->setHeader('Content-Type', 'application/x-bibtex');
-        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.bib"');
-        $this->response->setHeader('Pragma', 'no-cache');
-        $this->response->sendHeaders();
-        echo $this->view->render();
-        exit;
+        return $this->responseFactory
+            ->createResponse()
+            ->withHeader('Content-Type', 'application/x-bibtex')
+            ->withHeader('Pragma', 'no-cache')
+            ->withHeader('Content-Disposition', 'attachment; filename="download.bib"')
+            ->withBody($this->streamFactory->createStream($this->view->render()));
     }
 
     /**
@@ -112,14 +113,15 @@ class PublicationController extends ActionController
     public function initializeDownloadXmlAction()
     {
         $this->setFilterArguments();
+        $this->request->setFormat('xml');
     }
 
     /**
      * @param Filter $filter
-     * @return void
+     * @return ResponseInterface
      * @throws InvalidQueryException
      */
-    public function downloadXmlAction(Filter $filter)
+    public function downloadXmlAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
         $this->view->assignMultiple([
@@ -127,12 +129,12 @@ class PublicationController extends ActionController
             'publications' => $publications
         ]);
 
-        $this->response->setHeader('Content-Type', 'text/xml');
-        $this->response->setHeader('Content-Disposition', 'attachment; filename="download.xml"');
-        $this->response->setHeader('Pragma', 'no-cache');
-        $this->response->sendHeaders();
-        echo $this->view->render();
-        exit;
+        return $this->responseFactory
+            ->createResponse()
+            ->withHeader('Content-Type', 'text/xml')
+            ->withHeader('Pragma', 'no-cache')
+            ->withHeader('Content-Disposition', 'attachment; filename="download.xml"')
+            ->withBody($this->streamFactory->createStream($this->view->render()));
     }
 
     /**

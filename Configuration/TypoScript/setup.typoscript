@@ -37,3 +37,77 @@ module.tx_publications {
 		}
 	}
 }
+
+[getTSFE().type == 1646653915]
+	lib.contentElement {
+		layoutRootPaths >
+		layoutRootPaths.0 = EXT:publications/Resources/Private/Layouts/
+		templateRootPaths >
+		templateRootPaths.0 = EXT:publications/Resources/Private/Templates/
+	}
+
+	xmlDownload = PAGE
+	xmlDownload {
+		typeNum = 1646653915
+		config {
+			# deactivate Standard-Header
+			disableAllHeaderCode = 1
+			# no xhtml tags
+			xhtml_cleaning = none
+			admPanel = 0
+			metaCharset = utf-8
+			locale_all = en_EN
+			disablePrefixComment = 1
+			removeDefaultJS = 1
+			removeDefaultCss = 1
+			removePageCss = 1
+			linkVars >
+		}
+
+		10 < styles.content.get
+		10 {
+			select {
+				where = colPos=0 AND list_type='publications_pi1'
+				orderBy = sorting ASC
+				max = 1
+			}
+		}
+	}
+[end]
+
+[getTSFE().type == 1646653916]
+	lib.contentElement {
+		layoutRootPaths >
+		layoutRootPaths.0 = EXT:publications/Resources/Private/Layouts/
+		templateRootPaths >
+		templateRootPaths.0 = EXT:publications/Resources/Private/Templates/
+	}
+
+	xmlDownload = PAGE
+	xmlDownload {
+		typeNum = 1646653916
+		config {
+			# deactivate Standard-Header
+			disableAllHeaderCode = 1
+			# no xhtml tags
+			xhtml_cleaning = none
+			admPanel = 0
+			metaCharset = utf-8
+			locale_all = en_EN
+			disablePrefixComment = 1
+			removeDefaultJS = 1
+			removeDefaultCss = 1
+			removePageCss = 1
+			linkVars >
+		}
+
+		10 < styles.content.get
+		10 {
+			select {
+				where = colPos=0 AND list_type='publications_pi1'
+				orderBy = sorting ASC
+				max = 1
+			}
+		}
+	}
+[end]

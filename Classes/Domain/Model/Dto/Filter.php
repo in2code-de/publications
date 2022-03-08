@@ -113,7 +113,7 @@ class Filter
         $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
         $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
-        $this->setAuthor($settings['author']);
+        $this->setAuthor($settings['author'] ?? '');
         $this->setExternFilter((int)$settings['extern']);
         $this->setRecursive((int)$settings['recursive']);
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
