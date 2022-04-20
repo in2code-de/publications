@@ -34,6 +34,13 @@
 				<source>No publications found</source>
 			</trans-unit>
 
+			<trans-unit id="list.filter.showalldocumenttypes">
+				<source>All publication types</source>
+			</trans-unit>
+			<trans-unit id="list.filter.documenttype">
+				<source>Publication types</source>
+			</trans-unit>
+
 			<trans-unit id="bibtype.article">
 				<source>Articles</source>
 			</trans-unit>

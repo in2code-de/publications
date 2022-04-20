@@ -78,6 +78,11 @@ class Filter
     protected $searchterm = '';
 
     /**
+     * @var string
+     */
+    protected $documenttype = '';
+
+    /**
      * @var int
      */
     protected $year = 0;
@@ -516,6 +521,14 @@ class Filter
     }
 
     /**
+     * @return string
+     */
+    public function getDocumenttype(): string
+    {
+        return $this->documenttype;
+    }
+
+    /**
      * @return int
      */
     public function getYear(): int
@@ -558,6 +571,16 @@ class Filter
     }
 
     /**
+     * @param string $documenttype
+     * @return Filter
+     */
+    public function setDocumenttype(string $documenttype): self
+    {
+        $this->documenttype = $documenttype;
+        return $this;
+    }
+
+    /**
      * @param int $year
      * @return Filter
      */
@@ -573,6 +596,14 @@ class Filter
     public function getAuthorstring(): string
     {
         return $this->authorstring;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDocumenttypeSet(): bool
+    {
+        return $this->getDocumenttype() !== 'all';
     }
 
     /**
@@ -664,6 +695,7 @@ class Filter
     {
         return $this->isSearchtermSet()
             || $this->isYearSet()
-            || $this->isAuthorstringSet();
+            || $this->isAuthorstringSet()
+            || $this->isDocumenttypeSet();
     }
 }
