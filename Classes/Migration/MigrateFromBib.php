@@ -76,6 +76,7 @@ class MigrateFromBib
         'ISBN' => 'isbn',
         'ISSN' => 'issn',
         'DOI' => 'doi',
+        'pmid' => 'pmid',
         'extern' => 'extern',
         'reviewed' => 'reviewed',
         'in_library' => 'in_library',

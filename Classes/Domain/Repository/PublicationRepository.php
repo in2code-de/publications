@@ -52,6 +52,7 @@ class PublicationRepository extends AbstractRepository
             $and = $this->filterQueryBySearchterms($query, $filter, $and);
             $and = $this->filterQueryByYear($query, $filter, $and);
             $and = $this->filterQueryByAuthorstring($query, $filter, $and);
+            $and = $this->filterQueryByDocumenttype($query, $filter, $and);
         }
         if ($and !== []) {
             $query->matching($query->logicalAnd($and));
@@ -263,6 +264,21 @@ class PublicationRepository extends AbstractRepository
         if ($filter->isYearSet()) {
             $and[] = $query->equals('year', $filter->getYear());
         }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterQueryByDocumenttype(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isDocumenttypeSet()) {
+            $and[] = $query->equals('bibtype', $filter->getDocumenttype());
+        } 
         return $and;
     }
 
