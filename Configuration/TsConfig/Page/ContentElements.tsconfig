@@ -1,13 +1,13 @@
 mod.wizards.newContentElement.wizardItems.plugins {
-    elements {
-        publications {
-            iconIdentifier = extension-publications
-            title = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:wizardTitlePi1
-            description = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:wizardDescriptionsPi1
-            tt_content_defValues {
-                CType = list
-                list_type = publications_pi1
-            }
-        }
+  elements {
+    publications {
+      iconIdentifier = extension-publications
+      title = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:wizardTitlePi1
+      description = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:wizardDescriptionsPi1
+      tt_content_defValues {
+        CType = list
+        list_type = publications_pi1
+      }
     }
+  }
 }

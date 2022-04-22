@@ -1,11 +1,11 @@
 plugin.tx_publications {
-	view {
-		templateRootPath = EXT:publications/Resources/Private/Templates/
-		partialRootPath = EXT:publications/Resources/Private/Partials/
-		layoutRootPath = EXT:publications/Resources/Private/Layouts/
-	}
+  view {
+    templateRootPath = EXT:publications/Resources/Private/Templates/
+    partialRootPath = EXT:publications/Resources/Private/Partials/
+    layoutRootPath = EXT:publications/Resources/Private/Layouts/
+  }
 
-	settings {
-		storagePid = 0
-	}
+  settings {
+    storagePid = 0
+  }
 }
