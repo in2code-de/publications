@@ -23,3 +23,4 @@ package-lock.json
 !/.ddev/docker-compose.typo3.yaml
 config
 var
+/.php-cs-fixer.cache

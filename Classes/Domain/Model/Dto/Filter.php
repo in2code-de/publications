@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Domain\Model\Dto;
 
@@ -547,7 +547,7 @@ class Filter
     }
 
     /**
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getYearFrom(): ?\DateTime
     {

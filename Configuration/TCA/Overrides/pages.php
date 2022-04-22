@@ -4,7 +4,6 @@ defined('TYPO3') or die();
 /**
  * Override icon for storage folder
  */
-
 $ext = 'publications';
 $iconRef = 'extension-' . $ext;
 

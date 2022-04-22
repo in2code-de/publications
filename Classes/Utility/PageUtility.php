@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Utility;
 
@@ -39,7 +39,6 @@ class PageUtility
     }
 
     /**
-     *
      * Recursively fetch all descendants of a given page
      *
      * @param int $id uid of the page

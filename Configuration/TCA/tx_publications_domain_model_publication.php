@@ -1,7 +1,7 @@
 <?php
 
-use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Domain\Model\Author;
+use In2code\Publications\Domain\Model\Publication;
 
 $llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
 $llTable = $llPrefix . Publication::TABLE_NAME;
@@ -202,7 +202,7 @@ $tca = [
         'bibtype' => [
             'exclude' => false,
             'onChange' => 'reload',
-            'label' => $llTable. '.bibtype',
+            'label' => $llTable . '.bibtype',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Domain\Model;
 
@@ -560,11 +560,11 @@ class Publication extends AbstractEntity
      */
     public function getCiteidForExport(): string
     {
-       $citeid = $this->getCiteid();
-       if (empty($citeid)) {
-           $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
-       }
-       return $citeid;
+        $citeid = $this->getCiteid();
+        if (empty($citeid)) {
+            $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
+        }
+        return $citeid;
     }
 
     /**

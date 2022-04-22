@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Domain\Repository;
 
@@ -278,7 +278,7 @@ class PublicationRepository extends AbstractRepository
     {
         if ($filter->isDocumenttypeSet()) {
             $and[] = $query->equals('bibtype', $filter->getDocumenttype());
-        } 
+        }
         return $and;
     }
 

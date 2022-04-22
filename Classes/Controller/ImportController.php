@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Controller;
 
@@ -9,9 +9,9 @@ use In2code\Publications\Service\ImportService;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Error;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Class ImportController
@@ -125,7 +125,6 @@ class ImportController extends ActionController
                     $importer[$importerClass] = $importerTitle;
                 }
             }
-
         }
 
         return $importer;

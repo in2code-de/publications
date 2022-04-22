@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Domain\Repository;
 
@@ -15,7 +15,8 @@ abstract class AbstractRepository extends Repository
     /**
      * @return void
      */
-    public function initializeObject() {
+    public function initializeObject()
+    {
         $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);

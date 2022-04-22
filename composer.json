@@ -44,6 +44,7 @@
     "typo3-ter/publications": "self.version"
   },
   "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.8",
     "helhum/typo3-console": "^7.0",
     "nimut/testing-framework": "^6.0",
     "squizlabs/php_codesniffer": "^3.3",
@@ -88,7 +89,8 @@
     "post-autoload-dump": [
       "mkdir -p .Build/public/typo3conf/ext/",
       "[ -L .Build/public/typo3conf/ext/publications ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/publications"
-    ]
+    ],
+    "test:php:cs": "php-cs-fixer fix --dry-run --config=.project/tests/.php-cs-fixer.php --diff"
   },
   "extra": {
     "typo3/cms": {

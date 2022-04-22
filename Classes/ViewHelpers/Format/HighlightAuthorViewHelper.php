@@ -1,13 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\ViewHelpers\Format;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
 use In2code\Publications\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -17,9 +16,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class HighlightAuthorViewHelper extends AbstractViewHelper
 {
-  /**
-   * @var bool
-   */
+    /**
+     * @var bool
+     */
     protected $escapeOutput = false;
 
     /**

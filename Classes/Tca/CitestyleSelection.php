@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Tca;
 
@@ -53,7 +53,7 @@ class CitestyleSelection
      *        if LLL parse
      *        if empty take value
      *
-     * @param null|string $label
+     * @param string|null $label
      * @param string $fallback
      * @return string
      */
