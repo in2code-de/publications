@@ -1,6 +1,6 @@
 name: publications
 type: php
-docroot: .Build/public
+docroot: .build/public
 php_version: "8.0"
 webserver_type: apache-fpm
 router_http_port: "80"
@@ -14,9 +14,6 @@ database:
 nfs_mount_enabled: false
 mutagen_enabled: false
 hooks:
-  post-start:
-  - exec: composer install
-  - exec: cp .project/config/typo3/DdevConfiguration.php .Build/public/typo3conf/AdditionalConfiguration.php
 host_db_port: "49179"
 use_dns_when_possible: true
 composer_version: "2"

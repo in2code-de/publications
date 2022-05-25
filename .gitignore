@@ -15,12 +15,12 @@ npm-debug.log
 dynamicReturnTypeMeta.json
 Resources/Private/Build/node_modules/
 node_modules/
-.Build/
+.build/
 composer.lock
 package-lock.json
 /.ddev/**
 !/.ddev/config.yaml
 !/.ddev/docker-compose.typo3.yaml
-config
+/config/**
 var
 /.php-cs-fixer.cache

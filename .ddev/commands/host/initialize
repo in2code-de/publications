@@ -11,10 +11,22 @@ then
     exit
 fi
 
+echo "Fetching database and fileadmin"
 git lfs pull
+echo "Copy configuration"
+mkdir -p .build/config/sites/main
+cp .project/config/typo3/config.yaml .build/config/sites/main/
+mkdir -p .build/public
+cp .project/config/typo3/.htaccess .build/public/
+mkdir -p .build/public/typo3conf/AdditionalConfiguration/
+cp .project/config/typo3/LocalConfiguration.php .build/public/typo3conf
+cp .project/config/typo3/AdditionalConfiguration.php .build/public/typo3conf
+
+echo "Importing database"
 ddev import-db --src=.project/data/db.sql.gz
-mkdir -p config/sites/main && cp .project/config/typo3/config.yaml config/sites/main/
-cp .project/config/typo3/DdevConfiguration.php .Build/public/typo3conf/AdditionalConfiguration.php
-ddev typo3cms install:setup
-mkdir -p .Build/public/fileadmin
-cd .Build/public && tar xf ../../.project/data/fileadmin.tar.gz
+echo "Provide fileadmin"
+cd .build/public && tar xf ../../.project/data/fileadmin.tar.gz
+echo "Run 'composer install'"
+ddev composer install
+ddev describe
+echo "Thanks for supporting 'EXT:publications"
