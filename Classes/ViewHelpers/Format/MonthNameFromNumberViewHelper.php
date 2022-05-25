@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\ViewHelpers\Format;
 
 use TYPO3\CMS\Core\SingletonInterface;
@@ -12,7 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class MonthNameFromNumberViewHelper extends AbstractViewHelper implements SingletonInterface
 {
-
     /**
      * @return void
      */
@@ -21,6 +22,7 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
         parent::initializeArguments();
         $this->registerArgument('month', 'string', 'Name or number', true);
         $this->registerArgument('limit', 'int', 'Optional limit for characters', false, 0);
+        $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
     /**
@@ -35,7 +37,7 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
             }
             if ($this->arguments['limit'] > 0 && strlen($month) > $this->arguments['limit']) {
                 $month = substr($month, 0, (int)$this->arguments['limit']);
-                $month .= '.';
+                $month .=  $this->arguments['suffix'];
             }
         } else {
             $month = '';

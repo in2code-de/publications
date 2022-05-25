@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
 
 namespace In2code\Publications\Utility;
 
@@ -89,7 +90,13 @@ class BibTexUtility
         '½',
         '¼',
         '…',
-        '…'
+        '…',
+        'Ä',
+        'Ö',
+        'Ü',
+        'ä',
+        'ö',
+        'ü',
     ];
 
     /**
@@ -172,7 +179,13 @@ class BibTexUtility
         '{\\textonehalf}',
         '{\\textonequarter}',
         '[$\ldots$]',
-        '$\ldots$'
+        '$\ldots$',
+        '{\"{A}}',
+        '{\"{O}}',
+        '{\"{U}}',
+        '{\"{a}}',
+        '{\"{o}}',
+        '{\"{u}}',
     ];
 
     /**

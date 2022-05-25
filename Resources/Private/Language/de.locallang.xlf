@@ -44,6 +44,15 @@
 				<target state="translated">Keine Publikationen gefunden</target>
 			</trans-unit>
 
+			<trans-unit id="list.filter.showalldocumenttypes">
+				<source>All publication types</source>
+				<target state="translated">Alle Dokumententypen</target>
+			</trans-unit>
+			<trans-unit id="list.filter.documenttype">
+				<source>Publication types</source>
+				<target state="translated">Dokumententyp</target>
+			</trans-unit>
+
 			<trans-unit id="bibtype.article">
 				<source>Articles</source>
 				<target state="translated">Artikel</target>
@@ -177,6 +186,10 @@
 			<trans-unit id="linkblock.doi">
 				<source>DOI</source>
 				<target>DOI</target>
+			</trans-unit>
+			<trans-unit id="linkblock.pmid">
+				<source>Pubmed</source>
+				<target>Pubmed</target>
 			</trans-unit>
 			<trans-unit id="linkblock.file">
 				<source>File</source>

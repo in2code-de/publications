@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\Controller;
 
 use Doctrine\DBAL\DBALException;
@@ -7,10 +9,9 @@ use In2code\Publications\Service\ImportService;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Validation\Error;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
  * Class ImportController
@@ -35,6 +36,7 @@ class ImportController extends ActionController
      * @param string $importer
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
+     * @return void
      * @throws DBALException
      */
     public function importAction(array $file, string $importer)
@@ -54,8 +56,8 @@ class ImportController extends ActionController
     }
 
     /**
-     * @return string
-     * @throws StopActionException
+     * @return \Psr\Http\Message\ResponseInterface|string
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
      */
     public function errorAction()
     {
@@ -123,7 +125,6 @@ class ImportController extends ActionController
                     $importer[$importerClass] = $importerTitle;
                 }
             }
-
         }
 
         return $importer;

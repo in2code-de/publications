@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\ViewHelpers\Render;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -9,7 +11,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class IconViewHelper extends AbstractViewHelper
 {
-
     /**
      * @return void
      */
@@ -35,28 +36,31 @@ class IconViewHelper extends AbstractViewHelper
             case 'docx':
             $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/docx.svg" '
                 . $this->buildAttributes()
-                . ' alt="'. $fileType .'">';
+                . ' alt="' . $fileType . '">';
             break;
             case 'pdf':
                 $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/pdf.svg" '
                     . $this->buildAttributes()
-                    . ' alt="'. $fileType .'">';
+                    . ' alt="' . $fileType . '">';
                 break;
         }
 
         return $iconCode;
     }
 
-    protected function buildAttributes()
+    /**
+     * @return string
+     */
+    protected function buildAttributes(): string
     {
         $attributes = '';
 
         if ($this->arguments['style']) {
-            $attributes = ' style="' .  $this->arguments['style'] . '" ';
+            $attributes = ' style="' . $this->arguments['style'] . '" ';
         }
 
         if ($this->arguments['class']) {
-            $attributes = ' class="' .  $this->arguments['class'] . '" ';
+            $attributes = ' class="' . $this->arguments['class'] . '" ';
         }
 
         return $attributes;

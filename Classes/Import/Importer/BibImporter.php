@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\Import\Importer;
 
 use In2code\Publications\Import\Processor\AuthorProcessor;
@@ -19,12 +21,13 @@ class BibImporter extends AbstractImporter
      *
      * @var array
      */
-    protected $additionalPublicationMapping = [
+    protected array $additionalPublicationMapping = [
         'citation-key' => 'citeid',
         'url' => 'file_url',
         'web_url' => 'web_url',
         'author' => 'authors',
         'DOI' => 'doi',
+        'pmid' => 'pmid',
         'ISSN' => 'issn',
         'ISBN' => 'isbn',
         'misc' => 'miscellaneous',
@@ -36,7 +39,7 @@ class BibImporter extends AbstractImporter
      *
      * @var array
      */
-    protected $additionalAuthorMapping = [
+    protected array $additionalAuthorMapping = [
         'first' => 'first_name',
         'last' => 'last_name'
     ];

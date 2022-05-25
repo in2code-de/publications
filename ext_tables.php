@@ -1,40 +1,27 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
+
+declare(strict_types=1);
+
+defined('TYPO3') or die();
 
 call_user_func(
     function () {
         /**
          * Backend Module
          */
-        if (TYPO3_MODE === 'BE') {
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'In2code.publications',
-                'web',
-                'import',
-                '',
-                [
-                    'Import' => 'overview, import'
-                ],
-                [
-                    'access' => 'user,group',
-                    'icon' => 'EXT:publications/Resources/Public/Icons/ModuleImport.svg',
-                    'labels' => 'LLL:EXT:publications/Resources/Private/Language/locallang_mod_import.xlf',
-                ]
-            );
-        }
-
-        /**
-         * Register icons
-         */
-        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Core\Imaging\IconRegistry::class
-        );
-        $iconRegistry->registerIcon(
-            'extension-publications',
-            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            ['source' => 'EXT:publications/Resources/Public/Icons/Extension.svg']
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+            'publications',
+            'web',
+            'import',
+            '',
+            [
+                In2code\Publications\Controller\ImportController::class => 'overview, import'
+            ],
+            [
+                'access' => 'user,group',
+                'icon' => 'EXT:publications/Resources/Public/Icons/ModuleImport.svg',
+                'labels' => 'LLL:EXT:publications/Resources/Private/Language/locallang_mod_import.xlf',
+            ]
         );
 
         /**

@@ -1,6 +1,7 @@
 <?php
-use In2code\Publications\Domain\Model\Publication;
+
 use In2code\Publications\Domain\Model\Author;
+use In2code\Publications\Domain\Model\Publication;
 
 $llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
 $llTable = $llPrefix . Publication::TABLE_NAME;
@@ -19,7 +20,13 @@ $tca = [
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg',
         'searchFields' =>
-            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi'
+            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi,pmid',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
@@ -68,7 +75,7 @@ $tca = [
             'showitem' => 'reviewed,'
         ],
         'palette_identification' => [
-            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,'
+            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,pmid,'
         ],
         'palette_organization' => [
             'showitem' => 'organization,school,--linebreak--,institution,institute,'
@@ -195,7 +202,7 @@ $tca = [
         'bibtype' => [
             'exclude' => false,
             'onChange' => 'reload',
-            'label' => $llTable. '.bibtype',
+            'label' => $llTable . '.bibtype',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -778,6 +785,15 @@ $tca = [
         'doi' => [
             'exclude' => true,
             'label' => $llTable . '.doi',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
+            ]
+        ],
+        'pmid' => [
+            'exclude' => true,
+            'label' => $llTable . '.pmid',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',

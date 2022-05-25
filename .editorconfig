@@ -1,10 +1,25 @@
-root = true
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
 
-[*.js]
+# JSON-Files
+[*.json]
 indent_style = tab
 
-[*.html]
-indent_style = tab
+# ReST-Files
+[*.rst]
+indent_size = 3
+max_line_length = 80
 
+# XLF-Files
 [*.xlf]
+indent_style = tab
+
+# .htaccess
+[{_.htaccess,.htaccess}]
 indent_style = tab

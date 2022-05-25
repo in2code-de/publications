@@ -11,21 +11,31 @@
 
 	<f:if condition="{publications}">
 		<f:then>
-			<f:widget.paginate
-					objects="{publications}"
-					as="publicationsPage"
-					configuration="{itemsPerPage:filter.recordsPerPage,insertAbove:0,insertBelow:showPagination,maximumNumberOfLinks:10}">
-				<div>
-					<f:for each="{publicationsPage}" as="publication">
-						<f:render section="GroupTitle" arguments="{_all}"/>
-
-						<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
-							<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{_all}" />
-						</div>
-					</f:for>
-					<f:render partial="List/Export" arguments="{_all}"/>
+			<f:variable name="lastGroupTitle" value="" />
+			<f:variable name="lastSubGroupTitle" value="" />
+			<f:for each="{pagination.paginator.paginatedItems}" as="publication" iteration="iterator">
+				<f:render section="GroupTitle" arguments="{_all}"/>
+				<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
+					<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{publication: publication, keyOfFirstPaginatedItem: pagination.paginator.keyOfFirstPaginatedItem, index:iterator.index, maxItems:maxItems}" />
 				</div>
-			</f:widget.paginate>
+				<f:comment><!-- Set new values for group title comparision --></f:comment>
+				<f:switch expression="{filter.groupby}">
+					<f:case value="0">
+						<f:variable name="lastGroupTitle" value="{publication.year}" />
+					</f:case>
+					<f:case value="1">
+						<f:variable name="lastGroupTitle" value="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" />
+					</f:case>
+					<f:case value="2">
+						<f:variable name="lastGroupTitle" value="{publication.year}" />
+						<f:variable name="lastSubGroupTitle" value="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" />
+					</f:case>
+				</f:switch>
+			</f:for>
+			<f:if condition="{pagination.paginator.numberOfPages} > 1">
+				<f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+			</f:if>
+			<f:render partial="List/Export" arguments="{_all}"/>
 		</f:then>
 		<f:else>
 			<div class="alert alert-danger" role="alert">
@@ -41,14 +51,22 @@
 <f:section name="GroupTitle">
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
-			<publications:group.title title="{publication.year}" singeltonKey="{publication.year}-{data.uid}" before='<h4 id="c{publication.year}-{data.uid}">' after="</h4>" />
+			<f:if condition="{lastGroupTitle} != {publication.year}">
+				<h4 id="c{publication.year}-{data.uid}">{publication.year}</h4>
+			</f:if>
 		</f:case>
 		<f:case value="1">
-			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.bibtype}-{data.uid}" before='<h4 id="{publication.bibtype}-{data.uid}">' after="</h4>" />
+			<f:if condition="{lastGroupTitle} != {f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}">
+				<h4 id="{publication.bibtype}-{data.uid}">{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}</h4>
+			</f:if>
 		</f:case>
 		<f:case value="2">
-			<publications:group.title title="{publication.year}" singeltonKey="{publication.year}-{data.uid}" before='<h4 id="c{publication.year}-{data.uid}">' after="</h4>" />
-			<publications:group.title title="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" singeltonKey="{publication.year}{publication.bibtype}-{data.uid}" before="<h5>" after="</h5>" />
+			<f:if condition="{lastGroupTitle} != {publication.year}">
+				<h4 id="c{publication.year}-{data.uid}">{publication.year}</h4>
+			</f:if>
+			<f:if condition="{lastSubGroupTitle} != {f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}">
+				<h5>{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}</h5>
+			</f:if>
 		</f:case>
 	</f:switch>
 </f:section>

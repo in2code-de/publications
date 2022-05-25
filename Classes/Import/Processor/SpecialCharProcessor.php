@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\Import\Processor;
 
 use In2code\Publications\Utility\BibTexUtility;
@@ -17,7 +19,7 @@ class SpecialCharProcessor
      *
      * @return array
      */
-    public function __invoke(array $entry)
+    public function __invoke(array $entry): array
     {
         $this->setTagCoverage(['_original'], 'blacklist');
         $covered = $this->getCoveredTags(array_keys($entry));

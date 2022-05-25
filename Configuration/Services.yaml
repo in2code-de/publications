@@ -1,0 +1,23 @@
+# Configuration/Services.yaml
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  In2code\Publications\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  In2code\Publications\Command\ClearCommand:
+    tags:
+      - name: 'console.command'
+        command: 'publications:clean'
+        description: 'Clean all publication data of a given pid'
+
+  In2code\Publications\Command\MigrationCommand:
+    tags:
+      - name: 'console.command'
+        command: 'publications:migrate'
+        description: 'Migrate existing bib records to new publications records'
+

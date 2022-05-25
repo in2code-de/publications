@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\Domain\Repository;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
@@ -15,17 +17,16 @@ class PublicationRepository extends AbstractRepository
 {
     /**
      * @param Filter $filter
-     * @return array
+     * @return object[]|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findByFilter(Filter $filter): array
+    public function findByFilter(Filter $filter)
     {
         $query = $this->createQuery();
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
         $results = $query->execute();
-        $results = $this->convertToAscendingArray($results);
-        return $results;
+        return $this->convertToAscendingArray($results);
     }
 
     /**
@@ -51,6 +52,7 @@ class PublicationRepository extends AbstractRepository
             $and = $this->filterQueryBySearchterms($query, $filter, $and);
             $and = $this->filterQueryByYear($query, $filter, $and);
             $and = $this->filterQueryByAuthorstring($query, $filter, $and);
+            $and = $this->filterQueryByDocumenttype($query, $filter, $and);
         }
         if ($and !== []) {
             $query->matching($query->logicalAnd($and));
@@ -272,6 +274,21 @@ class PublicationRepository extends AbstractRepository
      * @return array
      * @throws InvalidQueryException
      */
+    protected function filterQueryByDocumenttype(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isDocumenttypeSet()) {
+            $and[] = $query->equals('bibtype', $filter->getDocumenttype());
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     * @throws InvalidQueryException
+     */
     protected function filterQueryByAuthorstring(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isAuthorstringSet()) {
@@ -306,11 +323,6 @@ class PublicationRepository extends AbstractRepository
         $i = 0;
         $resultsRaw = $results->toArray();
         usort($resultsRaw, [$this, 'compareCallbackByDate']);
-        /** @var Publication $result */
-        foreach ($resultsRaw as $result) {
-            $result->setNumeration(count($resultsRaw) - $i);
-            $i++;
-        }
         return $resultsRaw;
     }
 

@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
+
 namespace In2code\Publications\Service;
 
 use Doctrine\DBAL\DBALException;
@@ -13,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Class ImportService
@@ -23,22 +24,22 @@ class ImportService extends AbstractService
     /**
      * @var ImporterInterface
      */
-    protected $importer;
+    protected ImporterInterface $importer;
 
     /**
      * @var array
      */
-    protected $publicationsToImport = [];
+    protected array $publicationsToImport = [];
 
     /**
      * @var int
      */
-    protected $storagePid;
+    protected int $storagePid;
 
     /**
      * @var array
      */
-    protected $importInformation = [
+    protected array $importInformation = [
         'updatedPublications' => 0,
         'createdPublications' => 0,
         'publicationsWithNoUpdate' => 0,
@@ -443,10 +444,8 @@ class ImportService extends AbstractService
      */
     protected function getExtensionSettings(): array
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         /** @var ConfigurationManager $configurationManager */
-        $configurationManager = $objectManager->get(ConfigurationManager::class);
-
+        $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
         return $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
     }
 }

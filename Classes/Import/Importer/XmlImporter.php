@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
 
 namespace In2code\Publications\Import\Importer;
 
@@ -15,7 +16,7 @@ class XmlImporter extends AbstractImporter
      *
      * @var array
      */
-    protected $additionalPublicationMapping = [
+    protected array $additionalPublicationMapping = [
         'ISBN' => 'isbn',
         'ISSN' => 'issn',
         'DOI' => 'doi',
@@ -28,7 +29,7 @@ class XmlImporter extends AbstractImporter
      *
      * @var array
      */
-    protected $personMapping = [
+    protected array $personMapping = [
         'fn' => 'first_name',
         'sn' => 'last_name'
     ];
