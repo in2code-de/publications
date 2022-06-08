@@ -45,7 +45,14 @@
 <f:section name="bibtype_inbook">
 <f:render section="authors" arguments="{_all}"/>
 <f:if condition="{publication.title}"> {publication.title}. In:</f:if>
-<f:render section="bibtype_book" arguments="{_all}"/>
+<f:if condition="{publication.editor}">{publication.editor}, editors.</f:if>
+<f:if condition="{publication.booktitle}"><i>{publication.booktitle}</i>.</f:if>
+<f:if condition="{publication.edition}">{publication.edition} ed.</f:if>
+<f:if condition="{publication.address}">{publication.address}: </f:if>
+<f:if condition="{publication.publisher}">{publication.publisher}; </f:if>
+<f:render section="date" arguments="{_all}"/>
+<f:if condition="{publication.pages}"> p. {publication.pages}.</f:if>
+<f:render partial="List/Citestyle/LinkBlock-Inline" section="linkblock-inline" arguments="{_all}"/>
 </f:section>
 
 
