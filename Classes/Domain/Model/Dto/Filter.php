@@ -479,6 +479,14 @@ class Filter
     }
 
     /**
+     * @return bool
+     */
+    public function isExternFilterSet(): bool
+    {
+        return $this->getExternFilter() !== 0;
+    }
+
+    /**
      * @param array $records
      * @return Filter
      */
@@ -678,15 +686,13 @@ class Filter
      */
     public function isFilterFlexFormSet(): bool
     {
-        return $this->isCitestyleSet()
-            || $this->isGroupbySet()
-            || $this->isRecordsPerPageSet()
+        return $this->isKeywordsSet()
+            || $this->isTagsSet()
             || $this->isTimeFrameSet()
             || $this->isBibtypesSet()
             || $this->isStatusSet()
-            || $this->isKeywordsSet()
-            || $this->isTagsSet()
             || $this->isAuthorSet()
+            || $this->isExternFilterSet()
             || $this->isRecordsSet();
     }
 
