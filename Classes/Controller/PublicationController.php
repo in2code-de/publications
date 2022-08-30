@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\Publications\Controller;
 
@@ -9,7 +9,6 @@ use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
