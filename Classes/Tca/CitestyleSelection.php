@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Tca;
 
@@ -12,7 +12,6 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
  */
 class CitestyleSelection
 {
-
     /**
      * @param array $params
      * @return void

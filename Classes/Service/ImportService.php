@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Service;
 
@@ -166,7 +166,7 @@ class ImportService extends AbstractService
         $authors = [];
 
         foreach ($rawAuthors as $author) {
-            $authors[] = $this->addAuthorIfNotExist(trim($author['first_name']), trim($author['last_name']) );
+            $authors[] = $this->addAuthorIfNotExist(trim($author['first_name']), trim($author['last_name']));
         }
 
         return $authors;
@@ -351,8 +351,10 @@ class ImportService extends AbstractService
         $author = $queryBuilder
         ->select('*')
         ->from(Author::TABLE_NAME)
-        ->where($queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR)))
+        ->where(
+            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
+        )
         ->andWhere($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT))) //limit the search for existing names to current sorage database
         ->execute()
         ->fetch();
