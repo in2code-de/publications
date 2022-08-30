@@ -353,7 +353,7 @@ class ImportService extends AbstractService
         ->from(Author::TABLE_NAME)
         ->where($queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
             $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR)))
-        ->andWhere($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter(42, \PDO::PARAM_INT)))
+        ->andWhere($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)))
         ->execute()
         ->fetch();
 
