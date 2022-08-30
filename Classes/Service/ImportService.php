@@ -348,10 +348,14 @@ class ImportService extends AbstractService
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
 
-        $author = $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
-            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
-        )->execute()->fetch();
+        $author = $queryBuilder
+        ->select('*')
+        ->from(Author::TABLE_NAME)
+        ->where($queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR)))
+        ->andWhere($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter(42, \PDO::PARAM_INT)))
+        ->execute()
+        ->fetch();
 
         if (!empty($author)) {
             return $author;
