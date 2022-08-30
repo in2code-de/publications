@@ -81,7 +81,7 @@ class Filter
     /**
      * @var string
      */
-    protected $documenttype = '';
+    protected string $documenttype = 'all';
 
     /**
      * @var int
