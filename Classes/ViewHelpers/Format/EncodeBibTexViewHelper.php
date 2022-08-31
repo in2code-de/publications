@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\ViewHelpers\Format;
 
@@ -12,7 +12,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class EncodeBibTexViewHelper extends AbstractViewHelper
 {
-
     /**
      * @return string
      */

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Command;
 
@@ -15,7 +15,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class MigrationCommand extends Command
 {
-
     /**
      * Configure the command by defining the name, options and arguments
      */

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Utility;
 
@@ -14,7 +14,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class ObjectUtility
 {
-
     /**
      * @return ObjectManager
      */

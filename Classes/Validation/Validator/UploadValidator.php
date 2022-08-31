@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Validation\Validator;
 
@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
  */
 class UploadValidator extends AbstractValidator
 {
-
     /**
      * @param mixed $value
      * @return void

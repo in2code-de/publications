@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Utility;
 
@@ -9,7 +9,6 @@ namespace In2code\Publications\Utility;
  */
 class BibTexUtility
 {
-
     /**
      * @var array
      */
