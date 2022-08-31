@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Controller;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
+use In2code\Publications\Domain\Service\PublicationService;
+use In2code\Publications\Event\ManipulatePublicationGroupLinksEvent;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
@@ -21,10 +23,14 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class PublicationController extends ActionController
 {
-    /**
-     * @var PublicationRepository
-     */
     protected ?PublicationRepository $publicationRepository = null;
+    protected ?PublicationService $publicationService = null;
+
+    public function __construct(PublicationService $publicationService, PublicationRepository $publicationRepository)
+    {
+        $this->publicationService = $publicationService;
+        $this->publicationRepository = $publicationRepository;
+    }
 
     /**
      * @return void
@@ -51,6 +57,17 @@ class PublicationController extends ActionController
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = new ArrayPaginator($publications, $currentPage, $itemsPerPage);
         $pagination = new NumberedPagination($paginator, $maximumLinks);
+
+        if (array_key_exists('showGroupLinks', $this->settings) && (bool)$this->settings['showGroupLinks'] === true) {
+            $this->view->assign(
+                'groupLinks',
+                $this->publicationService->getGroupedPublicationLinks(
+                    $publications,
+                    (int)$this->settings['groupby'],
+                    $this->getContentObject()->data['uid']
+                )
+            );
+        }
 
         $this->view->assign('pagination', [
             'paginator' => $paginator,
@@ -165,15 +182,6 @@ class PublicationController extends ActionController
             $filter->setDocumenttype($filterArguments['documenttype']);
         }
         $this->request->setArgument('filter', $filter);
-    }
-
-    /**
-     * @param PublicationRepository $publicationRepository
-     * @return void
-     */
-    public function injectPublicationRepository(PublicationRepository $publicationRepository)
-    {
-        $this->publicationRepository = $publicationRepository;
     }
 
     /**

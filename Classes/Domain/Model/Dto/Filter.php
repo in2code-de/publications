@@ -16,6 +16,12 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class Filter
 {
+
+    public const GROUP_BY_NONE = -1;
+    public const GROUP_BY_YEAR = 0;
+    public const GROUP_BY_TYPE = 1;
+    public const GROUP_BY_YEAR_AND_TYPE = 2;
+
     /**
      * @var int
      */
@@ -24,7 +30,7 @@ class Filter
     /**
      * @var int
      */
-    protected int $groupby = 0;
+    protected int $groupby = self::GROUP_BY_YEAR;
 
     /**
      * @var int
