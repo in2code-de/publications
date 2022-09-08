@@ -497,63 +497,54 @@ $tca = [
             'label' => $llTable . '.file_url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url' => [
             'exclude' => true,
             'label' => $llTable . '.web_url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url2' => [
             'exclude' => true,
             'label' => $llTable . '.web_url2',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url_date' => [
             'exclude' => true,
@@ -811,19 +802,12 @@ $tca = [
                 'MM' => 'tx_publications_publication_author_mm',
                 'maxitems' => 9999,
                 'size' => 10,
-                'wizards' => [
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        'module' => [
-                            'name' => 'wizard_edit',
-                        ],
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif'
-                    ]
-                ]
-            ]
+                'fieldControl' => [
+                  'editPopup' => [
+                    'disabled' => false,
+                  ],
+                ],
+            ],
         ],
         'patent' => [
         'displayCond' => 'FIELD:bibtype:=:patent',

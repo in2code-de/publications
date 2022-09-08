@@ -77,6 +77,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 4.1.0   | 2022-09-08 | Bugfix  | Fix TCA link wizard, because it was deprecated                              <br/>                                                 |
 | 4.0.1   | 2022-06-20 | Bugfix  | Fix documenttype frontend filter if no filter is set                                                                              |
 | 4.0.0   | 2022-05-25 | Feature | Drop support for TYPO3 9 and 10, provide ddev based development environment, <br/>add github actions for testing and TER release. |
 | 3.0.0   | 2022-02-16 | Feature | Highlighted Authors, Link names, Citestyles, Author model added. Support pmid field in migration.                                 |
