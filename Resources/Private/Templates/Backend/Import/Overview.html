@@ -3,31 +3,37 @@
 
 <f:section name="main">
 
-	<f:flashMessages/>
+	<div class="module-body t3js-module-body">
+		<f:flashMessages/>
 
-	<f:for each="{messages}" as="message">
-		<div class="typo3-message message-error">
-			<strong><f:translate key="tx_mask.content.error"/></strong>
-			{message}
-		</div>
-	</f:for>
+		<f:for each="{messages}" as="message">
+			<div class="typo3-message message-error">
+				<strong>
+					<f:translate key="tx_mask.content.error"/>
+				</strong>
+				{message}
+			</div>
+		</f:for>
 
-	<f:render partial="Backend/PageIdentifierNote" arguments="{_all}"/>
+		<f:render partial="Backend/PageIdentifierNote" arguments="{_all}"/>
 
-	<f:if condition="{pid}">
-		<f:form action="import" controller="Import" enctype="multipart/form-data">
-			<f:comment>
-				1. Select Import Format
-			</f:comment>
-			<f:render partial="selectImportImporter" arguments="{_all}"/>
+		<f:if condition="{pid}">
+			<f:form action="import" controller="Import" enctype="multipart/form-data">
+				<f:comment>
+					1. Select Import Format
+				</f:comment>
+				<f:render partial="selectImportImporter" arguments="{_all}"/>
 
-			<f:comment>
-				2. Select file for import
-			</f:comment>
-			<f:render partial="selectImportFile" arguments="{_all}"/>
+				<f:comment>
+					2. Select file for import
+				</f:comment>
+				<f:render partial="selectImportFile" arguments="{_all}"/>
 
-			<f:form.submit value="{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.submit')}" class="btn btn-primary"/>
-		</f:form>
-	</f:if>
+				<f:form.submit
+					value="{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.submit')}"
+					class="btn btn-primary"/>
+			</f:form>
+		</f:if>
+	</div>
 </f:section>
 </html>
