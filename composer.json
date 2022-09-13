@@ -64,7 +64,8 @@
     "typo3/cms-scheduler": "^11.5",
     "typo3/cms-setup": "^11.5",
     "typo3/cms-t3editor": "^11.5",
-    "typo3/cms-tstemplate": "^11.5"
+    "typo3/cms-tstemplate": "^11.5",
+    "typo3/cms-styleguide": "^11.5"
   },
   "autoload": {
     "psr-4": {
