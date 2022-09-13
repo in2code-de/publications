@@ -71,7 +71,26 @@ If you want to migrate records from extension bib to publications, there is a Co
 ./vendor/bin/typo3cms publications:clean 123
 ```
 
+## Check and fix code style
 
+This project uses php-cs-fixer to check for PHP coding standards.
+For a list of the used rules see: `/.project/tests/.php-cs-fixer.php`.
+
+Run the PHP code style test (local):
+```
+ddev ssh
+composer  test:php:cs
+```
+
+Automatic fix of code style violations:
+
+This command tries to fix code violations automatically.
+This works for the most violations (indent, spaces etc.).
+If an automatic fix is not possible the fixes must be done manually.
+```
+ddev ssh
+./.build/bin/php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff
+```
 
 ## Changelog
 
