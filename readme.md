@@ -74,7 +74,7 @@ If you want to migrate records from extension bib to publications, there is a Co
 ## Check and fix code style
 
 This project uses php-cs-fixer to check for PHP coding standards.
-For a list of the used rules see: `/.project/tests/.php-cs-fixer.php`.
+For a list of the used rules see: `.project/tests/.php-cs-fixer.php`.
 
 Run the PHP code style test (local):
 ```
