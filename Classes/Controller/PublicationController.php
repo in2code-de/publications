@@ -7,7 +7,6 @@ namespace In2code\Publications\Controller;
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Domain\Service\PublicationService;
-use In2code\Publications\Event\ManipulatePublicationGroupLinksEvent;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
