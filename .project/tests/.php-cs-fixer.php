@@ -88,6 +88,5 @@ return $config
         'phpdoc_types_order' => ['null_adjustment' => 'always_last', 'sort_algorithm' => 'none'],
         'return_type_declaration' => ['space_before' => 'none'],
         'cast_spaces' => ['space' => 'none'],
-        'declare_equal_normalize' => ['space' => 'single'],
         'dir_constant' => true,
     ])->setFinder($finder);
