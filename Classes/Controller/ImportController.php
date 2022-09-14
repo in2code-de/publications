@@ -32,21 +32,19 @@ class ImportController extends ActionController
     }
 
     /**
-     * @param array $file
-     * @param string $importer
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
-     * @return void
      * @throws DBALException
      */
-    public function importAction(array $file, string $importer)
+    public function importAction(array $file, string $importer, array $importOptions): void
     {
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        $importService = $this->objectManager->get(
-            ImportService::class,
-            $file['tmp_name'],
-            $this->objectManager->get($importer)
-        );
+        $importService =
+            GeneralUtility::makeInstance(
+                ImportService::class,
+                $file['tmp_name'],
+                GeneralUtility::makeInstance($importer),
+                $importOptions
+            );
         $importService->import();
         $this->view->assignMultiple(
             [

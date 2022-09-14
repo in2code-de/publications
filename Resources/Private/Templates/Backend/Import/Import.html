@@ -2,42 +2,45 @@
 <f:layout name="Backend"/>
 
 <f:section name="main">
-	<f:flashMessages/>
 
-	<f:for each="{messages}" as="message">
-		<div class="typo3-message message-error">
-			{message}
-		</div>
-	</f:for>
+	<div class="module-body t3js-module-body">
+		<f:flashMessages/>
 
-	<f:if condition="{import.imported}">
-		<f:then>
-			<div class="alert alert-success" role="alert">
-				<h4 class="alert-heading">
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.success">Success</f:translate>
-				</h4>
-				<p>
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationscreated">Created</f:translate>:
-					<strong>{import.importInformation.createdPublications}</strong><br/>
-
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationsupdated">Updated</f:translate>:
-					<strong>{import.importInformation.updatedPublications}</strong><br/>
-
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationsunchanged">Unchanged</f:translate>:
-					<strong>{import.importInformation.publicationsWithNoUpdate}</strong><br/>
-
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.authorscreated">Authors</f:translate>:
-					<strong>{import.importInformation.createdAuthors}</strong><br/>
-				</p>
+		<f:for each="{messages}" as="message">
+			<div class="typo3-message message-error">
+				{message}
 			</div>
-		</f:then>
-		<f:else>
-			<div class="alert alert-danger" role="alert">
-				<h4 class="alert-heading">
-					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.failure">Failure</f:translate>
-				</h4>
-			</div>
-		</f:else>
-	</f:if>
+		</f:for>
+
+		<f:if condition="{import.imported}">
+			<f:then>
+				<div class="alert alert-success" role="alert">
+					<h4 class="alert-heading">
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.success">Success</f:translate>
+					</h4>
+					<p>
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationscreated">Created</f:translate>:
+						<strong>{import.importInformation.createdPublications}</strong><br/>
+
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationsupdated">Updated</f:translate>:
+						<strong>{import.importInformation.updatedPublications}</strong><br/>
+
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.publicationsunchanged">Unchanged</f:translate>:
+						<strong>{import.importInformation.publicationsWithNoUpdate}</strong><br/>
+
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.authorscreated">Authors</f:translate>:
+						<strong>{import.importInformation.createdAuthors}</strong><br/>
+					</p>
+				</div>
+			</f:then>
+			<f:else>
+				<div class="alert alert-danger" role="alert">
+					<h4 class="alert-heading">
+						<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.import.failure">Failure</f:translate>
+					</h4>
+				</div>
+			</f:else>
+		</f:if>
+	</div>
 </f:section>
 </html>
