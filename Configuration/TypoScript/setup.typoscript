@@ -11,6 +11,14 @@ plugin.tx_publications {
 
   settings {
     storagePid = {$plugin.tx_publications.settings.storagePid}
+
+    groupLinks {
+      linkTag {
+        prefix = {$plugin.tx_publications.settings.groupLinks.linkTag.prefix}
+        suffix = {$plugin.tx_publications.settings.groupLinks.linkTag.suffix}
+      }
+    }
+
     upload.validation {
       # Maximum upload size for bib and xml files in import module
       size = 2000000

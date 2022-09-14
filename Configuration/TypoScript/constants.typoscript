@@ -7,5 +7,12 @@ plugin.tx_publications {
 
   settings {
     storagePid = 0
+
+    groupLinks {
+      linkTag {
+        prefix = [
+        suffix = ]
+      }
+    }
   }
 }

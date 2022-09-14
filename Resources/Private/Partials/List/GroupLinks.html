@@ -1,7 +1,7 @@
 <div id="grouplinks-{data.uid}" style="padding: 15px 0;">
 	<f:if condition="{groupLinks}">
 		<f:for each="{groupLinks}" as="group">
-      [<a href="{group.link}">{group.title}</a>] &nbsp;
+			{settings.groupLinks.linkTag.prefix}<a href="{group.link}">{group.title}</a>{settings.groupLinks.linkTag.suffix} &nbsp;
 		</f:for>
 	</f:if>
 </div>
