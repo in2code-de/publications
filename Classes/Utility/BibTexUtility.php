@@ -13,6 +13,9 @@ class BibTexUtility
      * @var array
      */
     protected static $decoded = [
+        '"',
+        '"',
+        '"',
         'ä',
         'á',
         'à',
@@ -75,9 +78,6 @@ class BibTexUtility
         '&',
         '&',
         '†',
-        '"',
-        '"',
-        '"',
         '«',
         '»',
         '„',
@@ -102,6 +102,9 @@ class BibTexUtility
      * @var array
      */
     protected static $encoded = [
+        '{\\dq}',
+        '\'\'',
+        '``',
         '{\\"a}',
         '{\\\'a}',
         '{\\`a}',
@@ -164,9 +167,6 @@ class BibTexUtility
         '{\\&}',
         '\&',
         '$\\dagger$',
-        '{\\dq}',
-        '\'\'',
-        '``',
         '{\\flqq}',
         '{\\frqq}',
         '&bdquo;',
