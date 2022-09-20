@@ -32,7 +32,7 @@ class PublicationService
             $page = 0;
             $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
             foreach ($publications as $publication) {
-                if ($count % 10 === 0) {
+                if ($count % $itemsPerPage === 0) {
                     $page++;
                 }
                 $url = $uriBuilder->reset()->setArguments(['tx_publications_pi1' => ['currentPage' => $page]])->build();
