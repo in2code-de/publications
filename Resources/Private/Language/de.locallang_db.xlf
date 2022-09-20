@@ -719,6 +719,26 @@
 				<source>File extension is not allowed. Please use a .bib or .xml file.</source>
 				<target state="translated">Datei Erweiterung ist nicht zulässig. Bitte .bib oder .xml Dateien nutzen.</target>
 			</trans-unit>
+			<trans-unit id="backendModule.importOptions">
+				<source>Import options</source>
+				<target state="translated">Import Optionen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour">
+				<source>Behavior for checking duplicate authors</source>
+				<target state="translated">Verhalten zur Prüfung von doppelten Autoren</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.additional">
+				<source>defines whether the check for existing authors applies globally or only to the current PID</source>
+				<target state="translated">definiert ob die Prüfung auf existierende Autoren global oder nur für die aktuelle PID gilt</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.global">
+				<source>global</source>
+				<target state="translated">globale Prüfung</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.pid">
+				<source>only current PID</source>
+				<target state="translated">nur aktuelle PID</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

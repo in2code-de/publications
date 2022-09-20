@@ -71,12 +71,32 @@ If you want to migrate records from extension bib to publications, there is a Co
 ./vendor/bin/typo3cms publications:clean 123
 ```
 
+## Check and fix code style
 
+This project uses php-cs-fixer to check for PHP coding standards.
+For a list of the used rules see: `.project/tests/.php-cs-fixer.php`.
+
+Run the PHP code style test (local):
+```
+ddev ssh
+composer  test:php:cs
+```
+
+Automatic fix of code style violations:
+
+This command tries to fix code violations automatically.
+This works for the most violations (indent, spaces etc.).
+If an automatic fix is not possible the fixes must be done manually.
+```
+ddev ssh
+./.build/bin/php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff
+```
 
 ## Changelog
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 4.1.0   | 2022-09-08 | Bugfix  | Fix TCA link wizard, because it was deprecated                              <br/>                                                 |
 | 4.0.1   | 2022-06-20 | Bugfix  | Fix documenttype frontend filter if no filter is set                                                                              |
 | 4.0.0   | 2022-05-25 | Feature | Drop support for TYPO3 9 and 10, provide ddev based development environment, <br/>add github actions for testing and TER release. |
 | 3.0.0   | 2022-02-16 | Feature | Highlighted Authors, Link names, Citestyles, Author model added. Support pmid field in migration.                                 |

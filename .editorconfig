@@ -1,25 +1,39 @@
+# top-most EditorConfig file
+root = true
+
 # Unix-style newlines with a newline ending every file
 [*]
 charset = utf-8
 end_of_line = lf
-indent_style = space
-indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
 
-# JSON-Files
-[*.json]
+# HTML-Files
+[*.html]
 indent_style = tab
 
-# ReST-Files
-[*.rst]
-indent_size = 3
-max_line_length = 80
+# JS-Files
+[*.{js,ts}]
+indent_size = 4
+
+# PHP-Files
+[*.php]
+indent_size = 4
+
+# MD-Files
+[*.md]
+indent_size = 4
 
 # XLF-Files
 [*.xlf]
 indent_style = tab
 
-# .htaccess
-[{_.htaccess,.htaccess}]
+# SQL-Files
+[*.sql]
+indent_style = tab
+
+[Makefile]
+indent_size = 4
 indent_style = tab

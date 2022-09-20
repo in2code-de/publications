@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		2. <f:translate
+		key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.importOptions"/>
+	</div>
+
+	<fieldset class="form-section">
+		<div class="form-group">
+			<label>
+				<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.duplicateAuthorBehaviour"/>
+			</label>
+			<div class="formengine-field-item">
+				<span class="formengine-field-item-description text-muted">
+					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.duplicateAuthorBehaviour.additional"/>
+				</span>
+				<div class="form-control-wrap">
+					<div class="form-wizards-wrap">
+						<div class="form-wizards-element">
+							<div class="radio">
+								<label for="global">
+									<f:form.radio id="global" name="importOptions[duplicateAuthorBehaviour]" value="global" additionalAttributes="{checked:'checked'}"/>
+									<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.duplicateAuthorBehaviour.global"/>
+								</label>
+							</div>
+							<div class="radio">
+								<label for="pid">
+									<f:form.radio id="pid" name="importOptions[duplicateAuthorBehaviour]" value="pid"/>
+									<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.duplicateAuthorBehaviour.pid"/>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+</html>

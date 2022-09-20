@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Migration;
 
@@ -11,7 +11,6 @@ use In2code\Publications\Utility\DatabaseUtility;
  */
 class MigrateFromBib
 {
-
     /**
      * @var array
      */

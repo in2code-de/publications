@@ -574,6 +574,22 @@
 			<trans-unit id="validator.uploadValidator.title">
 				<source>Error while uploading the file.</source>
 			</trans-unit>
+
+			<trans-unit id="backendModule.importOptions">
+				<source>Import options</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour">
+				<source>Behavior for checking duplicate authors</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.additional">
+				<source>defines whether the check for existing authors applies globally or only to the current PID</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.global">
+				<source>global</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.pid">
+				<source>only current PID</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\Publications\Service;
 
@@ -9,6 +9,7 @@ use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
+use In2code\Publications\Import\ImportOptions;
 use In2code\Publications\Utility\DatabaseUtility;
 use Psr\Log\LogLevel;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -37,7 +38,7 @@ class ImportService extends AbstractService
     protected int $storagePid;
 
     /**
-     * @var array
+     * contains information how much records where affected / created / updated etc.
      */
     protected array $importInformation = [
         'updatedPublications' => 0,
@@ -46,6 +47,8 @@ class ImportService extends AbstractService
         'createdAuthors' => 0
     ];
 
+    protected array $importOptions = [];
+
     /**
      * ImportService constructor.
      *
@@ -53,12 +56,13 @@ class ImportService extends AbstractService
      * @param ImporterInterface $importer
      * @throws InvalidConfigurationTypeException
      */
-    public function __construct(string $data, ImporterInterface $importer)
+    public function __construct(string $data, ImporterInterface $importer, array $importOptions)
     {
         parent::__construct();
 
         $this->importer = $importer;
         $this->publicationsToImport = $this->importer->convert($data);
+        $this->importOptions = $importOptions;
         $this->storagePid = $this->getStoragePid();
     }
 
@@ -166,7 +170,7 @@ class ImportService extends AbstractService
         $authors = [];
 
         foreach ($rawAuthors as $author) {
-            $authors[] = $this->addAuthorIfNotExist($author['first_name'], $author['last_name']);
+            $authors[] = $this->addAuthorIfNotExist(trim($author['first_name']), trim($author['last_name']));
         }
 
         return $authors;
@@ -348,10 +352,21 @@ class ImportService extends AbstractService
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
 
-        $author = $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
+        $statement = $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
             $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
             $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
-        )->execute()->fetch();
+        );
+
+        if ($this->importOptions['duplicateAuthorBehaviour'] === ImportOptions::DUPLICATE_AUTHOR_BEHAVIOUR_PID) {
+            $statement->andWhere(
+                $queryBuilder->expr()->eq(
+                    'pid',
+                    $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)
+                )
+            );
+        }
+
+        $author = $statement->execute()->fetchAssociative();
 
         if (!empty($author)) {
             return $author;

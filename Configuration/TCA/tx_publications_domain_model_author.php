@@ -140,23 +140,20 @@ $tca = [
                 . '.url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
+                'fieldControl' => [
+                    'linkPopup' => [
+                      'options' => [
                         'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                      ],
+                    ],
                 ],
-                'softref' => 'typolink'
-            ]
+              'softref' => 'typolink',
+            ],
         ],
-    ]
+    ],
 ];
 
 $tca['interface']['showRecordFieldList'] = implode(',', array_keys($tca['columns']));
