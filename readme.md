@@ -96,6 +96,8 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 5.0.1   | 2022-09-21 | Bugfix  | Fix bibtex and xml export                                                                                                         |
+| 5.0.0   | 2022-09-20 | Feature | Backend improvements, bugfixes                                                                                                    |
 | 4.1.0   | 2022-09-08 | Bugfix  | Fix TCA link wizard, because it was deprecated                              <br/>                                                 |
 | 4.0.1   | 2022-06-20 | Bugfix  | Fix documenttype frontend filter if no filter is set                                                                              |
 | 4.0.0   | 2022-05-25 | Feature | Drop support for TYPO3 9 and 10, provide ddev based development environment, <br/>add github actions for testing and TER release. |
