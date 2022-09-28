@@ -96,6 +96,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 5.0.2   | 2022-09-28 | Bugfix  | Fix author highlighting, fix internal author linking                                                                              |
 | 5.0.1   | 2022-09-21 | Bugfix  | Fix bibtex and xml export                                                                                                         |
 | 5.0.0   | 2022-09-20 | Feature | Backend improvements, bugfixes                                                                                                    |
 | 4.1.0   | 2022-09-08 | Bugfix  | Fix TCA link wizard, because it was deprecated                              <br/>                                                 |
