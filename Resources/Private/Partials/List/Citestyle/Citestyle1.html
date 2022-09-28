@@ -312,7 +312,7 @@
 <f:section name="authorDefault"><f:spaceless>
 	<f:if condition="{settings.highlightAuthors}">
 		<f:then>
-			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" >
+			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.authorstring}" >
 				<publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</publications:format.highlightAuthor>
 		</f:then>
 		<f:else>
