@@ -43,10 +43,9 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
             if (!empty($this->arguments['searchterms'])) {
                 $filterauthors = $this->getAuthors($this->arguments['searchterms']);
                 $author[] = $this->arguments['author'];
-                foreach ($filterauthors as $filteredAuthor) {
-                    if ($filteredAuthor === $author) {
-                        return $this->wrapText($value);
-                    }
+                $match = array_intersect($filterauthors, $author); //intersect_assoc is too strict
+                if (!empty($match)) {
+                    return $this->wrapText($value);
                 }
             }
         }
@@ -77,8 +76,8 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
     {
         $authors = [];
         $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
-        foreach (GeneralUtility::trimExplode(',', $filter, true) as $identifier) {
-            $authors[] = $authorRepository->findByLastName($identifier)->toArray();
+        foreach (GeneralUtility::intExplode(',', $filter, true) as $identifier) {
+            $authors[] = $authorRepository->findByUid($identifier);
         }
         return $authors;
     }

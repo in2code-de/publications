@@ -260,7 +260,7 @@ Pohl S, Kellner A, Muster MR, Stein SS.
 <f:section name="authorDefault"><f:spaceless>
 	<f:if condition="{settings.highlightAuthors}">
 		<f:then>
-			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.authorstring}" >
+			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" >
 				{author.lastName}&nbsp;<publications:format.initials glue='' suffix=''>{author.firstName}</publications:format.initials>
 			</publications:format.highlightAuthor>
 		</f:then>
