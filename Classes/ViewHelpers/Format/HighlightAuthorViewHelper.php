@@ -39,13 +39,15 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
     public function render(): string
     {
         $value = implode(PHP_EOL, GeneralUtility::trimExplode(PHP_EOL, $this->renderChildren(), true));
-        if (!empty($value) && !empty($this->arguments['searchterms'])) {
-            if (
-                stripos($this->arguments['searchterms'], $this->arguments['author']->getLastName()) !== false ||
-                stripos($this->arguments['searchterms'], $this->arguments['author']->getFirstName()) !== false
-
-            ) {
-                return $this->wrapText($value);
+        if (!empty($value)) {
+            if (!empty($this->arguments['searchterms'])) {
+                $filterauthors = $this->getAuthors($this->arguments['searchterms']);
+                $author[] = $this->arguments['author'];
+                foreach ($filterauthors as $filteredAuthor) {
+                    if ($filteredAuthor === $author) {
+                        return $this->wrapText($value);
+                    }
+                }
             }
         }
         return $value;
@@ -64,5 +66,20 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
             $text .= $this->arguments['after'];
         }
         return $text;
+    }
+
+    /**
+     * @param string $filter
+     * @return array
+     * @throws Exception
+     */
+    protected function getAuthors(string $filter): array
+    {
+        $authors = [];
+        $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
+        foreach (GeneralUtility::trimExplode(',', $filter, true) as $identifier) {
+            $authors[] = $authorRepository->findByLastName($identifier)->toArray();
+        }
+        return $authors;
     }
 }
