@@ -29,7 +29,7 @@
 	</f:if>
 	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else>
-		</f:if>
+	</f:if>
 	</f:if>
 	<f:if condition="{publication.number}">no. {publication.number}<f:if condition="{publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
@@ -306,19 +306,13 @@
 </f:spaceless></f:section>
 
 <f:section name="authorUrl"><f:spaceless>
-		<f:link.typolink parameter="{author.url}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.typolink>
+	<f:link.typolink parameter="{author.url}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.typolink>
 </f:spaceless></f:section>
 
 <f:section name="authorDefault"><f:spaceless>
-	<f:if condition="{settings.highlightAuthors}">
-		<f:then>
-			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" >
-				<publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</publications:format.highlightAuthor>
-		</f:then>
-		<f:else>
-			<publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}
-		</f:else>
-	</f:if>
+	<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{settings.author}" authorstring="{filter.authorstring}" settings="{settings}" >
+		<publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}
+	</publications:format.highlightAuthor>
 </f:spaceless></f:section>
 
 </html>

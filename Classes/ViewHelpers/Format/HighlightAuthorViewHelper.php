@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace In2code\Publications\ViewHelpers\Format;
 
 use In2code\Publications\Domain\Repository\AuthorRepository;
-use In2code\Publications\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -30,7 +29,9 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
         $this->registerArgument('author', 'mixed', 'Author array', true);
         $this->registerArgument('before', 'string', 'Add this html before Author of interest', false);
         $this->registerArgument('after', 'string', 'Add this html after', false);
-        $this->registerArgument('searchterms', 'mixed', 'Searchterms, Authors selected in Filter in flexform/TS ', false);
+        $this->registerArgument('searchterms', 'mixed', 'Authors selected in Filter in flexform/TS', false);
+        $this->registerArgument('authorstring', 'string', 'Authorstring from Filter', false);
+        $this->registerArgument('settings', 'array', 'Settings from Flexform/TS', false);
     }
 
     /**
@@ -40,16 +41,56 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
     {
         $value = implode(PHP_EOL, GeneralUtility::trimExplode(PHP_EOL, $this->renderChildren(), true));
         if (!empty($value)) {
-            if (!empty($this->arguments['searchterms'])) {
-                $filterauthors = $this->getAuthors($this->arguments['searchterms']);
-                $author[] = $this->arguments['author'];
-                $match = array_intersect($filterauthors, $author); //intersect_assoc is too strict
-                if (!empty($match)) {
-                    return $this->wrapText($value);
-                }
+            if ($this->highlightAuthorFromSearch() || $this->highlighAuthorFromFlexform()) {
+                return $this->wrapText($value);
             }
         }
         return $value;
+    }
+
+    protected function highlightAuthorFromSearch(): bool
+    {
+        if (ArrayUtility::isValidPath($this->arguments, 'settings/highlightAuthorsFromSearch')) {
+            return
+                !empty($this->arguments['authorstring'])
+                && $this->arguments['settings']['highlightAuthorsFromSearch'] === '1'
+                && $this->authorInFrontendSearch()
+            ;
+        }
+        return false;
+    }
+
+    protected function highlighAuthorFromFlexform(): bool
+    {
+        if (ArrayUtility::isValidPath($this->arguments, 'settings/highlightAuthors')) {
+            return
+                !empty($this->arguments['searchterms'])
+                && $this->arguments['settings']['highlightAuthors'] === '1'
+                && $this->authorInBackendSet()
+            ;
+        }
+        return false;
+    }
+
+    protected function authorInBackendSet(): bool
+    {
+        $authorRepository = GeneralUtility::makeInstance(AuthorRepository::class);
+        $authorUids = GeneralUtility::intExplode(',', $this->arguments['searchterms']);
+        foreach ($authorUids as $authorUid) {
+            $author = $authorRepository->findByUid($authorUid);
+            if ($author === $this->arguments['author']) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected function authorInFrontendSearch(): bool
+    {
+        return
+            stripos($this->arguments['authorstring'], $this->arguments['author']->getLastName()) !== false ||
+            stripos($this->arguments['authorstring'], $this->arguments['author']->getFirstName()) !== false
+        ;
     }
 
     /**
@@ -65,20 +106,5 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
             $text .= $this->arguments['after'];
         }
         return $text;
-    }
-
-    /**
-     * @param string $filter
-     * @return array
-     * @throws Exception
-     */
-    protected function getAuthors(string $filter): array
-    {
-        $authors = [];
-        $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
-        foreach (GeneralUtility::intExplode(',', $filter, true) as $identifier) {
-            $authors[] = $authorRepository->findByUid($identifier);
-        }
-        return $authors;
     }
 }
