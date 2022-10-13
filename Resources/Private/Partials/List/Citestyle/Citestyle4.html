@@ -29,14 +29,14 @@
 	</f:if>
 	<f:if condition="{publication.title}">"{publication.title}"
 		<f:if
-				condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages}">
+			condition="{publication.journal} || {publication.volume} || {publication.number} || {publication.pages}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.journal}"><i>{publication.journal}</i>
 		<f:if
-				condition="{publication.volume} || {publication.number} || {publication.pages}">
+			condition="{publication.volume} || {publication.number} || {publication.pages}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
@@ -135,7 +135,7 @@
 		<f:if condition="{publication.booktitle}">
 			<f:else>
 				<f:if
-						condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
+					condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
 					<f:then>,</f:then>
 					<f:else>.</f:else>
 				</f:if>
@@ -144,28 +144,28 @@
 	</f:if>
 	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i>
 		<f:if
-				condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
+			condition="{publication.eventName} || {publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.eventName}">{publication.eventName}
 		<f:if
-				condition="{publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
+			condition="{publication.eventPlace} || {publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.eventPlace}">{publication.eventPlace}
 		<f:if
-				condition="{publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
+			condition="{publication.eventDate} || {publication.editor} || {publication.address} || {publication.publisher}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
 	</f:if>
 	<f:if condition="{publication.eventDate}">{publication.eventDate}
 		<f:if
-				condition="{publication.editor} || {publication.address} || {publication.publisher}">
+			condition="{publication.editor} || {publication.address} || {publication.publisher}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
@@ -204,7 +204,7 @@
 		<f:if condition="{publication.booktitle}">
 			<f:else>
 				<f:if
-						condition="{publication.editor} || {publication.address} || {publication.publisher} ||  {publication.pages}">
+					condition="{publication.editor} || {publication.address} || {publication.publisher} ||  {publication.pages}">
 					<f:then>,</f:then>
 					<f:else>.</f:else>
 				</f:if>
@@ -213,7 +213,7 @@
 	</f:if>
 	<f:if condition="{publication.booktitle}">in <i>{publication.booktitle}</i>
 		<f:if
-				condition="{publication.editor} || {publication.address} || {publication.publisher} ||  {publication.pages}">
+			condition="{publication.editor} || {publication.address} || {publication.publisher} ||  {publication.pages}">
 			<f:then>,</f:then>
 			<f:else>.</f:else>
 		</f:if>
@@ -585,16 +585,9 @@
 </f:spaceless></f:section>
 
 <f:section name="authorDefault"><f:spaceless>
-	<f:if condition="{settings.highlightAuthors}">
-		<f:then>
-			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.authorstring}" >
-				{author.lastName}, <publications:format.initials>{author.firstName}</publications:format.initials>
-			</publications:format.highlightAuthor>
-		</f:then>
-		<f:else>
-			{author.lastName}, <publications:format.initials>{author.firstName}</publications:format.initials>
-		</f:else>
-	</f:if>
+	<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{settings.author}" authorstring="{filter.authorstring}" settings="{settings}" >
+		{author.lastName}, <publications:format.initials>{author.firstName}</publications:format.initials>
+	</publications:format.highlightAuthor>
 </f:spaceless></f:section>
 
 </html>

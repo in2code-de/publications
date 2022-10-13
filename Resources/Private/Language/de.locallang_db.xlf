@@ -519,12 +519,20 @@
 				<target state="translated">Zeige nur Publikationen von diesen Seites</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors">
-				<source>Highlight Author?</source>
-				<target state="translated">Author hervorheben?</target>
+				<source>Highlight Author (from filter)?</source>
+				<target state="translated">Author hervorheben (aus Filter)?</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
 				<source>Makes filtered Authors stand out from others</source>
 				<target state="translated">Hebt gefilterten Author gegenüber anderen hervor.</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch">
+				<source>Highlight Author used in FE Search?</source>
+				<target>Author hervorheben (aus Suche)?</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch.label">
+				<source>Makes Authors stand out from others, when used in Search</source>
+				<target>Hebt gesuchten Author gegenüber anderen hervor.</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>

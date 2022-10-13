@@ -16,7 +16,7 @@
 			<f:for each="{pagination.paginator.paginatedItems}" as="publication" iteration="iterator">
 				<f:render section="GroupTitle" arguments="{_all}"/>
 				<div style="padding: 10px 0;" data-publications-record="{publication.uid}">
-					<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{publication: publication, keyOfFirstPaginatedItem: pagination.paginator.keyOfFirstPaginatedItem, index:iterator.index, maxItems:maxItems, filter: filter}" />
+					<f:render partial="List/Citestyle/Citestyle{filter.citestyle}" arguments="{publication: publication, keyOfFirstPaginatedItem: pagination.paginator.keyOfFirstPaginatedItem, index:iterator.index, maxItems:maxItems, filter:filter}" />
 				</div>
 				<f:comment><!-- Set new values for group title comparision --></f:comment>
 				<f:switch expression="{filter.groupby}">

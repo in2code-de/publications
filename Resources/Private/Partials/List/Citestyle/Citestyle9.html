@@ -250,24 +250,17 @@ Pohl S, Kellner A, Muster MR, Stein SS.
 </f:spaceless></f:section>
 
 <f:section name="authorOrcid"><f:spaceless>
-			<f:link.external uri="https://orcid.org/{author.orcid}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.external>
+	<f:link.external uri="https://orcid.org/{author.orcid}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.external>
 </f:spaceless></f:section>
 
 <f:section name="authorUrl"><f:spaceless>
-			<f:link.typolink parameter="{author.url}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.typolink>
+	<f:link.typolink parameter="{author.url}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.typolink>
 </f:spaceless></f:section>
 
 <f:section name="authorDefault"><f:spaceless>
-	<f:if condition="{settings.highlightAuthors}">
-		<f:then>
-			<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.authorstring}" >
-				{author.lastName}&nbsp;<publications:format.initials glue='' suffix=''>{author.firstName}</publications:format.initials>
-			</publications:format.highlightAuthor>
-		</f:then>
-		<f:else>
-			{author.lastName}&nbsp;<publications:format.initials glue='' suffix=''>{author.firstName}</publications:format.initials>
-		</f:else>
-	</f:if>
+	<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{settings.author}" authorstring="{filter.authorstring}" settings="{settings}" >
+		{author.lastName}&nbsp;<publications:format.initials glue='' suffix=''>{author.firstName}</publications:format.initials>
+	</publications:format.highlightAuthor>
 </f:spaceless></f:section>
 
 </html>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z"
-		  product-name="publications">
+				product-name="publications">
 		<header/>
 		<body>
 			<trans-unit id="tx_publications_domain_model_publication.tab.main">
@@ -383,10 +383,16 @@
 				<source>Author</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors">
-				<source>Highlight Author?</source>
+				<source>Highlight Author (from Filter)?</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
-				<source>Makes filtered Authors stand out from others</source>
+				<source>Makes filtered authors stand out from others</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch">
+				<source>Highlight Author (from Search)?</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch.label">
+				<source>Makes authors stand out from others, when used in search</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.extern">
 				<source>Intern/Extern</source>

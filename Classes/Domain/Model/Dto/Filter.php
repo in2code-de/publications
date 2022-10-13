@@ -628,7 +628,7 @@ class Filter
      */
     public function getAuthorstrings(): array
     {
-        $authorstring = str_replace(',', '', $this->getAuthorstring());
+        $authorstring = str_replace(',', ' ', $this->getAuthorstring());
         return GeneralUtility::trimExplode(' ', $authorstring, true);
     }
 
