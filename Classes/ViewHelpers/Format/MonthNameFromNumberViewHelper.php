@@ -31,7 +31,7 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
     public function render(): string
     {
         $month = $this->arguments['month'];
-        $monthlower = strtolower ($month);
+        $monthlower = strtolower($month);
         $monthletter = substr($monthlower, 0, 3);
         if ($monthletter == 'jan') {
             $month = '1';
