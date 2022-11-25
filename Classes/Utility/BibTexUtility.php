@@ -12,7 +12,7 @@ class BibTexUtility
     /**
      * @var array
      */
-    protected static $decoded = array (
+    protected static $decoded = [
         '\\#%#','\\%#%','','','"','"','"',
         'ä','á','à','ã','â','å','ą','Ä','Á','À','Â','Ã','Å',
         'ř','ß','ß','ś','š','ş','Š','Ś','§',
@@ -24,13 +24,13 @@ class BibTexUtility
         'ý','ž','Ž','—','—','&','&',
         '$','_','†','†','«','»','„','“','„','“','‚','‘','´',
         '½','¼','…','…','®','™',
-        '{','}','%','#');
+        '{','}','%','#'];
 
     /**
      * @var array
      * @comment protect first latex curly brackets, then remove all other curly brackets, replace patterns, restore latex curly brackets
      */
-    protected static $decoding = array(
+    protected static $decoding = [
         '\\{','\\}','{','}','\\dq','\'\'','``',
         '\\"a','\\\'a','\\`a','\\~a','\\^a','\\aa','\\ka','\\"A','\\\'A','\\`A','\\^A','\\~A','\\AA',
         '\\vr','\\"s','\\ss','\\\'s','\\vs','\\cs','\\vS','\\\'S','\\S',
@@ -42,13 +42,13 @@ class BibTexUtility
         '\\\'y','\\vz','\\vZ','--','&ndash;','\\&','\&',
         '\$','\_','$\\dagger$','\ddag','\\flqq','\\frqq','&bdquo;','&ldquo;','\\glqq','\\grqq','\\glq','\\grq','\\textasciiacute',
         '\\textonehalf','\\textonequarter','[$\ldots$]','$\ldots$','\\texttrademark','\\textregistered',
-        '\\#%#','\\%#%','\\%','\\#');
+        '\\#%#','\\%#%','\\%','\\#'];
 
 
     /**
      * @var array
      */
-    protected static $encoded = array(
+    protected static $encoded = [
         '','','','','\\dq','\'\'','``',
         '{\\"{a}','{\\\'{a}}','{\\`{a}}','{\\~{a}}','{\\^{a}}','{\\a{a}}','{\\k{a}}','{\\"{A}}','{\\\'{A}}','{\\`{A}}','{\\^{A}}','{\\~{A}}','{\\A{A}}',
         '{\\v{r}}','{\\"{s}}','{\\ss}','{\\\'s}','{\\v{s}}','{\\c{s}}','{\\v{S}}','{\\\'{S}}','{\\{S}}',
@@ -60,7 +60,7 @@ class BibTexUtility
         '{\\\'{y}}','{\\v{z}}','{\\v{Z}}','{--}','&ndash;','{\\&}','\&',
         '\$','\_','$\\dagger$','\ddag','\\flqq','\\frqq','&bdquo;','&ldquo;','\\glqq','\\grqq','\\glq','\\grq','\\textasciiacute',
         '\\textonehalf','\\textonequarter','[$\ldots$]','$\ldots$','\\texttrademark','\\textregistered',
-        '\\{','\\}','{\\%}','{\\#}');
+        '\\{','\\}','{\\%}','{\\#}'];
 
     /**
      * @param string $string
