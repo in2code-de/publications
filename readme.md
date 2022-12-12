@@ -96,6 +96,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 5.2.0   | 2022-12-12 | Feature | French umlaute                                                                                                                    |
 | 5.1.0   | 2022-10-13 | Feature | Rework highlighting of authors                                                                                                    |
 | 5.0.2   | 2022-09-28 | Bugfix  | Fix author highlighting, fix internal author linking                                                                              |
 | 5.0.1   | 2022-09-21 | Bugfix  | Fix bibtex and xml export                                                                                                         |

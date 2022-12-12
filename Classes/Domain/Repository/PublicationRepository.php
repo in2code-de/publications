@@ -335,6 +335,6 @@ class PublicationRepository extends AbstractRepository
      */
     public function compareCallbackByDate(Publication $p1, Publication $p2): int
     {
-        return strnatcmp((string)$p2->getDate()->format('U'), (string)$p1->getDate()->format('U'));
+        return $p2->getDate() <=> $p1->getDate();
     }
 }
