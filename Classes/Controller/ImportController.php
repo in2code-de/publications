@@ -36,17 +36,15 @@ class ImportController extends ActionController
      */
     public function overviewAction(): ResponseInterface
     {
-        $this->view->assignMultiple(
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->assignMultiple(
             [
                 'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
                 'pid' => GeneralUtility::_GP('id')
             ]
         );
-
-        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+        return $moduleTemplate->renderResponse('Backend/Import/Overview');
     }
 
     /**
