@@ -10,6 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Error;
@@ -32,16 +33,14 @@ class ImportController extends ActionController
      */
     public function overviewAction(): ResponseInterface
     {
-        $this->view->assignMultiple(
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->assignMultiple(
             [
                 'availableImporter' => $this->getExistingImporter(),
                 'pid' => GeneralUtility::_GP('id')
             ]
         );
-
-        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+        return $moduleTemplate->renderResponse('Backend/Import/Overview');
     }
 
     /**
@@ -90,11 +89,13 @@ class ImportController extends ActionController
 
     /**
      * Adds the Validation error Messages to the FlashMessage Queue
+     *
+     * @return void
      */
-    protected function addValidationErrorMessages()
+    protected function addValidationErrorMessages(): void
     {
-        if ($this->controllerContext->getArguments()->getValidationResults()->hasErrors()) {
-            $validationErrors = $this->controllerContext->getArguments()->getValidationResults()->getFlattenedErrors();
+        if ($this->controllerContext->getArguments()->validate()->hasErrors()) {
+            $validationErrors = $this->controllerContext->getArguments()->validate()->getFlattenedErrors();
             foreach ($validationErrors as $errors) {
                 if (!empty($errors)) {
                     /** @var Error $error */
@@ -104,7 +105,7 @@ class ImportController extends ActionController
                             FlashMessage::class,
                             $error->getMessage(),
                             $error->getTitle(),
-                            FlashMessage::ERROR,
+                            ContextualFeedbackSeverity::ERROR,
                             true
                         );
                         $this->controllerContext->getFlashMessageQueue()->addMessage($message);
@@ -130,7 +131,7 @@ class ImportController extends ActionController
                     $this->addFlashMessage(
                         'Importer class "' . $importerClass . '" was not found',
                         'Importer class not found',
-                        AbstractMessage::ERROR
+                        ContextualFeedbackSeverity::ERROR
                     );
                 } else {
                     $importer[$importerClass] = $importerTitle;
