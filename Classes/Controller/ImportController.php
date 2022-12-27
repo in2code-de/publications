@@ -6,10 +6,11 @@ namespace In2code\Publications\Controller;
 
 use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Error;
 
@@ -18,10 +19,18 @@ use TYPO3\CMS\Extbase\Validation\Error;
  */
 class ImportController extends ActionController
 {
+    protected ModuleTemplateFactory $moduleTemplateFactory;
+
+    public function __construct(
+        ModuleTemplateFactory $moduleTemplateFactory,
+    ) {
+        $this->moduleTemplateFactory = $moduleTemplateFactory;
+    }
+
     /**
-     * @return void
+     * @return ResponseInterface
      */
-    public function overviewAction()
+    public function overviewAction(): ResponseInterface
     {
         $this->view->assignMultiple(
             [
@@ -29,11 +38,15 @@ class ImportController extends ActionController
                 'pid' => GeneralUtility::_GP('id')
             ]
         );
+
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->setContent($this->view->render());
+        return $this->htmlResponse($moduleTemplate->renderContent());
     }
 
     /**
-     * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
-     * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
     public function importAction(array $file, string $importer, array $importOptions): void
