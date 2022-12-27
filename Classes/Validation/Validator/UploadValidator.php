@@ -19,7 +19,7 @@ class UploadValidator extends AbstractValidator
      * @param mixed $value
      * @return void
      */
-    public function isValid($value)
+    public function isValid(mixed $value): void
     {
         $this->validateForIndividualUploadErrors($value);
         $this->validateForSystemUploadErrors($value);
