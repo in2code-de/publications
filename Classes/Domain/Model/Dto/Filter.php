@@ -6,7 +6,6 @@ namespace In2code\Publications\Domain\Model\Dto;
 
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
-use In2code\Publications\Utility\ObjectUtility;
 use In2code\Publications\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -399,7 +398,7 @@ class Filter
     {
         $authors = [];
         if ($this->isAuthorSet()) {
-            $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
+            $authorRepository = GeneralUtility::makeInstance(AuthorRepository::class);
             foreach (GeneralUtility::intExplode(',', $this->getAuthor(), true) as $identifier) {
                 $authors[] = $authorRepository->findByUid($identifier);
             }

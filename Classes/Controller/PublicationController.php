@@ -11,6 +11,7 @@ use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
@@ -167,8 +168,7 @@ class PublicationController extends ActionController
             $filterArguments = $this->request->getArgument('filter');
             SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], $filterArguments);
         }
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        $filter = $this->objectManager->get(Filter::class, $this->settings);
+        $filter = GeneralUtility::makeInstance(Filter::class, $this->settings);
         if (!empty($filterArguments['searchterm'])) {
             $filter->setSearchterm($filterArguments['searchterm']);
         }
