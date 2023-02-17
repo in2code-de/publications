@@ -83,14 +83,10 @@ class PublicationController extends ActionController
         return $this->htmlResponse();
     }
 
-    /**
-     * @return void
-     * @throws StopActionException
-     */
-    public function resetListAction()
+    public function resetListAction(): ?ResponseInterface
     {
         SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], []);
-        $this->redirect('list');
+        return $this->redirect('list');
     }
 
     /**
