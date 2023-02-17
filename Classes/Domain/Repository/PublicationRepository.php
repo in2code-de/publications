@@ -55,15 +55,11 @@ class PublicationRepository extends AbstractRepository
             $and = $this->filterQueryByDocumenttype($query, $filter, $and);
         }
         if ($and !== []) {
-            $query->matching($query->logicalAnd($and));
+            $query->matching($query->logicalAnd(...$and));
         }
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByKeywords(QueryInterface $query, Filter $filter, array $and): array
@@ -73,7 +69,7 @@ class PublicationRepository extends AbstractRepository
             foreach ($filter->getKeywords() as $keyword) {
                 $or[] = $query->like('keywords', '%' . $keyword . '%');
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -92,7 +88,7 @@ class PublicationRepository extends AbstractRepository
             foreach ($filter->getTags() as $tag) {
                 $or[] = $query->like('tags', '%' . $tag . '%');
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -125,7 +121,7 @@ class PublicationRepository extends AbstractRepository
             foreach ($filter->getBibtypes() as $bibtype) {
                 $or[] = $query->equals('bibtype', $bibtype);
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -143,7 +139,7 @@ class PublicationRepository extends AbstractRepository
             foreach ($filter->getStatus() as $status) {
                 $or[] = $query->equals('status', $status);
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -162,7 +158,7 @@ class PublicationRepository extends AbstractRepository
             foreach ($filter->getAuthors() as $author) {
                 $or[] = $query->contains('authors', $author);
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -247,7 +243,7 @@ class PublicationRepository extends AbstractRepository
                 $or[] = $query->like('authors.firstName', '%' . $searchterm . '%');
                 $or[] = $query->like('authors.lastName', '%' . $searchterm . '%');
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -297,7 +293,7 @@ class PublicationRepository extends AbstractRepository
                 $or[] = $query->like('authors.firstName', '%' . $authorstring . '%');
                 $or[] = $query->like('authors.lastName', '%' . $authorstring . '%');
             }
-            $and[] = $query->logicalOr($or);
+            $and[] = $query->logicalOr(...$or);
         }
         return $and;
     }
@@ -320,7 +316,6 @@ class PublicationRepository extends AbstractRepository
      */
     protected function convertToAscendingArray(QueryResultInterface $results): array
     {
-        $i = 0;
         $resultsRaw = $results->toArray();
         usort($resultsRaw, [$this, 'compareCallbackByDate']);
         return $resultsRaw;
