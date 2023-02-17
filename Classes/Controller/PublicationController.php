@@ -181,7 +181,8 @@ class PublicationController extends ActionController
         if (!empty($filterArguments['documenttype'])) {
             $filter->setDocumenttype($filterArguments['documenttype']);
         }
-        $this->request->setArgument('filter', $filter);
+
+        $this->request = $this->request->withArgument('filter', $filter);
     }
 
     /**
