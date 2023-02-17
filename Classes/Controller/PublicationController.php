@@ -14,7 +14,6 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -34,18 +33,14 @@ class PublicationController extends ActionController
 
     /**
      * @return void
-     * @throws NoSuchArgumentException
      */
-    public function initializeListAction()
+    public function initializeListAction(): void
     {
         $this->setFilterArguments();
     }
 
     /**
-     * @param Filter $filter
-     * @return void
      * @throws InvalidQueryException
-     * @throws NoSuchArgumentException
      */
     public function listAction(Filter $filter): ResponseInterface
     {
@@ -89,19 +84,13 @@ class PublicationController extends ActionController
         return $this->redirect('list');
     }
 
-    /**
-     * @return void
-     * @throws NoSuchArgumentException
-     */
-    public function initializeDownloadBibtexAction()
+    public function initializeDownloadBibtexAction(): void
     {
         $this->setFilterArguments();
         $this->request->setFormat('xml');
     }
 
     /**
-     * @param Filter $filter
-     * @return ResponseInterface
      * @throws InvalidQueryException
      */
     public function downloadBibtexAction(Filter $filter): ResponseInterface
@@ -121,18 +110,15 @@ class PublicationController extends ActionController
     }
 
     /**
-     * @return void
      * @throws NoSuchArgumentException
      */
-    public function initializeDownloadXmlAction()
+    public function initializeDownloadXmlAction(): void
     {
         $this->setFilterArguments();
         $this->request->setFormat('xml');
     }
 
     /**
-     * @param Filter $filter
-     * @return ResponseInterface
      * @throws InvalidQueryException
      */
     public function downloadXmlAction(Filter $filter): ResponseInterface
@@ -151,11 +137,7 @@ class PublicationController extends ActionController
             ->withBody($this->streamFactory->createStream($this->view->render()));
     }
 
-    /**
-     * @return void
-     * @throws NoSuchArgumentException
-     */
-    protected function setFilterArguments()
+    protected function setFilterArguments(): void
     {
         if ($this->request->hasArgument('filter') === false) {
             $filterArguments = SessionUtility::getSessionValue('filter_' . $this->getContentObject()->data['uid']);
@@ -181,9 +163,6 @@ class PublicationController extends ActionController
         $this->request = $this->request->withArgument('filter', $filter);
     }
 
-    /**
-     * @return ContentObjectRenderer
-     */
     protected function getContentObject(): ContentObjectRenderer
     {
         return $this->configurationManager->getContentObject();
