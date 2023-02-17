@@ -33,12 +33,13 @@
   "type": "typo3-cms-extension",
   "license": "GPL-2.0-or-later",
   "require": {
+    "php": "^8.1",
     "ext-simplexml": "*",
     "ext-json": "*",
     "ext-libxml": "*",
     "ext-pdo": "*",
     "renanbr/bibtex-parser": "^2",
-    "typo3/cms-core": "^12.1"
+    "typo3/cms-core": "dev-main"
   },
   "replace": {
     "typo3-ter/publications": "self.version"
@@ -46,26 +47,28 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.8",
     "helhum/typo3-console": "^7.0",
-    "helmich/typo3-typoscript-lint": "^2.5",
+    "helmich/typo3-typoscript-lint": "^3",
     "nimut/testing-framework": "^6.0",
     "squizlabs/php_codesniffer": "^3.3",
-    "typo3/cms-composer-installers": "4.0.x@dev",
-    "typo3/cms-extbase": "^12.1",
-    "typo3/cms-extensionmanager": "^12.1",
-    "typo3/cms-felogin": "^12.1",
-    "typo3/cms-filelist": "^12.1",
-    "typo3/cms-fluid-styled-content": "^12.1",
-    "typo3/cms-frontend": "^12.1",
-    "typo3/cms-info": "^12.1",
-    "typo3/cms-install": "^12.1",
-    "typo3/cms-lowlevel": "^12.1",
-    "typo3/cms-rte-ckeditor": "^12.1",
-    "typo3/cms-scheduler": "^12.1",
-    "typo3/cms-setup": "^12.1",
-    "typo3/cms-t3editor": "^12.1",
-    "typo3/cms-tstemplate": "^12.1",
-    "typo3/cms-styleguide": "^12.1"
+    "typo3/cms-composer-installers": "^5.0",
+    "typo3/cms-extbase": "dev-main",
+    "typo3/cms-extensionmanager": "dev-main",
+    "typo3/cms-felogin": "dev-main",
+    "typo3/cms-filelist": "dev-main",
+    "typo3/cms-fluid-styled-content": "dev-main",
+    "typo3/cms-frontend": "dev-main",
+    "typo3/cms-info": "dev-main",
+    "typo3/cms-install": "dev-main",
+    "typo3/cms-lowlevel": "dev-main",
+    "typo3/cms-rte-ckeditor": "dev-main",
+    "typo3/cms-scheduler": "dev-main",
+    "typo3/cms-setup": "dev-main",
+    "typo3/cms-t3editor": "dev-main",
+    "typo3/cms-tstemplate": "dev-main",
+    "typo3/cms-styleguide": "dev-main"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "In2code\\Publications\\": "Classes/"
