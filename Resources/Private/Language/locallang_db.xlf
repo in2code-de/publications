@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z"
-				product-name="publications">
-		<header/>
+	product-name="publications">
+		<header />
 		<body>
 			<trans-unit id="tx_publications_domain_model_publication.tab.main">
 				<source>Main</source>
@@ -595,6 +595,12 @@
 			</trans-unit>
 			<trans-unit id="backendModule.duplicateAuthorBehaviour.pid">
 				<source>only current PID</source>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour">
+				<source>Language Behaviour</source>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour.additional">
+				<source>Specifies the language in which the records are created</source>
 			</trans-unit>
 		</body>
 	</file>

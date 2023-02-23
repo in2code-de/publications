@@ -35,5 +35,33 @@
 			</div>
 		</div>
 	</fieldset>
+	<fieldset class="form-section">
+		<div class="form-group">
+			<label>
+				<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.languageBehaviour"/>
+			</label>
+			<div class="formengine-field-item">
+				<span class="formengine-field-item-description text-muted">
+					<f:translate key="LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.languageBehaviour.additional"/>
+				</span>
+				<div class="form-control-wrap">
+					<div class="form-wizards-wrap">
+						<div class="form-wizards-element">
+							<div class="input-group">
+								<span class="input-group-addon input-group-icon">
+
+								</span>
+								<f:form.select name="importOptions[languageBehavior]" class="form-select form-control-adapt">
+									<f:for each="{languages}" as="language">
+										<f:form.select.option value="{language.uid}">{language.title}</f:form.select.option>
+									</f:for>
+								</f:form.select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
 </div>
 </html>
