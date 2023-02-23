@@ -65,7 +65,7 @@
     "typo3/cms-setup": "^11.5 || dev-main",
     "typo3/cms-t3editor": "^11.5 || dev-main",
     "typo3/cms-tstemplate": "^11.5 || dev-main",
-    "typo3/cms-styleguide": "^11.5 || dev-main"
+    "typo3/cms-styleguide": "dev-main"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
