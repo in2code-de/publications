@@ -10,10 +10,10 @@ use In2code\Publications\Domain\Service\PublicationService;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -70,11 +70,11 @@ class PublicationController extends ActionController
             'pagination' => $pagination,
         ]);
         $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications,
-            'data' => $this->getContentObject()->data,
-            'maxItems' => count($publications),
-        ]);
+                                        'filter' => $filter,
+                                        'publications' => $publications,
+                                        'data' => $this->getContentObject()->data,
+                                        'maxItems' => count($publications),
+                                    ]);
         return $this->htmlResponse();
     }
 
@@ -87,54 +87,60 @@ class PublicationController extends ActionController
     public function initializeDownloadBibtexAction(): void
     {
         $this->setFilterArguments();
-        $this->request->setFormat('xml');
+        $this->request = $this->request->withFormat('xml');
     }
 
     /**
-     * @throws InvalidQueryException
+     * @throws InvalidQueryException|PropagateResponseException
      */
     public function downloadBibtexAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
-        $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications
-        ]);
 
-        return $this->responseFactory
+        $this->view->assignMultiple(
+            [
+                'filter' => $filter,
+                'publications' => $publications
+            ]
+        );
+
+        $response = $this->responseFactory
             ->createResponse()
             ->withHeader('Content-Type', 'application/x-bibtex')
             ->withHeader('Pragma', 'no-cache')
             ->withHeader('Content-Disposition', 'attachment; filename="download.bib"')
             ->withBody($this->streamFactory->createStream($this->view->render()));
+
+        throw new PropagateResponseException($response, 200);
     }
 
-    /**
-     * @throws NoSuchArgumentException
-     */
     public function initializeDownloadXmlAction(): void
     {
         $this->setFilterArguments();
-        $this->request->setFormat('xml');
+        $this->request = $this->request->withFormat('xml');
     }
 
     /**
-     * @throws InvalidQueryException
+     * @throws InvalidQueryException|PropagateResponseException
      */
     public function downloadXmlAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
-        $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications
-        ]);
+        $this->view->assignMultiple(
+            [
+                'filter' => $filter,
+                'publications' => $publications
+            ]
+        );
 
-        return $this->responseFactory
+        $response = $this->responseFactory
             ->createResponse()
             ->withHeader('Content-Type', 'text/xml')
             ->withHeader('Pragma', 'no-cache')
             ->withHeader('Content-Disposition', 'attachment; filename="download.xml"')
             ->withBody($this->streamFactory->createStream($this->view->render()));
+
+        throw new PropagateResponseException($response, 200);
     }
 
     protected function setFilterArguments(): void
