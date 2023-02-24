@@ -96,6 +96,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 5.3.1   | 2023-02-24 | Bugfix  | Add missing use for ImportController                                                                                              |
 | 5.3.0   | 2023-02-24 | Feature | Additional import option "language behaviour". Allows to specify the target langauge of imports                                   |
 | 5.2.0   | 2022-12-12 | Feature | French umlaute                                                                                                                    |
 | 5.1.0   | 2022-10-13 | Feature | Rework highlighting of authors                                                                                                    |
