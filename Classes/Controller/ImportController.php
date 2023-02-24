@@ -8,11 +8,13 @@ use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
@@ -36,6 +38,7 @@ class ImportController extends ActionController
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
         $moduleTemplate->assignMultiple(
             [
+                'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
                 'pid' => GeneralUtility::_GP('id')
             ]
@@ -85,6 +88,30 @@ class ImportController extends ActionController
     protected function getErrorFlashMessage()
     {
         return false;
+    }
+
+    protected function getLanguages(): array
+    {
+        $languages = [
+            -1 => [
+                'title' => LocalizationUtility::translate('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:multipleLanguages'),
+                'uid' => -1,
+                'iconIdentifier' => 'global'
+            ]
+        ];
+
+        if ($this->request->getAttribute('site') instanceof Site) {
+            /** @var SiteLanguage $language */
+            foreach ($this->request->getAttribute('site')->getLanguages() as $language) {
+                $languages[$language->getLanguageId()] = [
+                    'title' => $language->getNavigationTitle(),
+                    'uid' => $language->getLanguageId(),
+                    'iconIdentifier' => $language->getFlagIdentifier()
+                ];
+            }
+        }
+
+        return $languages;
     }
 
     /**
