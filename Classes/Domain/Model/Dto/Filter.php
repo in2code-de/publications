@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace In2code\Publications\Domain\Model\Dto;
@@ -15,87 +16,97 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class Filter
 {
-    /**
-     * @var int
-     */
-    protected $citestyle = 0;
+    public const GROUP_BY_NONE = -1;
+    public const GROUP_BY_YEAR = 0;
+    public const GROUP_BY_TYPE = 1;
+    public const GROUP_BY_YEAR_AND_TYPE = 2;
 
     /**
      * @var int
      */
-    protected $groupby = 0;
+    protected int $citestyle = 0;
 
     /**
      * @var int
      */
-    protected $recordsPerPage = 25;
+    protected int $groupby = self::GROUP_BY_YEAR;
 
     /**
      * @var int
      */
-    protected $timeframe = 0;
+    protected int $recordsPerPage = 25;
+
+    /**
+     * @var int
+     */
+    protected int $timeframe = 0;
 
     /**
      * @var array
      */
-    protected $bibtypes = [];
+    protected array $bibtypes = [];
 
     /**
      * @var int[]
      */
-    protected $status = [];
+    protected array $status = [];
 
     /**
      * @var array
      */
-    protected $keywords = [];
+    protected array $keywords = [];
 
     /**
      * @var array
      */
-    protected $tags = [];
+    protected array $tags = [];
 
     /**
      * Commaseparated identifiers of author objects
      *
      * @var string "123,345,678"
      */
-    protected $author = '';
+    protected string $author = '';
 
     /**
      * @var int 0=off, 1=intern, 2=extern
      */
-    protected $externFilter = 0;
+    protected int $externFilter = 0;
 
     /**
      * @var array
      */
-    protected $records = [];
+    protected array $records = [];
 
     /**
      * @var string
      */
-    protected $searchterm = '';
+    protected string $searchterm = '';
+
+    /**
+     * @var string
+     */
+    protected string $documenttype = 'all';
 
     /**
      * @var int
      */
-    protected $year = 0;
+    protected int $year = 0;
 
     /**
      * @var string
      */
-    protected $authorstring = '';
+    protected string $authorstring = '';
 
     /**
      * @var array
      */
-    protected $export = [];
+    protected array $export = [];
 
     /**
      * @var int recursive level
      */
-    protected $recursive = 0;
+    protected int $recursive = 0;
 
     /**
      * Filter constructor.
@@ -112,7 +123,7 @@ class Filter
         $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
         $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
-        $this->setAuthor($settings['author']);
+        $this->setAuthor($settings['author'] ?? '');
         $this->setExternFilter((int)$settings['extern']);
         $this->setRecursive((int)$settings['recursive']);
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
@@ -245,7 +256,7 @@ class Filter
     /**
      * @return \DateTime
      */
-    public function getDateFromTimeFrame()
+    public function getDateFromTimeFrame(): ?\DateTime
     {
         $date = null;
         try {
@@ -382,8 +393,9 @@ class Filter
 
     /**
      * @return Author[]
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
-    public function getAuthors()
+    public function getAuthors(): array
     {
         $authors = [];
         if ($this->isAuthorSet()) {
@@ -516,6 +528,14 @@ class Filter
     }
 
     /**
+     * @return string
+     */
+    public function getDocumenttype(): string
+    {
+        return $this->documenttype;
+    }
+
+    /**
      * @return int
      */
     public function getYear(): int
@@ -532,9 +552,9 @@ class Filter
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getYearFrom()
+    public function getYearFrom(): ?\DateTime
     {
         try {
             return new \DateTime('first day of January ' . $this->getYear());
@@ -546,7 +566,7 @@ class Filter
     /**
      * @return \DateTime|null
      */
-    public function getYearTo()
+    public function getYearTo(): ?\DateTime
     {
         try {
             $date = new \DateTime('first day of January ' . ($this->getYear() + 1));
@@ -555,6 +575,16 @@ class Filter
         } catch (\Exception $exception) {
             return null;
         }
+    }
+
+    /**
+     * @param string $documenttype
+     * @return Filter
+     */
+    public function setDocumenttype(string $documenttype): self
+    {
+        $this->documenttype = $documenttype;
+        return $this;
     }
 
     /**
@@ -578,6 +608,14 @@ class Filter
     /**
      * @return bool
      */
+    public function isDocumenttypeSet(): bool
+    {
+        return $this->getDocumenttype() !== 'all';
+    }
+
+    /**
+     * @return bool
+     */
     public function isAuthorstringSet(): bool
     {
         return $this->getAuthorstring() !== '';
@@ -590,7 +628,7 @@ class Filter
      */
     public function getAuthorstrings(): array
     {
-        $authorstring = str_replace(',', '', $this->getAuthorstring());
+        $authorstring = str_replace(',', ' ', $this->getAuthorstring());
         return GeneralUtility::trimExplode(' ', $authorstring, true);
     }
 
@@ -664,6 +702,7 @@ class Filter
     {
         return $this->isSearchtermSet()
             || $this->isYearSet()
-            || $this->isAuthorstringSet();
+            || $this->isAuthorstringSet()
+            || $this->isDocumenttypeSet();
     }
 }

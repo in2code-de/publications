@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Utility;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -12,7 +14,8 @@ class ConfigurationUtility
 {
     /**
      * @param string $path
-     * @return array|string
+     * @return array|mixed|string
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     public static function getSetting(string $path)
     {

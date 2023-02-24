@@ -1,469 +1,484 @@
 <T3DataStructure>
-	<meta>
-		<langDisable>1</langDisable>
-	</meta>
-	<sheets>
-		<template>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.hideFilter>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.hideFilter</label>
-							<config>
-								<type>check</type>
-								<default>0</default>
-							</config>
-						</TCEforms>
-					</settings.hideFilter>
-					<settings.hideEnumeration>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.hideEnumeration</label>
-							<config>
-								<type>check</type>
-								<default>0</default>
-							</config>
-						</TCEforms>
-					</settings.hideEnumeration>
-					<settings.showGroupLinks>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks</label>
-							<config>
-								<type>check</type>
-								<default>0</default>
-								<items type="array">
-										<numIndex index="0" type="array">
-											<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks.label</numIndex>
-										</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.showGroupLinks>
-					<settings.citestyle>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-								<itemsProcFunc>In2code\Publications\Tca\CitestyleSelection->getStyles</itemsProcFunc>
-							</config>
-						</TCEforms>
-					</settings.citestyle>
-					<settings.groupby>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="-1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.-1</numIndex>
-										<numIndex index="1">-1</numIndex>
-									</numIndex>
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-								</items>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-							</config>
-						</TCEforms>
-					</settings.groupby>
-					<settings.recordsPerPage>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.recordsPerPage</label>
-							<config>
-								<type>input</type>
-								<default>25</default>
-								<eval>trim,int</eval>
-								<range>
-									<lower>1</lower>
-									<upper>250</upper>
-								</range>
-							</config>
-						</TCEforms>
-					</settings.recordsPerPage>
-					<settings.linkNames>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames</label>
-							<config>
-								<type>check</type>
-								<default>0</default>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames.label</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.linkNames>
-					<settings.export>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export</label>
-							<config>
-								<type>select</type>
-								<renderType>selectMultipleSideBySide</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export.0</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export.1</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-								</items>
-								<size>3</size>
-								<minitems>0</minitems>
-								<maxitems>100</maxitems>
-							</config>
-						</TCEforms>
-					</settings.export>
-				</el>
-			</ROOT>
-		</template>
-		<main>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.timeframe>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframe</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframe.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">3</numIndex>
-										<numIndex index="1">3</numIndex>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<numIndex index="0">5</numIndex>
-										<numIndex index="1">5</numIndex>
-									</numIndex>
-									<numIndex index="5" type="array">
-										<numIndex index="0">10</numIndex>
-										<numIndex index="1">10</numIndex>
-									</numIndex>
-									<numIndex index="6" type="array">
-										<numIndex index="0">15</numIndex>
-										<numIndex index="1">15</numIndex>
-									</numIndex>
-									<numIndex index="7" type="array">
-										<numIndex index="0">25</numIndex>
-										<numIndex index="1">25</numIndex>
-									</numIndex>
-									<numIndex index="8" type="array">
-										<numIndex index="0">50</numIndex>
-										<numIndex index="1">50</numIndex>
-									</numIndex>
-								</items>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-							</config>
-						</TCEforms>
-					</settings.timeframe>
-					<settings.bibtypes>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes</label>
-							<config>
-								<type>select</type>
-								<renderType>selectMultipleSideBySide</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.article</numIndex>
-										<numIndex index="1">article</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.book</numIndex>
-										<numIndex index="1">book</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.booklet</numIndex>
-										<numIndex index="1">booklet</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.conference</numIndex>
-										<numIndex index="1">conference</numIndex>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.inbook</numIndex>
-										<numIndex index="1">inbook</numIndex>
-									</numIndex>
-									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.incollection</numIndex>
-										<numIndex index="1">incollection</numIndex>
-									</numIndex>
-									<numIndex index="6" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.inproceedings</numIndex>
-										<numIndex index="1">inproceedings</numIndex>
-									</numIndex>
-									<numIndex index="7" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.manual</numIndex>
-										<numIndex index="1">manual</numIndex>
-									</numIndex>
-									<numIndex index="8" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.manuscript</numIndex>
-										<numIndex index="1">manuscript</numIndex>
-									</numIndex>
-									<numIndex index="9" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.mastersthesis</numIndex>
-										<numIndex index="1">mastersthesis</numIndex>
-									</numIndex>
-									<numIndex index="10" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.misc</numIndex>
-										<numIndex index="1">misc</numIndex>
-									</numIndex>
-									<numIndex index="11" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.phdthesis</numIndex>
-										<numIndex index="1">phdthesis</numIndex>
-									</numIndex>
-									<numIndex index="12" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.poster</numIndex>
-										<numIndex index="1">poster</numIndex>
-									</numIndex>
-									<numIndex index="13" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.proceedings</numIndex>
-										<numIndex index="1">proceedings</numIndex>
-									</numIndex>
-									<numIndex index="14" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.report</numIndex>
-										<numIndex index="1">report</numIndex>
-									</numIndex>
-									<numIndex index="15" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.techreport</numIndex>
-										<numIndex index="1">techreport</numIndex>
-									</numIndex>
-									<numIndex index="16" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.thesis</numIndex>
-										<numIndex index="1">thesis</numIndex>
-									</numIndex>
-									<numIndex index="17" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.unpublished</numIndex>
-										<numIndex index="1">unpublished</numIndex>
-									</numIndex>
-									<numIndex index="18" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.url</numIndex>
-										<numIndex index="1">url</numIndex>
-									</numIndex>
-									<numIndex index="19" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.patent</numIndex>
-										<numIndex index="1">patent</numIndex>
-									</numIndex>
-								</items>
-								<size>10</size>
-								<minitems>0</minitems>
-								<maxitems>25</maxitems>
-							</config>
-						</TCEforms>
-					</settings.bibtypes>
-					<settings.status>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status</label>
-							<config>
-								<type>select</type>
-								<renderType>selectMultipleSideBySide</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.3</numIndex>
-										<numIndex index="1">3</numIndex>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.4</numIndex>
-										<numIndex index="1">4</numIndex>
-									</numIndex>
-								</items>
-								<size>10</size>
-								<minitems>0</minitems>
-								<maxitems>25</maxitems>
-							</config>
-						</TCEforms>
-					</settings.status>
-					<settings.keywords>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.keywords</label>
-							<config>
-								<type>text</type>
-								<cols>50</cols>
-								<rows>5</rows>
-							</config>
-						</TCEforms>
-					</settings.keywords>
-					<settings.tags>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.tags</label>
-							<config>
-								<type>text</type>
-								<cols>50</cols>
-								<rows>5</rows>
-							</config>
-						</TCEforms>
-					</settings.tags>
-					<settings.author>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.author</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>tx_publications_domain_model_author</allowed>
-								<size>10</size>
-								<maxitems>100</maxitems>
-								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-							</config>
-						</TCEforms>
-					</settings.author>
-					<settings.highlightAuthors>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors</label>
-							<config>
-								<type>check</type>
-								<default>0</default>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors.label</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.highlightAuthors>
-					<settings.extern>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-								</items>
-								<size>1</size>
-								<minitems>0</minitems>
-								<maxitems>1</maxitems>
-							</config>
-						</TCEforms>
-					</settings.extern>
-					<settings.records>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.records</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>5</size>
-								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-							</config>
-						</TCEforms>
-					</settings.records>
-					<settings.recursive>
-						<TCEforms>
-							<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</numIndex>
-										<numIndex index="1">2</numIndex>
-									</numIndex>
-									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</numIndex>
-										<numIndex index="1">3</numIndex>
-									</numIndex>
-									<numIndex index="6" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</numIndex>
-										<numIndex index="1">4</numIndex>
-									</numIndex>
-									<numIndex index="7" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</numIndex>
-										<numIndex index="1">250</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.recursive>
-				</el>
-			</ROOT>
-		</main>
-	</sheets>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  <sheets>
+    <template>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.hideFilter>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.hideFilter</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+              </config>
+            </TCEforms>
+          </settings.hideFilter>
+          <settings.hideEnumeration>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.hideEnumeration</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+              </config>
+            </TCEforms>
+          </settings.hideEnumeration>
+          <settings.showGroupLinks>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.showGroupLinks.label</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.showGroupLinks>
+          <settings.citestyle>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.citestyle</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <size>1</size>
+                <minitems>1</minitems>
+                <maxitems>1</maxitems>
+                <itemsProcFunc>In2code\Publications\Tca\CitestyleSelection->getStyles</itemsProcFunc>
+              </config>
+            </TCEforms>
+          </settings.citestyle>
+          <settings.groupby>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="-1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.-1</numIndex>
+                    <numIndex index="1">-1</numIndex>
+                  </numIndex>
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                </items>
+                <size>1</size>
+                <minitems>1</minitems>
+                <maxitems>1</maxitems>
+              </config>
+            </TCEforms>
+          </settings.groupby>
+          <settings.recordsPerPage>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.recordsPerPage</label>
+              <config>
+                <type>input</type>
+                <default>25</default>
+                <eval>trim,int</eval>
+                <range>
+                  <lower>1</lower>
+                  <upper>250</upper>
+                </range>
+              </config>
+            </TCEforms>
+          </settings.recordsPerPage>
+          <settings.linkNames>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.linkNames.label</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.linkNames>
+          <settings.export>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export</label>
+              <config>
+                <type>select</type>
+                <renderType>selectMultipleSideBySide</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export.0</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.export.1</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                </items>
+                <size>3</size>
+                <minitems>0</minitems>
+                <maxitems>100</maxitems>
+              </config>
+            </TCEforms>
+          </settings.export>
+        </el>
+      </ROOT>
+    </template>
+    <main>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.timeframe>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframe</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframe.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">3</numIndex>
+                    <numIndex index="1">3</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">5</numIndex>
+                    <numIndex index="1">5</numIndex>
+                  </numIndex>
+                  <numIndex index="5" type="array">
+                    <numIndex index="0">10</numIndex>
+                    <numIndex index="1">10</numIndex>
+                  </numIndex>
+                  <numIndex index="6" type="array">
+                    <numIndex index="0">15</numIndex>
+                    <numIndex index="1">15</numIndex>
+                  </numIndex>
+                  <numIndex index="7" type="array">
+                    <numIndex index="0">25</numIndex>
+                    <numIndex index="1">25</numIndex>
+                  </numIndex>
+                  <numIndex index="8" type="array">
+                    <numIndex index="0">50</numIndex>
+                    <numIndex index="1">50</numIndex>
+                  </numIndex>
+                </items>
+                <size>1</size>
+                <minitems>1</minitems>
+                <maxitems>1</maxitems>
+              </config>
+            </TCEforms>
+          </settings.timeframe>
+          <settings.bibtypes>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes</label>
+              <config>
+                <type>select</type>
+                <renderType>selectMultipleSideBySide</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.article</numIndex>
+                    <numIndex index="1">article</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.book</numIndex>
+                    <numIndex index="1">book</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.booklet</numIndex>
+                    <numIndex index="1">booklet</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.conference</numIndex>
+                    <numIndex index="1">conference</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.inbook</numIndex>
+                    <numIndex index="1">inbook</numIndex>
+                  </numIndex>
+                  <numIndex index="5" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.incollection</numIndex>
+                    <numIndex index="1">incollection</numIndex>
+                  </numIndex>
+                  <numIndex index="6" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.inproceedings</numIndex>
+                    <numIndex index="1">inproceedings</numIndex>
+                  </numIndex>
+                  <numIndex index="7" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.manual</numIndex>
+                    <numIndex index="1">manual</numIndex>
+                  </numIndex>
+                  <numIndex index="8" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.manuscript</numIndex>
+                    <numIndex index="1">manuscript</numIndex>
+                  </numIndex>
+                  <numIndex index="9" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.mastersthesis</numIndex>
+                    <numIndex index="1">mastersthesis</numIndex>
+                  </numIndex>
+                  <numIndex index="10" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.misc</numIndex>
+                    <numIndex index="1">misc</numIndex>
+                  </numIndex>
+                  <numIndex index="11" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.phdthesis</numIndex>
+                    <numIndex index="1">phdthesis</numIndex>
+                  </numIndex>
+                  <numIndex index="12" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.poster</numIndex>
+                    <numIndex index="1">poster</numIndex>
+                  </numIndex>
+                  <numIndex index="13" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.proceedings</numIndex>
+                    <numIndex index="1">proceedings</numIndex>
+                  </numIndex>
+                  <numIndex index="14" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.report</numIndex>
+                    <numIndex index="1">report</numIndex>
+                  </numIndex>
+                  <numIndex index="15" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.techreport</numIndex>
+                    <numIndex index="1">techreport</numIndex>
+                  </numIndex>
+                  <numIndex index="16" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.thesis</numIndex>
+                    <numIndex index="1">thesis</numIndex>
+                  </numIndex>
+                  <numIndex index="17" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.unpublished</numIndex>
+                    <numIndex index="1">unpublished</numIndex>
+                  </numIndex>
+                  <numIndex index="18" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.url</numIndex>
+                    <numIndex index="1">url</numIndex>
+                  </numIndex>
+                  <numIndex index="19" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.bibtypes.patent</numIndex>
+                    <numIndex index="1">patent</numIndex>
+                  </numIndex>
+                </items>
+                <size>10</size>
+                <minitems>0</minitems>
+                <maxitems>25</maxitems>
+              </config>
+            </TCEforms>
+          </settings.bibtypes>
+          <settings.status>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status</label>
+              <config>
+                <type>select</type>
+                <renderType>selectMultipleSideBySide</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.3</numIndex>
+                    <numIndex index="1">3</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.status.4</numIndex>
+                    <numIndex index="1">4</numIndex>
+                  </numIndex>
+                </items>
+                <size>10</size>
+                <minitems>0</minitems>
+                <maxitems>25</maxitems>
+              </config>
+            </TCEforms>
+          </settings.status>
+          <settings.keywords>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.keywords</label>
+              <config>
+                <type>text</type>
+                <cols>50</cols>
+                <rows>5</rows>
+              </config>
+            </TCEforms>
+          </settings.keywords>
+          <settings.tags>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.tags</label>
+              <config>
+                <type>text</type>
+                <cols>50</cols>
+                <rows>5</rows>
+              </config>
+            </TCEforms>
+          </settings.tags>
+          <settings.author>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.author</label>
+              <config>
+                <type>group</type>
+                <internal_type>db</internal_type>
+                <allowed>tx_publications_domain_model_author</allowed>
+                <size>10</size>
+                <maxitems>100</maxitems>
+                <minitems>0</minitems>
+                <show_thumbs>1</show_thumbs>
+              </config>
+            </TCEforms>
+          </settings.author>
+          <settings.highlightAuthors>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthors.label</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.highlightAuthors>
+          <settings.highlightAuthorsFromSearch>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthorsFromSearch</label>
+              <config>
+                <type>check</type>
+                <default>0</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.highlightAuthorsFromSearch.label</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.highlightAuthorsFromSearch>
+          <settings.extern>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.extern.2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                </items>
+                <size>1</size>
+                <minitems>0</minitems>
+                <maxitems>1</maxitems>
+              </config>
+            </TCEforms>
+          </settings.extern>
+          <settings.records>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.records</label>
+              <config>
+                <type>group</type>
+                <internal_type>db</internal_type>
+                <allowed>pages</allowed>
+                <size>5</size>
+                <minitems>0</minitems>
+                <show_thumbs>1</show_thumbs>
+              </config>
+            </TCEforms>
+          </settings.records>
+          <settings.recursive>
+            <TCEforms>
+              <label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                  <numIndex index="5" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</numIndex>
+                    <numIndex index="1">3</numIndex>
+                  </numIndex>
+                  <numIndex index="6" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</numIndex>
+                    <numIndex index="1">4</numIndex>
+                  </numIndex>
+                  <numIndex index="7" type="array">
+                    <numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</numIndex>
+                    <numIndex index="1">250</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.recursive>
+        </el>
+      </ROOT>
+    </main>
+  </sheets>
 </T3DataStructure>

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Command;
 
 use Doctrine\DBAL\DBALException;
@@ -14,8 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class ClearCommand
  */
-class ClearCommand extends Command {
-
+class ClearCommand extends Command
+{
     /**
      * Configure the command by defining the name, options and arguments
      */
@@ -41,7 +43,7 @@ class ClearCommand extends Command {
         foreach ($tables as $table) {
             $connection = DatabaseUtility::getConnectionForTable($table);
             if ($pid > 0) {
-                $connection->query('delete from ' . $table . ' where pid=' . $pid);
+                $connection->executeQuery('delete from ' . $table . ' where pid=' . $pid);
             } else {
                 $connection->truncate($table);
             }

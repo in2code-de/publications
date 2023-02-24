@@ -1,5 +1,6 @@
 <?php
-defined('TYPO3_MODE') || die();
+
+defined('TYPO3') || die();
 
 call_user_func(
     function () {
@@ -8,13 +9,13 @@ call_user_func(
          * Include Frontend Plugins
          */
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'In2code.publications',
+            'publications',
             'Pi1',
             [
-                'Publication' => 'list,resetList,downloadBibtex,downloadXml'
+                \In2code\Publications\Controller\PublicationController::class => 'list,resetList,downloadBibtex,downloadXml'
             ],
             [
-                'Publication' => 'list,resetList,downloadBibtex,downloadXml'
+                \In2code\Publications\Controller\PublicationController::class => 'list,resetList,downloadBibtex,downloadXml'
             ]
         );
 

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -9,27 +11,27 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Author extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_publications_domain_model_author';
+    public const TABLE_NAME = 'tx_publications_domain_model_author';
 
     /**
      * @var string
      */
-    protected $lastName = '';
+    protected string $lastName = '';
 
     /**
      * @var string
      */
-    protected $firstName = '';
+    protected string $firstName = '';
 
     /**
      * @var string
      */
-    protected $url = '';
+    protected string $url = '';
 
     /**
      * @var string
      */
-    protected $orcid = '';
+    protected string $orcid = '';
 
     /**
      * @return string
@@ -94,7 +96,7 @@ class Author extends AbstractEntity
     }
 
     /**
-     * @param string $url
+     * @param string $orcid
      * @return Author
      */
     public function setOrcid(string $orcid): self

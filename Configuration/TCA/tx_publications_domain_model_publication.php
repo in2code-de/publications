@@ -1,6 +1,7 @@
 <?php
-use In2code\Publications\Domain\Model\Publication;
+
 use In2code\Publications\Domain\Model\Author;
+use In2code\Publications\Domain\Model\Publication;
 
 $llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
 $llTable = $llPrefix . Publication::TABLE_NAME;
@@ -19,7 +20,13 @@ $tca = [
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Publication::TABLE_NAME . '.svg',
         'searchFields' =>
-            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi'
+            'bibtype,type,citeid,title,abstract,miscellaneous,miscellaneous2,event_name,booktitle,isbn,issn,doi,pmid',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
@@ -68,7 +75,7 @@ $tca = [
             'showitem' => 'reviewed,'
         ],
         'palette_identification' => [
-            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,'
+            'showitem' => 'citeid,isbn,--linebreak--,issn,doi,pmid,'
         ],
         'palette_organization' => [
             'showitem' => 'organization,school,--linebreak--,institution,institute,'
@@ -195,7 +202,7 @@ $tca = [
         'bibtype' => [
             'exclude' => false,
             'onChange' => 'reload',
-            'label' => $llTable. '.bibtype',
+            'label' => $llTable . '.bibtype',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -490,63 +497,54 @@ $tca = [
             'label' => $llTable . '.file_url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url' => [
             'exclude' => true,
             'label' => $llTable . '.web_url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url2' => [
             'exclude' => true,
             'label' => $llTable . '.web_url2',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                'softref' => 'typolink',
+                'fieldControl' => [
+                  'linkPopup' => [
+                    'options' => [
+                      'title' => 'URL',
+                    ],
+                  ],
                 ],
-                'softref' => 'typolink'
-            ]
+            ],
         ],
         'web_url_date' => [
             'exclude' => true,
@@ -784,6 +782,15 @@ $tca = [
                 'default' => ''
             ]
         ],
+        'pmid' => [
+            'exclude' => true,
+            'label' => $llTable . '.pmid',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
+            ]
+        ],
         'authors' => [
             'exclude' => true,
             'label' => $llTable . '.authors',
@@ -795,19 +802,12 @@ $tca = [
                 'MM' => 'tx_publications_publication_author_mm',
                 'maxitems' => 9999,
                 'size' => 10,
-                'wizards' => [
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        'module' => [
-                            'name' => 'wizard_edit',
-                        ],
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif'
-                    ]
-                ]
-            ]
+                'fieldControl' => [
+                  'editPopup' => [
+                    'disabled' => false,
+                  ],
+                ],
+            ],
         ],
         'patent' => [
         'displayCond' => 'FIELD:bibtype:=:patent',

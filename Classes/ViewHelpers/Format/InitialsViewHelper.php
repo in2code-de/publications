@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\ViewHelpers\Format;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -10,7 +12,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class InitialsViewHelper extends AbstractViewHelper
 {
-
     /**
      * @return void
      */
@@ -21,15 +22,19 @@ class InitialsViewHelper extends AbstractViewHelper
         $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
-    /**
+     /**
      * @return string
      */
     public function render(): string
     {
-        $names = GeneralUtility::trimExplode(' ', $this->renderChildren(), true);
-        foreach ($names as &$name) {
-            $name = $name[0] . $this->arguments['suffix'];
+        /** Reformat already stored Initials */
+        $names_temp=str_replace('.', ' ', $this->renderChildren());
+        /** Pick initial from each name and stich together with spacer*/
+        $names = GeneralUtility::trimExplode(' ', $names_temp, true);
+        $initials='';
+        foreach ($names as $name) {
+            $initials .= mb_substr($name, 0, 1) . $this->arguments['suffix'] . $this->arguments['glue'];
         }
-        return implode($this->arguments['glue'], $names);
+        return rtrim($initials, $this->arguments['glue']);
     }
 }

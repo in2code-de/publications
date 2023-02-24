@@ -1,1 +1,1 @@
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:publications/Configuration/TsConfig/Page/" extensions="tsconfig">
+@import 'EXT:publications/Configuration/TsConfig/Page/*.tsconfig'

@@ -1,16 +1,19 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Controller;
 
 use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Error;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Class ImportController
@@ -24,6 +27,7 @@ class ImportController extends ActionController
     {
         $this->view->assignMultiple(
             [
+                'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
                 'pid' => GeneralUtility::_GP('id')
             ]
@@ -31,20 +35,19 @@ class ImportController extends ActionController
     }
 
     /**
-     * @param array $file
-     * @param string $importer
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
      * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
-    public function importAction(array $file, string $importer)
+    public function importAction(array $file, string $importer, array $importOptions): void
     {
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        $importService = $this->objectManager->get(
-            ImportService::class,
-            $file['tmp_name'],
-            $this->objectManager->get($importer)
-        );
+        $importService =
+            GeneralUtility::makeInstance(
+                ImportService::class,
+                $file['tmp_name'],
+                GeneralUtility::makeInstance($importer),
+                $importOptions
+            );
         $importService->import();
         $this->view->assignMultiple(
             [
@@ -54,8 +57,8 @@ class ImportController extends ActionController
     }
 
     /**
-     * @return string
-     * @throws StopActionException
+     * @return \Psr\Http\Message\ResponseInterface|string
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
      */
     public function errorAction()
     {
@@ -73,6 +76,30 @@ class ImportController extends ActionController
     protected function getErrorFlashMessage()
     {
         return false;
+    }
+
+    protected function getLanguages(): array
+    {
+        $languages = [
+            -1 => [
+                'title' => LocalizationUtility::translate('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:multipleLanguages'),
+                'uid' => -1,
+                'iconIdentifier' => 'global'
+            ]
+        ];
+
+        if ($this->request->getAttribute('site') instanceof Site) {
+            /** @var SiteLanguage $language */
+            foreach ($this->request->getAttribute('site')->getLanguages() as $language) {
+                $languages[$language->getLanguageId()] = [
+                    'title' => $language->getNavigationTitle(),
+                    'uid' => $language->getLanguageId(),
+                    'iconIdentifier' => $language->getFlagIdentifier()
+                ];
+            }
+        }
+
+        return $languages;
     }
 
     /**
@@ -123,7 +150,6 @@ class ImportController extends ActionController
                     $importer[$importerClass] = $importerTitle;
                 }
             }
-
         }
 
         return $importer;

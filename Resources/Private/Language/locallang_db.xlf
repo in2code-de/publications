@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z"
-		  product-name="publications">
-		<header/>
+	product-name="publications">
+		<header />
 		<body>
 			<trans-unit id="tx_publications_domain_model_publication.tab.main">
 				<source>Main</source>
@@ -244,6 +244,9 @@
 			<trans-unit id="tx_publications_domain_model_publication.doi">
 				<source>DOI</source>
 			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.pmid">
+				<source>Pubmed Id</source>
+			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.authors">
 				<source>Authors</source>
 			</trans-unit>
@@ -380,10 +383,16 @@
 				<source>Author</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors">
-				<source>Highlight Author?</source>
+				<source>Highlight Author (from Filter)?</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
-				<source>Makes filtered Authors stand out from others</source>
+				<source>Makes filtered authors stand out from others</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch">
+				<source>Highlight Author (from Search)?</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch.label">
+				<source>Makes authors stand out from others, when used in search</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.extern">
 				<source>Intern/Extern</source>
@@ -570,6 +579,28 @@
 			</trans-unit>
 			<trans-unit id="validator.uploadValidator.title">
 				<source>Error while uploading the file.</source>
+			</trans-unit>
+
+			<trans-unit id="backendModule.importOptions">
+				<source>Import options</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour">
+				<source>Behavior for checking duplicate authors</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.additional">
+				<source>defines whether the check for existing authors applies globally or only to the current PID</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.global">
+				<source>global</source>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.pid">
+				<source>only current PID</source>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour">
+				<source>Language Behaviour</source>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour.additional">
+				<source>Specifies the language in which the records are created</source>
 			</trans-unit>
 		</body>
 	</file>

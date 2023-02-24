@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Import\Importer;
 
 /**
@@ -14,13 +16,13 @@ abstract class AbstractImporter implements ImporterInterface
      *
      * @var array
      */
-    protected $additionalPublicationMapping = [];
+    protected array $additionalPublicationMapping = [];
 
     /**
      * @param array $publications
      * @return array
      */
-    protected function fieldMapping(array $publications)
+    protected function fieldMapping(array $publications): array
     {
         $mappedPublications = [];
 

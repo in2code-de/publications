@@ -519,12 +519,20 @@
 				<target state="translated">Zeige nur Publikationen von diesen Seites</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors">
-				<source>Highlight Author?</source>
-				<target state="translated">Author hervorheben?</target>
+				<source>Highlight Author (from filter)?</source>
+				<target state="translated">Author hervorheben (aus Filter)?</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.highlightAuthors.label">
 				<source>Makes filtered Authors stand out from others</source>
 				<target state="translated">Hebt gefilterten Author gegenüber anderen hervor.</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch">
+				<source>Highlight Author used in FE Search?</source>
+				<target>Author hervorheben (aus Suche)?</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.highlightAuthorsFromSearch.label">
+				<source>Makes Authors stand out from others, when used in Search</source>
+				<target>Hebt gesuchten Author gegenüber anderen hervor.</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>
@@ -718,6 +726,34 @@
 			<trans-unit id="validator.uploadValidator.extension">
 				<source>File extension is not allowed. Please use a .bib or .xml file.</source>
 				<target state="translated">Datei Erweiterung ist nicht zulässig. Bitte .bib oder .xml Dateien nutzen.</target>
+			</trans-unit>
+			<trans-unit id="backendModule.importOptions">
+				<source>Import options</source>
+				<target state="translated">Import Optionen</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour">
+				<source>Behavior for checking duplicate authors</source>
+				<target state="translated">Verhalten zur Prüfung von doppelten Autoren</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.additional">
+				<source>defines whether the check for existing authors applies globally or only to the current PID</source>
+				<target state="translated">definiert ob die Prüfung auf existierende Autoren global oder nur für die aktuelle PID gilt</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.global">
+				<source>global</source>
+				<target state="translated">globale Prüfung</target>
+			</trans-unit>
+			<trans-unit id="backendModule.duplicateAuthorBehaviour.pid">
+				<source>only current PID</source>
+				<target state="translated">nur aktuelle PID</target>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour">
+				<source>Language Behaviour</source>
+				<target state="translated">Sprachverhalten</target>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour.additional">
+				<source>Specifies the language in which the records are created</source>
+				<target state="translated">gibt die Sprache an, in der die Datensätze erstellt werden</target>
 			</trans-unit>
 		</body>
 	</file>

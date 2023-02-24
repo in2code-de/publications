@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Tca;
 
 use In2code\Publications\Utility\ObjectUtility;
@@ -10,7 +12,6 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
  */
 class CitestyleSelection
 {
-
     /**
      * @param array $params
      * @return void
@@ -51,7 +52,7 @@ class CitestyleSelection
      *        if LLL parse
      *        if empty take value
      *
-     * @param null|string $label
+     * @param string|null $label
      * @param string $fallback
      * @return string
      */

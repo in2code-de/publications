@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Service;
 
 use TYPO3\CMS\Core\Log\Logger;

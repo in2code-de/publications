@@ -1,39 +1,123 @@
 plugin.tx_publications {
-	view {
-		templateRootPaths.0 = {$plugin.tx_publications.view.templateRootPath}
-		partialRootPaths.0 = {$plugin.tx_publications.view.partialRootPath}
-		layoutRootPaths.0 = {$plugin.tx_publications.view.layoutRootPath}
-	}
+  view {
+    templateRootPaths.0 = {$plugin.tx_publications.view.templateRootPath}
+    partialRootPaths.0 = {$plugin.tx_publications.view.partialRootPath}
+    layoutRootPaths.0 = {$plugin.tx_publications.view.layoutRootPath}
+  }
 
-	features {
-		skipDefaultArguments = 1
-	}
+  features {
+    skipDefaultArguments = 1
+  }
 
-	settings {
-		storagePid = {$plugin.tx_publications.settings.storagePid}
-		upload.validation {
-			# Maximum upload size for bib and xml files in import module
-			size = 2000000
+  settings {
+    storagePid = {$plugin.tx_publications.settings.storagePid}
 
-			# Allowed file extensions for uploading
-			extensions = bib,xml
-		}
-	}
+    groupLinks {
+      linkTag {
+        prefix = {$plugin.tx_publications.settings.groupLinks.linkTag.prefix}
+        suffix = {$plugin.tx_publications.settings.groupLinks.linkTag.suffix}
+      }
+    }
+
+    upload.validation {
+      # Maximum upload size for bib and xml files in import module
+      size = 2000000
+
+      # Allowed file extensions for uploading
+      extensions = bib,xml
+    }
+  }
 }
 
 module.tx_publications {
-	settings < plugin.tx_publications.settings
-	persistence < plugin.tx_publications.persistence
-	view < plugin.tx_publications.view
-	view {
-		templateRootPaths {
-			10 = EXT:publications/Resources/Private/Templates/Backend/
-		}
-		partialRootPaths {
-			10 = EXT:publications/Resources/Private/Partials/Backend/
-		}
-		layoutRootPaths {
-			10 = EXT:publications/Resources/Private/Layouts/Backend/
-		}
-	}
+  settings < plugin.tx_publications.settings
+  persistence < plugin.tx_publications.persistence
+  view < plugin.tx_publications.view
+  view {
+    templateRootPaths {
+      10 = EXT:publications/Resources/Private/Templates/Backend/
+    }
+
+    partialRootPaths {
+      10 = EXT:publications/Resources/Private/Partials/Backend/
+    }
+
+    layoutRootPaths {
+      10 = EXT:publications/Resources/Private/Layouts/Backend/
+    }
+  }
 }
+
+[getTSFE().type == 1646653915]
+lib.contentElement {
+  layoutRootPaths >
+  layoutRootPaths.0 = EXT:publications/Resources/Private/Layouts/
+  templateRootPaths >
+  templateRootPaths.0 = EXT:publications/Resources/Private/Templates/
+}
+
+xmlDownload = PAGE
+xmlDownload {
+  typeNum = 1646653915
+  config {
+    # deactivate Standard-Header
+    disableAllHeaderCode = 1
+    # no xhtml tags
+    xhtml_cleaning = none
+    admPanel = 0
+    metaCharset = utf-8
+    locale_all = en_EN
+    disablePrefixComment = 1
+    removeDefaultJS = 1
+    removeDefaultCss = 1
+    removePageCss = 1
+    linkVars >
+  }
+
+  10 < styles.content.get
+  10 {
+    select {
+      where = colPos=0 AND list_type='publications_pi1'
+      orderBy = sorting ASC
+      max = 1
+    }
+  }
+}
+[end]
+
+[getTSFE().type == 1646653916]
+lib.contentElement {
+  layoutRootPaths >
+  layoutRootPaths.0 = EXT:publications/Resources/Private/Layouts/
+  templateRootPaths >
+  templateRootPaths.0 = EXT:publications/Resources/Private/Templates/
+}
+
+xmlDownload = PAGE
+xmlDownload {
+  typeNum = 1646653916
+  config {
+    # deactivate Standard-Header
+    disableAllHeaderCode = 1
+    # no xhtml tags
+    xhtml_cleaning = none
+    admPanel = 0
+    metaCharset = utf-8
+    locale_all = en_EN
+    disablePrefixComment = 1
+    removeDefaultJS = 1
+    removeDefaultCss = 1
+    removePageCss = 1
+    linkVars >
+  }
+
+  10 < styles.content.get
+  10 {
+    select {
+      where = colPos=0 AND list_type='publications_pi1'
+      orderBy = sorting ASC
+      max = 1
+    }
+  }
+}
+[end]

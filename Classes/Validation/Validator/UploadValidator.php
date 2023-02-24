@@ -1,9 +1,12 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Validation\Validator;
 
 use In2code\Publications\Utility\ConfigurationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
@@ -12,7 +15,6 @@ use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
  */
 class UploadValidator extends AbstractValidator
 {
-
     /**
      * @param mixed $value
      * @return void
@@ -36,6 +38,7 @@ class UploadValidator extends AbstractValidator
     /**
      * @param array $value
      * @return void
+     * @throws Exception
      */
     protected function validateFileExtension(array $value)
     {
@@ -59,6 +62,7 @@ class UploadValidator extends AbstractValidator
     /**
      * @param array $value
      * @return void
+     * @throws Exception
      */
     protected function validateSize(array $value)
     {

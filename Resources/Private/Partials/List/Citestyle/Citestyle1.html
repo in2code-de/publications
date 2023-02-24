@@ -4,7 +4,7 @@
 
 <div style="display: flex;">
 	<f:if condition="{settings.hideEnumeration} != true">
-		<div style="padding-right: 10px;">{publication.numeration}.</div>
+		<div style="padding-right: 10px;">{maxItems - keyOfFirstPaginatedItem - index}.</div>
 	</f:if>
 
 	<div>
@@ -29,7 +29,7 @@
 	</f:if>
 	<f:if condition="{publication.journal}"><i>{publication.journal}</i><f:if condition="{publication.volume} || {publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.volume}">vol. {publication.volume}<f:if condition="{publication.number} || {publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else>
-		</f:if>
+	</f:if>
 	</f:if>
 	<f:if condition="{publication.number}">no. {publication.number}<f:if condition="{publication.pages} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
@@ -253,10 +253,10 @@
 	S. Pohl, A.Kellner, M.Muster and S.Stein,
 </f:comment>
 
-<f:section name="authors">
+<f:section name="authors"><f:spaceless>
 	<f:for each="{publication.authors}" as="author" iteration="iteration">
 		<f:if condition="{publication.authors -> f:count()} == 1">
-				<f:render section="namestring"  arguments="{_all}"/>,
+			<f:render section="namestring"  arguments="{_all}"/>,
 		</f:if>
 		<f:if condition="{publication.authors -> f:count()} == 2">
 			<f:if condition="{iteration.isFirst}">
@@ -278,14 +278,41 @@
 			</f:if>
 		</f:if>
 	</f:for>
-</f:section>
+</f:spaceless></f:section>
 
 
-<f:section name="namestring">
-	<f:if condition="{author.url} && {settings.linkNames}">
-		<f:then> <a href="{author.url}" target="_self"></f:then>
-			<f:else if="{author.orcid} && {settings.linkNames}"><a href="https://orcid.org/{author.orcid}" target="_blank"></f:else></f:if>
-<f:if condition="{settings.highlightAuthors}">
-<f:then><publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{filter.author}" ><publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</publications:format.highlightAuthor></f:then><f:else><publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}</f:else></f:if><f:if condition="{author.url} && {settings.linkNames}"><f:then></a></f:then><f:else if="{author.orcid} && {settings.linkNames}"></a></f:else></f:if></f:section>
+<f:section name="namestring"><f:spaceless>
+	<f:if condition="{settings.linkNames}">
+		<f:then>
+			<f:if condition="{author.url}">
+				<f:then>
+					<f:render section="authorUrl" arguments="{_all}"/>
+				</f:then>
+				<f:else if="{author.orcid}">
+					<f:render section="authorOrcid" arguments="{_all}" />
+				</f:else>
+				<f:else>
+					<f:render section="authorDefault" arguments="{_all}"/></f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<f:render section="authorDefault" arguments="{_all}"/>
+		</f:else>
+	</f:if>
+</f:spaceless></f:section>
+
+<f:section name="authorOrcid"><f:spaceless>
+	<f:link.external uri="https://orcid.org/{author.orcid}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.external>
+</f:spaceless></f:section>
+
+<f:section name="authorUrl"><f:spaceless>
+	<f:link.typolink parameter="{author.url}">{f:render(section: 'authorDefault', arguments: '{_all}')}</f:link.typolink>
+</f:spaceless></f:section>
+
+<f:section name="authorDefault"><f:spaceless>
+	<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{settings.author}" authorstring="{filter.authorstring}" settings="{settings}" >
+		<publications:format.initials>{author.firstName}</publications:format.initials> {author.lastName}
+	</publications:format.highlightAuthor>
+</f:spaceless></f:section>
 
 </html>

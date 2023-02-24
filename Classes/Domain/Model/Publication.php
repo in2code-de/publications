@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\Publications\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -11,187 +13,192 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class Publication extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_publications_domain_model_publication';
+    public const TABLE_NAME = 'tx_publications_domain_model_publication';
 
     /**
      * @var string
      */
-    protected $title = '';
+    protected string $title = '';
 
     /**
      * @var string
      */
-    protected $abstract = '';
+    protected string $abstract = '';
 
     /**
      * @var string
      */
-    protected $bibtype = '';
+    protected string $bibtype = '';
 
     /**
      * @var string
      */
-    protected $type = '';
+    protected string $type = '';
 
     /**
      * @var int
      */
-    protected $status = 0;
+    protected int $status = 0;
 
     /**
      * @var string
      */
-    protected $year = '';
+    protected string $year = '';
 
     /**
      * @var string
      */
-    protected $month = '';
+    protected string $month = '';
 
     /**
      * @var string
      */
-    protected $day = '';
+    protected string $day = '';
 
     /**
      * @var bool
      */
-    protected $reviewed = false;
+    protected bool $reviewed = false;
 
     /**
      * @var string
      */
-    protected $language = '';
+    protected string $language = '';
 
     /**
      * @var string
      */
-    protected $citeid = '';
+    protected string $citeid = '';
 
     /**
      * @var string
      */
-    protected $isbn = '';
+    protected string $isbn = '';
 
     /**
      * @var string
      */
-    protected $issn = '';
+    protected string $issn = '';
 
     /**
      * @var string
      */
-    protected $doi = '';
+    protected string $doi = '';
 
     /**
      * @var string
      */
-    protected $organization = '';
+    protected string $pmid = '';
 
     /**
      * @var string
      */
-    protected $school = '';
+    protected string $organization = '';
 
     /**
      * @var string
      */
-    protected $institution = '';
+    protected string $school = '';
 
     /**
      * @var string
      */
-    protected $institute = '';
+    protected string $institution = '';
 
     /**
      * @var string
      */
-    protected $booktitle = '';
+    protected string $institute = '';
 
     /**
      * @var string
      */
-    protected $journal = '';
+    protected string $booktitle = '';
 
     /**
      * @var string
      */
-    protected $edition = '';
+    protected string $journal = '';
 
     /**
      * @var string
      */
-    protected $volume = '';
+    protected string $edition = '';
 
     /**
      * @var string
      */
-    protected $publisher = '';
+    protected string $volume = '';
 
     /**
      * @var string
      */
-    protected $address = '';
+    protected string $publisher = '';
 
     /**
      * @var string
      */
-    protected $chapter = '';
+    protected string $address = '';
 
     /**
      * @var string
      */
-    protected $series = '';
+    protected string $chapter = '';
 
     /**
      * @var string
      */
-    protected $howpublished = '';
+    protected string $series = '';
 
     /**
      * @var string
      */
-    protected $editor = '';
+    protected string $howpublished = '';
 
     /**
      * @var string
      */
-    protected $pages = '';
+    protected string $editor = '';
 
     /**
      * @var string
      */
-    protected $affiliation = '';
+    protected string $pages = '';
+
+    /**
+     * @var string
+     */
+    protected string $affiliation = '';
 
     /**
      * @var bool
      */
-    protected $extern = false;
+    protected bool $extern = false;
 
     /**
      * @var string
      */
-    protected $eventName = '';
+    protected string $eventName = '';
 
     /**
      * @var string
      */
-    protected $eventPlace = '';
+    protected string $eventPlace = '';
 
     /**
      * @var string
      */
-    protected $eventDate = '';
+    protected string $eventDate = '';
 
     /**
      * @var string
      */
-    protected $number = '';
+    protected string $number = '';
 
     /**
      * @var string
      */
-    protected $number2 = '';
+    protected string $number2 = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Publications\Domain\Model\Author>
@@ -201,68 +208,62 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
-    protected $keywords = '';
+    protected string $keywords = '';
 
     /**
      * @var string
      */
-    protected $tags = '';
+    protected string $tags = '';
 
     /**
      * @var string
      */
-    protected $webUrl = '';
+    protected string $webUrl = '';
 
     /**
      * @var string
      */
-    protected $webUrl2 = '';
+    protected string $webUrl2 = '';
 
     /**
      * @var string
      */
-    protected $webUrlDate = '';
+    protected string $webUrlDate = '';
 
     /**
      * @var string
      */
-    protected $fileUrl = '';
+    protected string $fileUrl = '';
 
     /**
      * @var string
      */
-    protected $note = '';
+    protected string $note = '';
 
     /**
      * @var string
      */
-    protected $annotation = '';
+    protected string $annotation = '';
 
     /**
      * @var string
      */
-    protected $miscellaneous = '';
+    protected string $miscellaneous = '';
 
     /**
      * @var string
      */
-    protected $miscellaneous2 = '';
+    protected string $miscellaneous2 = '';
 
     /**
      * @var bool
      */
-    protected $inLibrary = false;
+    protected bool $inLibrary = false;
 
     /**
      * @var string
      */
-    protected $borrowedBy = '';
-
-    /**
-     * @var int
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
-     */
-    protected $_numeration = 0;
+    protected string $borrowedBy = '';
 
     /**
      * Basic mapping for any export. Which fields should be available in export files with which key.
@@ -270,7 +271,7 @@ class Publication extends AbstractEntity
      *
      * @var array
      */
-    protected $propertiesMapping = [
+    protected array $propertiesMapping = [
         'title' => 'title',
         'abstract' => 'abstract',
         'type' => 'type',
@@ -283,6 +284,7 @@ class Publication extends AbstractEntity
         'isbn' => 'isbn',
         'issn' => 'issn',
         'doi' => 'DOI',
+        'pmid' => 'pmid',
         'organization' => 'organization',
         'school' => 'school',
         'institution' => 'institution',
@@ -321,14 +323,14 @@ class Publication extends AbstractEntity
     /**
      * @var array
      */
-    protected $propertiesMappingBib = [
+    protected array $propertiesMappingBib = [
         'authorsForBibExport' => 'author'
     ];
 
     /**
      * @var array
      */
-    protected $propertiesMappingXml = [
+    protected array $propertiesMappingXml = [
         'bibtype' => 'bibtype',
         'citeid' => 'citeid'
     ];
@@ -558,11 +560,11 @@ class Publication extends AbstractEntity
      */
     public function getCiteidForExport(): string
     {
-       $citeid = $this->getCiteid();
-       if (empty($citeid)) {
-           $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
-       }
-       return $citeid;
+        $citeid = $this->getCiteid();
+        if (empty($citeid)) {
+            $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
+        }
+        return $citeid;
     }
 
     /**
@@ -626,6 +628,24 @@ class Publication extends AbstractEntity
     public function setDoi(string $doi): self
     {
         $this->doi = $doi;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPmid(): string
+    {
+        return $this->pmid;
+    }
+
+    /**
+     * @param string $pmid
+     * @return Publication
+     */
+    public function setPmid(string $pmid): self
+    {
+        $this->pmid = $pmid;
         return $this;
     }
 
@@ -994,6 +1014,7 @@ class Publication extends AbstractEntity
      */
     public function getNumber(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->number;
     }
 

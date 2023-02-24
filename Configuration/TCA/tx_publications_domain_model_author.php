@@ -1,4 +1,5 @@
 <?php
+
 use In2code\Publications\Domain\Model\Author;
 
 $llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
@@ -7,8 +8,8 @@ $llTable = $llPrefix . Author::TABLE_NAME;
 $tca = [
     'ctrl' => [
         'title' => 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:' . Author::TABLE_NAME,
-        'label' => 'first_name',
-        'label_alt' => 'last_name',
+        'label' => 'last_name',
+        'label_alt' => 'first_name',
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -19,7 +20,13 @@ $tca = [
         'default_sortby' => 'ORDER BY last_name ASC',
         'delete' => 'deleted',
         'iconfile' => 'EXT:publications/Resources/Public/Icons/' . Author::TABLE_NAME . '.svg',
-        'searchFields' => 'last_name,first_name,url,orcid'
+        'searchFields' => 'last_name,first_name,url,orcid',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'will be filled below...',
@@ -133,23 +140,20 @@ $tca = [
                 . '.url',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'default' => '',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
+                'fieldControl' => [
+                    'linkPopup' => [
+                      'options' => [
                         'title' => 'URL',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1'
-                    ]
+                      ],
+                    ],
                 ],
-                'softref' => 'typolink'
-            ]
+              'softref' => 'typolink',
+            ],
         ],
-    ]
+    ],
 ];
 
 $tca['interface']['showRecordFieldList'] = implode(',', array_keys($tca['columns']));
