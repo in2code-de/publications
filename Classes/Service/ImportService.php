@@ -405,7 +405,8 @@ class ImportService extends AbstractService
             'tstamp' => time(),
             'crdate' => time(),
             'cruser_id' => $GLOBALS['BE_USER']->user['uid'],
-            'pid' => $this->storagePid
+            'pid' => $this->storagePid,
+            'sys_language_uid' => (int)$this->importOptions['languageBehavior'] ?? 0
         ];
     }
 

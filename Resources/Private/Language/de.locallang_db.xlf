@@ -747,6 +747,14 @@
 				<source>only current PID</source>
 				<target state="translated">nur aktuelle PID</target>
 			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour">
+				<source>Language Behaviour</source>
+				<target state="translated">Sprachverhalten</target>
+			</trans-unit>
+			<trans-unit id="backendModule.languageBehaviour.additional">
+				<source>Specifies the language in which the records are created</source>
+				<target state="translated">gibt die Sprache an, in der die Datensätze erstellt werden</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
