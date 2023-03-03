@@ -478,7 +478,7 @@ class Filter
      */
     public function getReviewFilter(): int
     {
-        return $this->externFilter;
+        return $this->reviewFilter;
     }
 
     /**
