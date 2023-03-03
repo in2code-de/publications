@@ -82,7 +82,7 @@ $tca = [
         ],
         'palette_publishing' => [
             'showitem' =>
-                'booktitle,journal,journal_abbr,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
+                'booktitle,--linebreak--,journal,journal_abbr,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
                 '--linebreak--,chapter,series,--linebreak--,howpublished,editor,--linebreak--,pages,' .
                 'affiliation,--linebreak--,extern,'
         ],
