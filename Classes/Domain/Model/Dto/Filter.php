@@ -502,7 +502,7 @@ class Filter
      */
     public function isReview(): bool
     {
-        return $this->getExternFilter() === 2;
+        return $this->getReviewFilter() === 2;
     }
 
     /**

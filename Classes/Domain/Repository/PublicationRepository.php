@@ -191,7 +191,7 @@ class PublicationRepository extends AbstractRepository
     protected function filterQueryByReviewFilter(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isReviewed()) {
-            $and[] = $query->equals('review', ($filter->isReview() ? 0 : 1));
+            $and[] = $query->equals('reviewed', ($filter->isReview() ? 0 : 1));
         }
         return $and;
     }
