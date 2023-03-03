@@ -74,6 +74,11 @@ class Filter
     protected int $externFilter = 0;
 
     /**
+     * @var int 0=off, 1=intern, 2=extern
+     */
+    protected int $reviewFilter = 0;
+
+    /**
      * @var array
      */
     protected array $records = [];
@@ -125,6 +130,7 @@ class Filter
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
         $this->setAuthor($settings['author'] ?? '');
         $this->setExternFilter((int)$settings['extern']);
+        $this->setReviewFilter((int)$settings['review']);
         $this->setRecursive((int)$settings['recursive']);
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
@@ -464,6 +470,48 @@ class Filter
     public function setExternFilter(int $externFilter): self
     {
         $this->externFilter = $externFilter;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReviewFilter(): int
+    {
+        return $this->externFilter;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReviewed(): bool
+    {
+        return $this->isReview() || $this->isNotReview();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotReview(): bool
+    {
+        return $this->getReviewFilter() === 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReview(): bool
+    {
+        return $this->getExternFilter() === 2;
+    }
+
+    /**
+     * @param int $reviewFilter
+     * @return Filter
+     */
+    public function setReviewFilter(int $reviewFilter): self
+    {
+        $this->reviewFilter = $reviewFilter;
         return $this;
     }
 

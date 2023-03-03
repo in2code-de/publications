@@ -428,6 +428,33 @@
               </config>
             </TCEforms>
           </settings.extern>
+          <settings.review>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.review</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.review.0</numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.review.1</numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.review.2</numIndex>
+                    <numIndex index="1">2</numIndex>
+                  </numIndex>
+                </items>
+                <size>1</size>
+                <minitems>0</minitems>
+                <maxitems>1</maxitems>
+              </config>
+            </TCEforms>
+          </settings.review>
           <settings.records>
             <TCEforms>
               <exclude>1</exclude>

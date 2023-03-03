@@ -409,6 +409,18 @@
 			<trans-unit id="flexform.pi1.filter.extern.2">
 				<source>Extern only</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.review">
+				<source>Reviewed</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.review.0">
+				<source>Show all</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.review.1">
+				<source>Non-Reviewed only</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.review.2">
+				<source>Reviewed only</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.records">
 				<source>Show publications from this pages only</source>
 			</trans-unit>

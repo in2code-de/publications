@@ -46,6 +46,7 @@ class PublicationRepository extends AbstractRepository
             $and = $this->filterQueryByStatus($query, $filter, $and);
             $and = $this->filterQueryByAuthor($query, $filter, $and);
             $and = $this->filterQueryByExternFilter($query, $filter, $and);
+            $and = $this->filterQueryByReviewFilter($query, $filter, $and);
             $and = $this->filterQueryByRecords($query, $filter, $and);
         }
         if ($filter->isFilterFrontendSet()) {
@@ -177,6 +178,20 @@ class PublicationRepository extends AbstractRepository
     {
         if ($filter->isExternOrIntern()) {
             $and[] = $query->equals('extern', ($filter->isIntern() ? 0 : 1));
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param Filter $filter
+     * @param array $and
+     * @return array
+     */
+    protected function filterQueryByReviewFilter(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isReviewed()) {
+            $and[] = $query->equals('review', ($filter->isReview() ? 0 : 1));
         }
         return $and;
     }
