@@ -492,7 +492,7 @@ class Filter
     /**
      * @return bool
      */
-    public function isNotReview(): bool
+    public function isReview(): bool
     {
         return $this->getReviewFilter() === 1;
     }
@@ -500,7 +500,7 @@ class Filter
     /**
      * @return bool
      */
-    public function isReview(): bool
+    public function isNotReview(): bool
     {
         return $this->getReviewFilter() === 2;
     }
