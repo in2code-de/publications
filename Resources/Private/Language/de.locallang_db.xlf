@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
 		<header/>
@@ -158,6 +159,10 @@
 			<trans-unit id="tx_publications_domain_model_publication.journal">
 				<source>Journal</source>
 				<target state="translated">Journal</target>
+			</trans-unit>
+			<trans-unit id="tx_publications_domain_model_publication.journal_abbr">
+				<source>Journal (Abbreviated)</source>
+				<target state="translated">Journal (Abgk.)</target>
 			</trans-unit>
 			<trans-unit id="tx_publications_domain_model_publication.year">
 				<source>Year</source>

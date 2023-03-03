@@ -123,6 +123,11 @@ class Publication extends AbstractEntity
     /**
      * @var string
      */
+    protected string $journalAbbr = '';
+
+    /**
+     * @var string
+     */
     protected string $edition = '';
 
     /**
@@ -291,6 +296,7 @@ class Publication extends AbstractEntity
         'institute' => 'institute',
         'booktitle' => 'booktitle',
         'journal' => 'journal',
+        'journalAbbr' => 'journal_abbr',
         'edition' => 'edition',
         'volume' => 'volume',
         'publisher' => 'publisher',
@@ -732,6 +738,14 @@ class Publication extends AbstractEntity
     /**
      * @return string
      */
+    public function getJournalAbbr(): string
+    {
+        return $this->journalAbbr;
+    }
+
+    /**
+     * @return string
+     */
     public function getBooktitle(): string
     {
         return $this->booktitle;
@@ -754,6 +768,16 @@ class Publication extends AbstractEntity
     public function setJournal(string $journal): self
     {
         $this->journal = $journal;
+        return $this;
+    }
+
+    /**
+     * @param string $journalAbbr
+     * @return Publication
+     */
+    public function setJournalAbbr(string $journalAbbr): self
+    {
+        $this->journalAbbr = $journalAbbr;
         return $this;
     }
 

@@ -82,7 +82,7 @@ $tca = [
         ],
         'palette_publishing' => [
             'showitem' =>
-                'booktitle,journal,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
+                'booktitle,journal,journal_abbr,--linebreak--,edition,volume,--linebreak--,publisher,address,' .
                 '--linebreak--,chapter,series,--linebreak--,howpublished,editor,--linebreak--,pages,' .
                 'affiliation,--linebreak--,extern,'
         ],
@@ -371,6 +371,15 @@ $tca = [
         'journal' => [
             'exclude' => true,
             'label' => $llTable . '.journal',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+                'default' => ''
+            ]
+        ],
+        'journal_abbr' => [
+            'exclude' => true,
+            'label' => $llTable . '.journal_abbr',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',

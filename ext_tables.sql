@@ -6,6 +6,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	title text NOT NULL,
 	abstract text,
 	journal varchar(255) DEFAULT '' NOT NULL,
+	journal_abbr varchar(255) DEFAULT '' NOT NULL,
 	year varchar(255) DEFAULT '' NOT NULL,
 	month varchar(255) DEFAULT '' NOT NULL,
 	day varchar(255) DEFAULT '' NOT NULL,
