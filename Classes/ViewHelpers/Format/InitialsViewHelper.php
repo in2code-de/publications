@@ -22,9 +22,9 @@ class InitialsViewHelper extends AbstractViewHelper
         $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
-     /**
-     * @return string
-     */
+    /**
+    * @return string
+    */
     public function render(): string
     {
         /** Reformat already stored Initials */
