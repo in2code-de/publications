@@ -52,6 +52,7 @@ class PublicationController extends ActionController
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = new ArrayPaginator($publications, $currentPage, $itemsPerPage);
         $pagination = new NumberedPagination($paginator, $maximumLinks);
+        $contentObjectUid = $this->getContentObject()->data['uid'] ?? 0;
 
         if (array_key_exists('showGroupLinks', $this->settings) && (bool)$this->settings['showGroupLinks'] === true) {
             $this->view->assign(
@@ -59,7 +60,7 @@ class PublicationController extends ActionController
                 $this->publicationService->getGroupedPublicationLinks(
                     $publications,
                     (int)$this->settings['groupby'],
-                    $this->getContentObject()->data['uid'],
+                    $contentObjectUid,
                     $itemsPerPage
                 )
             );
@@ -166,11 +167,14 @@ class PublicationController extends ActionController
             $filter->setDocumenttype($filterArguments['documenttype']);
         }
 
-        $this->request = $this->request->withArgument('filter', $filter);
+        $this->request = $this->request->withArguments([
+            'filter' => $filter,
+            'currentContentObject' => $this->getContentObject(),
+        ]);
     }
 
-    protected function getContentObject(): ContentObjectRenderer
+    protected function getContentObject(): ?ContentObjectRenderer
     {
-        return $this->configurationManager->getContentObject();
+        return $this->request->getAttribute('currentContentObject') ?? null;
     }
 }
