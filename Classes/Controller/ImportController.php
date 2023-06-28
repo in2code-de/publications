@@ -8,6 +8,7 @@ use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Core\Http\UploadedFile;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
@@ -51,12 +52,16 @@ class ImportController extends ActionController
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
-    public function importAction(array $file, string $importer, array $importOptions): void
+    public function importAction(array $importOptions): ResponseInterface
     {
+        /** @var UploadedFile $file */
+        $file = $this->request->getUploadedFiles()['file'];
+        $importer = $this->request->getArgument('importer');
+
         $importService =
             GeneralUtility::makeInstance(
                 ImportService::class,
-                $file['tmp_name'],
+                $file->getTemporaryFileName(),
                 GeneralUtility::makeInstance($importer),
                 $importOptions
             );
@@ -66,6 +71,7 @@ class ImportController extends ActionController
                 'import' => $importService
             ]
         );
+        return $this->htmlResponse();
     }
 
     /**
@@ -74,7 +80,6 @@ class ImportController extends ActionController
      */
     public function errorAction()
     {
-        $this->clearCacheOnError();
         $this->addValidationErrorMessages();
         $this->addErrorFlashMessage();
         $this->forwardToReferringRequest();
