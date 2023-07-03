@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace In2code\Publications\Validation\Validator;
 
 use In2code\Publications\Utility\ConfigurationUtility;
+use TYPO3\CMS\Core\Http\UploadedFile;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
@@ -19,35 +19,26 @@ class UploadValidator extends AbstractValidator
      * @param mixed $value
      * @return void
      */
-    public function isValid($value)
+    public function isValid(mixed $value): void
     {
         $this->validateForIndividualUploadErrors($value);
         $this->validateForSystemUploadErrors($value);
     }
 
-    /**
-     * @param array $value
-     * @return void
-     */
-    protected function validateForIndividualUploadErrors(array $value)
+    protected function validateForIndividualUploadErrors(UploadedFile $value)
     {
         $this->validateFileExtension($value);
         $this->validateSize($value);
     }
 
-    /**
-     * @param array $value
-     * @return void
-     * @throws Exception
-     */
-    protected function validateFileExtension(array $value)
+    protected function validateFileExtension(UploadedFile $value)
     {
         $allowedExtensions = GeneralUtility::trimExplode(
             ',',
             strtolower(ConfigurationUtility::getSetting('upload.validation.extensions')),
             true
         );
-        $extension = strtolower(pathinfo($value['name'])['extension']);
+        $extension = pathinfo($value->getClientFilename(), PATHINFO_EXTENSION);
         if (in_array($extension, $allowedExtensions) === false) {
             $this->addError(
                 LocalizationUtility::translate(
@@ -59,14 +50,9 @@ class UploadValidator extends AbstractValidator
         }
     }
 
-    /**
-     * @param array $value
-     * @return void
-     * @throws Exception
-     */
-    protected function validateSize(array $value)
+    protected function validateSize(UploadedFile $value): void
     {
-        if ($value['size'] > (int)ConfigurationUtility::getSetting('upload.validation.size')) {
+        if ($value->getSize() > (int)ConfigurationUtility::getSetting('upload.validation.size')) {
             $this->addError(
                 LocalizationUtility::translate(
                     'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:validator.uploadValidator.size'
@@ -76,38 +62,19 @@ class UploadValidator extends AbstractValidator
         }
     }
 
-    /**
-     * @param array $value
-     * @return void
-     */
-    protected function validateForSystemUploadErrors(array $value)
+    protected function validateForSystemUploadErrors(UploadedFile $value): void
     {
-        if ($value['error'] !== 0) {
-            switch ($value['error']) {
-                case UPLOAD_ERR_INI_SIZE:
-                    $messageKey = 'validator.uploadValidator.maxFileSize.php';
-                    break;
-                case UPLOAD_ERR_FORM_SIZE:
-                    $messageKey = 'validator.uploadValidator.maxFileSize.html';
-                    break;
-                case UPLOAD_ERR_PARTIAL:
-                    $messageKey = 'validator.uploadValidator.partialUpload';
-                    break;
-                case UPLOAD_ERR_NO_FILE:
-                    $messageKey = 'validator.uploadValidator.noFile';
-                    break;
-                case UPLOAD_ERR_NO_TMP_DIR:
-                    $messageKey = 'validator.uploadValidator.noTempDir';
-                    break;
-                case UPLOAD_ERR_CANT_WRITE:
-                    $messageKey = 'validator.uploadValidator.noWritePermission';
-                    break;
-                case UPLOAD_ERR_EXTENSION:
-                    $messageKey = 'validator.uploadValidator.extensionPreventUpload';
-                    break;
-                default:
-                    $messageKey = 'validator.uploadValidator.unknownError';
-            }
+        if ($value->getError() !== UPLOAD_ERR_OK) {
+            $messageKey = match ($value['error']) {
+                UPLOAD_ERR_INI_SIZE => 'validator.uploadValidator.maxFileSize.php',
+                UPLOAD_ERR_FORM_SIZE => 'validator.uploadValidator.maxFileSize.html',
+                UPLOAD_ERR_PARTIAL => 'validator.uploadValidator.partialUpload',
+                UPLOAD_ERR_NO_FILE => 'validator.uploadValidator.noFile',
+                UPLOAD_ERR_NO_TMP_DIR => 'validator.uploadValidator.noTempDir',
+                UPLOAD_ERR_CANT_WRITE => 'validator.uploadValidator.noWritePermission',
+                UPLOAD_ERR_EXTENSION => 'validator.uploadValidator.extensionPreventUpload',
+                default => 'validator.uploadValidator.unknownError',
+            };
 
             $this->addError(
                 LocalizationUtility::translate(

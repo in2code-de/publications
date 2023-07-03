@@ -6,69 +6,91 @@ namespace In2code\Publications\Controller;
 
 use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Core\Http\UploadedFile;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
  * Class ImportController
  */
 class ImportController extends ActionController
 {
+    protected ModuleTemplateFactory $moduleTemplateFactory;
+
+    public function __construct(
+        ModuleTemplateFactory $moduleTemplateFactory,
+    ) {
+        $this->moduleTemplateFactory = $moduleTemplateFactory;
+    }
+
     /**
-     * @return void
+     * @return ResponseInterface
      */
-    public function overviewAction()
+    public function overviewAction(): ResponseInterface
     {
-        $this->view->assignMultiple(
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->assignMultiple(
             [
                 'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
                 'pid' => GeneralUtility::_GP('id')
             ]
         );
+        return $moduleTemplate->renderResponse('Backend/Import/Overview');
+    }
+
+    public function initializeImportAction(): void
+    {
+        // uploaded file is not in arguments
+        $arguments = array_merge_recursive($this->request->getArguments(), $this->request->getUploadedFiles());
+        $this->request = $this->request->withArguments($arguments);
     }
 
     /**
-     * @Extbase\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
-     * @Extbase\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
-    public function importAction(array $file, string $importer, array $importOptions): void
+    public function importAction(UploadedFile $file, string $importer, array $importOptions): ResponseInterface
     {
-        $importService =
-            GeneralUtility::makeInstance(
-                ImportService::class,
-                $file['tmp_name'],
-                GeneralUtility::makeInstance($importer),
-                $importOptions
-            );
+        $importService = GeneralUtility::makeInstance(
+            ImportService::class,
+            $file->getTemporaryFileName(),
+            GeneralUtility::makeInstance($importer),
+            $importOptions
+        );
         $importService->import();
         $this->view->assignMultiple(
             [
                 'import' => $importService
             ]
         );
+        return $this->htmlResponse();
     }
 
     /**
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
      */
-    public function errorAction()
+    public function errorAction(): ResponseInterface
     {
-        $this->clearCacheOnError();
+        $this->addFlashMessage(
+            '',
+            $this->getFlattenedValidationErrorMessage(),
+            ContextualFeedbackSeverity::ERROR
+        );
         $this->addValidationErrorMessages();
         $this->addErrorFlashMessage();
-        $this->forwardToReferringRequest();
 
-        return $this->getFlattenedValidationErrorMessage();
+        return $this->redirect('overview');
     }
 
     /**
@@ -105,25 +127,22 @@ class ImportController extends ActionController
 
     /**
      * Adds the Validation error Messages to the FlashMessage Queue
+     *
+     * @return void
      */
-    protected function addValidationErrorMessages()
+    protected function addValidationErrorMessages(): void
     {
-        if ($this->controllerContext->getArguments()->getValidationResults()->hasErrors()) {
-            $validationErrors = $this->controllerContext->getArguments()->getValidationResults()->getFlattenedErrors();
-            foreach ($validationErrors as $errors) {
-                if (!empty($errors)) {
-                    /** @var Error $error */
-                    foreach ($errors as $error) {
-                        /** @var FlashMessage $message */
-                        $message = GeneralUtility::makeInstance(
-                            FlashMessage::class,
-                            $error->getMessage(),
-                            $error->getTitle(),
-                            FlashMessage::ERROR,
-                            true
-                        );
-                        $this->controllerContext->getFlashMessageQueue()->addMessage($message);
-                    }
+        $validationResults = $this->arguments->validate();
+
+        if ($validationResults->hasErrors()) {
+            foreach ($validationResults->getFlattenedErrors() as $propertyPath => $propertyErrors) {
+                foreach ($propertyErrors as $error) {
+                    $this->addFlashMessage(
+                        $error->getMessage(),
+                        'Validation error for ' . $propertyPath,
+                        ContextualFeedbackSeverity::ERROR,
+                        true
+                    );
                 }
             }
         }
@@ -145,7 +164,7 @@ class ImportController extends ActionController
                     $this->addFlashMessage(
                         'Importer class "' . $importerClass . '" was not found',
                         'Importer class not found',
-                        AbstractMessage::ERROR
+                        ContextualFeedbackSeverity::ERROR
                     );
                 } else {
                     $importer[$importerClass] = $importerTitle;
