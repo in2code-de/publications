@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
  * Class ImportController
@@ -47,24 +46,26 @@ class ImportController extends ActionController
         return $moduleTemplate->renderResponse('Backend/Import/Overview');
     }
 
+    public function initializeImportAction(): void
+    {
+        // uploaded file is not in arguments
+        $arguments = array_merge_recursive($this->request->getArguments(), $this->request->getUploadedFiles());
+        $this->request = $this->request->withArguments($arguments);
+    }
+
     /**
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
      * @throws DBALException
      */
-    public function importAction(array $importOptions): ResponseInterface
+    public function importAction(UploadedFile $file, string $importer, array $importOptions): ResponseInterface
     {
-        /** @var UploadedFile $file */
-        $file = $this->request->getUploadedFiles()['file'];
-        $importer = $this->request->getArgument('importer');
-
-        $importService =
-            GeneralUtility::makeInstance(
-                ImportService::class,
-                $file->getTemporaryFileName(),
-                GeneralUtility::makeInstance($importer),
-                $importOptions
-            );
+        $importService = GeneralUtility::makeInstance(
+            ImportService::class,
+            $file->getTemporaryFileName(),
+            GeneralUtility::makeInstance($importer),
+            $importOptions
+        );
         $importService->import();
         $this->view->assignMultiple(
             [
@@ -78,13 +79,17 @@ class ImportController extends ActionController
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
      */
-    public function errorAction()
+    public function errorAction(): ResponseInterface
     {
+        $this->addFlashMessage(
+            '',
+            $this->getFlattenedValidationErrorMessage(),
+            ContextualFeedbackSeverity::ERROR
+        );
         $this->addValidationErrorMessages();
         $this->addErrorFlashMessage();
-        $this->forwardToReferringRequest();
 
-        return $this->getFlattenedValidationErrorMessage();
+        return $this->redirect('overview');
     }
 
     /**
@@ -126,22 +131,17 @@ class ImportController extends ActionController
      */
     protected function addValidationErrorMessages(): void
     {
-        if ($this->controllerContext->getArguments()->validate()->hasErrors()) {
-            $validationErrors = $this->controllerContext->getArguments()->validate()->getFlattenedErrors();
-            foreach ($validationErrors as $errors) {
-                if (!empty($errors)) {
-                    /** @var Error $error */
-                    foreach ($errors as $error) {
-                        /** @var FlashMessage $message */
-                        $message = GeneralUtility::makeInstance(
-                            FlashMessage::class,
-                            $error->getMessage(),
-                            $error->getTitle(),
-                            ContextualFeedbackSeverity::ERROR,
-                            true
-                        );
-                        $this->controllerContext->getFlashMessageQueue()->addMessage($message);
-                    }
+        $validationResults = $this->arguments->validate();
+
+        if ($validationResults->hasErrors()) {
+            foreach ($validationResults->getFlattenedErrors() as $propertyPath => $propertyErrors) {
+                foreach ($propertyErrors as $error) {
+                    $this->addFlashMessage(
+                        $error->getMessage(),
+                        'Validation error for ' . $propertyPath,
+                        ContextualFeedbackSeverity::ERROR,
+                        true
+                    );
                 }
             }
         }
