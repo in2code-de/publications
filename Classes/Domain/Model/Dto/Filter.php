@@ -114,19 +114,19 @@ class Filter
      */
     public function __construct(array $settings)
     {
-        $this->setCitestyle((int)$settings['citestyle']);
-        $this->setGroupby((int)$settings['groupby']);
-        $this->setRecordsPerPage((int)$settings['recordsPerPage']);
-        $this->setTimeframe((int)$settings['timeframe']);
-        $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'], true));
-        $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
-        $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
-        $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
+        $this->setCitestyle((int)($settings['citestyle'] ?? 0));
+        $this->setGroupby((int)($settings['groupby'] ?? 0 ));
+        $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
+        $this->setTimeframe((int)($settings['timeframe'] ?? 0));
+        $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));
+        $this->setStatus(GeneralUtility::intExplode(',', $settings['status'] ?? '', true));
+        $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'] ?? '', true));
+        $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'] ?? '', true));
         $this->setAuthor($settings['author'] ?? '');
-        $this->setExternFilter((int)$settings['extern']);
-        $this->setRecursive((int)$settings['recursive']);
-        $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
-        $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
+        $this->setExternFilter((int)($settings['extern'] ?? 0));
+        $this->setRecursive((int)($settings['recursive'] ?? 0));
+        $this->setRecords(GeneralUtility::intExplode(',', $settings['records'] ?? '', true));
+        $this->setExport(GeneralUtility::intExplode(',', $settings['export'] ?? '', true));
     }
 
     /**
