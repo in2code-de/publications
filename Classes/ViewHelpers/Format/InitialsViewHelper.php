@@ -28,10 +28,10 @@ class InitialsViewHelper extends AbstractViewHelper
     public function render(): string
     {
         /** Reformat already stored Initials */
-        $names_temp=str_replace('.', ' ', $this->renderChildren());
+        $names_temp = str_replace('.', ' ', $this->renderChildren());
         /** Pick initial from each name and stich together with spacer*/
         $names = GeneralUtility::trimExplode(' ', $names_temp, true);
-        $initials='';
+        $initials = '';
         foreach ($names as $name) {
             $initials .= mb_substr($name, 0, 1) . $this->arguments['suffix'] . $this->arguments['glue'];
         }
