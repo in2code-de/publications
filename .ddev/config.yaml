@@ -1,4 +1,4 @@
-name: publications
+name: publications-v11
 type: php
 docroot: .build/public
 php_version: "8.0"
@@ -14,7 +14,7 @@ database:
 nfs_mount_enabled: false
 mutagen_enabled: false
 hooks:
-host_db_port: "49179"
+host_db_port: "39594"
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
