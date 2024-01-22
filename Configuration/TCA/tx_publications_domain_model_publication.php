@@ -353,6 +353,7 @@ $tca = [
             'label' => $llTable . '.title',
             'config' => [
                 'type' => 'input',
+                'size' => 50,
                 'eval' => 'trim,required',
                 'default' => ''
             ]
@@ -596,6 +597,7 @@ $tca = [
             'label' => $llTable . '.series',
             'config' => [
                 'type' => 'input',
+                'size' => 50,
                 'eval' => 'trim',
                 'default' => ''
             ]
@@ -677,6 +679,7 @@ $tca = [
             'label' => $llTable . '.event_name',
             'config' => [
                 'type' => 'input',
+                'size' => 50,
                 'eval' => 'trim',
                 'default' => ''
             ]
@@ -715,6 +718,7 @@ $tca = [
             'label' => $llTable . '.booktitle',
             'config' => [
                 'type' => 'input',
+                'size' => 50,
                 'eval' => 'trim',
                 'default' => ''
             ]
