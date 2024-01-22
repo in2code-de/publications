@@ -90,10 +90,6 @@
     "sort-packages": true
   },
   "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .build/public/typo3conf/ext/",
-      "[ -L .build/public/typo3conf/ext/publications ] || ln -snvf ../../../../. .build/public/typo3conf/ext/publications"
-    ],
     "test:php:cs": "php-cs-fixer fix --dry-run --config=.project/tests/.php-cs-fixer.php --diff",
     "fix:php": "php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff",
     "test:php:lint": "find *.php Classes Configuration -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",

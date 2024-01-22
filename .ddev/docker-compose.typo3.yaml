@@ -13,3 +13,4 @@ services:
       - TYPO3_INSTALL_DB_DBNAME=db
       - TYPO3_INSTALL_SITE_SETUP_TYPE=no
       - TYPO3_INSTALL_WEB_SERVER_CONFIG=none
+      - TYPO3_PATH_APP=/var/www/html/.build
