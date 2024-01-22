@@ -22,17 +22,17 @@
 				<f:comment>
 					1. Select Import Format
 				</f:comment>
-				<f:render partial="SelectImportImporter" arguments="{_all}"/>
+				<f:render partial="Backend/SelectImportImporter" arguments="{_all}"/>
 
 				<f:comment>
 					2. Select Import Options
 				</f:comment>
-				<f:render partial="SelectImportOptions" arguments="{_all}"/>
+				<f:render partial="Backend/SelectImportOptions" arguments="{_all}"/>
 
 				<f:comment>
 					3. Select file for import
 				</f:comment>
-				<f:render partial="SelectImportFile" arguments="{_all}"/>
+				<f:render partial="Backend/SelectImportFile" arguments="{_all}"/>
 
 				<f:form.submit
 					value="{f:translate(key:'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:backendModule.submit')}"

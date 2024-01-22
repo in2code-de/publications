@@ -23,8 +23,8 @@ class InitialsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @return string
-     */
+    * @return string
+    */
     public function render(): string
     {
         /** Reformat already stored Initials */

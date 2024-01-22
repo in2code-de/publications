@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace In2code\Publications\Utility;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -19,7 +20,7 @@ class ConfigurationUtility
      */
     public static function getSetting(string $path)
     {
-        $configurationManager = ObjectUtility::getObjectManager()->get(ConfigurationManagerInterface::class);
+        $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
         $settings = (array)$configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
             'publications'

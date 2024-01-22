@@ -10,10 +10,10 @@ use In2code\Publications\Domain\Service\PublicationService;
 use In2code\Publications\Pagination\NumberedPagination;
 use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -33,18 +33,14 @@ class PublicationController extends ActionController
 
     /**
      * @return void
-     * @throws NoSuchArgumentException
      */
-    public function initializeListAction()
+    public function initializeListAction(): void
     {
         $this->setFilterArguments();
     }
 
     /**
-     * @param Filter $filter
-     * @return void
      * @throws InvalidQueryException
-     * @throws NoSuchArgumentException
      */
     public function listAction(Filter $filter): ResponseInterface
     {
@@ -56,6 +52,7 @@ class PublicationController extends ActionController
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = new ArrayPaginator($publications, $currentPage, $itemsPerPage);
         $pagination = new NumberedPagination($paginator, $maximumLinks);
+        $contentObjectUid = $this->getContentObject()->data['uid'] ?? 0;
 
         if (array_key_exists('showGroupLinks', $this->settings) && (bool)$this->settings['showGroupLinks'] === true) {
             $this->view->assign(
@@ -63,7 +60,7 @@ class PublicationController extends ActionController
                 $this->publicationService->getGroupedPublicationLinks(
                     $publications,
                     (int)$this->settings['groupby'],
-                    $this->getContentObject()->data['uid'],
+                    $contentObjectUid,
                     $itemsPerPage
                 )
             );
@@ -74,91 +71,80 @@ class PublicationController extends ActionController
             'pagination' => $pagination,
         ]);
         $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications,
-            'data' => $this->getContentObject()->data,
-            'maxItems' => count($publications),
-        ]);
+                                        'filter' => $filter,
+                                        'publications' => $publications,
+                                        'data' => $this->getContentObject()->data,
+                                        'maxItems' => count($publications),
+                                    ]);
         return $this->htmlResponse();
     }
 
-    /**
-     * @return void
-     * @throws StopActionException
-     */
-    public function resetListAction()
+    public function resetListAction(): ?ResponseInterface
     {
         SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], []);
-        $this->redirect('list');
+        return $this->redirect('list');
     }
 
-    /**
-     * @return void
-     * @throws NoSuchArgumentException
-     */
-    public function initializeDownloadBibtexAction()
+    public function initializeDownloadBibtexAction(): void
     {
         $this->setFilterArguments();
-        $this->request->setFormat('xml');
+        $this->request = $this->request->withFormat('xml');
     }
 
     /**
-     * @param Filter $filter
-     * @return ResponseInterface
-     * @throws InvalidQueryException
+     * @throws InvalidQueryException|PropagateResponseException
      */
     public function downloadBibtexAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
-        $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications
-        ]);
 
-        return $this->responseFactory
+        $this->view->assignMultiple(
+            [
+                'filter' => $filter,
+                'publications' => $publications
+            ]
+        );
+
+        $response = $this->responseFactory
             ->createResponse()
             ->withHeader('Content-Type', 'application/x-bibtex')
             ->withHeader('Pragma', 'no-cache')
             ->withHeader('Content-Disposition', 'attachment; filename="download.bib"')
             ->withBody($this->streamFactory->createStream($this->view->render()));
+
+        throw new PropagateResponseException($response, 200);
     }
 
-    /**
-     * @return void
-     * @throws NoSuchArgumentException
-     */
-    public function initializeDownloadXmlAction()
+    public function initializeDownloadXmlAction(): void
     {
         $this->setFilterArguments();
-        $this->request->setFormat('xml');
+        $this->request = $this->request->withFormat('xml');
     }
 
     /**
-     * @param Filter $filter
-     * @return ResponseInterface
-     * @throws InvalidQueryException
+     * @throws InvalidQueryException|PropagateResponseException
      */
     public function downloadXmlAction(Filter $filter): ResponseInterface
     {
         $publications = $this->publicationRepository->findByFilter($filter);
-        $this->view->assignMultiple([
-            'filter' => $filter,
-            'publications' => $publications
-        ]);
+        $this->view->assignMultiple(
+            [
+                'filter' => $filter,
+                'publications' => $publications
+            ]
+        );
 
-        return $this->responseFactory
+        $response = $this->responseFactory
             ->createResponse()
             ->withHeader('Content-Type', 'text/xml')
             ->withHeader('Pragma', 'no-cache')
             ->withHeader('Content-Disposition', 'attachment; filename="download.xml"')
             ->withBody($this->streamFactory->createStream($this->view->render()));
+
+        throw new PropagateResponseException($response, 200);
     }
 
-    /**
-     * @return void
-     * @throws NoSuchArgumentException
-     */
-    protected function setFilterArguments()
+    protected function setFilterArguments(): void
     {
         if ($this->request->hasArgument('filter') === false) {
             $filterArguments = SessionUtility::getSessionValue('filter_' . $this->getContentObject()->data['uid']);
@@ -167,8 +153,7 @@ class PublicationController extends ActionController
             $filterArguments = $this->request->getArgument('filter');
             SessionUtility::saveValueToSession('filter_' . $this->getContentObject()->data['uid'], $filterArguments);
         }
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        $filter = $this->objectManager->get(Filter::class, $this->settings);
+        $filter = GeneralUtility::makeInstance(Filter::class, $this->settings);
         if (!empty($filterArguments['searchterm'])) {
             $filter->setSearchterm($filterArguments['searchterm']);
         }
@@ -181,14 +166,15 @@ class PublicationController extends ActionController
         if (!empty($filterArguments['documenttype'])) {
             $filter->setDocumenttype($filterArguments['documenttype']);
         }
-        $this->request->setArgument('filter', $filter);
+
+        $this->request = $this->request->withArguments([
+            'filter' => $filter,
+            'currentContentObject' => $this->getContentObject(),
+        ]);
     }
 
-    /**
-     * @return ContentObjectRenderer
-     */
-    protected function getContentObject(): ContentObjectRenderer
+    protected function getContentObject(): ?ContentObjectRenderer
     {
-        return $this->configurationManager->getContentObject();
+        return $this->request->getAttribute('currentContentObject') ?? null;
     }
 }

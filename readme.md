@@ -30,9 +30,8 @@ Import module:
 
 ## Technical requirements
 
-This extension needs *TYPO3 11*
+This extension needs *TYPO3 12*
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
-
 
 
 ## Installation
@@ -96,15 +95,17 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 6.0.2   | 2024-01-22 | Task    | First public release of TYPO3 V12 compatible release                                                                              |
+| 6.0.0   | 2023-06-28 | Task    | Support TYPO3 12                                                                                                                  |
 | 5.3.1   | 2023-02-24 | Bugfix  | Add missing use for ImportController                                                                                              |
-| 5.3.0   | 2023-02-24 | Feature | Additional import option "language behaviour". Allows to specify the target langauge of imports                                   |
+| 5.3.0   | 2023-02-24 | Feature | Additional import option "language behaviour". Allows to specify the target language of imports                                   |
 | 5.2.0   | 2022-12-12 | Feature | French umlaute                                                                                                                    |
 | 5.1.0   | 2022-10-13 | Feature | Rework highlighting of authors                                                                                                    |
 | 5.0.2   | 2022-09-28 | Bugfix  | Fix author highlighting, fix internal author linking                                                                              |
 | 5.0.1   | 2022-09-21 | Bugfix  | Fix bibtex and xml export                                                                                                         |
 | 5.0.0   | 2022-09-20 | Feature | Backend improvements, bugfixes                                                                                                    |
 | 4.1.0   | 2022-09-08 | Bugfix  | Fix TCA link wizard, because it was deprecated                              <br/>                                                 |
-| 4.0.1   | 2022-06-20 | Bugfix  | Fix documenttype frontend filter if no filter is set                                                                              |
+| 4.0.1   | 2022-06-20 | Bugfix  | Fix document type frontend filter if no filter is set                                                                             |
 | 4.0.0   | 2022-05-25 | Feature | Drop support for TYPO3 9 and 10, provide ddev based development environment, <br/>add github actions for testing and TER release. |
 | 3.0.0   | 2022-02-16 | Feature | Highlighted Authors, Link names, Citestyles, Author model added. Support pmid field in migration.                                 |
 | 2.3.0   | 2021-03-19 | Feature | Special character support for bib import, Fix generated icon tags                                                                 |

@@ -6,7 +6,6 @@ namespace In2code\Publications\Domain\Model\Dto;
 
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
-use In2code\Publications\Utility\ObjectUtility;
 use In2code\Publications\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -116,7 +115,7 @@ class Filter
     public function __construct(array $settings)
     {
         $this->setCitestyle((int)($settings['citestyle'] ?? 0));
-        $this->setGroupby((int)($settings['groupby'] ?? 0));
+        $this->setGroupby((int)($settings['groupby'] ?? 0 ));
         $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
         $this->setTimeframe((int)($settings['timeframe'] ?? 0));
         $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));
@@ -399,7 +398,7 @@ class Filter
     {
         $authors = [];
         if ($this->isAuthorSet()) {
-            $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
+            $authorRepository = GeneralUtility::makeInstance(AuthorRepository::class);
             foreach (GeneralUtility::intExplode(',', $this->getAuthor(), true) as $identifier) {
                 $authors[] = $authorRepository->findByUid($identifier);
             }
