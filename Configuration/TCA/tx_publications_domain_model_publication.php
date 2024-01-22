@@ -124,7 +124,7 @@ $tca = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => Publication::TABLE_NAME,
                 'foreign_table_where' => 'AND ' . Publication::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
@@ -193,88 +193,88 @@ $tca = [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '-',
-                        ''
+                        'label' => '-',
+                        'value' => ''
                     ],
                     [
-                        $llTable . '.bibtype.article',
-                        'article'
+                        'label' => $llTable . '.bibtype.article',
+                        'value' => 'article'
                     ],
                     [
-                        $llTable . '.bibtype.book',
-                        'book',
+                        'label' => $llTable . '.bibtype.book',
+                        'value' => 'book',
                     ],
                     [
-                        $llTable . '.bibtype.booklet',
-                        'booklet'
+                        'label' => $llTable . '.bibtype.booklet',
+                        'value' => 'booklet'
                     ],
                     [
-                        $llTable . '.bibtype.conference',
-                        'conference'
+                        'label' => $llTable . '.bibtype.conference',
+                        'value' => 'conference'
                     ],
                     [
-                        $llTable . '.bibtype.inbook',
-                        'inbook'
+                        'label' => $llTable . '.bibtype.inbook',
+                        'value' => 'inbook'
                     ],
                     [
-                        $llTable . '.bibtype.incollection',
-                        'incollection'
+                        'label' => $llTable . '.bibtype.incollection',
+                        'value' => 'incollection'
                     ],
                     [
-                        $llTable . '.bibtype.inproceedings',
-                        'inproceedings'
+                        'label' => $llTable . '.bibtype.inproceedings',
+                        'value' => 'inproceedings'
                     ],
                     [
-                        $llTable . '.bibtype.manual',
-                        'manual'
+                        'label' => $llTable . '.bibtype.manual',
+                        'value' => 'manual'
                     ],
                     [
-                        $llTable . '.bibtype.manuscript',
-                        'manuscript'
+                        'label' => $llTable . '.bibtype.manuscript',
+                        'value' => 'manuscript'
                     ],
                     [
-                        $llTable . '.bibtype.mastersthesis',
-                        'mastersthesis'
+                        'label' => $llTable . '.bibtype.mastersthesis',
+                        'value' => 'mastersthesis'
                     ],
                     [
-                        $llTable . '.bibtype.misc',
-                        'misc'
+                        'label' => $llTable . '.bibtype.misc',
+                        'value' => 'misc'
                     ],
                     [
-                        $llTable . '.bibtype.phdthesis',
-                        'phdthesis'
+                        'label' => $llTable . '.bibtype.phdthesis',
+                        'value' => 'phdthesis'
                     ],
                     [
-                        $llTable . '.bibtype.poster',
-                        'poster'
+                        'label' => $llTable . '.bibtype.poster',
+                        'value' => 'poster'
                     ],
                     [
-                        $llTable . '.bibtype.proceedings',
-                        'proceedings'
+                        'label' => $llTable . '.bibtype.proceedings',
+                        'value' => 'proceedings'
                     ],
                     [
-                        $llTable . '.bibtype.report',
-                        'report'
+                        'label' => $llTable . '.bibtype.report',
+                        'value' => 'report'
                     ],
                     [
-                        $llTable . '.bibtype.techreport',
-                        'techreport'
+                        'label' => $llTable . '.bibtype.techreport',
+                        'value' => 'techreport'
                     ],
                     [
-                        $llTable . '.bibtype.thesis',
-                        'thesis'
+                        'label' => $llTable . '.bibtype.thesis',
+                        'value' => 'thesis'
                     ],
                     [
-                        $llTable . '.bibtype.unpublished',
-                        'unpublished'
+                        'label' => $llTable . '.bibtype.unpublished',
+                        'value' => 'unpublished'
                     ],
                     [
-                        $llTable . '.bibtype.url',
-                        'url'
+                        'label' => $llTable . '.bibtype.url',
+                        'value' => 'url'
                     ],
                     [
-                        $llTable . '.bibtype.patent',
-                        'patent'
+                        'label' => $llTable . '.bibtype.patent',
+                        'value' => 'patent'
                     ],
                 ],
                 'size' => 1,
@@ -308,24 +308,24 @@ $tca = [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $llTable . '.status.0',
-                        0
+                        'label' => $llTable . '.status.0',
+                        'value' => 0
                     ],
                     [
-                        $llTable . '.status.1',
-                        1
+                        'label' => $llTable . '.status.1',
+                        'value' => 1
                     ],
                     [
-                        $llTable . '.status.2',
-                        2
+                        'label' => $llTable . '.status.2',
+                        'value' => 2
                     ],
                     [
-                        $llTable . '.status.3',
-                        3
+                        'label' => $llTable . '.status.3',
+                        'value' => 3
                     ],
                     [
-                        $llTable . '.status.4',
-                        4
+                        'label' => $llTable . '.status.4',
+                        'value' => 4
                     ]
                 ],
                 'size' => 1,
