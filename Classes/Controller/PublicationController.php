@@ -167,10 +167,8 @@ class PublicationController extends ActionController
             $filter->setDocumenttype($filterArguments['documenttype']);
         }
 
-        $this->request = $this->request->withArguments([
-            'filter' => $filter,
-            'currentContentObject' => $this->getContentObject(),
-        ]);
+        $this->request = $this->request->withArgument('filter', $filter);
+        $this->request = $this->request->withArgument('currentContentObject', $this->getContentObject());
     }
 
     protected function getContentObject(): ?ContentObjectRenderer
