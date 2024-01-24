@@ -71,11 +71,11 @@ class PublicationController extends ActionController
             'pagination' => $pagination,
         ]);
         $this->view->assignMultiple([
-                                        'filter' => $filter,
-                                        'publications' => $publications,
-                                        'data' => $this->getContentObject()->data,
-                                        'maxItems' => count($publications),
-                                    ]);
+            'filter' => $filter,
+            'publications' => $publications,
+            'data' => $this->getContentObject()->data,
+            'maxItems' => count($publications),
+        ]);
         return $this->htmlResponse();
     }
 
