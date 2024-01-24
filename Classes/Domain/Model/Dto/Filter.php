@@ -115,7 +115,7 @@ class Filter
     public function __construct(array $settings)
     {
         $this->setCitestyle((int)($settings['citestyle'] ?? 0));
-        $this->setGroupby((int)($settings['groupby'] ?? 0 ));
+        $this->setGroupby((int)($settings['groupby'] ?? 0));
         $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
         $this->setTimeframe((int)($settings['timeframe'] ?? 0));
         $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));

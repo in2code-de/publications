@@ -449,9 +449,9 @@ class Publication extends AbstractEntity
     public function getMonth(): string
     {
         if (!is_numeric($this->month)) {
-            return (string) (date_parse($this->month)['month'] ?: '');
+            return (string)(date_parse($this->month)['month'] ?: '');
         }
-        return (string) ((int) $this->month);
+        return (string)((int)$this->month);
     }
 
     /**
