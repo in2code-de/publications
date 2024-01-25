@@ -1,192 +1,207 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:publications/Resources/Private/Language/locallang.xlf" date="2024-01-26T11:01:23Z" product-name="publications">
 		<header/>
 		<body>
-			<trans-unit id="list.filter.searchterm">
+			<trans-unit id="list.filter.searchterm" resname="list.filter.searchterm">
 				<source>Searchterm</source>
 			</trans-unit>
-			<trans-unit id="list.filter.searchterm.placeholder">
-				<source>Publication title</source>
+			<trans-unit id="list.filter.searchterm.exact" resname="list.filter.searchterm.exact">
+				<source>Exact searchterm</source>
 			</trans-unit>
-			<trans-unit id="list.filter.author">
+			<trans-unit id="list.filter.searchterm.placeholder" resname="list.filter.searchterm.placeholder">
+				<source>All fields</source>
+			</trans-unit>
+			<trans-unit id="list.filter.author" resname="list.filter.author">
 				<source>Author</source>
 			</trans-unit>
-			<trans-unit id="list.filter.author.placeholder">
-				<source>e.g. "Klaus Fumy, Bernd Aumann"</source>
+			<trans-unit id="list.filter.author.placeholder" resname="list.filter.author.placeholder">
+				<source>e.g. &quot;Klaus Fumy, Bernd Aumann&quot;</source>
 			</trans-unit>
-			<trans-unit id="list.filter.year">
+			<trans-unit id="list.filter.author.exact" resname="list.filter.author.exact">
+				<source>Exact match</source>
+			</trans-unit>
+			<trans-unit id="list.filter.title" resname="list.filter.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="list.filter.title.placeholder" resname="list.filter.title.placeholder">
+				<source>Publication title</source>
+			</trans-unit>
+			<trans-unit id="list.filter.title.exact" resname="list.filter.title.exact">
+				<source>Exact match</source>
+			</trans-unit>
+			<trans-unit id="list.filter.year" resname="list.filter.year">
 				<source>Year</source>
 			</trans-unit>
-			<trans-unit id="list.filter.year.placeholder">
+			<trans-unit id="list.filter.year.placeholder" resname="list.filter.year.placeholder">
 				<source>2019</source>
 			</trans-unit>
-			<trans-unit id="list.filter.reset">
+			<trans-unit id="list.filter.reset" resname="list.filter.reset">
 				<source>Reset</source>
 			</trans-unit>
-			<trans-unit id="list.filter.submit">
+			<trans-unit id="list.filter.submit" resname="list.filter.submit">
 				<source>Search now</source>
 			</trans-unit>
-			<trans-unit id="list.filter.extended">
+			<trans-unit id="list.filter.extended" resname="list.filter.extended">
 				<source>Extended search</source>
 			</trans-unit>
-			<trans-unit id="list.norecords">
+			<trans-unit id="list.filter.concatination" resname="list.filter.concatination">
+				<source>Concatination of all fields</source>
+			</trans-unit>
+			<trans-unit id="list.filter.concatination.and" resname="list.filter.concatination.and">
+				<source>And</source>
+			</trans-unit>
+			<trans-unit id="list.filter.concatination.or" resname="list.filter.concatination.or">
+				<source>Or</source>
+			</trans-unit>
+			<trans-unit id="list.norecords" resname="list.norecords">
 				<source>No publications found</source>
 			</trans-unit>
-
-			<trans-unit id="list.filter.showalldocumenttypes">
+			<trans-unit id="list.filter.showalldocumenttypes" resname="list.filter.showalldocumenttypes">
 				<source>All publication types</source>
 			</trans-unit>
-			<trans-unit id="list.filter.documenttype">
+			<trans-unit id="list.filter.documenttype" resname="list.filter.documenttype">
 				<source>Publication types</source>
 			</trans-unit>
-
-			<trans-unit id="bibtype.article">
+			<trans-unit id="bibtype.article" resname="bibtype.article">
 				<source>Articles</source>
 			</trans-unit>
-			<trans-unit id="bibtype.book">
+			<trans-unit id="bibtype.book" resname="bibtype.book">
 				<source>Books</source>
 			</trans-unit>
-			<trans-unit id="bibtype.booklet">
+			<trans-unit id="bibtype.booklet" resname="bibtype.booklet">
 				<source>Booklets</source>
 			</trans-unit>
-			<trans-unit id="bibtype.conference">
+			<trans-unit id="bibtype.conference" resname="bibtype.conference">
 				<source>Conferences</source>
 			</trans-unit>
-			<trans-unit id="bibtype.inbook">
+			<trans-unit id="bibtype.inbook" resname="bibtype.inbook">
 				<source>Contribution to Books</source>
 			</trans-unit>
-			<trans-unit id="bibtype.incollection">
+			<trans-unit id="bibtype.incollection" resname="bibtype.incollection">
 				<source>Contribution to Collections</source>
 			</trans-unit>
-			<trans-unit id="bibtype.inproceedings">
+			<trans-unit id="bibtype.inproceedings" resname="bibtype.inproceedings">
 				<source>Contribution to Proceedings</source>
 			</trans-unit>
-			<trans-unit id="bibtype.manual">
+			<trans-unit id="bibtype.manual" resname="bibtype.manual">
 				<source>Manuals</source>
 			</trans-unit>
-			<trans-unit id="bibtype.manuscript">
+			<trans-unit id="bibtype.manuscript" resname="bibtype.manuscript">
 				<source>Manuscripts</source>
 			</trans-unit>
-			<trans-unit id="bibtype.mastersthesis">
+			<trans-unit id="bibtype.mastersthesis" resname="bibtype.mastersthesis">
 				<source>Master-Thesis</source>
 			</trans-unit>
-			<trans-unit id="bibtype.misc">
+			<trans-unit id="bibtype.misc" resname="bibtype.misc">
 				<source>Miscellaneous</source>
 			</trans-unit>
-			<trans-unit id="bibtype.phdthesis">
+			<trans-unit id="bibtype.phdthesis" resname="bibtype.phdthesis">
 				<source>PhD-Thesis</source>
 			</trans-unit>
-			<trans-unit id="bibtype.poster">
+			<trans-unit id="bibtype.poster" resname="bibtype.poster">
 				<source>Poster</source>
 			</trans-unit>
-			<trans-unit id="bibtype.proceedings">
+			<trans-unit id="bibtype.proceedings" resname="bibtype.proceedings">
 				<source>Proceedings</source>
 			</trans-unit>
-			<trans-unit id="bibtype.report">
+			<trans-unit id="bibtype.report" resname="bibtype.report">
 				<source>Reports</source>
 			</trans-unit>
-			<trans-unit id="bibtype.techreport">
+			<trans-unit id="bibtype.techreport" resname="bibtype.techreport">
 				<source>Techreports</source>
 			</trans-unit>
-			<trans-unit id="bibtype.thesis">
+			<trans-unit id="bibtype.thesis" resname="bibtype.thesis">
 				<source>Thesis</source>
 			</trans-unit>
-			<trans-unit id="bibtype.unpublished">
+			<trans-unit id="bibtype.unpublished" resname="bibtype.unpublished">
 				<source>Unpublished</source>
 			</trans-unit>
-			<trans-unit id="bibtype.url">
+			<trans-unit id="bibtype.url" resname="bibtype.url">
 				<source>URL</source>
 			</trans-unit>
-			<trans-unit id="bibtype.patent">
+			<trans-unit id="bibtype.patent" resname="bibtype.patent">
 				<source>Patents</source>
 			</trans-unit>
-
-			<trans-unit id="month.1">
+			<trans-unit id="month.1" resname="month.1">
 				<source>January</source>
 			</trans-unit>
-			<trans-unit id="month.2">
+			<trans-unit id="month.2" resname="month.2">
 				<source>February</source>
 			</trans-unit>
-			<trans-unit id="month.3">
+			<trans-unit id="month.3" resname="month.3">
 				<source>March</source>
 			</trans-unit>
-			<trans-unit id="month.4">
+			<trans-unit id="month.4" resname="month.4">
 				<source>April</source>
 			</trans-unit>
-			<trans-unit id="month.5">
+			<trans-unit id="month.5" resname="month.5">
 				<source>May</source>
 			</trans-unit>
-			<trans-unit id="month.6">
+			<trans-unit id="month.6" resname="month.6">
 				<source>June</source>
 			</trans-unit>
-			<trans-unit id="month.7">
+			<trans-unit id="month.7" resname="month.7">
 				<source>July</source>
 			</trans-unit>
-			<trans-unit id="month.8">
+			<trans-unit id="month.8" resname="month.8">
 				<source>August</source>
 			</trans-unit>
-			<trans-unit id="month.9">
+			<trans-unit id="month.9" resname="month.9">
 				<source>September</source>
 			</trans-unit>
-			<trans-unit id="month.10">
+			<trans-unit id="month.10" resname="month.10">
 				<source>October</source>
 			</trans-unit>
-			<trans-unit id="month.11">
+			<trans-unit id="month.11" resname="month.11">
 				<source>November</source>
 			</trans-unit>
-			<trans-unit id="month.12">
+			<trans-unit id="month.12" resname="month.12">
 				<source>December</source>
 			</trans-unit>
-
-			<trans-unit id="linkblock.doi">
+			<trans-unit id="linkblock.doi" resname="linkblock.doi">
 				<source>DOI</source>
 			</trans-unit>
-			<trans-unit id="linkblock.pmid">
+			<trans-unit id="linkblock.pmid" resname="linkblock.pmid">
 				<source>Pubmed</source>
 			</trans-unit>
-			<trans-unit id="linkblock.file">
+			<trans-unit id="linkblock.file" resname="linkblock.file">
 				<source>File</source>
 			</trans-unit>
-			<trans-unit id="linkblock.weburl1">
+			<trans-unit id="linkblock.weburl1" resname="linkblock.weburl1">
 				<source>Weblink</source>
 			</trans-unit>
-			<trans-unit id="linkblock.weburl2">
+			<trans-unit id="linkblock.weburl2" resname="linkblock.weburl2">
 				<source>Weblink</source>
 			</trans-unit>
-
-			<trans-unit id="citestyle0.volume">
+			<trans-unit id="citestyle0.volume" resname="citestyle0.volume">
 				<source>Volume</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.from">
+			<trans-unit id="citestyle0.from" resname="citestyle0.from">
 				<source>from</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.page">
+			<trans-unit id="citestyle0.page" resname="citestyle0.page">
 				<source>Page</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.chapter">
+			<trans-unit id="citestyle0.chapter" resname="citestyle0.chapter">
 				<source>Chapter</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.publisher">
+			<trans-unit id="citestyle0.publisher" resname="citestyle0.publisher">
 				<source>Publisher</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.edition">
+			<trans-unit id="citestyle0.edition" resname="citestyle0.edition">
 				<source>Edition</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.editor">
+			<trans-unit id="citestyle0.editor" resname="citestyle0.editor">
 				<source>Editor</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.chapter">
-				<source>Chapter</source>
-			</trans-unit>
-			<trans-unit id="citestyle0.documentnumber">
+			<trans-unit id="citestyle0.documentnumber" resname="citestyle0.documentnumber">
 				<source>Document Number</source>
 			</trans-unit>
-			<trans-unit id="citestyle0.reportnumber">
+			<trans-unit id="citestyle0.reportnumber" resname="citestyle0.reportnumber">
 				<source>Report Number</source>
 			</trans-unit>
-
-			<trans-unit id="citestyle6.abstract">
+			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 			</trans-unit>
 		</body>

@@ -37,25 +37,28 @@ class PublicationRepository extends AbstractRepository
      */
     protected function filterQuery(QueryInterface $query, Filter $filter)
     {
-        $and = [];
+        $concat = [];
         if ($filter->isFilterFlexFormSet()) {
-            $and = $this->filterQueryByKeywords($query, $filter, $and);
-            $and = $this->filterQueryByTags($query, $filter, $and);
-            $and = $this->filterQueryByTimeframe($query, $filter, $and);
-            $and = $this->filterQueryByBibtypes($query, $filter, $and);
-            $and = $this->filterQueryByStatus($query, $filter, $and);
-            $and = $this->filterQueryByAuthor($query, $filter, $and);
-            $and = $this->filterQueryByExternFilter($query, $filter, $and);
-            $and = $this->filterQueryByRecords($query, $filter, $and);
+            $concat = $this->filterQueryByKeywords($query, $filter, $concat);
+            $concat = $this->filterQueryByTags($query, $filter, $concat);
+            $concat = $this->filterQueryByTimeframe($query, $filter, $concat);
+            $concat = $this->filterQueryByBibtypes($query, $filter, $concat);
+            $concat = $this->filterQueryByStatus($query, $filter, $concat);
+            $concat = $this->filterQueryByAuthor($query, $filter, $concat);
+            $concat = $this->filterQueryByExternFilter($query, $filter, $concat);
+            $concat = $this->filterQueryByRecords($query, $filter, $concat);
         }
         if ($filter->isFilterFrontendSet()) {
-            $and = $this->filterQueryBySearchterms($query, $filter, $and);
-            $and = $this->filterQueryByYear($query, $filter, $and);
-            $and = $this->filterQueryByAuthorstring($query, $filter, $and);
-            $and = $this->filterQueryByDocumenttype($query, $filter, $and);
+            $concat = $this->filterQueryBySearchterms($query, $filter, $concat);
+            $concat = $this->filterQueryByYear($query, $filter, $concat);
+            $concat = $this->filterQueryByAuthorstring($query, $filter, $concat);
+            $concat = $this->filterQueryByDocumenttype($query, $filter, $concat);
+            $concat = $this->filterQueryByTitle($query, $filter, $concat);
         }
-        if ($and !== []) {
-            $query->matching($query->logicalAnd($and));
+        if ($concat !== [] && $filter->getConcatination() === 'or') {
+            $query->matching($query->logicalOr($concat));
+        } else if ($concat !== []) {
+            $query->matching($query->logicalAnd($concat));
         }
     }
 
@@ -282,6 +285,18 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
+    protected function filterQueryByTitle(QueryInterface $query, Filter $filter, array $and): array
+    {
+        if ($filter->isTitleSet()) {
+            $sql_delimiter = '%';
+            if ($filter->getTitleExact() === 'exact') {
+                $sql_delimiter = '';
+            }
+            $and[] = $query->like('title', $sql_delimiter . $filter->getTitle() . $sql_delimiter);
+        }
+        return $and;
+    }
+
     /**
      * @param QueryInterface $query
      * @param Filter $filter
@@ -292,10 +307,14 @@ class PublicationRepository extends AbstractRepository
     protected function filterQueryByAuthorstring(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isAuthorstringSet()) {
+            $sql_delimiter = '%';
+            if ($filter->getAuthorstringExact() === 'exact') {
+                $sql_delimiter = '';
+            }
             $or = [];
             foreach ($filter->getAuthorstrings() as $authorstring) {
-                $or[] = $query->like('authors.firstName', '%' . $authorstring . '%');
-                $or[] = $query->like('authors.lastName', '%' . $authorstring . '%');
+                $or[] = $query->like('authors.firstName', $sql_delimiter . $authorstring . $sql_delimiter);
+                $or[] = $query->like('authors.lastName', $sql_delimiter . $authorstring . $sql_delimiter);
             }
             $and[] = $query->logicalOr($or);
         }
@@ -320,7 +339,6 @@ class PublicationRepository extends AbstractRepository
      */
     protected function convertToAscendingArray(QueryResultInterface $results): array
     {
-        $i = 0;
         $resultsRaw = $results->toArray();
         usort($resultsRaw, [$this, 'compareCallbackByDate']);
         return $resultsRaw;

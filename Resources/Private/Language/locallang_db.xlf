@@ -293,7 +293,7 @@
 				<source>all</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes">
-				<source>Publication status (empty = all)</source>
+				<source>Publication types (empty = all)</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.article">
 				<source>Article</source>
@@ -411,6 +411,18 @@
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype">
+				<source>Filter type</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.classic">
+				<source>Classic (default)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.simple">
+				<source>Simple</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.extended">
+				<source>Extended</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle">
 				<source>Cite style</source>

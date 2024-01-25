@@ -20,6 +20,34 @@
               </config>
             </TCEforms>
           </settings.hideFilter>
+          <settings.filterType>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.filtertype</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <size>1</size>
+                <minitems>1</minitems>
+                <maxitems>1</maxitems>
+                <default>classic</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.filtertype.classic</numIndex>
+                    <numIndex index="1">classic</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.filtertype.extended</numIndex>
+                    <numIndex index="1">extended</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.filtertype.simple</numIndex>
+                    <numIndex index="1">simple</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.filterType>
           <settings.hideEnumeration>
             <TCEforms>
               <exclude>1</exclude>
