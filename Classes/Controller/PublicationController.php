@@ -163,8 +163,20 @@ class PublicationController extends ActionController
         if (!empty($filterArguments['authorstring'])) {
             $filter->setAuthorstring($filterArguments['authorstring']);
         }
+        if (!empty($filterArguments['authorstringExact'])) {
+            $filter->setAuthorstringexact($filterArguments['authorstringExact']);
+        }
+        if (!empty($filterArguments['title'])) {
+            $filter->setTitle($filterArguments['title']);
+        }
+        if (!empty($filterArguments['titleExact'])) {
+            $filter->setTitleExact($filterArguments['titleExact']);
+        }
         if (!empty($filterArguments['documenttype'])) {
             $filter->setDocumenttype($filterArguments['documenttype']);
+        }
+        if (!empty($filterArguments['concatination'])) {
+            $filter->setConcatination($filterArguments['concatination']);
         }
 
         $this->request = $this->request->withArgument('filter', $filter);

@@ -88,6 +88,11 @@ class Filter
     protected string $documenttype = 'all';
 
     /**
+     * @var string
+     */
+    protected string $concatination = 'and';
+
+    /**
      * @var int
      */
     protected int $year = 0;
@@ -98,6 +103,11 @@ class Filter
     protected string $authorstring = '';
 
     /**
+     * @var string
+     */
+    protected string $authorstring_exact = '';
+
+    /**
      * @var array
      */
     protected array $export = [];
@@ -106,6 +116,21 @@ class Filter
      * @var int recursive level
      */
     protected int $recursive = 0;
+
+    /**
+     * @var string
+     */
+    protected string $filterType = 'classic';
+
+    /**
+     * @var string
+     */
+    protected string $title = '';
+
+    /**
+     * @var string
+     */
+    protected string $title_exact = '';
 
     /**
      * Filter constructor.
@@ -127,6 +152,7 @@ class Filter
         $this->setRecursive((int)($settings['recursive'] ?? 0));
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'] ?? '', true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'] ?? '', true));
+        $this->setFilterType($settings['filterType'] ?? 'classic');
     }
 
     /**
@@ -660,6 +686,24 @@ class Filter
     }
 
     /**
+     * @param string $filterType
+     * @return Filter
+     */
+    public function setFilterType(string $filterType): self
+    {
+        $this->filterType = $filterType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterType(): string
+    {
+        return $this->filterType;
+    }
+
+    /**
      * @return int
      */
     public function getRecursive(): int
@@ -702,6 +746,56 @@ class Filter
         return $this->isSearchtermSet()
             || $this->isYearSet()
             || $this->isAuthorstringSet()
-            || $this->isDocumenttypeSet();
+            || $this->isDocumenttypeSet()
+            || $this->isTitleSet();
+    }
+
+    public function getAuthorstringExact(): string
+    {
+        return $this->authorstring_exact;
+    }
+
+    public function setAuthorstringExact(string $authorstring_exact): self
+    {
+        $this->authorstring_exact = $authorstring_exact;
+        return $this;
+    }
+
+    public function getConcatination(): string
+    {
+        return $this->concatination;
+    }
+
+    public function setConcatination(string $concatination): self
+    {
+        $this->concatination = $concatination;
+        return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function isTitleSet()
+    {
+        return $this->getTitle() !== '';
+    }
+
+    public function getTitleExact(): string
+    {
+        return $this->title_exact;
+    }
+
+    public function setTitleExact(string $title_exact): self
+    {
+        $this->title_exact = $title_exact;
+        return $this;
     }
 }

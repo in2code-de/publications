@@ -1,251 +1,273 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-01T12:00:00Z" product-name="publications">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" date="2019-08-01T12:00:00Z" product-name="publications">
 		<header/>
 		<body>
-			<trans-unit id="list.filter.searchterm">
+			<trans-unit id="list.filter.searchterm" resname="list.filter.searchterm">
 				<source>Searchterm</source>
-				<target state="translated">Suchbegriff</target>
+				<target>Suchbegriff (alle Felder)</target>
 			</trans-unit>
-			<trans-unit id="list.filter.searchterm.placeholder">
-				<source>Publication title</source>
-				<target state="translated">Name einer Publikation</target>
+			<trans-unit id="list.filter.searchterm.exact" resname="list.filter.searchterm.exact">
+				<source>Exact searchterm</source>
+				<target>Genaue Übereinstimmung</target>
 			</trans-unit>
-			<trans-unit id="list.filter.author">
+			<trans-unit id="list.filter.searchterm.placeholder" resname="list.filter.searchterm.placeholder">
+				<source>All fields</source>
+				<target>Suchbegriff</target>
+			</trans-unit>
+			<trans-unit id="list.filter.author" resname="list.filter.author">
 				<source>Author</source>
-				<target state="translated">Autor</target>
+				<target>Autor</target>
 			</trans-unit>
-			<trans-unit id="list.filter.author.placeholder">
-				<source>e.g. "Klaus Fumy, Bernd Aumann"</source>
-				<target state="translated">z.B. "Klaus Fumy, Bernd Aumann"</target>
+			<trans-unit id="list.filter.author.placeholder" resname="list.filter.author.placeholder">
+				<source>e.g. &quot;Klaus Fumy, Bernd Aumann&quot;</source>
+				<target>z.B. &quot;Klaus Fumy, Bernd Aumann&quot;</target>
 			</trans-unit>
-			<trans-unit id="list.filter.year">
+			<trans-unit id="list.filter.author.exact" resname="list.filter.author.exact">
+				<source>Exact match</source>
+				<target>Genaue Übereinstimmung</target>
+			</trans-unit>
+			<trans-unit id="list.filter.title" resname="list.filter.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="list.filter.title.placeholder" resname="list.filter.title.placeholder">
+				<source>Publication title</source>
+				<target>Titel der Publikation</target>
+			</trans-unit>
+			<trans-unit id="list.filter.title.exact" resname="list.filter.title.exact">
+				<source>Exact match</source>
+				<target>Genaue Übereinstimmung</target>
+			</trans-unit>
+			<trans-unit id="list.filter.year" resname="list.filter.year">
 				<source>Year</source>
-				<target state="translated">Erscheinungsjahr</target>
+				<target>Erscheinungsjahr</target>
 			</trans-unit>
-			<trans-unit id="list.filter.year.placeholder">
+			<trans-unit id="list.filter.year.placeholder" resname="list.filter.year.placeholder">
 				<source>2019</source>
-				<target state="translated">2019</target>
+				<target>2019</target>
 			</trans-unit>
-			<trans-unit id="list.filter.reset">
+			<trans-unit id="list.filter.reset" resname="list.filter.reset">
 				<source>Reset</source>
-				<target state="translated">Filter zurücksetzen</target>
+				<target>Filter zurücksetzen</target>
 			</trans-unit>
-			<trans-unit id="list.filter.submit">
+			<trans-unit id="list.filter.submit" resname="list.filter.submit">
 				<source>Search now</source>
-				<target state="translated">Jetzt suchen</target>
+				<target>Jetzt suchen</target>
 			</trans-unit>
-			<trans-unit id="list.filter.extended">
+			<trans-unit id="list.filter.extended" resname="list.filter.extended">
 				<source>Extended search</source>
-				<target state="translated">Erweiterte Suche</target>
+				<target>Erweiterte Suche</target>
 			</trans-unit>
-			<trans-unit id="list.norecords">
+			<trans-unit id="list.filter.concatination" resname="list.filter.concatination">
+				<source>Concatination of all fields</source>
+				<target>Verknüpfung der Felder</target>
+			</trans-unit>
+			<trans-unit id="list.filter.concatination.and" resname="list.filter.concatination.and">
+				<source>And</source>
+				<target>Und</target>
+			</trans-unit>
+			<trans-unit id="list.filter.concatination.or" resname="list.filter.concatination.or">
+				<source>Or</source>
+				<target>Oder</target>
+			</trans-unit>
+			<trans-unit id="list.norecords" resname="list.norecords">
 				<source>No publications found</source>
-				<target state="translated">Keine Publikationen gefunden</target>
+				<target>Keine Publikationen gefunden</target>
 			</trans-unit>
-
-			<trans-unit id="list.filter.showalldocumenttypes">
+			<trans-unit id="list.filter.showalldocumenttypes" resname="list.filter.showalldocumenttypes">
 				<source>All publication types</source>
-				<target state="translated">Alle Dokumententypen</target>
+				<target>Alle Dokumententypen</target>
 			</trans-unit>
-			<trans-unit id="list.filter.documenttype">
+			<trans-unit id="list.filter.documenttype" resname="list.filter.documenttype">
 				<source>Publication types</source>
-				<target state="translated">Dokumententyp</target>
+				<target>Dokumententyp</target>
 			</trans-unit>
-
-			<trans-unit id="bibtype.article">
+			<trans-unit id="bibtype.article" resname="bibtype.article">
 				<source>Articles</source>
-				<target state="translated">Artikel</target>
+				<target>Artikel</target>
 			</trans-unit>
-			<trans-unit id="bibtype.book">
+			<trans-unit id="bibtype.book" resname="bibtype.book">
 				<source>Books</source>
-				<target state="translated">Bücher</target>
+				<target>Bücher</target>
 			</trans-unit>
-			<trans-unit id="bibtype.booklet">
+			<trans-unit id="bibtype.booklet" resname="bibtype.booklet">
 				<source>Booklets</source>
-				<target state="translated">Broschüren</target>
+				<target>Broschüren</target>
 			</trans-unit>
-			<trans-unit id="bibtype.conference">
+			<trans-unit id="bibtype.conference" resname="bibtype.conference">
 				<source>Conferences</source>
-				<target state="translated">Konferenzen</target>
+				<target>Konferenzen</target>
 			</trans-unit>
-			<trans-unit id="bibtype.inbook">
+			<trans-unit id="bibtype.inbook" resname="bibtype.inbook">
 				<source>Contribution to Books</source>
-				<target state="translated">Buchbeiträge</target>
+				<target>Buchbeiträge</target>
 			</trans-unit>
-			<trans-unit id="bibtype.incollection">
+			<trans-unit id="bibtype.incollection" resname="bibtype.incollection">
 				<source>Contribution to Collections</source>
-				<target state="translated">Sammlungsbeiträge</target>
+				<target>Sammlungsbeiträge</target>
 			</trans-unit>
-			<trans-unit id="bibtype.inproceedings">
+			<trans-unit id="bibtype.inproceedings" resname="bibtype.inproceedings">
 				<source>Contribution to Proceedings</source>
-				<target state="translated">Beiträge zu Verhandlungen</target>
+				<target>Beiträge zu Verhandlungen</target>
 			</trans-unit>
-			<trans-unit id="bibtype.manual">
+			<trans-unit id="bibtype.manual" resname="bibtype.manual">
 				<source>Manuals</source>
-				<target state="translated">Handbücher</target>
+				<target>Handbücher</target>
 			</trans-unit>
-			<trans-unit id="bibtype.manuscript">
+			<trans-unit id="bibtype.manuscript" resname="bibtype.manuscript">
 				<source>Manuscripts</source>
-				<target state="translated">Manuskripte</target>
+				<target>Manuskripte</target>
 			</trans-unit>
-			<trans-unit id="bibtype.mastersthesis">
+			<trans-unit id="bibtype.mastersthesis" resname="bibtype.mastersthesis">
 				<source>Master-Thesis</source>
-				<target state="translated">Master-Thesis</target>
+				<target>Master-Thesis</target>
 			</trans-unit>
-			<trans-unit id="bibtype.misc">
+			<trans-unit id="bibtype.misc" resname="bibtype.misc">
 				<source>Miscellaneous</source>
-				<target state="translated">Diverses</target>
+				<target>Diverses</target>
 			</trans-unit>
-			<trans-unit id="bibtype.phdthesis">
+			<trans-unit id="bibtype.phdthesis" resname="bibtype.phdthesis">
 				<source>PhD-Thesis</source>
-				<target state="translated">PhD-Thesis</target>
+				<target>PhD-Thesis</target>
 			</trans-unit>
-			<trans-unit id="bibtype.poster">
+			<trans-unit id="bibtype.poster" resname="bibtype.poster">
 				<source>Poster</source>
-				<target state="translated">Poster</target>
+				<target>Poster</target>
 			</trans-unit>
-			<trans-unit id="bibtype.proceedings">
+			<trans-unit id="bibtype.proceedings" resname="bibtype.proceedings">
 				<source>Proceedings</source>
-				<target state="translated">Verhandlungen</target>
+				<target>Verhandlungen</target>
 			</trans-unit>
-			<trans-unit id="bibtype.report">
+			<trans-unit id="bibtype.report" resname="bibtype.report">
 				<source>Reports</source>
-				<target state="translated">Reports</target>
+				<target>Reports</target>
 			</trans-unit>
-			<trans-unit id="bibtype.techreport">
+			<trans-unit id="bibtype.techreport" resname="bibtype.techreport">
 				<source>Techreports</source>
-				<target state="translated">Techreports</target>
+				<target>Techreports</target>
 			</trans-unit>
-			<trans-unit id="bibtype.thesis">
+			<trans-unit id="bibtype.thesis" resname="bibtype.thesis">
 				<source>Thesis</source>
-				<target state="translated">Thesis</target>
+				<target>Thesis</target>
 			</trans-unit>
-			<trans-unit id="bibtype.unpublished">
+			<trans-unit id="bibtype.unpublished" resname="bibtype.unpublished">
 				<source>Unpublished</source>
-				<target state="translated">Nicht veröffentlicht</target>
+				<target>Nicht veröffentlicht</target>
 			</trans-unit>
-			<trans-unit id="bibtype.url">
+			<trans-unit id="bibtype.url" resname="bibtype.url">
 				<source>URL</source>
-				<target state="translated">URL</target>
+				<target>URL</target>
 			</trans-unit>
-			<trans-unit id="bibtype.patent">
+			<trans-unit id="bibtype.patent" resname="bibtype.patent">
 				<source>Patents</source>
-				<target state="translated">Patente</target>
+				<target>Patente</target>
 			</trans-unit>
-
-			<trans-unit id="month.1">
+			<trans-unit id="month.1" resname="month.1">
 				<source>January</source>
-				<target state="translated">Januar</target>
+				<target>Januar</target>
 			</trans-unit>
-			<trans-unit id="month.2">
+			<trans-unit id="month.2" resname="month.2">
 				<source>February</source>
-				<target state="translated">Februar</target>
+				<target>Februar</target>
 			</trans-unit>
-			<trans-unit id="month.3">
+			<trans-unit id="month.3" resname="month.3">
 				<source>March</source>
-				<target state="translated">März</target>
+				<target>März</target>
 			</trans-unit>
-			<trans-unit id="month.4">
+			<trans-unit id="month.4" resname="month.4">
 				<source>April</source>
-				<target state="translated">April</target>
+				<target>April</target>
 			</trans-unit>
-			<trans-unit id="month.5">
+			<trans-unit id="month.5" resname="month.5">
 				<source>May</source>
-				<target state="translated">Mai</target>
+				<target>Mai</target>
 			</trans-unit>
-			<trans-unit id="month.6">
+			<trans-unit id="month.6" resname="month.6">
 				<source>June</source>
-				<target state="translated">Juni</target>
+				<target>Juni</target>
 			</trans-unit>
-			<trans-unit id="month.7">
+			<trans-unit id="month.7" resname="month.7">
 				<source>July</source>
-				<target state="translated">Juli</target>
+				<target>Juli</target>
 			</trans-unit>
-			<trans-unit id="month.8">
+			<trans-unit id="month.8" resname="month.8">
 				<source>August</source>
-				<target state="translated">August</target>
+				<target>August</target>
 			</trans-unit>
-			<trans-unit id="month.9">
+			<trans-unit id="month.9" resname="month.9">
 				<source>September</source>
-				<target state="translated">September</target>
+				<target>September</target>
 			</trans-unit>
-			<trans-unit id="month.10">
+			<trans-unit id="month.10" resname="month.10">
 				<source>October</source>
-				<target state="translated">Oktober</target>
+				<target>Oktober</target>
 			</trans-unit>
-			<trans-unit id="month.11">
+			<trans-unit id="month.11" resname="month.11">
 				<source>November</source>
-				<target state="translated">November</target>
+				<target>November</target>
 			</trans-unit>
-			<trans-unit id="month.12">
+			<trans-unit id="month.12" resname="month.12">
 				<source>December</source>
-				<target state="translated">Dezember</target>
+				<target>Dezember</target>
 			</trans-unit>
-
-			<trans-unit id="linkblock.doi">
+			<trans-unit id="linkblock.doi" resname="linkblock.doi">
 				<source>DOI</source>
 				<target>DOI</target>
 			</trans-unit>
-			<trans-unit id="linkblock.pmid">
+			<trans-unit id="linkblock.pmid" resname="linkblock.pmid">
 				<source>Pubmed</source>
 				<target>Pubmed</target>
 			</trans-unit>
-			<trans-unit id="linkblock.file">
+			<trans-unit id="linkblock.file" resname="linkblock.file">
 				<source>File</source>
 				<target>Datei</target>
 			</trans-unit>
-			<trans-unit id="linkblock.weburl1">
+			<trans-unit id="linkblock.weburl1" resname="linkblock.weburl1">
 				<source>Weblink</source>
 				<target>Weblink</target>
 			</trans-unit>
-			<trans-unit id="linkblock.weburl2">
+			<trans-unit id="linkblock.weburl2" resname="linkblock.weburl2">
 				<source>Weblink</source>
 				<target>Weblink</target>
 			</trans-unit>
-
-			<trans-unit id="citestyle0.volume">
+			<trans-unit id="citestyle0.volume" resname="citestyle0.volume">
 				<source>Volume</source>
 				<target>Band</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.from">
+			<trans-unit id="citestyle0.from" resname="citestyle0.from">
 				<source>from</source>
 				<target>aus</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.page">
+			<trans-unit id="citestyle0.page" resname="citestyle0.page">
 				<source>Page</source>
 				<target>Seite</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.chapter">
+			<trans-unit id="citestyle0.chapter" resname="citestyle0.chapter">
 				<source>Chapter</source>
 				<target>Kapitel</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.publisher">
+			<trans-unit id="citestyle0.publisher" resname="citestyle0.publisher">
 				<source>Publisher</source>
 				<target>Herausgeber</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.edition">
+			<trans-unit id="citestyle0.edition" resname="citestyle0.edition">
 				<source>Edition</source>
 				<target>Edition</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.editor">
+			<trans-unit id="citestyle0.editor" resname="citestyle0.editor">
 				<source>Editor</source>
 				<target>Editor</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.chapter">
-				<source>Chapter</source>
-				<target>Kapitel</target>
-			</trans-unit>
-			<trans-unit id="citestyle0.documentnumber">
+			<trans-unit id="citestyle0.documentnumber" resname="citestyle0.documentnumber">
 				<source>Document Number</source>
 				<target>Dokument Nummer</target>
 			</trans-unit>
-			<trans-unit id="citestyle0.reportnumber">
+			<trans-unit id="citestyle0.reportnumber" resname="citestyle0.reportnumber">
 				<source>Report Number</source>
 				<target>Report Nummer</target>
 			</trans-unit>
-
-			<trans-unit id="citestyle6.abstract">
+			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 				<target>Abstract</target>
 			</trans-unit>

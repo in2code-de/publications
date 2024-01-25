@@ -1,54 +1,16 @@
 <f:form name="filter">
 
-	<label for="searchterm">
-		<f:translate key="list.filter.searchterm">Searchterm</f:translate>
-	</label>
-	<f:form.textfield property="searchterm" id="searchterm" placeholder="{f:translate(key:'list.filter.searchterm.placeholder')}" value="{filter.searchterm}"/>
-
-
-	<div style="padding: 15px 0;">
-		<button type="button" class="js-collapser" aria-expanded="false">
-			<f:translate key="list.filter.extended">Extended search</f:translate>
-		</button>
-
-		<label for="author">
-			<f:translate key="list.filter.author">Author</f:translate>
-		</label>
-		<f:form.textfield property="authorstring" id="author" placeholder="{f:translate(key:'list.filter.author.placeholder')}" value="{filter.authorstring}"/>
-
-		<label for="year">
-			<f:translate key="list.filter.year">Year</f:translate>
-		</label>
-		<f:form.textfield type="number" property="year" id="year" placeholder="{f:translate(key:'list.filter.year.placeholder')}" value="{f:if(condition:filter.year,then:filter.year)}"/>
-
-		<label for="documenttype">
-            <f:translate key="list.filter.documenttype">Publication type</f:translate>
-        </label>
-        <f:form.select value="{f:if(condition:filter.documenttype,then:filter.documenttype)}" property="documenttype" options="{
-	        all:            '{f:translate(key:\'list.filter.showalldocumenttypes\')}',
-	        article:        '{f:translate(key:\'bibtype.article\')}',
-	        book:           '{f:translate(key:\'bibtype.book\')}',
-	        booklet:        '{f:translate(key:\'bibtype.booklet\')}',
-	        conference:     '{f:translate(key:\'bibtype.conference\')}',
-	        inbook:         '{f:translate(key:\'bibtype.inbook\')}',
-	        incollection:   '{f:translate(key:\'bibtype.incollection\')}',
-	        inproceedings:  '{f:translate(key:\'bibtype.inproceedings\')}',
-	        manual:         '{f:translate(key:\'bibtype.manual\')}',
-	        manuscript:     '{f:translate(key:\'bibtype.manuscript\')}',
-	        mastersthesis:  '{f:translate(key:\'bibtype.mastersthesis\')}',
-	        misc:           '{f:translate(key:\'bibtype.misc\')}',
-	        phdthesis:      '{f:translate(key:\'bibtype.phdthesis\')}',
-	        poster:         '{f:translate(key:\'bibtype.poster\')}',
-	        proceedings:    '{f:translate(key:\'bibtype.proceedings\')}',
-	        report:         '{f:translate(key:\'bibtype.report\')}',
-	        techreport:     '{f:translate(key:\'bibtype.techreport\')}',
-	        thesis:         '{f:translate(key:\'bibtype.thesis\')}',
-	        unpublished:    '{f:translate(key:\'bibtype.unpublished\')}',
-	        url:            '{f:translate(key:\'bibtype.url\')}',
-	        patent:         '{f:translate(key:\'bibtype.patent\')}'
-	        }" />
-	</div>
-
+	<f:switch expression="{filter.filterType}">
+		<f:case value="simple">
+			<f:render partial="List/FilterType/Simple" arguments="{_all}" />
+		</f:case>
+		<f:case value="extended">
+			<f:render partial="List/FilterType/Extended" arguments="{_all}" />
+		</f:case>
+		<f:defaultCase>
+			<f:render partial="List/FilterType/Classic" arguments="{_all}" />
+		</f:defaultCase>
+	</f:switch>
 
 	<f:if condition="{filter.filterFrontendSet}">
 		<f:link.action action="resetList" class="btn btn-default button" style="margin-right: 10px">
@@ -57,4 +19,5 @@
 	</f:if>
 
 	<f:form.submit value="{f:translate(key:'list.filter.submit')}" />
+
 </f:form>
