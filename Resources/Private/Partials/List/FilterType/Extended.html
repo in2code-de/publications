@@ -12,21 +12,22 @@
 		</label>
 		<f:form.textfield property="authorstring" id="author" placeholder="{f:translate(key:'list.filter.author.placeholder')}" value="{filter.authorstring}"/>
 		<label for="authorstring_exact">
+			<f:form.checkbox property="authorstringExact" id="authorstring_exact" value="exact" checked="{filter.authorstringExact} == 'exact'"/>
 			<f:translate key="list.filter.author.exact">Exact match author</f:translate>
 		</label>
-		<f:form.checkbox property="authorstringExact" id="authorstring_exact" value="exact" checked="{filter.authorstringExact} == 'exact'"/>
 	</div>
 </f:if>
 
-<div style="padding: 5px 0;">
+<div style="padding: 10px 0;">
 	<label for="title">
 		<f:translate key="list.filter.title">Title</f:translate>
 	</label>
 	<f:form.textfield property="title" id="title" placeholder="{f:translate(key:'list.filter.title.placeholder')}" value="{filter.title}"/>
 	<label for="title_exact">
+		<f:form.checkbox property="titleExact" id="title_exact" value="exact" checked="{filter.titleExact} == 'exact'"/>
 		<f:translate key="list.filter.title.exact">Exact match title</f:translate>
 	</label>
-	<f:form.checkbox property="titleExact" id="title_exact" value="exact" checked="{filter.titleExact} == 'exact'"/>
+
 </div>
 
 <div style="padding: 5px 0;">
@@ -71,6 +72,12 @@
 	<label for="concatination">
 		<f:translate key="list.filter.concatination">Concatination of all fields</f:translate>
 	</label>
-	<f:form.radio property="concatination" value="and" checked="{filter.concatination} =='and'"/>And
-	<f:form.radio property="concatination" id="concatination" value="or" checked="{filter.concatination} =='or'"/>Or
+	<label for="concatination-and"  style="display: inline-block; margin-right: 10px; margin-top: 0;">
+		<f:form.radio property="concatination" id="concatination-and" value="and" checked="{filter.concatination} =='and'"/>
+		<f:translate key="list.filter.concatination.and">And</f:translate>
+	</label>
+	<label for="concatination-or" style="display: inline-block; margin-right: 10px; margin-top: 0;">
+		<f:form.radio property="concatination" id="concatination-or" value="or" checked="{filter.concatination} =='or'"/>
+		<f:translate key="list.filter.concatination.or">Or</f:translate>
+	</label>
 </div>
