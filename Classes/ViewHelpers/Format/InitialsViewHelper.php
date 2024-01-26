@@ -22,7 +22,7 @@ class InitialsViewHelper extends AbstractViewHelper
         $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
-     /**
+    /**
      * @return string
      */
     public function render(): string

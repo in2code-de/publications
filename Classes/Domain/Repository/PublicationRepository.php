@@ -57,7 +57,7 @@ class PublicationRepository extends AbstractRepository
         }
         if ($concat !== [] && $filter->getConcatination() === 'or') {
             $query->matching($query->logicalOr($concat));
-        } else if ($concat !== []) {
+        } elseif ($concat !== []) {
             $query->matching($query->logicalAnd($concat));
         }
     }
