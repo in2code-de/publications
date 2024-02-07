@@ -2,8 +2,6 @@
 
 Inspired by the TYPO3 **bib** extension
 
-
-
 ## Introduction
 
 Target group of this extension are universities and colleges:
