@@ -416,7 +416,7 @@
 				<source>Filter type</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.filtertype.classic">
-				<source>Classic (default)</source>
+				<source>Classic</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.filtertype.simple">
 				<source>Simple</source>
