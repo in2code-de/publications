@@ -543,8 +543,8 @@
 				<target>Filtertyp</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.filtertype.classic">
-				<source>Classic (default)</source>
-				<target>Klassisch (Standard)</target>
+				<source>Classic</source>
+				<target>Klassisch</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.filtertype.simple">
 				<source>Simple</source>
