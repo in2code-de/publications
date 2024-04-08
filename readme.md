@@ -96,6 +96,10 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                    |
+| 6.0.2   | 2024-01-22 | Task    | First public release of TYPO3 V12 compatible release                                                                              |
+| 6.0.0   | 2023-06-28 | Task    | Support TYPO3 12                                                                                                                  |
+| 5.4.0   | 2023-04-08 | Bugfix  | Add improved search template and functionality                                                                                              |
 | 5.3.1   | 2023-02-24 | Bugfix  | Add missing use for ImportController                                                                                              |
 | 5.3.0   | 2023-02-24 | Feature | Additional import option "language behaviour". Allows to specify the target langauge of imports                                   |
 | 5.2.0   | 2022-12-12 | Feature | French umlaute                                                                                                                    |
