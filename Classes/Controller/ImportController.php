@@ -51,25 +51,10 @@ class ImportController extends ActionController
 
     public function initializeImportAction(): void
     {
-        // uploaded file is not in arguments
-        $arguments = array_merge_recursive($this->request->getArguments(), $this->request->getUploadedFiles());
-        $this->request = $this->request->withArguments($arguments);
-
-
-        $propertyMappingConfiguration = $arguments['file']->getPropertyMappingConfiguration();
-        $propertyMappingConfiguration->allowAllProperties();
-
+        if (!empty($this->request->getUploadedFiles()) && array_key_exists('file', $this->request->getUploadedFiles())) {
+            $this->request = $this->request->withUploadedFiles([$this->request->getUploadedFiles()['file']]);
+        }
     }
-
-//    public function initializeImportAction(): void
-//    {
-//
-//        if ($this->arguments->hasArgument('file')) {
-//            $propertyMappingConfiguration = $this->arguments->getArgument('file')->getPropertyMappingConfiguration();
-//            $propertyMappingConfiguration->allowAllProperties();
-//
-//        }
-//    }
 
     /**
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
@@ -96,37 +81,6 @@ class ImportController extends ActionController
         );
         return $this->htmlResponse();
     }
-//    public function importAction(UploadedFile $file, string $importer, array $importOptions): ResponseInterface
-//    {
-//        $temporaryFilePath = $file->getTemporaryFileName();
-//        if ($temporaryFilePath === null) {
-//            $this->addFlashMessage(
-//                'No temporary file found',
-//                'Upload Error',
-//                ContextualFeedbackSeverity::ERROR
-//            );
-//            return $this->redirect('overview');
-//        }
-//        $importService = GeneralUtility::makeInstance(
-//            ImportService::class,
-//            $temporaryFilePath,
-//            GeneralUtility::makeInstance($importer),
-//            $importOptions
-//        );
-//
-//        // Execute the import process
-//        $importService->import();
-//
-//        // Assign data to the view
-//        $this->view->assignMultiple(
-//            [
-//                'import' => $importService
-//            ]
-//        );
-//        return $this->htmlResponse();
-//
-//    }
-
 
     /**
      * @return \Psr\Http\Message\ResponseInterface|string
