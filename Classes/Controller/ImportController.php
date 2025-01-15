@@ -40,7 +40,10 @@ class ImportController extends ActionController
             [
                 'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
-                'pid' => GeneralUtility::_GP('id')
+               // 'pid' => GeneralUtility::_GP('id')
+                'pid' => $this->request->getQueryParams()['id'] ?? $this->request->getParsedBody()['id'] ?? null
+
+
             ]
         );
         return $moduleTemplate->renderResponse('Backend/Import/Overview');
@@ -51,7 +54,22 @@ class ImportController extends ActionController
         // uploaded file is not in arguments
         $arguments = array_merge_recursive($this->request->getArguments(), $this->request->getUploadedFiles());
         $this->request = $this->request->withArguments($arguments);
+
+
+        $propertyMappingConfiguration = $arguments['file']->getPropertyMappingConfiguration();
+        $propertyMappingConfiguration->allowAllProperties();
+
     }
+
+//    public function initializeImportAction(): void
+//    {
+//
+//        if ($this->arguments->hasArgument('file')) {
+//            $propertyMappingConfiguration = $this->arguments->getArgument('file')->getPropertyMappingConfiguration();
+//            $propertyMappingConfiguration->allowAllProperties();
+//
+//        }
+//    }
 
     /**
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
@@ -66,7 +84,11 @@ class ImportController extends ActionController
             GeneralUtility::makeInstance($importer),
             $importOptions
         );
+
+        // Execute the import process
         $importService->import();
+
+        // Assign data to the view
         $this->view->assignMultiple(
             [
                 'import' => $importService
@@ -74,6 +96,37 @@ class ImportController extends ActionController
         );
         return $this->htmlResponse();
     }
+//    public function importAction(UploadedFile $file, string $importer, array $importOptions): ResponseInterface
+//    {
+//        $temporaryFilePath = $file->getTemporaryFileName();
+//        if ($temporaryFilePath === null) {
+//            $this->addFlashMessage(
+//                'No temporary file found',
+//                'Upload Error',
+//                ContextualFeedbackSeverity::ERROR
+//            );
+//            return $this->redirect('overview');
+//        }
+//        $importService = GeneralUtility::makeInstance(
+//            ImportService::class,
+//            $temporaryFilePath,
+//            GeneralUtility::makeInstance($importer),
+//            $importOptions
+//        );
+//
+//        // Execute the import process
+//        $importService->import();
+//
+//        // Assign data to the view
+//        $this->view->assignMultiple(
+//            [
+//                'import' => $importService
+//            ]
+//        );
+//        return $this->htmlResponse();
+//
+//    }
+
 
     /**
      * @return \Psr\Http\Message\ResponseInterface|string
@@ -95,7 +148,7 @@ class ImportController extends ActionController
     /**
      * @return bool|string
      */
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage() : string|bool
     {
         return false;
     }
