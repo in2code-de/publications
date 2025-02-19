@@ -29,6 +29,7 @@ class SessionUtility
      */
     public static function getSessionValue(string $key): array
     {
+        $_COOKIE['publications_' . $key] = $_COOKIE['publications_' . $key] ?? '';
         return (array)json_decode((string)$_COOKIE['publications_' . $key], true);
     }
 }

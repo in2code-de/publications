@@ -12,6 +12,7 @@ use In2code\Publications\Import\Importer\ImporterInterface;
 use In2code\Publications\Import\ImportOptions;
 use In2code\Publications\Utility\DatabaseUtility;
 use Psr\Log\LogLevel;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -190,7 +191,7 @@ class ImportService extends AbstractService
             if (!in_array($publicationField, $publicationTableFields)) {
                 $this->logger->log(
                     LogLevel::INFO,
-                    'The field "' . $publicationField . '" from the raw publication record has bin ignored because there is no suitable counterpart in the database.'
+                    'The field "' . $publicationField . '" from the raw publication record has been ignored because there is no suitable counterpart in the database.'
                 );
                 unset($publication[$publicationField]);
             }
@@ -214,7 +215,10 @@ class ImportService extends AbstractService
 
         $currentPublication = $this->getPublicationByIdentifier(
             $this->storagePid,
-            $record['title']
+            $record['title'],
+            $record['year'],
+            $record['citeid'],
+            $record['bibtype']
         );
 
         if (!empty($currentPublication)) {
@@ -234,7 +238,10 @@ class ImportService extends AbstractService
     {
         $currentPublication = $this->getPublicationByIdentifier(
             $this->storagePid,
-            $updatedPublication['title']
+            $updatedPublication['title'],
+            $updatedPublication['year'],
+            $updatedPublication['citeid'],
+            $updatedPublication['bibtype']
         );
 
         $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
@@ -293,7 +300,7 @@ class ImportService extends AbstractService
         DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME)
             ->insert(Publication::TABLE_NAME)
             ->values($publicationRecord)
-            ->execute();
+            ->executeStatement();
 
         $publicationUid =
             (int)DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->lastInsertId(Publication::TABLE_NAME);
@@ -332,7 +339,7 @@ class ImportService extends AbstractService
             DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME)
                 ->insert(Author::TABLE_NAME)
                 ->values($record)
-                ->execute();
+                ->executeStatement();
 
             $author = $this->getAuthorByName($firstName, $lastName);
 
@@ -366,7 +373,7 @@ class ImportService extends AbstractService
             );
         }
 
-        $author = $statement->execute()->fetchAssociative();
+        $author = $statement->executeQuery()->fetchAssociative();
 
         if (!empty($author)) {
             return $author;
@@ -378,15 +385,21 @@ class ImportService extends AbstractService
     /**
      * @param int $pid
      * @param string $title
+     * @param string $year
+     * @param string $citeid
+     * @param string $bibtype
      * @return array
      */
-    protected function getPublicationByIdentifier(int $pid, string $title): array
+    protected function getPublicationByIdentifier(int $pid, string $title, string $year, string $citeid, string $bibtype): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
         $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
-            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR))
-        )->execute()->fetch();
+            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('year', $queryBuilder->createNamedParameter($year, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, \PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('bibtype', $queryBuilder->createNamedParameter($bibtype, \PDO::PARAM_STR))
+        )->executeQuery()->fetchAssociative();
 
         if (!empty($publication)) {
             return $publication;
@@ -404,35 +417,33 @@ class ImportService extends AbstractService
         return [
             'tstamp' => time(),
             'crdate' => time(),
-            'cruser_id' => $GLOBALS['BE_USER']->user['uid'],
             'pid' => $this->storagePid,
             'sys_language_uid' => (int)$this->importOptions['languageBehavior'] ?? 0
         ];
     }
 
     /**
-     * returns an array with all existing fields of an database table
+     * returns an array with all existing fields of a database table
      *
-     * @param string $table
-     * @return array
      * @throws DBALException
+     * @throws \Doctrine\DBAL\Exception
      */
     protected function getDatabaseFieldsByTable(string $table): array
     {
         $fields = [];
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($table);
+
+        $query = 'SHOW COLUMNS FROM `' . $table . '`';
         /** @var Statement $statement */
-        $statement = GeneralUtility::makeInstance(
-            Statement::class,
-            'SHOW COLUMNS FROM ' . $table,
-            DatabaseUtility::getConnectionForTable($table)
-        );
+        $statement = $connection->prepare($query);
+        $result = $statement->executeQuery()->fetchAllAssociative();
 
-        $statement->execute();
-
-        foreach ($statement->fetchAll() as $column) {
-            $fields[] = $column['Field'];
+        foreach ($result as $column) {
+            if (isset($column['Field'])) {
+                $fields[] = $column['Field'];
+            }
         }
-
         return $fields;
     }
 

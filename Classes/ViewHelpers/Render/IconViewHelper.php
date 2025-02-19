@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace In2code\Publications\ViewHelpers\Render;
 
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -34,12 +35,12 @@ class IconViewHelper extends AbstractViewHelper
         switch ($fileType) {
             case 'doc':
             case 'docx':
-                $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/docx.svg" '
+                $iconCode = '<img src="' . PathUtility::getPublicResourceWebPath('EXT:publications/Resources/Public/Icons/docx.svg') . '" '
                     . $this->buildAttributes()
                     . ' alt="' . $fileType . '">';
                 break;
             case 'pdf':
-                $iconCode = '<img src="/typo3conf/ext/publications/Resources/Public/Icons/pdf.svg" '
+                $iconCode = '<img src="' . PathUtility::getPublicResourceWebPath('EXT:publications/Resources/Public/Icons/pdf.svg') . '" '
                     . $this->buildAttributes()
                     . ' alt="' . $fileType . '">';
                 break;

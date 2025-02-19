@@ -7,6 +7,7 @@ on:
 
 jobs:
   ter-release:
+    if: github.repository == 'in2code-de/publications'
     name: TER release
     runs-on: ubuntu-latest
     env:
@@ -24,7 +25,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
           extensions: intl, mbstring, xml, soap, zip, curl
 
       - name: Install EXT:tailor

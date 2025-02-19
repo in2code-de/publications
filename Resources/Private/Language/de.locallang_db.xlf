@@ -385,7 +385,7 @@
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes">
 				<source>Publication status (empty = all)</source>
-				<target state="translated">Publikationsstatus (leer = alle)</target>
+				<target state="translated">Publikationstyp (leer = alle)</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes.article">
 				<source>Article</source>
@@ -542,6 +542,22 @@
 			<trans-unit id="flexform.pi1.template">
 				<source>Template</source>
 				<target state="translated">Ansicht</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype">
+				<source>Filter type</source>
+				<target>Filtertyp</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.classic">
+				<source>Classic</source>
+				<target>Klassisch</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.simple">
+				<source>Simple</source>
+				<target>Einfach</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.filtertype.extended">
+				<source>Extended</source>
+				<target>Erweiter</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi1.template.citestyle">
 				<source>Cite style</source>

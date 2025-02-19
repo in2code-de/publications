@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace In2code\Publications\Domain\Service;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
+use In2code\Publications\Utility\FrontendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class PublicationService
@@ -30,12 +30,16 @@ class PublicationService
         if (!empty($groupByMethod)) {
             $count = 0;
             $page = 0;
-            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+            /** @var FrontendUtility $frontendUtility */
+            $frontendUtility = GeneralUtility::makeInstance(FrontendUtility::class);
             foreach ($publications as $publication) {
                 if ($count % $itemsPerPage === 0) {
                     $page++;
                 }
-                $url = $uriBuilder->reset()->setArguments(['tx_publications_pi1' => ['currentPage' => $page]])->build();
+
+                $pageUid =  $frontendUtility->getCurrentPageIdentifier();
+                $site = $frontendUtility->getSiteFromPageIdentifier($pageUid);
+                $url = $frontendUtility->buildUrlToPageWithArguments($pageUid, ['tx_publications_pi1' => ['currentPage' => $page]], $site);
 
                 $localizedBibType =
                     LocalizationUtility::translate('bibtype.' . $publication->{$groupByMethod}(), 'publications');

@@ -6,7 +6,6 @@ namespace In2code\Publications\Domain\Model\Dto;
 
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Repository\AuthorRepository;
-use In2code\Publications\Utility\ObjectUtility;
 use In2code\Publications\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -94,6 +93,11 @@ class Filter
     protected string $documenttype = 'all';
 
     /**
+     * @var string
+     */
+    protected string $concatination = 'and';
+
+    /**
      * @var int
      */
     protected int $year = 0;
@@ -102,6 +106,11 @@ class Filter
      * @var string
      */
     protected string $authorstring = '';
+
+    /**
+     * @var string
+     */
+    protected string $authorstring_exact = '';
 
     /**
      * @var array
@@ -114,26 +123,42 @@ class Filter
     protected int $recursive = 0;
 
     /**
+     * @var string
+     */
+    protected string $filterType = 'classic';
+
+    /**
+     * @var string
+     */
+    protected string $title = '';
+
+    /**
+     * @var string
+     */
+    protected string $title_exact = '';
+
+    /**
      * Filter constructor.
      *
      * @param array $settings
      */
     public function __construct(array $settings)
     {
-        $this->setCitestyle((int)$settings['citestyle']);
-        $this->setGroupby((int)$settings['groupby']);
-        $this->setRecordsPerPage((int)$settings['recordsPerPage']);
-        $this->setTimeframe((int)$settings['timeframe']);
-        $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'], true));
-        $this->setStatus(GeneralUtility::intExplode(',', $settings['status'], true));
-        $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'], true));
-        $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'], true));
+        $this->setCitestyle((int)($settings['citestyle'] ?? 0));
+        $this->setGroupby((int)($settings['groupby'] ?? 0));
+        $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
+        $this->setTimeframe((int)($settings['timeframe'] ?? 0));
+        $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));
+        $this->setStatus(GeneralUtility::intExplode(',', $settings['status'] ?? '', true));
+        $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'] ?? '', true));
+        $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'] ?? '', true));
         $this->setAuthor($settings['author'] ?? '');
-        $this->setExternFilter((int)$settings['extern']);
-        $this->setReviewFilter((int)$settings['review']);
-        $this->setRecursive((int)$settings['recursive']);
-        $this->setRecords(GeneralUtility::intExplode(',', $settings['records'], true));
-        $this->setExport(GeneralUtility::intExplode(',', $settings['export'], true));
+        $this->setExternFilter((int)($settings['extern'] ?? 0));
+        $this->setReviewFilter((int)$settings['review'] ?? 0);
+        $this->setRecursive((int)($settings['recursive'] ?? 0));
+        $this->setRecords(GeneralUtility::intExplode(',', $settings['records'] ?? '', true));
+        $this->setExport(GeneralUtility::intExplode(',', $settings['export'] ?? '', true));
+        $this->setFilterType($settings['filterType'] ?? 'classic');
     }
 
     /**
@@ -405,7 +430,7 @@ class Filter
     {
         $authors = [];
         if ($this->isAuthorSet()) {
-            $authorRepository = ObjectUtility::getObjectManager()->get(AuthorRepository::class);
+            $authorRepository = GeneralUtility::makeInstance(AuthorRepository::class);
             foreach (GeneralUtility::intExplode(',', $this->getAuthor(), true) as $identifier) {
                 $authors[] = $authorRepository->findByUid($identifier);
             }
@@ -709,6 +734,24 @@ class Filter
     }
 
     /**
+     * @param string $filterType
+     * @return Filter
+     */
+    public function setFilterType(string $filterType): self
+    {
+        $this->filterType = $filterType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterType(): string
+    {
+        return $this->filterType;
+    }
+
+    /**
      * @return int
      */
     public function getRecursive(): int
@@ -751,6 +794,56 @@ class Filter
         return $this->isSearchtermSet()
             || $this->isYearSet()
             || $this->isAuthorstringSet()
-            || $this->isDocumenttypeSet();
+            || $this->isDocumenttypeSet()
+            || $this->isTitleSet();
+    }
+
+    public function getAuthorstringExact(): string
+    {
+        return $this->authorstring_exact;
+    }
+
+    public function setAuthorstringExact(string $authorstring_exact): self
+    {
+        $this->authorstring_exact = $authorstring_exact;
+        return $this;
+    }
+
+    public function getConcatination(): string
+    {
+        return $this->concatination;
+    }
+
+    public function setConcatination(string $concatination): self
+    {
+        $this->concatination = $concatination;
+        return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function isTitleSet()
+    {
+        return $this->getTitle() !== '';
+    }
+
+    public function getTitleExact(): string
+    {
+        return $this->title_exact;
+    }
+
+    public function setTitleExact(string $title_exact): self
+    {
+        $this->title_exact = $title_exact;
+        return $this;
     }
 }
