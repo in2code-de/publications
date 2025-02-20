@@ -95,7 +95,8 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
-| 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                     |
+| 6.2.0   | 2025-02-20 | Feature | Filter for "reviewed", and abbreviated journal title                                                                              |
+| 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                    |
 | 6.0.2   | 2024-01-22 | Task    | First public release of TYPO3 V12 compatible release                                                                              |
 | 6.0.0   | 2023-06-28 | Task    | Support TYPO3 12                                                                                                                  |
 | 5.4.0   | 2023-04-08 | Bugfix  | Add missing use for ImportController                                                                                              |
