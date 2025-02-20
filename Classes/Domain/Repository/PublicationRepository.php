@@ -46,7 +46,7 @@ class PublicationRepository extends AbstractRepository
             $concat = $this->filterQueryByStatus($query, $filter, $concat);
             $concat = $this->filterQueryByAuthor($query, $filter, $concat);
             $concat = $this->filterQueryByExternFilter($query, $filter, $concat);
-            $concat = $this->filterQueryByReviewFilter($query, $filter, $and);
+            $concat = $this->filterQueryByReviewFilter($query, $filter, $concat);
             $concat = $this->filterQueryByRecords($query, $filter, $concat);
         }
         if ($filter->isFilterFrontendSet()) {
