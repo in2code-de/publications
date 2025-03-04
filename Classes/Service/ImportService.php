@@ -11,7 +11,9 @@ use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Import\Importer\ImporterInterface;
 use In2code\Publications\Import\ImportOptions;
 use In2code\Publications\Utility\DatabaseUtility;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LogLevel;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -150,13 +152,13 @@ class ImportService extends AbstractService
         $affectedRows = $queryBuilder->delete($relationTable)->where(
             $queryBuilder->expr()->eq(
                 'uid_local',
-                $queryBuilder->createNamedParameter($publicationUid, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter($publicationUid, Connection::PARAM_INT)
             )
-        )->execute();
+        )->executeQuery();
 
         $this->logger->log(
             LogLevel::DEBUG,
-            $affectedRows . ' Author relations deleted from publication #' . $publicationUid
+            $affectedRows->rowCount() . ' Author relations deleted from publication #' . $publicationUid
         );
     }
 
@@ -360,15 +362,15 @@ class ImportService extends AbstractService
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
 
         $statement = $queryBuilder->select('*')->from(Author::TABLE_NAME)->where(
-            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, \PDO::PARAM_STR))
+            $queryBuilder->expr()->eq('first_name', $queryBuilder->createNamedParameter($firstName, Connection::PARAM_STR)),
+            $queryBuilder->expr()->eq('last_name', $queryBuilder->createNamedParameter($lastName, Connection::PARAM_STR))
         );
 
         if ($this->importOptions['duplicateAuthorBehaviour'] === ImportOptions::DUPLICATE_AUTHOR_BEHAVIOUR_PID) {
             $statement->andWhere(
                 $queryBuilder->expr()->eq(
                     'pid',
-                    $queryBuilder->createNamedParameter($this->storagePid, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($this->storagePid, Connection::PARAM_INT)
                 )
             );
         }
@@ -390,15 +392,15 @@ class ImportService extends AbstractService
      * @param string $bibtype
      * @return array
      */
-    protected function getPublicationByIdentifier(int $pid, string $title, string $year, string $citeid, string $bibtype): array
+    protected function getPublicationByIdentifier(int $pid, ?string $title, ?string $year, ?string $citeid, ?string $bibtype): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME);
         $publication = $queryBuilder->select('*')->from(Publication::TABLE_NAME)->where(
-            $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
-            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('year', $queryBuilder->createNamedParameter($year, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, \PDO::PARAM_STR)),
-            $queryBuilder->expr()->eq('bibtype', $queryBuilder->createNamedParameter($bibtype, \PDO::PARAM_STR))
+            $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, Connection::PARAM_INT)),
+            $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, Connection::PARAM_STR)),
+            $queryBuilder->expr()->eq('year', $queryBuilder->createNamedParameter($year, Connection::PARAM_STR)),
+            $queryBuilder->expr()->eq('citeid', $queryBuilder->createNamedParameter($citeid, Connection::PARAM_STR)),
+            $queryBuilder->expr()->eq('bibtype', $queryBuilder->createNamedParameter($bibtype, Connection::PARAM_STR))
         )->executeQuery()->fetchAssociative();
 
         if (!empty($publication)) {
