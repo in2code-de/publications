@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Service;
 
-use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
@@ -18,7 +17,6 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
 
 /**
  * Class ImportService
@@ -57,7 +55,6 @@ class ImportService extends AbstractService
      *
      * @param string $data
      * @param ImporterInterface $importer
-     * @throws InvalidConfigurationTypeException
      */
     public function __construct(string $data, ImporterInterface $importer, array $importOptions)
     {
@@ -69,9 +66,6 @@ class ImportService extends AbstractService
         $this->storagePid = $this->getStoragePid();
     }
 
-    /**
-     * @throws DBALException
-     */
     public function import()
     {
         foreach ($this->publicationsToImport as $rawPublication) {
@@ -182,7 +176,6 @@ class ImportService extends AbstractService
     /**
      * @param array $publication
      * @return array
-     * @throws DBALException
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      * @SuppressWarnings(PHPMD.LongVariable)
      */
@@ -427,7 +420,6 @@ class ImportService extends AbstractService
     /**
      * returns an array with all existing fields of a database table
      *
-     * @throws DBALException
      * @throws \Doctrine\DBAL\Exception
      */
     protected function getDatabaseFieldsByTable(string $table): array
@@ -453,7 +445,6 @@ class ImportService extends AbstractService
      * get the current selected pid with fallback auf an defined storagePid in the typoscript
      *
      * @return int
-     * @throws InvalidConfigurationTypeException
      */
     protected function getStoragePid(): int
     {
@@ -472,7 +463,6 @@ class ImportService extends AbstractService
 
     /**
      * @return array
-     * @throws InvalidConfigurationTypeException
      */
     protected function getExtensionSettings(): array
     {
