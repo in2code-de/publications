@@ -458,8 +458,11 @@ class ImportService extends AbstractService
         $settings = $this->getExtensionSettings();
         $pid = (int)$settings['storagePid'];
 
-        if (!empty(GeneralUtility::_GET('id'))) {
-            $pid = (int)GeneralUtility::_GET('id');
+        /** @var ServerRequestInterface $request */
+        $request = $GLOBALS['TYPO3_REQUEST'];
+
+        if (!empty($request->getQueryParams()['id'])) {
+            $pid = (int)$request->getQueryParams()['id'];
         }
 
         return $pid;
