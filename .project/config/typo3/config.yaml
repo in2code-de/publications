@@ -1,4 +1,4 @@
-base: 'https://publications-v12.ddev.site/'
+base: 'https://publications.ddev.site/'
 errorHandling: {  }
 languages:
   -
