@@ -18,7 +18,7 @@ mkdir -p .build/config/sites/main
 cp .project/config/typo3/config.yaml .build/config/sites/main/
 mkdir -p .build/public
 cp .project/config/typo3/.htaccess .build/public/
-mkdir -p config/system
+mkdir -p .build/config/system
 cp .project/config/typo3/settings.php .build/config/system/
 cp .project/config/typo3/additional.php .build/config/system/
 
