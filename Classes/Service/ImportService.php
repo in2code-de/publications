@@ -167,7 +167,7 @@ class ImportService extends AbstractService
         $authors = [];
 
         foreach ($rawAuthors as $author) {
-            $authors[] = $this->addAuthorIfNotExist(trim($author['first_name']), trim($author['last_name']));
+            $authors[] = $this->addAuthorIfNotExist(trim((string)$author['first_name']), trim((string)$author['last_name']));
         }
 
         return $authors;
