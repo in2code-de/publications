@@ -154,7 +154,7 @@ class Filter
         $this->setTags(GeneralUtility::trimExplode(PHP_EOL, $settings['tags'] ?? '', true));
         $this->setAuthor($settings['author'] ?? '');
         $this->setExternFilter((int)($settings['extern'] ?? 0));
-        $this->setReviewFilter((int)$settings['review'] ?? 0);
+        $this->setReviewFilter((int)($settings['review'] ?? 0));
         $this->setRecursive((int)($settings['recursive'] ?? 0));
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'] ?? '', true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'] ?? '', true));
