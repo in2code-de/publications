@@ -30,7 +30,7 @@ Import module:
 
 ## Technical requirements
 
-This extension needs *TYPO3 12*
+This extension needs *TYPO3 13*
 At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
 
 
@@ -95,6 +95,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 13.0.0  | 2025-04-24 | Feature | Support TYPO3 13                                                                                                                  |
 | 6.2.0   | 2025-02-20 | Feature | Filter for "reviewed", and abbreviated journal title                                                                              |
 | 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                    |
 | 6.0.2   | 2024-01-22 | Task    | First public release of TYPO3 V12 compatible release                                                                              |
