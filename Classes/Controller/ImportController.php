@@ -40,7 +40,10 @@ class ImportController extends ActionController
             [
                 'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
-                'pid' => GeneralUtility::_GP('id')
+               // 'pid' => GeneralUtility::_GP('id')
+                'pid' => $this->request->getQueryParams()['id'] ?? $this->request->getParsedBody()['id'] ?? null
+
+
             ]
         );
         return $moduleTemplate->renderResponse('Backend/Import/Overview');
@@ -48,9 +51,9 @@ class ImportController extends ActionController
 
     public function initializeImportAction(): void
     {
-        // uploaded file is not in arguments
-        $arguments = array_merge_recursive($this->request->getArguments(), $this->request->getUploadedFiles());
-        $this->request = $this->request->withArguments($arguments);
+        if (!empty($this->request->getUploadedFiles()) && array_key_exists('file', $this->request->getUploadedFiles())) {
+            $this->request = $this->request->withUploadedFiles([$this->request->getUploadedFiles()['file']]);
+        }
     }
 
     /**
@@ -66,7 +69,11 @@ class ImportController extends ActionController
             GeneralUtility::makeInstance($importer),
             $importOptions
         );
+
+        // Execute the import process
         $importService->import();
+
+        // Assign data to the view
         $this->view->assignMultiple(
             [
                 'import' => $importService
@@ -95,7 +102,7 @@ class ImportController extends ActionController
     /**
      * @return bool|string
      */
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage() : string|bool
     {
         return false;
     }

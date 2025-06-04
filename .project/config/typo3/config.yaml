@@ -1,4 +1,4 @@
-base: 'https://publications-v12.ddev.site/'
+base: 'https://publications.ddev.site/'
 errorHandling: {  }
 languages:
   -
@@ -8,7 +8,7 @@ languages:
     typo3Language: de
     locale: de_DE
     iso-639-1: de
-    websiteTitle: Publications -- Developmennt
+    websiteTitle: Publications -- Development
     navigationTitle: Deutsch
     hreflang: de-DE
     direction: ''
@@ -23,7 +23,7 @@ languages:
     typo3Language: default
     locale: en_US.UTF-8
     iso-639-1: en
-    websiteTitle: Publications -- Developmennt
+    websiteTitle: Publications -- Development
     navigationTitle: English
     hreflang: en-US
     direction: ltr

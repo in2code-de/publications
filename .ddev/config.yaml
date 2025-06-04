@@ -1,7 +1,7 @@
-name: publications-v12
+name: publications
 type: php
 docroot: .build/public
-php_version: "8.1"
+php_version: "8.2"
 webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -14,7 +14,7 @@ database:
 nfs_mount_enabled: false
 mutagen_enabled: false
 hooks:
-host_db_port: "46006"
+host_db_port: "46007"
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
