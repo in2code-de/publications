@@ -70,7 +70,30 @@ If you want to migrate records from extension bib to publications, there is a Co
 ./vendor/bin/typo3cms publications:clean 123
 ```
 
-## Check and fix code style
+## Contribution with ddev
+
+This repository provides a [DDEV]()-backed development environment. If DDEV is installed, simply run the following
+commands to quickly set up a local environment with example usages:
+
+* `ddev start`
+* `ddev initialize`
+
+### Requirements
+
+1. Install ddev, see: https://ddev.readthedocs.io/en/stable/#installation
+2. Install git-lfs, see: https://git-lfs.github.com/
+
+### Installation
+
+1. Clone this repository
+2. Run `ddev start`
+3. Run `ddev initialize` to setup configurations and test database
+
+## Branchinfo
+
+* master Branch - Next Major Version
+
+### Check and fix code style
 
 This project uses php-cs-fixer to check for PHP coding standards.
 For a list of the used rules see: `.project/tests/.php-cs-fixer.php`.
@@ -90,12 +113,19 @@ If an automatic fix is not possible the fixes must be done manually.
 ddev ssh
 ./.build/bin/php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff
 ```
+## Early Access Programm for TYPO3 14 support
+
+:information_source: **TYPO3 14 compatibility**
+> See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
+> [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
+> to get access to a TYPO3 14 version
 
 ## Changelog
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
-| 13.0.0  | 2025-04-24 | Feature | Support TYPO3 13                                                                                                                  |
+| 13.0.0  | 2025-08-08 | Feature | Support TYPO3 13                                                                                                                  |
+| 6.2.1   | 2025-04-16 | Bugfix  | Fix undefined array key exception                                                                                                 |
 | 6.2.0   | 2025-02-20 | Feature | Filter for "reviewed", and abbreviated journal title                                                                              |
 | 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                    |
 | 6.0.2   | 2024-01-22 | Task    | First public release of TYPO3 V12 compatible release                                                                              |
