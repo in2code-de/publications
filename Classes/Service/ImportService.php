@@ -245,12 +245,15 @@ class ImportService extends AbstractService
         );
 
         $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
+        $affectedRows = 0;
 
-        $affectedRows = DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->update(
-            Publication::TABLE_NAME,
-            $fieldsToUpdate,
-            ['uid' => $currentPublication['uid']]
-        );
+        if ($fieldsToUpdate !== []) {
+            $affectedRows = DatabaseUtility::getConnectionForTable(Publication::TABLE_NAME)->update(
+                Publication::TABLE_NAME,
+                $fieldsToUpdate,
+                ['uid' => $currentPublication['uid']]
+            );
+        }
 
         if ($affectedRows > 0) {
             $this->importInformation['updatedPublications']++;
