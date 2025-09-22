@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Utility;
 
+use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -17,8 +19,7 @@ class PageUtility
      * @param array $startPids
      * @param int $recursiveLevel
      * @return array
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Driver\Exception
+     * @throws Exception
      */
     public static function extendPidListByChildren(array $startPids = [], int $recursiveLevel = 0): array
     {
@@ -46,10 +47,9 @@ class PageUtility
      * @param int $begin
      * @param string $permClause
      * @return string comma separated list of descendant pages
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Driver\Exception
+     * @throws \Doctrine\DBAL\Exception
      */
-    private static function getTreeList(int $id, int $depth, int $begin = 0, string $permClause = '')
+    private static function getTreeList(int $id, int $depth, int $begin = 0, string $permClause = ''): string
     {
         if ($id < 0) {
             $id = abs($id);
@@ -65,14 +65,14 @@ class PageUtility
             $queryBuilder->select('uid')
                 ->from('pages')
                 ->where(
-                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, ParameterType::INTEGER)),
                     $queryBuilder->expr()->eq('sys_language_uid', 0)
                 )
                 ->orderBy('uid');
             if ($permClause !== '') {
                 $queryBuilder->andWhere(QueryHelper::stripLogicalOperatorPrefix($permClause));
             }
-            $statement = $queryBuilder->execute();
+            $statement = $queryBuilder->executeQuery();
             while ($row = $statement->fetchAssociative()) {
                 if ($begin <= 0) {
                     $theList .= ',' . $row['uid'];
@@ -86,6 +86,6 @@ class PageUtility
                 }
             }
         }
-        return $theList;
+        return (string)$theList;
     }
 }
