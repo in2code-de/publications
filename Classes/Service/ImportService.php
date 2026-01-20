@@ -238,10 +238,10 @@ class ImportService extends AbstractService
     {
         $currentPublication = $this->getPublicationByIdentifier(
             $this->storagePid,
-            $updatedPublication['title'],
-            $updatedPublication['year'],
-            $updatedPublication['citeid'],
-            $updatedPublication['bibtype']
+            $updatedPublication['title'] ?? '',
+            $updatedPublication['year'] ?? '',
+            $updatedPublication['citeid'] ?? '',
+            $updatedPublication['bibtype'] ?? '',  
         );
 
         $fieldsToUpdate = $this->getFieldsToUpdate($currentPublication, $updatedPublication);
