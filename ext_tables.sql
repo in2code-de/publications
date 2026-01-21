@@ -3,7 +3,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	type varchar(255) DEFAULT '' NOT NULL,
 	citeid varchar(255) DEFAULT '' NOT NULL,
 	status int(11) DEFAULT '0' NOT NULL,
-	title text NOT NULL,
+	title text,
 	abstract text,
 	journal varchar(255) DEFAULT '' NOT NULL,
 	journal_abbr varchar(255) DEFAULT '' NOT NULL,
