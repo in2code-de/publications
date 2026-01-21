@@ -50,7 +50,6 @@
 
 <f:section name="bibtype_book">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
-	....
 	<f:render section="authors" arguments="{_all}"/>
 	<f:if condition="{publication.title}"><i>{publication.title}.</i></f:if>
 	<f:if condition="{publication.edition}">{publication.edition}</f:if>
