@@ -19,12 +19,7 @@
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
 
-	<f:if condition="{publication.editor} || {publication.volume} || {publication.series}">
-		<br/>
-		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.volume}">,</f:if>
-		<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if>
-		<f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if>
-	</f:if>
+	<f:render section="editor_volume_series" arguments="{_all}"/>
 
 	<f:render section="publisher" arguments="{_all}"/>
 	<f:render section="edition" arguments="{_all}"/>
