@@ -95,6 +95,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 6.2.2   | 2026-01-21 | Bugfix  | Fix undefined array key exception, SQL definition                                                                                 |
 | 6.2.1   | 2025-04-16 | Bugfix  | Fix undefined array key exception                                                                                                 |
 | 6.2.0   | 2025-02-20 | Feature | Filter for "reviewed", and abbreviated journal title                                                                              |
 | 6.1.0   | 2024-04-08 | Feature | Add improved search template and functionality                                                                                    |
