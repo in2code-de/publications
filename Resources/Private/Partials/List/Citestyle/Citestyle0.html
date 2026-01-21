@@ -82,7 +82,7 @@
 
 	<f:if condition="{publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
-		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/> {publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if><f:if condition="{publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
+		{publication.booktitle}<f:if condition="{publication.volume}"> <f:translate key="citestyle0.volume"/> {publication.volume}</f:if><f:if condition="{publication.series}"> <f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if><f:if condition="{publication.booktitle} || {publication.volume} || {publication.series} && {publication.pages}">,</f:if>
 		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
@@ -158,7 +158,7 @@
 		condition="{publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series} || {publication.pages}">
 		<br/>
 		<f:if condition="{publication.editor}">In {publication.editor}, <f:translate key="citestyle0.editor"/></f:if><f:if condition="{publication.editor} && {publication.booktitle} || {publication.volume}">,</f:if>
-		{publication.booktitle}<f:if condition="{publication.volume}"><f:translate key="citestyle0.volume"/>{publication.volume}</f:if><f:if condition="{publication.series}"><f:translate key="citestyle0.from"/><i>{publication.series}</i></f:if><f:if condition="({publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}) && {publication.pages}">,</f:if>
+		{publication.booktitle}<f:if condition="{publication.volume}"> <f:translate key="citestyle0.volume"/> {publication.volume}</f:if><f:if condition="{publication.series}"> <f:translate key="citestyle0.from"/> <i>{publication.series}</i></f:if><f:if condition="({publication.editor} || {publication.booktitle} || {publication.volume} || {publication.series}) && {publication.pages}">,</f:if>
 		<f:if condition="{publication.pages}"><f:translate key="citestyle0.page"/> {publication.pages}</f:if>
 	</f:if>
 
