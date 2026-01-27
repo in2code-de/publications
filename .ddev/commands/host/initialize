@@ -13,19 +13,20 @@ fi
 
 echo "Fetching database and fileadmin"
 git lfs pull
-echo "Copy configuration"
-mkdir -p .build/config/sites/main
-cp .project/config/typo3/config.yaml .build/config/sites/main/
-mkdir -p .build/public
-cp .project/config/typo3/.htaccess .build/public/
-mkdir -p .build/config/system
-cp .project/config/typo3/settings.php .build/config/system/
-cp .project/config/typo3/additional.php .build/config/system/
+
+echo "Symlink configuration"
+mkdir -p config/sites/main
+ln -snf ../../../.project/config/typo3/config.yaml config/sites/main/config.yaml
+mkdir -p config/system
+ln -snf ../../.project/config/typo3/settings.php config/system/settings.php
+ln -snf ../../.project/config/typo3/additional.php config/system/additional.php
 
 echo "Importing database"
 ddev import-db --file=.project/data/db.sql.gz
+
 echo "Provide fileadmin"
 cd .build/public && tar xf ../../.project/data/fileadmin.tar.gz
+
 echo "Run 'composer install'"
 ddev composer install
 ddev exec ./.build/bin/typo3 database:updateschema
