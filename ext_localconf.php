@@ -20,13 +20,6 @@ call_user_func(
         );
 
         /**
-         * PageTSConfig
-         */
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:publications/Configuration/TsConfig/Page.tsconfig">'
-        );
-
-        /**
          * Logging
          */
         $GLOBALS['TYPO3_CONF_VARS']['LOG']['In2code']['Publications'] = [
