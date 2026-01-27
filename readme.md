@@ -95,6 +95,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 6.2.3   | 2026-01-27 | Bugfix  | Bugfix release. For further information see:[Commits](https://github.com/in2code-de/publications/commits/6.2.3)                   |
 | 6.2.2   | 2026-01-21 | Bugfix  | Fix undefined array key exception, SQL definition                                                                                 |
 | 6.2.1   | 2025-04-16 | Bugfix  | Fix undefined array key exception                                                                                                 |
 | 6.2.0   | 2025-02-20 | Feature | Filter for "reviewed", and abbreviated journal title                                                                              |
