@@ -23,7 +23,7 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
     /**
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('author', 'mixed', 'Author array', true);

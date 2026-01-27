@@ -17,7 +17,7 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
     /**
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('month', 'string', 'Name or number', true);

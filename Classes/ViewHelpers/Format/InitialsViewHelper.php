@@ -15,7 +15,7 @@ class InitialsViewHelper extends AbstractViewHelper
     /**
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('glue', 'string', 'How to separate name parts?', false, ' ');

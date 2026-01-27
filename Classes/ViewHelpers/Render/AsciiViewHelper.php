@@ -14,7 +14,7 @@ class AsciiViewHelper extends AbstractViewHelper
     /**
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('code', 'string', 'ascii code', true);
