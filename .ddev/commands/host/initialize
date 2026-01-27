@@ -29,6 +29,10 @@ cd .build/public && tar xf ../../.project/data/fileadmin.tar.gz
 
 echo "Run 'composer install'"
 ddev composer install
-ddev exec ./.build/bin/typo3 database:updateschema
+ddev exec ./.build/bin/typo3 database:update
+
+echo "Copy .htaccess"
+cp .build/vendor/typo3/cms-install/Resources/Private/FolderStructureTemplateFiles/root-htaccess .build/public/.htaccess
+
 ddev describe
 echo "Thanks for supporting 'EXT:publications"
