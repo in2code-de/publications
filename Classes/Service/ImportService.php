@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Service;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Statement;
 use In2code\Publications\Domain\Model\Author;
 use In2code\Publications\Domain\Model\Publication;
@@ -17,25 +18,12 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Configuration\Exception\NoServerRequestGivenException;
 
-/**
- * Class ImportService
- */
 class ImportService extends AbstractService
 {
-    /**
-     * @var ImporterInterface
-     */
     protected ImporterInterface $importer;
-
-    /**
-     * @var array
-     */
     protected array $publicationsToImport = [];
-
-    /**
-     * @var int
-     */
     protected int $storagePid;
 
     /**
@@ -52,9 +40,7 @@ class ImportService extends AbstractService
 
     /**
      * ImportService constructor.
-     *
-     * @param string $data
-     * @param ImporterInterface $importer
+     * @throws NoServerRequestGivenException
      */
     public function __construct(string $data, ImporterInterface $importer, array $importOptions)
     {
@@ -66,7 +52,10 @@ class ImportService extends AbstractService
         $this->storagePid = $this->getStoragePid();
     }
 
-    public function import()
+    /**
+     * @throws Exception
+     */
+    public function import(): void
     {
         foreach ($this->publicationsToImport as $rawPublication) {
             $publicationUid = $this->addOrUpdatePublication(
@@ -80,17 +69,11 @@ class ImportService extends AbstractService
         }
     }
 
-    /**
-     * @return array
-     */
     public function getImportInformation(): array
     {
         return $this->importInformation;
     }
 
-    /**
-     * @return bool
-     */
     public function isImported(): bool
     {
         return $this->importInformation['updatedPublications'] > 0
@@ -102,11 +85,9 @@ class ImportService extends AbstractService
     /**
      * create the author relations between the given publication and authors
      * NOTE: existing relations will be deleted before new relations will be created
-     *
-     * @param int $publicationUid
-     * @param array $authors
+     * @throws Exception
      */
-    protected function addAuthorRelations(int $publicationUid, array $authors)
+    protected function addAuthorRelations(int $publicationUid, array $authors): void
     {
         $relationTable = 'tx_publications_publication_author_mm';
         $sorting = 1;
@@ -135,10 +116,9 @@ class ImportService extends AbstractService
 
     /**
      * deletes all existing author relations for an given publication
-     *
-     * @param int $publicationUid
+     * @throws Exception
      */
-    protected function removeAuthorRelations(int $publicationUid)
+    protected function removeAuthorRelations(int $publicationUid): void
     {
         $relationTable = 'tx_publications_publication_author_mm';
 
@@ -161,6 +141,7 @@ class ImportService extends AbstractService
      *
      * @param array $rawAuthors
      * @return array an array with the associated authors
+     * @throws Exception
      */
     protected function addAuthors(array $rawAuthors): array
     {
@@ -174,12 +155,11 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @param array $publication
-     * @return array
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      * @SuppressWarnings(PHPMD.LongVariable)
+     * @throws Exception
      */
-    protected function cleanupRawPublicationArray(array $publication)
+    protected function cleanupRawPublicationArray(array $publication): array
     {
         $publicationTableFields = $this->getDatabaseFieldsByTable(Publication::TABLE_NAME);
         foreach ($publication as $publicationField => $value) {
@@ -196,8 +176,7 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @param $record
-     * @return int
+     * @throws Exception
      */
     protected function addOrUpdatePublication($record): int
     {
@@ -226,8 +205,7 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @param array $updatedPublication
-     * @return int
+     * @throws Exception
      */
     protected function updatePublication(array $updatedPublication): int
     {
@@ -268,11 +246,6 @@ class ImportService extends AbstractService
         return $currentPublication['uid'];
     }
 
-    /**
-     * @param array $currentPublication
-     * @param array $updatedPublication
-     * @return array
-     */
     protected function getFieldsToUpdate(array $currentPublication, array $updatedPublication): array
     {
         // fields which should not be updated.
@@ -289,11 +262,7 @@ class ImportService extends AbstractService
         return array_diff_assoc($updatedPublication, $currentPublication);
     }
 
-    /**
-     * @param array $publicationRecord
-     * @return int
-     */
-    protected function insertPublication(array $publicationRecord)
+    protected function insertPublication(array $publicationRecord): int
     {
         DatabaseUtility::getQueryBuilderForTable(Publication::TABLE_NAME)
             ->insert(Publication::TABLE_NAME)
@@ -315,10 +284,7 @@ class ImportService extends AbstractService
 
     /**
      * creates an author if no matching author exists
-     *
-     * @param string $firstName
-     * @param string $lastName
-     * @return array the affected author
+     * @throws Exception
      */
     protected function addAuthorIfNotExist(string $firstName, string $lastName): array
     {
@@ -349,11 +315,9 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @param $firstName
-     * @param $lastName
-     * @return array
+     * @throws Exception
      */
-    protected function getAuthorByName($firstName, $lastName): array
+    protected function getAuthorByName(string $firstName, string $lastName): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Author::TABLE_NAME);
 
@@ -381,12 +345,7 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @param int $pid
-     * @param string $title
-     * @param string $year
-     * @param string $citeid
-     * @param string $bibtype
-     * @return array
+     * @throws Exception
      */
     protected function getPublicationByIdentifier(int $pid, ?string $title, ?string $year, ?string $citeid, ?string $bibtype): array
     {
@@ -407,10 +366,9 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @return array
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    protected function getAdditionalTypo3Fields()
+    protected function getAdditionalTypo3Fields(): array
     {
         return [
             'tstamp' => time(),
@@ -422,8 +380,7 @@ class ImportService extends AbstractService
 
     /**
      * returns an array with all existing fields of a database table
-     *
-     * @throws \Doctrine\DBAL\Exception
+     * @throws Exception
      */
     protected function getDatabaseFieldsByTable(string $table): array
     {
@@ -446,8 +403,7 @@ class ImportService extends AbstractService
 
     /**
      * get the current selected pid with fallback auf an defined storagePid in the typoscript
-     *
-     * @return int
+     * @throws NoServerRequestGivenException
      */
     protected function getStoragePid(): int
     {
@@ -465,7 +421,7 @@ class ImportService extends AbstractService
     }
 
     /**
-     * @return array
+     * @throws NoServerRequestGivenException
      */
     protected function getExtensionSettings(): array
     {
