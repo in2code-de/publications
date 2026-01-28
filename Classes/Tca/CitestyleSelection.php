@@ -36,7 +36,7 @@ class CitestyleSelection
     protected function getFieldOptionsFromTsConfig(array $params)
     {
         $tsConfig = BackendUtility::getPagesTSconfig($this->getPageIdentifier($params));
-        $styleConfiguration = (array)$tsConfig['tx_publications.']['flexForm.']['citestyle.'];
+        $styleConfiguration = (array)($tsConfig['tx_publications.']['flexForm.']['citestyle.'] ?? []);
 
         if (!empty($styleConfiguration)) {
             foreach (array_keys($styleConfiguration) as $key) {
