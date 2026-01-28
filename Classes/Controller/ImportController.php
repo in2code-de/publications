@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Controller;
 
-use Doctrine\DBAL\DBALException;
 use In2code\Publications\Service\ImportService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
@@ -82,7 +81,7 @@ class ImportController extends ActionController
         return $this->redirect('overview');
     }
 
-    protected function getErrorFlashMessage() : string|bool
+    protected function getErrorFlashMessage(): string|bool
     {
         return false;
     }

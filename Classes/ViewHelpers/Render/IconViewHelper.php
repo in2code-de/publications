@@ -16,7 +16,8 @@ class IconViewHelper extends AbstractViewHelper
     public function __construct(
         private readonly SystemResourceFactory $systemResourceFactory,
         private readonly SystemResourcePublisherInterface $resourcePublisher,
-    ) {}
+    ) {
+    }
 
     public function initializeArguments(): void
     {
