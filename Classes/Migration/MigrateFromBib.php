@@ -4,26 +4,18 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Migration;
 
+use Doctrine\DBAL\Exception;
 use In2code\Publications\Utility\DatabaseUtility;
 
-/**
- * Class MigrateFromBib
- */
 class MigrateFromBib
 {
-    /**
-     * @var array
-     */
-    protected $tableMapping = [
+    protected array $tableMapping = [
         'tx_bib_domain_model_reference' => 'tx_publications_domain_model_publication',
         'tx_bib_domain_model_author' => 'tx_publications_domain_model_author',
         'tx_bib_domain_model_authorships' => 'tx_publications_publication_author_mm'
     ];
 
-    /**
-     * @var array
-     */
-    protected $mappingPublicationFields = [
+    protected array $mappingPublicationFields = [
         'uid' => 'uid',
         'pid' => 'pid',
         'crdate' => 'crdate',
@@ -82,10 +74,7 @@ class MigrateFromBib
         'borrowed_by' => 'borrowed_by'
     ];
 
-    /**
-     * @var array
-     */
-    protected $mappingAuthorFields = [
+    protected array $mappingAuthorFields = [
         'uid' => 'uid',
         'pid' => 'pid',
         'crdate' => 'crdate',
@@ -98,19 +87,13 @@ class MigrateFromBib
         'url' => 'url'
     ];
 
-    /**
-     * @var array
-     */
-    protected $mappingMm = [
+    protected array $mappingMm = [
         'pub_id' => 'uid_local',
         'author_id' => 'uid_foreign',
         'sorting' => 'sorting'
     ];
 
-    /**
-     * @var array
-     */
-    protected $mappingBibTypes = [
+    protected array $mappingBibTypes = [
         0 => '',
         1  => 'article',
         2  => 'book',
@@ -136,7 +119,7 @@ class MigrateFromBib
     ];
 
     /**
-     * @return int
+     * @throws Exception
      */
     public function migrate(): int
     {
@@ -147,7 +130,7 @@ class MigrateFromBib
     }
 
     /**
-     * @return int
+     * @throws Exception
      */
     protected function migratePublications(): int
     {
@@ -174,9 +157,9 @@ class MigrateFromBib
     }
 
     /**
-     * @return void
+     * @throws Exception
      */
-    protected function migrateAuthors()
+    protected function migrateAuthors(): void
     {
         $authors = $this->getOldAuthors();
         foreach ($authors as $author) {
@@ -197,9 +180,9 @@ class MigrateFromBib
     }
 
     /**
-     * @return void
+     * @throws Exception
      */
-    protected function migrateMmRecords()
+    protected function migrateMmRecords(): void
     {
         $mmRecords = $this->getOldMmRecords();
         foreach ($mmRecords as $mmRecord) {
@@ -220,41 +203,41 @@ class MigrateFromBib
     }
 
     /**
-     * @return array
+     * @throws Exception
      */
     protected function getOldPublications(): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(array_keys($this->tableMapping)[0], true);
-        return (array)$queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from(array_keys($this->tableMapping)[0])
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     /**
-     * @return array
+     * @throws Exception
      */
     protected function getOldAuthors(): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(array_keys($this->tableMapping)[1], true);
-        return (array)$queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from(array_keys($this->tableMapping)[1])
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     /**
-     * @return array
+     * @throws Exception
      */
     protected function getOldMmRecords(): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(array_keys($this->tableMapping)[2], true);
-        return (array)$queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from(array_keys($this->tableMapping)[2])
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 }
