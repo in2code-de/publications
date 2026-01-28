@@ -2,7 +2,6 @@
 return [
     'BE' => [
         'debug' => false,
-        'explicitADmode' => 'explicitAllow',
         'installToolPassword' => '$argon2i$v=19$m=65536,t=16,p=1$Y0Zkc2tFVUFzaWs3S1JUMA$VUYXEG49usrpbDP9cKfC0GrhRAtGICi5B7HGJ4LVYtg',
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',
@@ -62,6 +61,64 @@ return [
             'maxLifetime' => '1440',
             'showSampleTasks' => '1',
         ],
+        'styleguide' => [
+            'boolean_1' => '0',
+            'boolean_2' => '1',
+            'boolean_3' => '',
+            'boolean_4' => '0',
+            'color_1' => 'black',
+            'color_2' => '#000000',
+            'color_3' => '000000',
+            'color_4' => '',
+            'compat_default_1' => 'value',
+            'compat_default_2' => '',
+            'compat_input_1' => 'value',
+            'compat_input_2' => '',
+            'int_1' => '1',
+            'int_2' => '',
+            'int_3' => '-100',
+            'int_4' => '2',
+            'intplus_1' => '1',
+            'intplus_2' => '',
+            'intplus_3' => '2',
+            'nested' => [
+                'input_1' => 'aDefault',
+                'input_2' => '',
+            ],
+            'offset_1' => 'x,y',
+            'offset_2' => 'x',
+            'offset_3' => ',y',
+            'offset_4' => '',
+            'options_1' => 'default',
+            'options_2' => 'option_2',
+            'options_3' => '',
+            'predefined' => [
+                'boolean_1' => '1',
+                'int_1' => '42',
+            ],
+            'small_1' => 'value',
+            'small_2' => '',
+            'string_1' => 'value',
+            'string_2' => '',
+            'user_1' => '0',
+            'wrap_1' => 'value',
+            'wrap_2' => '',
+            'zeroorder_input_1' => 'value',
+            'zeroorder_input_2' => '',
+            'zeroorder_input_3' => '',
+        ],
+        'translate_locallang' => [
+            'allowedExts' => '*',
+            'autoTranslate' => '0',
+            'clearCache' => '0',
+            'defaultLangKey' => 'en',
+            'extFilter' => '*',
+            'langKeys' => 'de,fr,it',
+            'modifyDefaultLang' => '0',
+            'modifyKeys' => '0',
+            'sortOnSave' => '0',
+            'translatorInfo' => '',
+        ],
     ],
     'FE' => [
         'debug' => false,
@@ -73,12 +130,9 @@ return [
     ],
     'GFX' => [
         'processor' => 'ImageMagick',
-        'processor_allowTemporaryMasksAsPng' => false,
-        'processor_colorspace' => 'sRGB',
         'processor_effects' => true,
         'processor_enabled' => true,
         'processor_path' => '/usr/bin/',
-        'processor_path_lzw' => '/usr/bin/',
     ],
     'LOG' => [
         'TYPO3' => [
@@ -116,12 +170,6 @@ return [
                     ],
                 ],
                 'pages' => [
-                    'backend' => 'TYPO3\\CMS\\Core\\Cache\\Backend\\Typo3DatabaseBackend',
-                    'options' => [
-                        'compression' => true,
-                    ],
-                ],
-                'pagesection' => [
                     'backend' => 'TYPO3\\CMS\\Core\\Cache\\Backend\\Typo3DatabaseBackend',
                     'options' => [
                         'compression' => true,
