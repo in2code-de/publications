@@ -12,14 +12,12 @@ use In2code\Publications\Utility\SessionUtility;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\PropagateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-/**
- * Class PublicationController
- */
 class PublicationController extends ActionController
 {
     protected ?PublicationRepository $publicationRepository = null;
@@ -40,7 +38,7 @@ class PublicationController extends ActionController
     }
 
     /**
-     * @throws InvalidQueryException
+     * @throws InvalidQueryException|InvalidRouteArgumentsException
      */
     public function listAction(Filter $filter): ResponseInterface
     {
@@ -66,15 +64,15 @@ class PublicationController extends ActionController
             );
         }
 
-        $this->view->assign('pagination', [
-            'paginator' => $paginator,
-            'pagination' => $pagination,
-        ]);
         $this->view->assignMultiple([
             'filter' => $filter,
             'publications' => $publications,
             'data' => $this->getContentObject()->data,
             'maxItems' => count($publications),
+            'pagination', [
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]
         ]);
         return $this->htmlResponse();
     }

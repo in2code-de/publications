@@ -9,7 +9,6 @@ use In2code\Publications\Service\ImportService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Http\UploadedFile;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
@@ -17,9 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-/**
- * Class ImportController
- */
 class ImportController extends ActionController
 {
     protected ModuleTemplateFactory $moduleTemplateFactory;
@@ -30,9 +26,6 @@ class ImportController extends ActionController
         $this->moduleTemplateFactory = $moduleTemplateFactory;
     }
 
-    /**
-     * @return ResponseInterface
-     */
     public function overviewAction(): ResponseInterface
     {
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
@@ -40,10 +33,7 @@ class ImportController extends ActionController
             [
                 'languages' => $this->getLanguages(),
                 'availableImporter' => $this->getExistingImporter(),
-               // 'pid' => GeneralUtility::_GP('id')
                 'pid' => $this->request->getQueryParams()['id'] ?? $this->request->getParsedBody()['id'] ?? null
-
-
             ]
         );
         return $moduleTemplate->renderResponse('Backend/Import/Overview');
@@ -59,7 +49,6 @@ class ImportController extends ActionController
     /**
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\UploadValidator", param="file")
      * @TYPO3\CMS\Extbase\Annotation\Validate("\In2code\Publications\Validation\Validator\ClassValidator", param="importer")
-     * @throws DBALException
      */
     public function importAction(UploadedFile $file, string $importer, array $importOptions): ResponseInterface
     {
@@ -70,10 +59,8 @@ class ImportController extends ActionController
             $importOptions
         );
 
-        // Execute the import process
         $importService->import();
 
-        // Assign data to the view
         $this->view->assignMultiple(
             [
                 'import' => $importService
@@ -82,10 +69,6 @@ class ImportController extends ActionController
         return $this->htmlResponse();
     }
 
-    /**
-     * @return \Psr\Http\Message\ResponseInterface|string
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
-     */
     public function errorAction(): ResponseInterface
     {
         $this->addFlashMessage(
@@ -99,9 +82,6 @@ class ImportController extends ActionController
         return $this->redirect('overview');
     }
 
-    /**
-     * @return bool|string
-     */
     protected function getErrorFlashMessage() : string|bool
     {
         return false;
@@ -109,6 +89,7 @@ class ImportController extends ActionController
 
     protected function getLanguages(): array
     {
+        $site = $this->request->getAttribute('site');
         $languages = [
             -1 => [
                 'title' => LocalizationUtility::translate('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:multipleLanguages'),
@@ -117,9 +98,9 @@ class ImportController extends ActionController
             ]
         ];
 
-        if ($this->request->getAttribute('site') instanceof Site) {
+        if ($site instanceof Site) {
             /** @var SiteLanguage $language */
-            foreach ($this->request->getAttribute('site')->getLanguages() as $language) {
+            foreach ($site->getLanguages() as $language) {
                 $languages[$language->getLanguageId()] = [
                     'title' => $language->getNavigationTitle(),
                     'uid' => $language->getLanguageId(),
@@ -133,8 +114,6 @@ class ImportController extends ActionController
 
     /**
      * Adds the Validation error Messages to the FlashMessage Queue
-     *
-     * @return void
      */
     protected function addValidationErrorMessages(): void
     {
@@ -146,8 +125,7 @@ class ImportController extends ActionController
                     $this->addFlashMessage(
                         $error->getMessage(),
                         'Validation error for ' . $propertyPath,
-                        ContextualFeedbackSeverity::ERROR,
-                        true
+                        ContextualFeedbackSeverity::ERROR
                     );
                 }
             }
@@ -155,7 +133,6 @@ class ImportController extends ActionController
     }
 
     /**
-     * @return array
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     protected function getExistingImporter(): array
