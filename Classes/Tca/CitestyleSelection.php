@@ -7,16 +7,9 @@ namespace In2code\Publications\Tca;
 use In2code\Publications\Utility\ObjectUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
-/**
- * Class CitestyleSelection
- */
 class CitestyleSelection
 {
-    /**
-     * @param array $params
-     * @return void
-     */
-    public function getStyles(array &$params)
+    public function getStyles(array &$params): void
     {
         $params['items'] = [];
         foreach ($this->getFieldOptionsFromTsConfig($params) as $key => $label) {
@@ -27,13 +20,7 @@ class CitestyleSelection
         }
     }
 
-    /**
-     * Get field options from page TSConfig
-     *
-     * @param array $params
-     * @return array
-     */
-    protected function getFieldOptionsFromTsConfig(array $params)
+    protected function getFieldOptionsFromTsConfig(array $params): array
     {
         $tsConfig = BackendUtility::getPagesTSconfig($this->getPageIdentifier($params));
         $styleConfiguration = (array)($tsConfig['tx_publications.']['flexForm.']['citestyle.'] ?? []);
@@ -51,14 +38,10 @@ class CitestyleSelection
      * Return label
      *        if LLL parse
      *        if empty take value
-     *
-     * @param string|null $label
-     * @param string $fallback
-     * @return string
      */
-    protected function getLabel($label, $fallback)
+    protected function getLabel($label, $fallback): string
     {
-        if (strpos($label, 'LLL:') === 0) {
+        if (str_starts_with($label, 'LLL:')) {
             $label = ObjectUtility::getLanguageService()->sL($label);
         }
         if (empty($label)) {
@@ -69,11 +52,8 @@ class CitestyleSelection
 
     /**
      * Get current PID (starting from TCA or FlexForm)
-     *
-     * @param array $params
-     * @return int
      */
-    protected function getPageIdentifier(array $params)
+    protected function getPageIdentifier(array $params): int
     {
         $pageIdentifier = 0;
         if (!empty($params['row']['pid'])) {
