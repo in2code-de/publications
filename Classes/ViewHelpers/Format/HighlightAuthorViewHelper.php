@@ -9,10 +9,6 @@ use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class HighlightAuthorViewHelper
- * wraps html around search terms
- */
 class HighlightAuthorViewHelper extends AbstractViewHelper
 {
     /**
@@ -34,9 +30,6 @@ class HighlightAuthorViewHelper extends AbstractViewHelper
         $this->registerArgument('settings', 'array', 'Settings from Flexform/TS', false);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         $value = implode(PHP_EOL, GeneralUtility::trimExplode(PHP_EOL, $this->renderChildren(), true));

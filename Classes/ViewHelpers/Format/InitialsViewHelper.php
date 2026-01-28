@@ -7,14 +7,8 @@ namespace In2code\Publications\ViewHelpers\Format;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class InitialsViewHelper
- */
 class InitialsViewHelper extends AbstractViewHelper
 {
-    /**
-     * @return void
-     */
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -22,9 +16,6 @@ class InitialsViewHelper extends AbstractViewHelper
         $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
-    /**
-    * @return string
-    */
     public function render(): string
     {
         /** Reformat already stored Initials */

@@ -9,14 +9,8 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class MonthNameFromNumberViewHelper
- */
 class MonthNameFromNumberViewHelper extends AbstractViewHelper implements SingletonInterface
 {
-    /**
-     * @return void
-     */
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -25,9 +19,6 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
         $this->registerArgument('suffix', 'string', 'Any suffix character needed?', false, '.');
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         $month = $this->arguments['month'];
