@@ -178,7 +178,6 @@ class PublicationController extends ActionController
         }
 
         $this->request = $this->request->withArgument('filter', $filter);
-        $this->request = $this->request->withArgument('currentContentObject', $this->getContentObject());
     }
 
     protected function getContentObject(): ?ContentObjectRenderer
