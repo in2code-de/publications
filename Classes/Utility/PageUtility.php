@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Utility;
 
-use Doctrine\DBAL\Driver\Exception;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
@@ -15,11 +14,7 @@ class PageUtility
 {
     /**
      * Get an array with child pids for a specific level
-     *
-     * @param array $startPids
-     * @param int $recursiveLevel
-     * @return array
-     * @throws Exception
+     * @throws \Doctrine\DBAL\Exception
      */
     public static function extendPidListByChildren(array $startPids = [], int $recursiveLevel = 0): array
     {
@@ -41,12 +36,6 @@ class PageUtility
 
     /**
      * Recursively fetch all descendants of a given page
-     *
-     * @param int $id uid of the page
-     * @param int $depth
-     * @param int $begin
-     * @param string $permClause
-     * @return string comma separated list of descendant pages
      * @throws \Doctrine\DBAL\Exception
      */
     private static function getTreeList(int $id, int $depth, int $begin = 0, string $permClause = ''): string

@@ -7,18 +7,14 @@ namespace In2code\Publications\Utility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Configuration\Exception\NoServerRequestGivenException;
 
-/**
- * Class ConfigurationUtility
- */
 class ConfigurationUtility
 {
     /**
-     * @param string $path
-     * @return array|mixed|string
-     * @throws \TYPO3\CMS\Extbase\Object\Exception
+     * @throws NoServerRequestGivenException
      */
-    public static function getSetting(string $path)
+    public static function getSetting(string $path): mixed
     {
         $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
         $settings = (array)$configurationManager->getConfiguration(

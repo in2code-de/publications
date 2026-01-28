@@ -4,15 +4,9 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Utility;
 
-/**
- * Class BibTexUtility
- */
 class BibTexUtility
 {
-    /**
-     * @var array
-     */
-    protected static $decoded = [
+    protected static array $decoded = [
         '\\#%#', '\\%#%', '', '', '"', '"', '"',
         'ä', 'á', 'à', 'ã', 'â', 'å', 'ą', 'Ä', 'Á', 'À', 'Â', 'Ã', 'Å',
         'ř', 'ß', 'ß', 'ś', 'š', 'ş', 'Š', 'Ś', '§',
@@ -28,10 +22,9 @@ class BibTexUtility
     ];
 
     /**
-     * @var array
      * @comment protect first latex curly brackets, then remove all other curly brackets, replace patterns, restore latex curly brackets
      */
-    protected static $decoding = [
+    protected static array $decoding = [
         '\\{', '\\}', '{', '}', '\\dq', '\'\'', '``',
         '\\"a', '\\\'a', '\\`a', '\\~a', '\\^a', '\\aa', '\\ka', '\\"A', '\\\'A', '\\`A', '\\^A', '\\~A', '\\AA',
         '\\vr', '\\"s', '\\ss', '\\\'s', '\\vs', '\\cs', '\\vS', '\\\'S', '\\S',
@@ -46,10 +39,7 @@ class BibTexUtility
         '\\#%#', '\\%#%', '\\%', '\\#'
     ];
 
-    /**
-     * @var array
-     */
-    protected static $encoding = [
+    protected static array $encoding = [
         '"', '{', '}',
         'ä', 'á', 'à', 'ã', 'â', 'å', 'ą', 'Ä', 'Á', 'À', 'Â', 'Ã', 'Å',
         'ř', 'ß', 'ß', 'ś', 'š', 'ş', 'Š', 'Ś', '§',
@@ -64,10 +54,7 @@ class BibTexUtility
         '%', '#'
     ];
 
-    /**
-     * @var array
-     */
-    protected static $encoded = [
+    protected static array $encoded = [
         '\\dq', '\\{', '\\}',
         '\\"{a}', '\\\'{a}', '\\`{a}', '\\~{a}', '\\^{a}', '\\a{a}', '\\k{a}', '\\"{A}', '\\\'{A}', '\\`{A}', '\\^{A}', '\\~{A}', '\\A{A}',
         '\\v{r}', '\\"{s}', '{\\ss}', '\\\'s', '\\v{s}', '\\c{s}', '\\v{S}', '\\\'{S}', '{S}',
@@ -82,19 +69,11 @@ class BibTexUtility
         '{\\%}', '{\\#}'
     ];
 
-    /**
-     * @param string $string
-     * @return string
-     */
     public static function encode(string $string): string
     {
         return str_replace(self::$encoding, self::$encoded, $string);
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
     public static function decode(string $string): string
     {
         return str_replace(self::$decoding, self::$decoded, $string);
