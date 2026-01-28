@@ -7,66 +7,84 @@ namespace In2code\Publications\Domain\Service;
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Utility\FrontendUtility;
 use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class PublicationService
+readonly class PublicationService
 {
+    private const EXTENSION_NAME = 'publications';
+    private const PLUGIN_NAMESPACE = 'tx_publications_pi1';
+
+    public function __construct(
+        protected FrontendUtility $frontendUtility
+    ) {
+    }
+
     /**
      * @throws InvalidRouteArgumentsException
      */
-    public function getGroupedPublicationLinks(array $publications, int $groupBy, int $ceIdentifier, int $itemsPerPage): array
-    {
-        $groupLinks = [];
-        $linkHrefPrefix = '';
+    public function getGroupedPublicationLinks(
+        array $publications,
+        int $groupBy,
+        int $ceIdentifier,
+        int $itemsPerPage
+    ): array {
+        $groupingConfig = $this->resolveGroupingConfiguration($groupBy);
 
-        switch ($groupBy) {
-            case Filter::GROUP_BY_YEAR:
-            case Filter::GROUP_BY_YEAR_AND_TYPE:
-                $groupByMethod = 'getYear';
-                $linkHrefPrefix = 'c';
-                break;
-            case Filter::GROUP_BY_TYPE:
-                $groupByMethod = 'getBibtype';
-                break;
+        if ($groupingConfig === null) {
+            return [];
         }
 
-        if (!empty($groupByMethod)) {
-            $count = 0;
-            $page = 0;
-            /** @var FrontendUtility $frontendUtility */
-            $frontendUtility = GeneralUtility::makeInstance(FrontendUtility::class);
-            foreach ($publications as $publication) {
-                if ($count % $itemsPerPage === 0) {
-                    $page++;
-                }
+        $groupLinks = [];
+        [$method, $prefix] = $groupingConfig;
+        $count = 0;
+        $page = 0;
 
-                $pageUid =  $frontendUtility->getCurrentPageIdentifier();
-                $site = $frontendUtility->getSite();
-                $url = $frontendUtility->buildUrlToPageWithArguments($pageUid, ['tx_publications_pi1' => ['currentPage' => $page]], $site);
-
-                $localizedBibType =
-                    LocalizationUtility::translate('bibtype.' . $publication->{$groupByMethod}(), 'publications');
-
-                if (!array_key_exists($publication->{$groupByMethod}(), $groupLinks) &&
-                    !empty($publication->{$groupByMethod}())
-                ) {
-                    $groupLinks[$publication->{$groupByMethod}()] = [
-                        'title' => $publication->{$groupByMethod}(),
-                        'link' => $url . '#' . $linkHrefPrefix . $publication->{$groupByMethod}() . '-' .
-                            $ceIdentifier
-                    ];
-
-                    // localize title if necessary
-                    if ($groupBy === Filter::GROUP_BY_TYPE && !empty($localizedBibType)) {
-                        $groupLinks[$publication->{$groupByMethod}()]['title'] = $localizedBibType;
-                    }
-                }
-
-                $count++;
+        foreach ($publications as $publication) {
+            if ($count % $itemsPerPage === 0) {
+                $page++;
             }
+
+            $groupValue = $publication->{$method}();
+
+            if (empty($groupValue) || array_key_exists($groupValue, $groupLinks)) {
+                $count++;
+                continue;
+            }
+
+            $url = $this->frontendUtility->buildUrlToPageWithArguments(
+                $this->frontendUtility->getCurrentPageIdentifier(),
+                [self::PLUGIN_NAMESPACE => ['currentPage' => $page]],
+                $this->frontendUtility->getSite()
+            );
+
+            //  $groupLinks[$groupValue] =
+
+            $localizedBibType =
+                LocalizationUtility::translate('bibtype.' . $groupValue, self::EXTENSION_NAME);
+
+            $groupLinks[$groupValue] = [
+                'title' => $groupValue,
+                'link' => $url . '#' . $prefix . $groupValue . '-' .
+                    $ceIdentifier
+            ];
+
+            // localize title if necessary
+            if ($groupBy === Filter::GROUP_BY_TYPE && !empty($localizedBibType)) {
+                $groupLinks[$groupValue]['title'] = $localizedBibType;
+            }
+
+            $count++;
         }
 
         return $groupLinks;
+    }
+
+    private function resolveGroupingConfiguration(int $groupBy): ?array
+    {
+        return match ($groupBy) {
+            Filter::GROUP_BY_YEAR, Filter::GROUP_BY_YEAR_AND_TYPE => ['getYear', 'c'],
+            Filter::GROUP_BY_TYPE => ['getBibtype', ''],
+            default => null,
+        };
     }
 }
