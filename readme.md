@@ -60,9 +60,10 @@ If you want to migrate records from extension bib to publications, there is a Co
 ./vendor/bin/typo3cms publications:migrate
 ```
 
-## Migrations from V13 to V14
+## Migrations
 
-* execute the publicationCTypeUpdate upgrade Wizard to migrate plugins to content elements
+* [Version 5 to 6](Documentation/Migration/5to6.md)
+* [Version 13 to 14](Documentation/Migration/13to14.md)
 
 **Note:** If you want to delete all publications records before (to minimize uid conflicts), you can use
 
