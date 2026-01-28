@@ -10,17 +10,12 @@ use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
-/**
- * Class PublicationRepository
- */
 class PublicationRepository extends AbstractRepository
 {
     /**
-     * @param Filter $filter
-     * @return object[]|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findByFilter(Filter $filter)
+    public function findByFilter(Filter $filter): array
     {
         $query = $this->createQuery();
         $this->filterQuery($query, $filter);
@@ -30,12 +25,9 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @return void
      * @throws InvalidQueryException
      */
-    protected function filterQuery(QueryInterface $query, Filter $filter)
+    protected function filterQuery(QueryInterface $query, Filter $filter): void
     {
         $concat = [];
         if ($filter->isFilterFlexFormSet()) {
@@ -79,10 +71,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByTags(QueryInterface $query, Filter $filter, array $and): array
@@ -98,10 +86,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByTimeframe(QueryInterface $query, Filter $filter, array $and): array
@@ -112,12 +96,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     */
     protected function filterQueryByBibtypes(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isBibtypesSet()) {
@@ -130,12 +108,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     */
     protected function filterQueryByStatus(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isStatusSet()) {
@@ -149,10 +121,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByAuthor(QueryInterface $query, Filter $filter, array $and): array
@@ -167,12 +135,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     */
     protected function filterQueryByExternFilter(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isExternOrIntern()) {
@@ -181,12 +143,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     */
     protected function filterQueryByReviewFilter(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isReviewed()) {
@@ -196,10 +152,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByRecords(QueryInterface $query, Filter $filter, array $and): array
@@ -211,10 +163,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryBySearchterms(QueryInterface $query, Filter $filter, array $and): array
@@ -242,13 +190,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     * @throws InvalidQueryException
-     */
     protected function filterQueryByYear(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isYearSet()) {
@@ -257,13 +198,6 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
-     * @throws InvalidQueryException
-     */
     protected function filterQueryByDocumenttype(QueryInterface $query, Filter $filter, array $and): array
     {
         if ($filter->isDocumenttypeSet()) {
@@ -285,10 +219,6 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @param array $and
-     * @return array
      * @throws InvalidQueryException
      */
     protected function filterQueryByAuthorstring(QueryInterface $query, Filter $filter, array $and): array
@@ -308,21 +238,13 @@ class PublicationRepository extends AbstractRepository
         return $and;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @param Filter $filter
-     * @return void
-     */
-    protected function setOrderingsByFilterSettings(QueryInterface $query, Filter $filter)
+    protected function setOrderingsByFilterSettings(QueryInterface $query, Filter $filter): void
     {
         $query->setOrderings($filter->getGroupByArrayForQuery());
     }
 
     /**
      * Convert results to array and add a number to the records
-     *
-     * @param QueryResultInterface $results
-     * @return array
      */
     protected function convertToAscendingArray(QueryResultInterface $results): array
     {
@@ -333,9 +255,6 @@ class PublicationRepository extends AbstractRepository
 
     /**
      * Callback function to sort by a date
-     *
-     * @param Publication $p1
-     * @param Publication $p2
      * @return int 0 or -1 or 1
      */
     public function compareCallbackByDate(Publication $p1, Publication $p2): int
