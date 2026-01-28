@@ -10,25 +10,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Class MigrationCommand
- */
 class MigrationCommand extends Command
 {
-    /**
-     * Configure the command by defining the name, options and arguments
-     */
-    public function configure()
+    public function configure(): void
     {
         $this->setDescription('Migrate existing bib records to new publications records');
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     * @throws \TYPO3\CMS\Extbase\Object\Exception
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $migration = GeneralUtility::makeInstance(MigrateFromBib::class);
