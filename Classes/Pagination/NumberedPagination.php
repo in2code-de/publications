@@ -9,16 +9,12 @@ use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 
 final class NumberedPagination implements PaginationInterface
 {
-    /**
-     * @var PaginatorInterface
-     */
-    protected $paginator;
-
-    protected $maximumNumberOfLinks = 10;
-    protected $displayRangeStart = 0;
-    protected $displayRangeEnd = 0;
-    protected $hasLessPages = false;
-    protected $hasMorePages = false;
+    protected PaginatorInterface $paginator;
+    protected int $maximumNumberOfLinks = 10;
+    protected int $displayRangeStart = 0;
+    protected int $displayRangeEnd = 0;
+    protected bool $hasLessPages = false;
+    protected bool $hasMorePages = false;
 
     public function __construct(PaginatorInterface $paginator, int $maximumNumberOfLinks = 0)
     {
@@ -97,25 +93,16 @@ final class NumberedPagination implements PaginationInterface
         return $this->hasMorePages;
     }
 
-    /**
-     * @return int
-     */
     public function getMaximumNumberOfLinks(): int
     {
         return $this->maximumNumberOfLinks;
     }
 
-    /**
-     * @return int
-     */
     public function getDisplayRangeStart(): int
     {
         return $this->displayRangeStart;
     }
 
-    /**
-     * @return int
-     */
     public function getDisplayRangeEnd(): int
     {
         return $this->displayRangeEnd;
@@ -145,9 +132,6 @@ final class NumberedPagination implements PaginationInterface
         $this->hasMorePages = $this->displayRangeEnd + 1 < $this->paginator->getNumberOfPages();
     }
 
-    /**
-     * @return PaginatorInterface
-     */
     public function getPaginator(): PaginatorInterface
     {
         return $this->paginator;
