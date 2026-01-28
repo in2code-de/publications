@@ -7,17 +7,14 @@ namespace In2code\Publications\Validation\Validator;
 use In2code\Publications\Utility\ConfigurationUtility;
 use TYPO3\CMS\Core\Http\UploadedFile;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\Exception\NoServerRequestGivenException;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
-/**
- * Class UploadValidator
- */
 class UploadValidator extends AbstractValidator
 {
     /**
-     * @param mixed $value
-     * @return void
+     * @throws NoServerRequestGivenException
      */
     public function isValid(mixed $value): void
     {
@@ -25,13 +22,19 @@ class UploadValidator extends AbstractValidator
         $this->validateForSystemUploadErrors($value);
     }
 
-    protected function validateForIndividualUploadErrors(UploadedFile $value)
+    /**
+     * @throws NoServerRequestGivenException
+     */
+    protected function validateForIndividualUploadErrors(UploadedFile $value): void
     {
         $this->validateFileExtension($value);
         $this->validateSize($value);
     }
 
-    protected function validateFileExtension(UploadedFile $value)
+    /**
+     * @throws NoServerRequestGivenException
+     */
+    protected function validateFileExtension(UploadedFile $value): void
     {
         $allowedExtensions = GeneralUtility::trimExplode(
             ',',

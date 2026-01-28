@@ -7,15 +7,8 @@ namespace In2code\Publications\Validation\Validator;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
-/**
- * Class ClassValidator
- */
 class ClassValidator extends AbstractValidator
 {
-    /**
-     * @param mixed $value
-     * @return void
-     */
     public function isValid(mixed $value): void
     {
         if (!class_exists($value)) {
