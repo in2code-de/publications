@@ -6,11 +6,15 @@ namespace In2code\Publications\Domain\Service;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Utility\FrontendUtility;
+use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class PublicationService
 {
+    /**
+     * @throws InvalidRouteArgumentsException
+     */
     public function getGroupedPublicationLinks(array $publications, int $groupBy, int $ceIdentifier, int $itemsPerPage): array
     {
         $groupLinks = [];
@@ -38,7 +42,7 @@ class PublicationService
                 }
 
                 $pageUid =  $frontendUtility->getCurrentPageIdentifier();
-                $site = $frontendUtility->getSiteFromPageIdentifier($pageUid);
+                $site = $frontendUtility->getSite();
                 $url = $frontendUtility->buildUrlToPageWithArguments($pageUid, ['tx_publications_pi1' => ['currentPage' => $page]], $site);
 
                 $localizedBibType =
