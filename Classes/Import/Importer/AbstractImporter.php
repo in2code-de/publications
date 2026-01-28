@@ -5,23 +5,15 @@ declare(strict_types=1);
 namespace In2code\Publications\Import\Importer;
 
 /**
- * Class AbstractImporter
- *
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 abstract class AbstractImporter implements ImporterInterface
 {
     /**
      * map publication fields from -> to
-     *
-     * @var array
      */
     protected array $additionalPublicationMapping = [];
 
-    /**
-     * @param array $publications
-     * @return array
-     */
     protected function fieldMapping(array $publications): array
     {
         $mappedPublications = [];
@@ -48,10 +40,9 @@ abstract class AbstractImporter implements ImporterInterface
      * override this function to do a special mapping for a publication
      * e.g. convert dates etc.
      *
-     * @param array $publication
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function specialMapping(array &$publication)
+    protected function specialMapping(array &$publication): void
     {
     }
 }

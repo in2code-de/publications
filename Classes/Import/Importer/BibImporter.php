@@ -10,16 +10,12 @@ use RenanBr\BibTexParser\Listener;
 use RenanBr\BibTexParser\Parser;
 
 /**
- * Class BibImporter
- *
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 class BibImporter extends AbstractImporter
 {
     /**
      * map publication fields from -> to
-     *
-     * @var array
      */
     protected array $additionalPublicationMapping = [
         'citation-key' => 'citeid',
@@ -37,18 +33,12 @@ class BibImporter extends AbstractImporter
 
     /**
      * map author fields from -> to
-     *
-     * @var array
      */
     protected array $additionalAuthorMapping = [
         'first' => 'first_name',
         'last' => 'last_name'
     ];
 
-    /**
-     * @param string $filePath
-     * @return array
-     */
     public function convert(string $filePath): array
     {
         try {
@@ -69,10 +59,7 @@ class BibImporter extends AbstractImporter
         }
     }
 
-    /**
-     * @param array $publication
-     */
-    protected function specialMapping(array &$publication)
+    protected function specialMapping(array &$publication): void
     {
         $this->authorMapping($publication);
         $this->additionalTypeMapping($publication);
@@ -80,21 +67,14 @@ class BibImporter extends AbstractImporter
 
     /**
      * Add bibtype
-     *
-     * @param array $publication
-     * @return void
      */
-    protected function additionalTypeMapping(array &$publication)
+    protected function additionalTypeMapping(array &$publication): void
     {
         $this->addBibType($publication);
         $this->removeTypeIfEmpty($publication);
     }
 
-    /**
-     * @param array $publication
-     * @return void
-     */
-    protected function addBibType(array &$publication)
+    protected function addBibType(array &$publication): void
     {
         $publication['bibtype'] = $this->getBibTypeFromPublication($publication);
         if ($publication['bibtype'] === 'Technical Report') {
@@ -106,21 +86,15 @@ class BibImporter extends AbstractImporter
     /**
      * Because the parser automatically uses key "type" for bibtype and because there is already another field with
      * the same key, we have to use it in a different way.
-     *
-     * @param array $publication
-     * @return void
      */
-    protected function removeTypeIfEmpty(array &$publication)
+    protected function removeTypeIfEmpty(array &$publication): void
     {
         if ($this->isTypeFieldInPublication($publication) === false) {
             unset($publication['type']);
         }
     }
 
-    /**
-     * @param array $publication
-     */
-    protected function authorMapping(array &$publication)
+    protected function authorMapping(array &$publication): void
     {
         if (!empty($publication['authors'])) {
             foreach ($this->additionalAuthorMapping as $from => $to) {
@@ -134,22 +108,14 @@ class BibImporter extends AbstractImporter
         }
     }
 
-    /**
-     * @param array $publication
-     * @return bool
-     */
     protected function isTypeFieldInPublication(array &$publication): bool
     {
         return stristr($publication['_original'], 'type = {') !== false;
     }
 
-    /**
-     * @param array $publication
-     * @return string
-     */
     protected function getBibTypeFromPublication(array &$publication): string
     {
         preg_match('~@([a-zA-Z0-9]+)~', $publication['_original'], $result);
-        return (string)$result[1];
+        return $result[1];
     }
 }
