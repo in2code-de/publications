@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace In2code\Publications\Domain\Model\Dto;
 
 use DateTime;
-use In2code\Publications\Domain\Model\Author;
+use Doctrine\DBAL\Driver\Exception;
 use In2code\Publications\Domain\Repository\AuthorRepository;
 use In2code\Publications\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -330,6 +330,9 @@ class Filter
         return $this->getRecords() !== [];
     }
 
+    /**
+     * @throws Exception
+     */
     public function setRecords(array $records): self
     {
         $this->records = PageUtility::extendPidListByChildren($records, $this->getRecursive());
@@ -523,7 +526,7 @@ class Filter
         return $this;
     }
 
-    public function isTitleSet()
+    public function isTitleSet(): bool
     {
         return $this->getTitle() !== '';
     }
