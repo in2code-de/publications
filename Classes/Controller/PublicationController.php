@@ -69,7 +69,7 @@ class PublicationController extends ActionController
             'publications' => $publications,
             'data' => $this->getContentObject()->data,
             'maxItems' => count($publications),
-            'pagination', [
+            'pagination' => [
                 'paginator' => $paginator,
                 'pagination' => $pagination,
             ]
