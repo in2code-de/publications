@@ -362,8 +362,8 @@
 			</trans-unit>
 
 			<trans-unit id="wizardTitlePi1">
-				<source>Publications</source>
-				<target state="translated">Publikationen</target>
+				<source>Publications List</source>
+				<target state="translated">Publikationen Listenansicht</target>
 			</trans-unit>
 			<trans-unit id="wizardDescriptionsPi1">
 				<source>List of publications</source>

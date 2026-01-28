@@ -1,0 +1,15 @@
+TCEFORM {
+  tt_content {
+    recursive {
+      types {
+        publications_pi1.disabled = 1
+      }
+    }
+
+    pages {
+      types {
+        publications_pi1.disabled = 1
+      }
+    }
+  }
+}

@@ -1,23 +1,17 @@
 <?php
 
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility as ExtensionUtilityAlias;
+
 defined('TYPO3') || die();
 
-/**
- * Register Plugins
- */
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('publications', 'Pi1', 'Publication List');
+$llPrefix = 'LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:';
 
-/**
- * Disable not needed fields in tt_content
- */
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['publications_pi1']
-    = 'select_key,pages,recursive';
-
-/**
- * Include Flexform
- */
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['publications_pi1'] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'publications_pi1',
+ExtensionUtilityAlias::registerPlugin(
+    'publications',
+    'Pi1',
+    $llPrefix . 'wizardTitlePi1',
+    'extension-publications-wizard-icon',
+    'Publications',
+    $llPrefix . 'wizardDescriptionsPi1',
     'FILE:EXT:publications/Configuration/FlexForms/FlexFormPi1.xml'
 );

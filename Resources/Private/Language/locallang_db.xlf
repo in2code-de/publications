@@ -280,7 +280,7 @@
 			</trans-unit>
 
 			<trans-unit id="wizardTitlePi1">
-				<source>Publications</source>
+				<source>Publications List</source>
 			</trans-unit>
 			<trans-unit id="wizardDescriptionsPi1">
 				<source>List of publications</source>
