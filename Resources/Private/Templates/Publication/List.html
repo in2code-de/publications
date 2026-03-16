@@ -52,20 +52,42 @@
 	<f:switch expression="{filter.groupby}">
 		<f:case value="0">
 			<f:if condition="{lastGroupTitle} != {publication.year}">
-				<h4 id="c{publication.year}-{data.uid}">{publication.year}</h4>
+				<f:if condition="{publication.year}">
+					<f:then>
+						<h4 id="c{publication.year}-{data.uid}">{publication.year}</h4>
+					</f:then>
+					<f:else>
+						<h4 id="cnot-set-{data.uid}"><f:translate key="groupby.field.not-set"/></h4>
+					</f:else>
+				</f:if>
 			</f:if>
 		</f:case>
 		<f:case value="1">
-			<f:if condition="{lastGroupTitle} != {f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}">
-				<h4 id="{publication.bibtype}-{data.uid}">{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}</h4>
+			<f:variable name="bibtypeLabel" value="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" />
+			<f:if condition="{lastGroupTitle} != {bibtypeLabel}">
+				<f:if condition="{publication.bibtype}">
+					<f:then>
+						<h4 id="{publication.bibtype}-{data.uid}">{bibtypeLabel}</h4>
+					</f:then>
+					<f:else>
+						<h4 id="not-set-{data.uid}"><f:translate key="groupby.field.not-set"/></h4>
+					</f:else>
+				</f:if>
 			</f:if>
 		</f:case>
 		<f:case value="2">
+			<f:variable name="bibtypeLabel" value="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" />
 			<f:if condition="{lastGroupTitle} != {publication.year}">
-				<h4 id="c{publication.year}-{data.uid}">{publication.year}</h4>
+				<f:if condition="{publication.year}">
+					<f:then><h4 id="c{publication.year}-{data.uid}">{publication.year}</h4></f:then>
+					<f:else><h4 id="cnot-set-{data.uid}"><f:translate key="groupby.field.not-set"/></h4></f:else>
+				</f:if>
 			</f:if>
-			<f:if condition="{lastSubGroupTitle} != {f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}">
-				<h5>{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}</h5>
+			<f:if condition="{lastSubGroupTitle} != {bibtypeLabel}">
+				<f:if condition="{publication.bibtype}">
+					<f:then><h5>{bibtypeLabel}</h5></f:then>
+					<f:else><h5><f:translate key="groupby.field.not-set"/></h5></f:else>
+				</f:if>
 			</f:if>
 		</f:case>
 	</f:switch>

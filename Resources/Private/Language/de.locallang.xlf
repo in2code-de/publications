@@ -271,6 +271,10 @@
 				<source>Abstract</source>
 				<target>Abstract</target>
 			</trans-unit>
+			<trans-unit id="groupby.field.not-set" resname="groupby.field.not-set">
+				<source>not set</source>
+				<target>nicht gesetzt</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -204,6 +204,9 @@
 			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 			</trans-unit>
+			<trans-unit id="groupby.field.not-set" resname="groupby.field.not-set">
+				<source>not set</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

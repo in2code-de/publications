@@ -57,8 +57,6 @@ readonly class PublicationService
                 $this->frontendUtility->getSite()
             );
 
-            //  $groupLinks[$groupValue] =
-
             $localizedBibType =
                 LocalizationUtility::translate('bibtype.' . $groupValue, self::EXTENSION_NAME);
 
