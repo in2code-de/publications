@@ -350,20 +350,6 @@ class PublicationRepository extends AbstractRepository
      */
     protected function convertToAscendingArray(QueryResultInterface $results): array
     {
-        $resultsRaw = $results->toArray();
-        usort($resultsRaw, [$this, 'compareCallbackByDate']);
-        return $resultsRaw;
-    }
-
-    /**
-     * Callback function to sort by a date
-     *
-     * @param Publication $p1
-     * @param Publication $p2
-     * @return int 0 or -1 or 1
-     */
-    public function compareCallbackByDate(Publication $p1, Publication $p2): int
-    {
-        return $p2->getDate() <=> $p1->getDate();
+        return $results->toArray();
     }
 }

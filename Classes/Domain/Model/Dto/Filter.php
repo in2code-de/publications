@@ -20,6 +20,8 @@ class Filter
     public const GROUP_BY_TYPE = 1;
     public const GROUP_BY_YEAR_AND_TYPE = 2;
 
+    public const DEFAULT_SORT_FIELD = 'year';
+
     /**
      * @var int
      */
@@ -29,6 +31,9 @@ class Filter
      * @var int
      */
     protected int $groupby = self::GROUP_BY_YEAR;
+    protected string $groupByDirection = QueryInterface::ORDER_DESCENDING;
+    protected string $sortBy = self::DEFAULT_SORT_FIELD;
+    protected string $sortDirection = QueryInterface::ORDER_ASCENDING;
 
     /**
      * @var int
@@ -146,6 +151,9 @@ class Filter
     {
         $this->setCitestyle((int)($settings['citestyle'] ?? 0));
         $this->setGroupby((int)($settings['groupby'] ?? 0));
+        $this->setGroupByDirection($settings['groupbydirection'] ?? QueryInterface::ORDER_DESCENDING);
+        $this->setSortBy($settings['sortby'] ?? self::DEFAULT_SORT_FIELD);
+        $this->setSortDirection($settings['sortdirection'] ?? QueryInterface::ORDER_DESCENDING);
         $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
         $this->setTimeframe((int)($settings['timeframe'] ?? 0));
         $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));
@@ -200,28 +208,36 @@ class Filter
      */
     public function getGroupByArrayForQuery(): array
     {
+        $sortField = $this->getSortBy();
+        $sortDir = $this->getSortDirection();
+
         switch ($this->getGroupby()) {
-            case 0:
-                $orderings = [
-                    'year' => QueryInterface::ORDER_DESCENDING,
-                    'title' => QueryInterface::ORDER_ASCENDING
-                ];
-                break;
-            case 1:
-                $orderings = [
-                    'bibtype' => QueryInterface::ORDER_ASCENDING,
-                    'title' => QueryInterface::ORDER_ASCENDING
-                ];
-                break;
+            case self::GROUP_BY_NONE:
+                return [$sortField => $sortDir];
+
+            case self::GROUP_BY_YEAR:
+                if ($sortField === 'year') {
+                    return ['year' => $sortDir];
+                }
+                return ['year' => $this->getGroupByDirection(), $sortField => $sortDir];
+
+            case self::GROUP_BY_TYPE:
+                if ($sortField === 'bibtype') {
+                    return ['bibtype' => $sortDir];
+                }
+                return ['bibtype' => $this->getGroupByDirection(), $sortField => $sortDir];
+
             default:
-            case 2:
+            case self::GROUP_BY_YEAR_AND_TYPE:
                 $orderings = [
-                    'year' => QueryInterface::ORDER_DESCENDING,
+                    'year' => $this->getGroupByDirection(),
                     'bibtype' => QueryInterface::ORDER_ASCENDING,
-                    'title' => QueryInterface::ORDER_ASCENDING
                 ];
+                if ($sortField !== 'year' && $sortField !== 'bibtype') {
+                    $orderings[$sortField] = $sortDir;
+                }
+                return $orderings;
         }
-        return $orderings;
     }
 
     /**
@@ -229,7 +245,7 @@ class Filter
      */
     public function isGroupbySet(): bool
     {
-        return $this->getGroupby() !== 0;
+        return $this->getGroupby() !== self::GROUP_BY_NONE;
     }
 
     /**
@@ -239,6 +255,49 @@ class Filter
     public function setGroupby(int $groupby): self
     {
         $this->groupby = $groupby;
+        return $this;
+    }
+
+    public function getGroupByDirection(): string
+    {
+        return $this->groupByDirection;
+    }
+
+    public function setGroupByDirection(string $groupByDirection): self
+    {
+        $this->groupByDirection = $groupByDirection;
+        return $this;
+    }
+
+    public function getSortBy(): string
+    {
+        return $this->sortBy;
+    }
+
+    public function isSortbySet(): bool
+    {
+        return $this->getSortBy() !== self::DEFAULT_SORT_FIELD;
+    }
+
+    public function setSortBy(string $sortBy): self
+    {
+        $this->sortBy = $sortBy;
+        return $this;
+    }
+
+    public function getSortDirection(): string
+    {
+        return $this->sortDirection;
+    }
+
+    public function isSortDirectionSet(): bool
+    {
+        return $this->getSortDirection() !== QueryInterface::ORDER_ASCENDING;
+    }
+
+    public function setSortDirection(string $sortDirection): self
+    {
+        $this->sortDirection = $sortDirection;
         return $this;
     }
 
@@ -776,6 +835,8 @@ class Filter
     {
         return $this->isCitestyleSet()
             || $this->isGroupbySet()
+            || $this->isSortbySet()
+            || $this->isSortDirectionSet()
             || $this->isRecordsPerPageSet()
             || $this->isTimeFrameSet()
             || $this->isBibtypesSet()

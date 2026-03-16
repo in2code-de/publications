@@ -91,6 +91,7 @@
             <TCEforms>
               <exclude>1</exclude>
               <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
+              <onChange>reload</onChange>
               <config>
                 <type>select</type>
                 <renderType>selectSingle</renderType>
@@ -118,6 +119,69 @@
               </config>
             </TCEforms>
           </settings.groupby>
+          <settings.groupbydirection>
+            <TCEforms>
+              <label>
+                LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupbydirection
+              </label>
+              <displayCond>FIELD:settings.groupby:!=:-1</displayCond>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.desc
+                    </numIndex>
+                    <numIndex index="1">DESC</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.asc
+                    </numIndex>
+                    <numIndex index="1">ASC</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.groupbydirection>
+          <settings.sortby>
+            <TCEforms>
+              <label>
+                LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby
+              </label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <itemsProcFunc>In2code\Publications\Tca\SortbySelection->getFields</itemsProcFunc>
+              </config>
+            </TCEforms>
+          </settings.sortby>
+          <settings.sortdirection>
+            <TCEforms>
+              <label>
+                LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection
+              </label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.desc
+                    </numIndex>
+                    <numIndex index="1">DESC</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.asc
+                    </numIndex>
+                    <numIndex index="1">ASC</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.sortdirection>
           <settings.recordsPerPage>
             <TCEforms>
               <exclude>1</exclude>
