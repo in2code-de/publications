@@ -201,20 +201,21 @@ class Filter
     public function getGroupByArrayForQuery(): array
     {
         switch ($this->getGroupby()) {
-            case 0:
+            case self::GROUP_BY_NONE:
+            case self::GROUP_BY_YEAR:
                 $orderings = [
                     'year' => QueryInterface::ORDER_DESCENDING,
                     'title' => QueryInterface::ORDER_ASCENDING
                 ];
                 break;
-            case 1:
+            case self::GROUP_BY_TYPE:
                 $orderings = [
                     'bibtype' => QueryInterface::ORDER_ASCENDING,
                     'title' => QueryInterface::ORDER_ASCENDING
                 ];
                 break;
             default:
-            case 2:
+            case self::GROUP_BY_YEAR_AND_TYPE:
                 $orderings = [
                     'year' => QueryInterface::ORDER_DESCENDING,
                     'bibtype' => QueryInterface::ORDER_ASCENDING,
@@ -229,7 +230,7 @@ class Filter
      */
     public function isGroupbySet(): bool
     {
-        return $this->getGroupby() !== 0;
+        return $this->getGroupby() !== self::GROUP_BY_NONE;
     }
 
     /**
