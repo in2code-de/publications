@@ -1,0 +1,6 @@
+tx_publications.flexForm.sortby {
+  year = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby.year
+  title = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby.title
+  bibtype = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby.bibtype
+  authors\.lastName = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby.authors.lastName
+}

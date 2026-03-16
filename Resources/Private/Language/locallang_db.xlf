@@ -487,6 +487,36 @@
 			<trans-unit id="flexform.pi1.template.groupby.2">
 				<source>year and type</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupbydirection">
+				<source>Group by direction</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.groupbydirection.auto">
+				<source>Auto (default)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortby">
+				<source>Sort by</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortby.year">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortby.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortby.bibtype">
+				<source>Publication type</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortby.authors.lastName">
+				<source>Author (last name)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortdirection">
+				<source>Sort by direction</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortdirection.asc">
+				<source>Ascending</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.sortdirection.desc">
+				<source>Descending</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.recordsPerPage">
 				<source>show this amount of records per page</source>
 			</trans-unit>

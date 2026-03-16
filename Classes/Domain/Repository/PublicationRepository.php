@@ -21,7 +21,7 @@ class PublicationRepository extends AbstractRepository
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
         $results = $query->execute();
-        return $this->convertToAscendingArray($results);
+        return $this->convertToArray($results);
     }
 
     /**
@@ -243,14 +243,9 @@ class PublicationRepository extends AbstractRepository
         $query->setOrderings($filter->getGroupByArrayForQuery());
     }
 
-    /**
-     * Convert results to array and add a number to the records
-     */
-    protected function convertToAscendingArray(QueryResultInterface $results): array
+    protected function convertToArray(QueryResultInterface $results): array
     {
-        $resultsRaw = $results->toArray();
-        usort($resultsRaw, [$this, 'compareCallbackByDate']);
-        return $resultsRaw;
+        return $results->toArray();
     }
 
     /**
