@@ -94,6 +94,7 @@
             <exclude>1</exclude>
             <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby
             </label>
+            <onChange>reload</onChange>
             <config>
               <type>select</type>
               <renderType>selectSingle</renderType>
@@ -128,6 +129,63 @@
               <maxitems>1</maxitems>
             </config>
           </settings.groupby>
+          <settings.groupbydirection>
+            <label>
+              LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupbydirection
+            </label>
+            <displayCond>FIELD:settings.groupby:!=:-1</displayCond>
+            <config>
+              <type>select</type>
+              <renderType>selectSingle</renderType>
+              <items type="array">
+                <numIndex index="0" type="array">
+                  <numIndex index="0">
+                    LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.desc
+                  </numIndex>
+                  <numIndex index="1">DESC</numIndex>
+                </numIndex>
+                <numIndex index="1" type="array">
+                  <numIndex index="0">
+                    LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.asc
+                  </numIndex>
+                  <numIndex index="1">ASC</numIndex>
+                </numIndex>
+              </items>
+            </config>
+          </settings.groupbydirection>
+          <settings.sortby>
+            <label>
+              LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortby
+            </label>
+            <config>
+              <type>select</type>
+              <renderType>selectSingle</renderType>
+              <itemsProcFunc>In2code\Publications\Tca\SortbySelection->getFields</itemsProcFunc>
+            </config>
+          </settings.sortby>
+          <settings.sortdirection>
+            <label>
+              LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection
+            </label>
+            <config>
+              <type>select</type>
+              <renderType>selectSingle</renderType>
+              <items type="array">
+                <numIndex index="0" type="array">
+                  <numIndex index="0">
+                    LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.desc
+                  </numIndex>
+                  <numIndex index="1">DESC</numIndex>
+                </numIndex>
+                <numIndex index="1" type="array">
+                  <numIndex index="0">
+                    LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.sortdirection.asc
+                  </numIndex>
+                  <numIndex index="1">ASC</numIndex>
+                </numIndex>
+              </items>
+            </config>
+          </settings.sortdirection>
           <settings.recordsPerPage>
             <exclude>1</exclude>
             <label>
