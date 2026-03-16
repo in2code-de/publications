@@ -2,8 +2,6 @@
 
 Inspired by the TYPO3 **bib** extension
 
-
-
 ## Introduction
 
 Target group of this extension are universities and colleges:
@@ -12,8 +10,6 @@ Im- and export BibTeX or XML files (Import via Backend Module, Export in Fronten
 Easily extend this extension with own importers or own citestyles.
 
 At the moment we support a default and the IEEE citestyle.
-
-
 
 ## Screenshots
 
@@ -26,13 +22,11 @@ Plugin:
 Import module:
 ![Module](Documentation/Images/screenshot_backend_module.png "Module")
 
-
-
 ## Technical requirements
 
-This extension needs *TYPO3 13*
-At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
+This extension needs **TYPO3:** ^14.1 | **PHP:** ^8.2
 
+At the moment it's not possible to use publications without **composer mode**! Classic mode is not supported.
 
 ## Installation
 
@@ -43,14 +37,19 @@ At the moment it's not possible to use publications without **composer mode**! C
 * Add the publication plugin to a default page
 * That's it
 
+## Features
 
+| Feature                                    | Description                                                                                                                                   | Documentation                                |
+|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| [Cite styles](Documentation/Citestyles.md) | Configurable citation formats (IEEE, Harvard, Chicago, APA, Vancouver, …); custom styles via TSConfig and Fluid partials                      | [Citestyles.md](Documentation/Citestyles.md) |
+| [Sorting](Documentation/Sorting.md)        | Configurable primary (group by direction) and secondary (sort by / sort direction) ordering via FlexForm; extensible sort fields via TSConfig | [Sorting.md](Documentation/Sorting.md)       |
+| [Group Links](Documentation/GroupLinks.md) | Navigation links to grouped sections (year / type); configurable prefix and suffix via TypoScript                                             | [GroupLinks.md](Documentation/GroupLinks.md) |
+| [Importer](Documentation/Importer.md)      | BibTeX and XML import via backend module; custom importers can be registered via `TYPO3_CONF_VARS`                                            | [Importer.md](Documentation/Importer.md)     |
 
 ## Extending publications
 
 * Look at the [importer documentation](Documentation/Importer.md) to see how you can add own importers
 * Look at the [citestyle documentation](Documentation/Citestyles.md) to see how you can add your own cite styles
-
-
 
 ## Migration from bib
 
@@ -104,6 +103,7 @@ This project uses php-cs-fixer to check for PHP coding standards.
 For a list of the used rules see: `.project/tests/.php-cs-fixer.php`.
 
 Run the PHP code style test (local):
+
 ```
 ddev ssh
 composer  test:php:cs
@@ -114,10 +114,12 @@ Automatic fix of code style violations:
 This command tries to fix code violations automatically.
 This works for the most violations (indent, spaces etc.).
 If an automatic fix is not possible the fixes must be done manually.
+
 ```
 ddev ssh
 ./.build/bin/php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff
 ```
+
 ## Early Access Programm for TYPO3 14 support
 
 :information_source: **TYPO3 14 compatibility**
@@ -129,6 +131,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 14.0.0  | xxxx-xx-xx | Feature | Support TYPO3 14. For further information see:[Commits](https://github.com/in2code-de/publications/commits/14.0.0)                |
 | 13.0.2  | 2026-01-27 | Bugfix  | Bugfix release. For further information see:[Commits](https://github.com/in2code-de/publications/commits/13.0.2)                  |
 | 13.0.1  | 2026-01-21 | Bugfix  | Prevent undefined array key exception, fix SQL definition                                                                         |
 | 13.0.0  | 2025-08-08 | Feature | Support TYPO3 13                                                                                                                  |
@@ -181,16 +184,15 @@ ddev ssh
 | 0.2.0   | 2019-08-26 | Task    | 2. prerelease with a basic IEEE citestyle                                                                                         |
 | 0.1.0   | 2019-08-21 | Task    | First prerelease with a default citestyle only                                                                                    |
 
-
-
 ## Patrons
 
 * <a href="https://www.uni-ulm.de" target="_blank">University of Ulm</a> as the main sponsor of this extension
-* <a href="https://www.in2code.de" target="_blank" title="Wir leben TYPO3">in2code GmbH</a> as the development partner of this extension
-
+* <a href="https://www.in2code.de" target="_blank" title="Wir leben TYPO3">in2code GmbH</a> as the development partner
+  of this extension
 
 ## Credits
 
 The icons
+
 * docx icon was made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
-* pdf icon was  made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
+* pdf icon was made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
