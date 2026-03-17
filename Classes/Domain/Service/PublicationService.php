@@ -24,7 +24,7 @@ readonly class PublicationService
      */
     public function getGroupedPublicationLinks(
         array $publications,
-        int $groupBy,
+        string $groupBy,
         int $ceIdentifier,
         int $itemsPerPage
     ): array {
@@ -44,9 +44,14 @@ readonly class PublicationService
                 $page++;
             }
 
-            $groupValue = $publication->{$method}();
+            if (!method_exists($publication, $method)) {
+                $count++;
+                continue;
+            }
 
-            if (empty($groupValue) || array_key_exists($groupValue, $groupLinks)) {
+            $groupValue = (string)$publication->{$method}();
+
+            if ($groupValue === '' || array_key_exists($groupValue, $groupLinks)) {
                 $count++;
                 continue;
             }
@@ -62,11 +67,9 @@ readonly class PublicationService
 
             $groupLinks[$groupValue] = [
                 'title' => $groupValue,
-                'link' => $url . '#' . $prefix . $groupValue . '-' .
-                    $ceIdentifier
+                'link' => $url . '#' . $prefix . $groupValue . '-' . $ceIdentifier,
             ];
 
-            // localize title if necessary
             if ($groupBy === Filter::GROUP_BY_TYPE && !empty($localizedBibType)) {
                 $groupLinks[$groupValue]['title'] = $localizedBibType;
             }
@@ -77,12 +80,22 @@ readonly class PublicationService
         return $groupLinks;
     }
 
-    private function resolveGroupingConfiguration(int $groupBy): ?array
+    private function resolveGroupingConfiguration(string $groupBy): ?array
     {
         return match ($groupBy) {
+            Filter::GROUP_BY_NONE => null,
             Filter::GROUP_BY_YEAR, Filter::GROUP_BY_YEAR_AND_TYPE => ['getYear', 'c'],
             Filter::GROUP_BY_TYPE => ['getBibtype', ''],
-            default => null,
+            default => $this->resolveCustomGroupingConfiguration($groupBy),
         };
+    }
+
+    private function resolveCustomGroupingConfiguration(string $fieldPath): ?array
+    {
+        if (str_contains($fieldPath, '.')) {
+            return null;
+        }
+
+        return ['get' . ucfirst($fieldPath), 'custom-group-'];
     }
 }
