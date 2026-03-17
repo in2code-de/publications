@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Domain\Repository;
 
+use DateTime;
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Model\Publication;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
@@ -26,7 +27,8 @@ class PublicationRepository extends AbstractRepository
         $this->filterQuery($query, $filter);
         $this->setOrderingsByFilterSettings($query, $filter);
         $results = $query->execute();
-        return $this->convertToArray($results);
+        $publications = $this->convertToArray($results);
+        return $this->filterByDateRange($publications, $filter);
     }
 
     /**
@@ -106,10 +108,34 @@ class PublicationRepository extends AbstractRepository
      */
     protected function filterQueryByTimeframe(QueryInterface $query, Filter $filter, array $and): array
     {
-        if ($filter->isTimeFrameSet()) {
+        if ($filter->getTimeframeType() === 0 && $filter->isTimeFrameSet()) {
             $and[] = $query->greaterThan('year', $filter->getDateFromTimeFrame()->format('Y'));
         }
         return $and;
+    }
+
+    protected function filterByDateRange(array $publications, Filter $filter): array
+    {
+        if (!$filter->isDateRangeSet()) {
+            return $publications;
+        }
+        $dateFrom = $filter->isDateFromSet() ? (new DateTime('@' . $filter->getDateFrom()))->setTime(0, 0) : null;
+        $dateTo = $filter->isDateToSet() ? (new DateTime('@' . $filter->getDateTo()))->setTime(23, 59, 59) : null;
+        return array_values(
+            array_filter(
+                $publications,
+                static function (Publication $publication) use ($dateFrom, $dateTo): bool {
+                    $publicationDate = $publication->getDate();
+                    if ($dateFrom !== null && $publicationDate < $dateFrom) {
+                        return false;
+                    }
+                    if ($dateTo !== null && $publicationDate > $dateTo) {
+                        return false;
+                    }
+                    return true;
+                }
+            )
+        );
     }
 
     /**

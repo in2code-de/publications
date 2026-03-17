@@ -295,6 +295,21 @@
 			<trans-unit id="flexform.pi1.filter.timeframe.0">
 				<source>all</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframeType">
+				<source>Timeframe filter type</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframeType.0">
+				<source>Number of years (relative)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.timeframeType.1">
+				<source>Date range (from - to)</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.dateFrom">
+				<source>Year from</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.filter.dateTo">
+				<source>Year to</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.filter.bibtypes">
 				<source>Publication types (empty = all)</source>
 			</trans-unit>
