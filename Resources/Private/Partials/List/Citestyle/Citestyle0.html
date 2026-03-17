@@ -400,8 +400,9 @@
 </f:spaceless></f:section>
 
 <f:section name="authorDefault"><f:spaceless>
-	{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>
-	{author.firstName}
+	<publications:format.highlightAuthor author="{author}" before="<b>" after="</b>" searchterms="{settings.author}" authorstring="{filter.authorstring}" settings="{settings}" >
+		{author.lastName}<f:if condition="{author.lastName} && {author.firstName}">,</f:if>{author.firstName}
+	</publications:format.highlightAuthor>
 </f:spaceless></f:section>
 
 <f:section name="title">
