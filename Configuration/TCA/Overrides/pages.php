@@ -9,7 +9,7 @@ $iconRef = 'extension-' . $ext;
 
 $addToModuleSelection = true;
 foreach ($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
-    if ($item['1'] == $ext || $item['value'] === $ext) {
+    if ((array_key_exists('1', $item) && $item['1'] == $ext) || $item['value'] === $ext) {
         $addToModuleSelection = false;
         break;
     }
