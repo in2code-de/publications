@@ -1,0 +1,8 @@
+tx_publications.flexForm.groupby {
+  -1 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.-1
+  0 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0
+  1 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1
+  2 = LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2
+  # To add custom groupby fields, extend this list in your page TSConfig, e.g.:
+  publisher = Publisher
+}
