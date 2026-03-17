@@ -18,6 +18,9 @@ class Filter
     public const GROUP_BY_TYPE = 1;
     public const GROUP_BY_YEAR_AND_TYPE = 2;
 
+    public const TIMEFRAME_FILTER_TYPE_RELATIVE = 0;
+    public const TIMEFRAME_FILTER_TYPE_FROM_TO = 1;
+
     public const DEFAULT_SORT_FIELD = 'year';
 
     protected int $citestyle = 0;
@@ -27,6 +30,9 @@ class Filter
     protected string $sortDirection = QueryInterface::ORDER_ASCENDING;
     protected int $recordsPerPage = 25;
     protected int $timeframe = 0;
+    protected int $timeframeType = self::TIMEFRAME_FILTER_TYPE_RELATIVE;
+    protected int $dateFrom = 0;
+    protected int $dateTo = 0;
     protected array $bibtypes = [];
     protected array $status = [];
     protected array $keywords = [];
@@ -68,6 +74,9 @@ class Filter
         $this->setSortDirection($settings['sortdirection'] ?? QueryInterface::ORDER_DESCENDING);
         $this->setRecordsPerPage((int)($settings['recordsPerPage'] ?? 25));
         $this->setTimeframe((int)($settings['timeframe'] ?? 0));
+        $this->setTimeframeType((int)($settings['timeframeType'] ?? 0));
+        $this->setDateFrom((int)($settings['dateFrom'] ?? 0));
+        $this->setDateTo((int)($settings['dateTo'] ?? 0));
         $this->setBibtypes(GeneralUtility::trimExplode(',', $settings['bibtypes'] ?? '', true));
         $this->setStatus(GeneralUtility::intExplode(',', $settings['status'] ?? '', true));
         $this->setKeywords(GeneralUtility::trimExplode(PHP_EOL, $settings['keywords'] ?? '', true));
@@ -233,6 +242,54 @@ class Filter
     {
         $this->timeframe = $timeframe;
         return $this;
+    }
+
+    public function getTimeframeType(): int
+    {
+        return $this->timeframeType;
+    }
+
+    public function setTimeframeType(int $timeframeType): self
+    {
+        $this->timeframeType = $timeframeType;
+        return $this;
+    }
+
+    public function getDateFrom(): int
+    {
+        return $this->dateFrom;
+    }
+
+    public function isDateFromSet(): bool
+    {
+        return $this->dateFrom > 0;
+    }
+
+    public function setDateFrom(int $dateFrom): self
+    {
+        $this->dateFrom = $dateFrom;
+        return $this;
+    }
+
+    public function getDateTo(): int
+    {
+        return $this->dateTo;
+    }
+
+    public function isDateToSet(): bool
+    {
+        return $this->dateTo > 0;
+    }
+
+    public function setDateTo(int $dateTo): self
+    {
+        $this->dateTo = $dateTo;
+        return $this;
+    }
+
+    public function isDateRangeSet(): bool
+    {
+        return $this->timeframeType === self::TIMEFRAME_FILTER_TYPE_FROM_TO && ($this->isDateFromSet() || $this->isDateToSet());
     }
 
     public function getBibtypes(): array
@@ -537,6 +594,7 @@ class Filter
             || $this->isSortDirectionSet()
             || $this->isRecordsPerPageSet()
             || $this->isTimeFrameSet()
+            || $this->isDateRangeSet()
             || $this->isBibtypesSet()
             || $this->isStatusSet()
             || $this->isKeywordsSet()
