@@ -15,10 +15,10 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class Filter
 {
-    public const GROUP_BY_NONE = -1;
-    public const GROUP_BY_YEAR = 0;
-    public const GROUP_BY_TYPE = 1;
-    public const GROUP_BY_YEAR_AND_TYPE = 2;
+    public const GROUP_BY_NONE = '-1';
+    public const GROUP_BY_YEAR = '0';
+    public const GROUP_BY_TYPE = '1';
+    public const GROUP_BY_YEAR_AND_TYPE = '2';
 
     public const TIMEFRAME_FILTER_TYPE_RELATIVE = 0;
     public const TIMEFRAME_FILTER_TYPE_FROM_TO = 1;
@@ -31,9 +31,9 @@ class Filter
     protected int $citestyle = 0;
 
     /**
-     * @var int
+     * @var string
      */
-    protected int $groupby = self::GROUP_BY_YEAR;
+    protected string $groupby = self::GROUP_BY_YEAR;
     protected string $groupByDirection = QueryInterface::ORDER_DESCENDING;
     protected string $sortBy = self::DEFAULT_SORT_FIELD;
     protected string $sortDirection = QueryInterface::ORDER_ASCENDING;
@@ -156,7 +156,7 @@ class Filter
     public function __construct(array $settings)
     {
         $this->setCitestyle((int)($settings['citestyle'] ?? 0));
-        $this->setGroupby((int)($settings['groupby'] ?? 0));
+        $this->setGroupby((string)($settings['groupby'] ?? self::GROUP_BY_YEAR));
         $this->setGroupByDirection($settings['groupbydirection'] ?? QueryInterface::ORDER_DESCENDING);
         $this->setSortBy($settings['sortby'] ?? self::DEFAULT_SORT_FIELD);
         $this->setSortDirection($settings['sortdirection'] ?? QueryInterface::ORDER_DESCENDING);
@@ -205,9 +205,9 @@ class Filter
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getGroupby(): int
+    public function getGroupby(): string
     {
         return $this->groupby;
     }
@@ -236,7 +236,6 @@ class Filter
                 }
                 return ['bibtype' => $this->getGroupByDirection(), $sortField => $sortDir];
 
-            default:
             case self::GROUP_BY_YEAR_AND_TYPE:
                 $orderings = [
                     'year' => $this->getGroupByDirection(),
@@ -246,6 +245,13 @@ class Filter
                     $orderings[$sortField] = $sortDir;
                 }
                 return $orderings;
+
+            default:
+                $groupField = $this->getGroupby();
+                if ($sortField === $groupField) {
+                    return [$groupField => $sortDir];
+                }
+                return [$groupField => $this->getGroupByDirection(), $sortField => $sortDir];
         }
     }
 
@@ -258,10 +264,10 @@ class Filter
     }
 
     /**
-     * @param int $groupby
+     * @param string $groupby
      * @return Filter
      */
-    public function setGroupby(int $groupby): self
+    public function setGroupby(string $groupby): self
     {
         $this->groupby = $groupby;
         return $this;

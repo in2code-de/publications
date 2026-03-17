@@ -30,6 +30,9 @@
 						<f:variable name="lastGroupTitle" value="{publication.year}" />
 						<f:variable name="lastSubGroupTitle" value="{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}" />
 					</f:case>
+					<f:defaultCase>
+						<f:variable name="lastGroupTitle" value="{publication.{filter.groupby}}" />
+					</f:defaultCase>
 				</f:switch>
 			</f:for>
 			<f:if condition="{pagination.paginator.numberOfPages} > 1">
@@ -68,5 +71,18 @@
 				<h5>{f:translate(key:'bibtype.{publication.bibtype}',default:publication.bibtype)}</h5>
 			</f:if>
 		</f:case>
+		<f:defaultCase>
+			<f:variable name="currentGroupTitle" value="{publication.{filter.groupby}}" />
+			<f:if condition="{lastGroupTitle} != {currentGroupTitle}">
+				<f:if condition="{currentGroupTitle}">
+					<f:then>
+						<h4 id="custom-group-{currentGroupTitle}-{data.uid}">{currentGroupTitle}</h4>
+					</f:then>
+					<f:else>
+						<h4 id="not-set-{data.uid}"><f:translate key="groupby.field.not-set"/></h4>
+					</f:else>
+				</f:if>
+			</f:if>
+		</f:defaultCase>
 	</f:switch>
 </f:section>

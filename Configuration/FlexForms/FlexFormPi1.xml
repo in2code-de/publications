@@ -90,29 +90,13 @@
           <settings.groupby>
             <TCEforms>
               <exclude>1</exclude>
-              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby</label>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby
+              </label>
               <onChange>reload</onChange>
               <config>
                 <type>select</type>
                 <renderType>selectSingle</renderType>
-                <items type="array">
-                  <numIndex index="-1" type="array">
-                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.-1</numIndex>
-                    <numIndex index="1">-1</numIndex>
-                  </numIndex>
-                  <numIndex index="0" type="array">
-                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.0</numIndex>
-                    <numIndex index="1">0</numIndex>
-                  </numIndex>
-                  <numIndex index="1" type="array">
-                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.1</numIndex>
-                    <numIndex index="1">1</numIndex>
-                  </numIndex>
-                  <numIndex index="2" type="array">
-                    <numIndex index="0">LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.groupby.2</numIndex>
-                    <numIndex index="1">2</numIndex>
-                  </numIndex>
-                </items>
+                <itemsProcFunc>In2code\Publications\Tca\GroupbySelection->getFields</itemsProcFunc>
                 <size>1</size>
                 <minitems>1</minitems>
                 <maxitems>1</maxitems>

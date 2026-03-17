@@ -59,7 +59,7 @@ class PublicationController extends ActionController
                 'groupLinks',
                 $this->publicationService->getGroupedPublicationLinks(
                     $publications,
-                    (int)$this->settings['groupby'],
+                    $this->settings['groupby'],
                     $contentObjectUid,
                     $itemsPerPage
                 )
