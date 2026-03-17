@@ -245,10 +245,41 @@
         </TCEforms>
         <type>array</type>
         <el>
+          <settings.timeframeType>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframeType
+              </label>
+              <onChange>reload</onChange>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <size>1</size>
+                <minitems>1</minitems>
+                <maxitems>1</maxitems>
+                <default>0</default>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframeType.0
+                    </numIndex>
+                    <numIndex index="1">0</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">
+                      LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframeType.1
+                    </numIndex>
+                    <numIndex index="1">1</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </settings.timeframeType>
           <settings.timeframe>
             <TCEforms>
               <exclude>1</exclude>
               <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.timeframe</label>
+              <displayCond>FIELD:settings.timeframeType:=:0</displayCond>
               <config>
                 <type>select</type>
                 <renderType>selectSingle</renderType>
@@ -296,6 +327,32 @@
               </config>
             </TCEforms>
           </settings.timeframe>
+          <settings.dateFrom>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.dateFrom
+              </label>
+              <displayCond>FIELD:settings.timeframeType:=:1</displayCond>
+              <config>
+                <type>datetime</type>
+                <format>date</format>
+                <default>0</default>
+              </config>
+            </TCEforms>
+          </settings.dateFrom>
+          <settings.dateTo>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.filter.dateTo
+              </label>
+              <displayCond>FIELD:settings.timeframeType:=:1</displayCond>
+              <config>
+                <type>datetime</type>
+                <format>date</format>
+                <default>0</default>
+              </config>
+            </TCEforms>
+          </settings.dateTo>
           <settings.bibtypes>
             <TCEforms>
               <exclude>1</exclude>
