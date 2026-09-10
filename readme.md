@@ -120,18 +120,18 @@ ddev ssh
 ./.build/bin/php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff
 ```
 
-## Early Access Programm for TYPO3 14 support
+## Early Access Programm for TYPO3 15 support
 
-:information_source: **TYPO3 14 compatibility**
+:information_source: **TYPO3 15 compatibility**
 > See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
 > [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
-> to get access to a TYPO3 14 version
+> to get access to a TYPO3 15 version
 
 ## Changelog
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
-| 14.0.0  | xxxx-xx-xx | Feature | Support TYPO3 14. For further information see:[Commits](https://github.com/in2code-de/publications/commits/14.0.0)                |
+| 14.0.0  | 2026-09-10 | Feature | Support TYPO3 14. For further information see:[Commits](https://github.com/in2code-de/publications/commits/14.0.0)                |
 | 13.0.2  | 2026-01-27 | Bugfix  | Bugfix release. For further information see:[Commits](https://github.com/in2code-de/publications/commits/13.0.2)                  |
 | 13.0.1  | 2026-01-21 | Bugfix  | Prevent undefined array key exception, fix SQL definition                                                                         |
 | 13.0.0  | 2025-08-08 | Feature | Support TYPO3 13                                                                                                                  |
