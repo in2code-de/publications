@@ -62,6 +62,11 @@ class BibImporter extends AbstractImporter
             $parser->parseFile($filePath);
 
             $publications = $listener->export();
+            // Macro definitions are needed during parsing, but are not publications.
+            $publications = array_filter(
+                $publications,
+                static fn (array $entry): bool => strtolower($entry['_type']) !== 'string'
+            );
 
             return $this->fieldMapping($publications);
         } catch (\Exception $exception) {

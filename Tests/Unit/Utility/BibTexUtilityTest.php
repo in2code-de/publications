@@ -9,6 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 final class BibTexUtilityTest extends TestCase
 {
+    public function testDecodesTexCommandWithoutReplacingLongerCommandNames(): void
+    {
+        self::assertSame('TeX: The Program', BibTexUtility::decode('{\\TeX}: The Program'));
+        self::assertSame('The TeXbook', BibTexUtility::decode('The {\\TeX}book'));
+        self::assertSame('TeX', BibTexUtility::decode('\\TeX'));
+        self::assertSame('\\TeXcustom', BibTexUtility::decode('\\TeXcustom'));
+    }
+
     public function testDecodesQuoteArgumentsWithNestedGroupsAndAccents(): void
     {
         self::assertSame('"Intentionalität"', BibTexUtility::decode('\\mkbibquote{Intentionalit{\\"a}t}'));
