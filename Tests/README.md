@@ -16,9 +16,9 @@ It contains BibLaTeX example entries, including string macros, cross-references,
 authors and LaTeX accents.
 The tests check representative fields and all 92 citation identifiers, rather
 than snapshotting parser metadata or claiming full BibLaTeX support.
-The importer currently also returns eight `@string` definitions; the test filters
-these out before checking citation entries. Filtering is test-only and does not
-fix the importer's handling of those definitions.
+The importer excludes the eight `@string` definitions after parsing. The collection
+test verifies that only 92 citation entries are returned and that journal macros
+are still resolved.
 
 `publication.bib` and `publications.xml` are small synthetic fixtures for field
 mapping, publication types, author conversion, XML entities and CDATA. The XML
