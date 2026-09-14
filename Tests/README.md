@@ -23,3 +23,8 @@ fix the importer's handling of those definitions.
 `publication.bib` and `publications.xml` are small synthetic fixtures for field
 mapping, publication types, author conversion, XML entities and CDATA. The XML
 fixture includes single-author, multiple-author and authorless publications.
+
+`links.bib` covers issue #35: URL, access-date and file-link mappings, preservation
+of native link fields and `pmid`, and URLs containing commas. The abstract importer
+test also verifies that self-mappings preserve empty and null values while ordinary
+field renaming continues to work.

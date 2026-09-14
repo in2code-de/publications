@@ -9,6 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 final class BibImporterTest extends TestCase
 {
+    public function testMapsLinksAndAccessDateWithoutSplittingUrls(): void
+    {
+        [$publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/links.bib');
+
+        self::assertSame('https://example.org/article?ids=1,2', $publication['web_url'] ?? null);
+        self::assertSame('2026-09-14', $publication['web_url_date'] ?? null);
+        self::assertSame('fileadmin/publications/article.pdf', $publication['file_url'] ?? null);
+        self::assertSame('12345', $publication['pmid'] ?? null);
+        self::assertArrayNotHasKey('web_url2', $publication);
+        foreach (['url', 'urldate', 'file'] as $source) {
+            self::assertArrayNotHasKey($source, $publication);
+        }
+    }
+
+    public function testPreservesNativeLinkFieldsAndPmid(): void
+    {
+        [, $publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/links.bib');
+
+        self::assertSame('https://example.org/native', $publication['web_url'] ?? null);
+        self::assertSame('https://example.org/alternative', $publication['web_url2'] ?? null);
+        self::assertSame('2026-09', $publication['web_url_date'] ?? null);
+        self::assertSame('fileadmin/publications/native.pdf', $publication['file_url'] ?? null);
+        self::assertSame('67890', $publication['pmid'] ?? null);
+    }
+
     public function testConvertsCompleteExampleCollection(): void
     {
         $publications = (new BibImporter())->convert(__DIR__ . '/Fixtures/biblatex-examples.bib');
