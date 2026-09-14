@@ -9,6 +9,15 @@ use PHPUnit\Framework\TestCase;
 
 final class BibImporterTest extends TestCase
 {
+    public function testDecodesTexInKnuthTitle(): void
+    {
+        $publications = (new BibImporter())->convert(__DIR__ . '/Fixtures/biblatex-examples.bib');
+        $byCitation = array_column($publications, null, 'citeid');
+
+        self::assertSame('TeX: The Program', $byCitation['knuth:ct:b']['title']);
+        self::assertSame('TeX', $byCitation['knuth:ct:b']['shorttitle']);
+    }
+
     public function testDecodesBiblatexQuotesInSpiegelbergTitle(): void
     {
         $publications = (new BibImporter())->convert(__DIR__ . '/Fixtures/biblatex-examples.bib');
@@ -49,8 +58,6 @@ final class BibImporterTest extends TestCase
     {
         $publications = (new BibImporter())->convert(__DIR__ . '/Fixtures/biblatex-examples.bib');
 
-        // The parser also returns @string definitions, which are not citations.
-        $publications = array_values(array_filter($publications, static fn (array $entry): bool => $entry['bibtype'] !== 'string'));
         self::assertCount(92, $publications);
         $byCitation = array_column($publications, null, 'citeid');
         self::assertCount(92, $byCitation);
