@@ -9,6 +9,17 @@ use PHPUnit\Framework\TestCase;
 
 final class BibImporterTest extends TestCase
 {
+    public function testDecodesBiblatexQuotesInSpiegelbergTitle(): void
+    {
+        $publications = (new BibImporter())->convert(__DIR__ . '/Fixtures/biblatex-examples.bib');
+        $byCitation = array_column($publications, null, 'citeid');
+
+        self::assertSame(
+            '"Intention" und "Intentionalität" in der Scholastik, bei Brentano und Husserl',
+            preg_replace('/\s+/', ' ', $byCitation['spiegelberg']['title'])
+        );
+    }
+
     public function testMapsLinksAndAccessDateWithoutSplittingUrls(): void
     {
         [$publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/links.bib');
