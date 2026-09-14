@@ -16,7 +16,7 @@ CREATE TABLE tx_publications_domain_model_publication (
 	pages varchar(255) DEFAULT '' NOT NULL,
 	affiliation varchar(255) DEFAULT '' NOT NULL,
 	note varchar(255) DEFAULT '' NOT NULL,
-	annotation varchar(255) DEFAULT '' NOT NULL,
+	annotation text,
 	keywords text,
 	tags text,
 	file_url varchar(255) DEFAULT '' NOT NULL,
