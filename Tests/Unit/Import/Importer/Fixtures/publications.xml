@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<references>
+    <reference>
+        <citeid>example-article</citeid>
+        <bibtype>article</bibtype>
+        <title>Research &amp; publications</title>
+        <abstract><![CDATA[Text with <em>markup</em> & special characters.]]></abstract>
+        <authors><person><fn>Jane</fn><sn>Doe</sn></person></authors>
+        <DOI>10.1234/example</DOI>
+        <ISBN>978-3-16-148410-0</ISBN>
+        <ISSN>1234-5678</ISSN>
+        <misc>First note</misc>
+        <misc2>Second note</misc2>
+        <web_url>https://example.org/article?ids=1,2</web_url>
+        <web_url2>https://example.org/alternative</web_url2>
+        <web_url_date>2026-09-14</web_url_date>
+        <file_url>https://example.org/article.pdf</file_url>
+        <pmid>12345</pmid>
+    </reference>
+    <reference>
+        <citeid>example-book</citeid>
+        <bibtype>book</bibtype>
+        <title>Multiple authors</title>
+        <authors>
+            <person><fn>Jörg</fn><sn>Müller</sn></person>
+            <person><fn>John</fn><sn>Smith</sn></person>
+        </authors>
+    </reference>
+    <reference>
+        <citeid>example-anonymous</citeid>
+        <bibtype>misc</bibtype>
+        <title>Without authors</title>
+    </reference>
+</references>
