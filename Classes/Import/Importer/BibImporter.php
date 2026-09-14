@@ -23,11 +23,11 @@ class BibImporter extends AbstractImporter
      */
     protected array $additionalPublicationMapping = [
         'citation-key' => 'citeid',
-        'url' => 'file_url',
-        'web_url' => 'web_url',
+        'url' => 'web_url',
+        'urldate' => 'web_url_date',
+        'file' => 'file_url',
         'author' => 'authors',
         'DOI' => 'doi',
-        'pmid' => 'pmid',
         'ISSN' => 'issn',
         'ISBN' => 'isbn',
         'misc' => 'miscellaneous',
