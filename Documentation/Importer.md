@@ -4,6 +4,14 @@ per default are two importer available (BibTex, XML).
 ## BibTex
 the BibTex format must correspond to the BibTex format *http://www.bibtex.org/Format/*.    
 
+The importer maps `url` to `web_url`, `urldate` to `web_url_date`, and `file` to
+`file_url`. Access dates remain text, and `file` is treated as a plain file link;
+exporter-specific attachment formats are not parsed. URLs are kept as a single
+value, including commas. Native fields such as `web_url`, `web_url2`,
+`web_url_date`, `file_url`, and `pmid` are also supported.
+
+See the [upgrade documentation](Upgrade.md) for changes to existing import workflows.
+
 ## XML
 the XML format is a simple format that mirrors all fields.
 
