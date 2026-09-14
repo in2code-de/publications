@@ -97,6 +97,23 @@ class BibTexUtility
      */
     public static function decode(string $string): string
     {
+        // Match the complete command before removing groups such as {\TeX}book.
+        $string = preg_replace('~\\\\TeX(?![a-zA-Z])~', 'TeX', $string) ?? $string;
+
+        // Process quote arguments before removing groups needed by accent commands.
+        $quotePattern = <<<'REGEX'
+~\\mkbibquote\s*(?<argument>\{(?:[^{}\\]|\\.|(?&argument))*\})~u
+REGEX;
+        do {
+            $string = preg_replace_callback(
+                $quotePattern,
+                static fn (array $match): string => '"' . substr($match['argument'], 1, -1) . '"',
+                $string,
+                -1,
+                $count
+            ) ?? $string;
+        } while ($count > 0);
+
         return str_replace(self::$decoding, self::$decoded, $string);
     }
 }
