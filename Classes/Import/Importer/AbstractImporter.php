@@ -30,7 +30,7 @@ abstract class AbstractImporter implements ImporterInterface
             $mappedPublication = $publication;
 
             foreach ($this->additionalPublicationMapping as $from => $to) {
-                if (array_key_exists($from, $mappedPublication)) {
+                if ($from !== $to && array_key_exists($from, $mappedPublication)) {
                     $mappedPublication[$to] = $mappedPublication[$from];
                     unset($mappedPublication[$from]);
                 }
