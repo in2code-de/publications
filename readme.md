@@ -45,6 +45,11 @@ At the moment it's not possible to use publications without **composer mode**! C
 
 
 
+## Upgrading
+
+Before updating an existing installation, read the [upgrade notes](Documentation/Upgrade.md)
+for release-specific changes and required database updates.
+
 ## Extending publications
 
 * Look at the [importer documentation](Documentation/Importer.md) to see how you can add own importers

@@ -10,8 +10,6 @@ exporter-specific attachment formats are not parsed. URLs are kept as a single
 value, including commas. Native fields such as `web_url`, `web_url2`,
 `web_url_date`, `file_url`, and `pmid` are also supported.
 
-See the [upgrade documentation](Upgrade.md) for changes to existing import workflows.
-
 ## XML
 the XML format is a simple format that mirrors all fields.
 
