@@ -1,6 +1,14 @@
 # Upgrade notes
 
-## BibTeX import field mappings ([Github Issue #35](https://github.com/in2code-de/publications/issues/35))
+This document lists changes that require attention when upgrading publications,
+grouped by the release that introduces them. When skipping releases, review all
+sections between your installed version and the target version.
+
+## Upgrading to 6.4.0
+
+The following changes apply from version 6.4.0 onward.
+
+### BibTeX import field mappings ([GitHub issue #35](https://github.com/in2code-de/publications/issues/35))
 
 The BibTeX importer now uses the following mappings:
 
@@ -24,7 +32,7 @@ contains both `url` and `web_url`, the value of `url` is imported into `web_url`
 The importer also preserves `web_url` and `pmid`, which were previously deleted
 by redundant self-mappings.
 
-## Longer publication annotations
+### Longer publication annotations
 
 The `annotation` column now uses `TEXT` instead of `VARCHAR(255)` to support
 longer annotations, such as those in
