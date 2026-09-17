@@ -46,6 +46,11 @@ At the moment it's not possible to use publications without **composer mode**! C
 | [Group Links](Documentation/GroupLinks.md) | Navigation links to grouped sections (year / type); configurable prefix and suffix via TypoScript                                             | [GroupLinks.md](Documentation/GroupLinks.md) |
 | [Importer](Documentation/Importer.md)      | BibTeX and XML import via backend module; custom importers can be registered via `TYPO3_CONF_VARS`                                            | [Importer.md](Documentation/Importer.md)     |
 
+## Upgrading
+
+Before updating an existing installation, read the [upgrade notes](Documentation/Upgrade.md)
+for release-specific changes and required database updates.
+
 ## Extending publications
 
 * Look at the [importer documentation](Documentation/Importer.md) to see how you can add own importers
