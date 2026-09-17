@@ -23,11 +23,11 @@ class BibImporter extends AbstractImporter
      */
     protected array $additionalPublicationMapping = [
         'citation-key' => 'citeid',
-        'url' => 'file_url',
-        'web_url' => 'web_url',
+        'url' => 'web_url',
+        'urldate' => 'web_url_date',
+        'file' => 'file_url',
         'author' => 'authors',
         'DOI' => 'doi',
-        'pmid' => 'pmid',
         'ISSN' => 'issn',
         'ISBN' => 'isbn',
         'misc' => 'miscellaneous',
@@ -62,6 +62,11 @@ class BibImporter extends AbstractImporter
             $parser->parseFile($filePath);
 
             $publications = $listener->export();
+            // Macro definitions are needed during parsing, but are not publications.
+            $publications = array_filter(
+                $publications,
+                static fn (array $entry): bool => strtolower($entry['_type']) !== 'string'
+            );
 
             return $this->fieldMapping($publications);
         } catch (\Exception $exception) {

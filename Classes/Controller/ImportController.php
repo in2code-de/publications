@@ -43,7 +43,6 @@ class ImportController extends ActionController
                // 'pid' => GeneralUtility::_GP('id')
                 'pid' => $this->request->getQueryParams()['id'] ?? $this->request->getParsedBody()['id'] ?? null
 
-
             ]
         );
         return $moduleTemplate->renderResponse('Backend/Import/Overview');
@@ -102,7 +101,7 @@ class ImportController extends ActionController
     /**
      * @return bool|string
      */
-    protected function getErrorFlashMessage() : string|bool
+    protected function getErrorFlashMessage(): string|bool
     {
         return false;
     }
