@@ -129,6 +129,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 13.2.0  | 2026-09-21 | Bugfix  | fix and improve bibtex import, add unit tests and upgrade documentation for                                                       |
 | 13.1.0  | 2026-06-14 | Feature | add TSConfig-based groupby options, dd absolute date range filter, add configurable sorting                                       |
 | 13.0.2  | 2026-01-27 | Bugfix  | Bugfix release. For further information see:[Commits](https://github.com/in2code-de/publications/commits/13.0.2)                  |
 | 13.0.1  | 2026-01-21 | Bugfix  | Prevent undefined array key exception, fix SQL definition                                                                         |
