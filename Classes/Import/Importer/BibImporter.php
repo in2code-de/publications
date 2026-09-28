@@ -31,7 +31,8 @@ class BibImporter extends AbstractImporter
         'ISSN' => 'issn',
         'ISBN' => 'isbn',
         'misc' => 'miscellaneous',
-        'misc2' => 'miscellaneous2'
+        'misc2' => 'miscellaneous2',
+        'Title' => 'title'
     ];
 
     /**
