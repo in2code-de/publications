@@ -28,5 +28,6 @@ echo "Provide fileadmin"
 cd .build/public && tar xf ../../.project/data/fileadmin.tar.gz
 echo "Run 'composer install'"
 ddev composer install
+ddev exec ./.build/bin/typo3 database:updateschema
 ddev describe
 echo "Thanks for supporting 'EXT:publications"
