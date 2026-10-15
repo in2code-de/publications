@@ -26,6 +26,13 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
                 'transport' => 'smtp',
                 'transport_smtp_server' => 'localhost:1025',
             ],
+            // The extension is the root package and lies outside the project path (.build), so TYPO3 rejects the absolute
+            // paths of its localized label files (e.g. de.locallang.xlf) unless they are explicitly allowed
+            'BE' => [
+                'lockRootPath' => [
+                    '/var/www/html/Resources/Private/Language/',
+                ],
+            ],
             'SYS' => [
                 'trustedHostsPattern' => '.*.*',
                 'devIPmask' => '*',
