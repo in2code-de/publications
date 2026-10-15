@@ -13,7 +13,7 @@ final class XmlImporterTest extends TestCase
     {
         $publications = (new XmlImporter())->convert(__DIR__ . '/Fixtures/publications.xml');
 
-        self::assertCount(3, $publications);
+        self::assertCount(4, $publications);
         $publication = $publications[0];
         foreach ([
             'citeid' => 'example-article',
@@ -49,5 +49,24 @@ final class XmlImporterTest extends TestCase
         ], $publications[1]['authors']);
         self::assertSame('example-anonymous', $publications[2]['citeid']);
         self::assertArrayNotHasKey('authors', $publications[2]);
+    }
+
+    public function testMapsUnpublishedPublicationWithStatusLanguageAndInstitution(): void
+    {
+        $publications = (new XmlImporter())->convert(__DIR__ . '/Fixtures/publications.xml');
+
+        $publication = $publications[3];
+        foreach ([
+            'citeid' => 'example-unpublished',
+            'bibtype' => 'unpublished',
+            'title' => 'A synthetic unpublished work',
+            'year' => '2025',
+            'note' => 'Submitted for review',
+            'language' => 'English',
+            'institution' => 'Example University'
+        ] as $field => $expected) {
+            self::assertSame($expected, $publication[$field], $field);
+        }
+        self::assertSame([['first_name' => 'Uma', 'last_name' => 'Example']], $publication['authors']);
     }
 }

@@ -31,4 +31,14 @@
         <bibtype>misc</bibtype>
         <title>Without authors</title>
     </reference>
+    <reference>
+        <citeid>example-unpublished</citeid>
+        <bibtype>unpublished</bibtype>
+        <title>A synthetic unpublished work</title>
+        <authors><person><fn>Uma</fn><sn>Example</sn></person></authors>
+        <year>2025</year>
+        <note>Submitted for review</note>
+        <language>English</language>
+        <institution>Example University</institution>
+    </reference>
 </references>
