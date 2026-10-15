@@ -470,10 +470,13 @@
 <f:section name="bibtype_unpublished">
 	<f:if condition="{publication.language}">[{publication.language}]</f:if>
 	<f:render section="authors" arguments="{_all}"/>
-	<f:if condition="{publication.year}">({publication.year}).</f:if>
+	<f:if condition="{publication.year}">
+		<f:then>({publication.year}).</f:then>
+		<f:else>(<f:translate key="citestyle4.noDate"/>).</f:else>
+	</f:if>
 	<f:if condition="{publication.title}"><i>{publication.title}</i></f:if>
 	<f:if condition="{publication.note}">
-		<f:then>[{publication.note}].</f:then>
+		<f:then>[{publication.note -> f:format.trim(characters: ' .', side: 'right')}].</f:then>
 		<f:else>[<f:translate key="bibtype.unpublished"/>].</f:else>
 	</f:if>
 	<f:if condition="{publication.affiliation}">

@@ -267,6 +267,10 @@
 				<source>Report Number</source>
 				<target>Report Nummer</target>
 			</trans-unit>
+			<trans-unit id="citestyle4.noDate" resname="citestyle4.noDate">
+				<source>n.d.</source>
+				<target>o. J.</target>
+			</trans-unit>
 			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 				<target>Abstract</target>

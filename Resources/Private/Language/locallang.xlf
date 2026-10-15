@@ -201,6 +201,9 @@
 			<trans-unit id="citestyle0.reportnumber" resname="citestyle0.reportnumber">
 				<source>Report Number</source>
 			</trans-unit>
+			<trans-unit id="citestyle4.noDate" resname="citestyle4.noDate">
+				<source>n.d.</source>
+			</trans-unit>
 			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 			</trans-unit>
