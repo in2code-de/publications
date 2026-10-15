@@ -106,4 +106,52 @@ final class BibImporterTest extends TestCase
             self::assertArrayNotHasKey($source, $publication);
         }
     }
+
+    public function testMapsUnpublishedPublicationWithStatusLanguageAndInstitution(): void
+    {
+        [$publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/unpublished.bib');
+
+        foreach ([
+            'citeid' => 'example-unpublished',
+            'bibtype' => 'unpublished',
+            'title' => 'A synthetic unpublished work',
+            'year' => '2025',
+            'note' => 'Submitted for review',
+            'language' => 'English',
+            'institution' => 'Example University'
+        ] as $field => $expected) {
+            self::assertSame($expected, $publication[$field] ?? null, $field);
+        }
+        self::assertSame([['first_name' => 'Uma', 'last_name' => 'Example']], array_map(
+            static fn (array $author): array => [
+                'first_name' => $author['first_name'],
+                'last_name' => $author['last_name']
+            ],
+            $publication['authors']
+        ));
+        self::assertArrayNotHasKey('type', $publication);
+    }
+
+    public function testNormalizesCapitalizedUnpublishedTypeWithoutOptionalFields(): void
+    {
+        [, $publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/unpublished.bib');
+
+        self::assertSame('example-unpublished-minimal', $publication['citeid']);
+        self::assertSame('unpublished', $publication['bibtype']);
+        self::assertSame(['Example', 'Sample'], array_column($publication['authors'], 'last_name'));
+        foreach (['year', 'note', 'language', 'institution', 'type'] as $field) {
+            self::assertArrayNotHasKey($field, $publication);
+        }
+    }
+
+    public function testKeepsUnpublishedNoteWithTrailingPeriodAndMonth(): void
+    {
+        [, , $publication] = (new BibImporter())->convert(__DIR__ . '/Fixtures/unpublished.bib');
+
+        self::assertSame('example-unpublished-period', $publication['citeid']);
+        self::assertSame('unpublished', $publication['bibtype']);
+        self::assertSame('2024', $publication['year']);
+        self::assertSame('3', $publication['month']);
+        self::assertSame('Manuscript in preparation.', $publication['note']);
+    }
 }

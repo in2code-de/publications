@@ -24,6 +24,11 @@ are still resolved.
 mapping, publication types, author conversion, XML entities and CDATA. The XML
 fixture includes single-author, multiple-author and authorless publications.
 
+`unpublished.bib` covers issue #90: an unpublished entry with year, note, language and
+institution, a capitalized `@Unpublished` entry without optional fields, and a note
+ending in a period combined with a month. `publications.xml` contains the same
+unpublished example as its fourth reference.
+
 `links.bib` covers issue #35: URL, access-date and file-link mappings, preservation
 of native link fields and `pmid`, and URLs containing commas. The abstract importer
 test also verifies that self-mappings preserve empty and null values while ordinary
