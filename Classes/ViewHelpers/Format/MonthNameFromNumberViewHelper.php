@@ -22,8 +22,8 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
     public function render(): string
     {
         $month = $this->arguments['month'];
-        $monthlower = strtolower($month);
-        $monthletter = substr($monthlower, 0, 3);
+        $monthlower = mb_strtolower($month);
+        $monthletter = mb_substr($monthlower, 0, 3);
         if ($monthletter == 'jan') {
             $month = '1';
         }
@@ -61,16 +61,33 @@ class MonthNameFromNumberViewHelper extends AbstractViewHelper implements Single
             $month = '12';
         }
         if ($month > 0) {
-            if (MathUtility::canBeInterpretedAsInteger($month)) {
-                $month = LocalizationUtility::translate('month.' . $month, 'publications');
+            $monthNumber = MathUtility::canBeInterpretedAsInteger($month) ? (int)$month : 0;
+            if ($monthNumber > 0) {
+                $month = (string)LocalizationUtility::translate('month.' . $monthNumber, 'publications');
             }
-            if ($this->arguments['limit'] > 0 && strlen($month) > $this->arguments['limit']) {
-                $month = substr($month, 0, (int)$this->arguments['limit']);
-                $month .=  $this->arguments['suffix'];
+            $limit = (int)$this->arguments['limit'];
+            if ($limit > 0 && mb_strlen($month) > $limit) {
+                $month = $this->abbreviate($month, $monthNumber, $limit) . $this->arguments['suffix'];
             }
         } else {
             $month = '';
         }
         return $month;
+    }
+
+    /**
+     * Use the localized abbreviation (e.g. "Mrz" for "März") if it fits into the limit, because cutting off the month
+     * name does not produce the common abbreviation in every language. Otherwise, cut off by characters, not bytes.
+     */
+    protected function abbreviate(string $month, int $monthNumber, int $limit): string
+    {
+        $abbreviation = '';
+        if ($monthNumber > 0) {
+            $abbreviation = (string)LocalizationUtility::translate('month.short.' . $monthNumber, 'publications');
+        }
+        if ($abbreviation === '' || mb_strlen($abbreviation) > $limit) {
+            $abbreviation = mb_substr($month, 0, $limit);
+        }
+        return $abbreviation;
     }
 }
