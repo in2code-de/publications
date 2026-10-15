@@ -224,9 +224,11 @@
 	<f:render section="authors" arguments="{_all}"/>
 	<f:if condition="{publication.title}">"{publication.title}",</f:if>
 	<f:if condition="{publication.note}">
-		<f:then>{publication.note}.</f:then>
-		<f:else><f:format.case mode="uncapital"><f:translate key="bibtype.unpublished"/></f:format.case>.</f:else>
-	</f:if>
+		<f:then>{publication.note -> f:format.trim(characters: ' .', side: 'right')}</f:then>
+		<f:else><f:format.case mode="uncapital"><f:translate key="bibtype.unpublished"/></f:format.case></f:else>
+	</f:if><f:if condition="{publication.month} || {publication.year}"><f:then>,
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.</f:then><f:else>.</f:else></f:if>
 	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
 		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
 	</f:if>
