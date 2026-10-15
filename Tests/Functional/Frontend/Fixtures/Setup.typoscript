@@ -1,0 +1,11 @@
+page = PAGE
+page.10 = CONTENT
+page.10 {
+  table = tt_content
+  select.orderBy = sorting
+  renderObj = EXTBASEPLUGIN
+  renderObj {
+    extensionName = Publications
+    pluginName = Pi1
+  }
+}

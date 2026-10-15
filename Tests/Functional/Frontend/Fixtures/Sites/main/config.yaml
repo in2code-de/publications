@@ -1,0 +1,21 @@
+rootPageId: 1
+base: 'https://website.local/'
+languages:
+  -
+    title: Deutsch
+    enabled: true
+    languageId: 0
+    base: /
+    locale: de_DE.UTF-8
+    navigationTitle: Deutsch
+    flag: de
+  -
+    title: English
+    enabled: true
+    languageId: 1
+    base: /en/
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: en-us-gb
+    fallbackType: fallback
+    fallbacks: '0'

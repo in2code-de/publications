@@ -67,6 +67,7 @@
     "typo3/cms-styleguide": "^14.1",
     "typo3/cms-t3editor": "^14.1",
     "typo3/cms-tstemplate": "^14.1",
+    "typo3/testing-framework": "^9.2",
     "undefined/translate-locallang": "^4.0"
   },
   "minimum-stability": "dev",
@@ -104,6 +105,7 @@
   ],
   "scripts": {
     "test:unit": "phpunit --configuration phpunit.xml.dist",
+    "test:functional": "phpunit --configuration phpunit.functional.xml.dist",
     "test:php:cs": "php-cs-fixer fix --dry-run --config=.project/tests/.php-cs-fixer.php --diff",
     "fix:php": "php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff",
     "test:php:lint": "find *.php Classes Configuration -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
