@@ -211,6 +211,54 @@
 				<source>December</source>
 				<target>Dezember</target>
 			</trans-unit>
+			<trans-unit id="month.short.1" resname="month.short.1">
+				<source>Jan</source>
+				<target>Jan</target>
+			</trans-unit>
+			<trans-unit id="month.short.2" resname="month.short.2">
+				<source>Feb</source>
+				<target>Feb</target>
+			</trans-unit>
+			<trans-unit id="month.short.3" resname="month.short.3">
+				<source>Mar</source>
+				<target>Mrz</target>
+			</trans-unit>
+			<trans-unit id="month.short.4" resname="month.short.4">
+				<source>Apr</source>
+				<target>Apr</target>
+			</trans-unit>
+			<trans-unit id="month.short.5" resname="month.short.5">
+				<source>May</source>
+				<target>Mai</target>
+			</trans-unit>
+			<trans-unit id="month.short.6" resname="month.short.6">
+				<source>Jun</source>
+				<target>Jun</target>
+			</trans-unit>
+			<trans-unit id="month.short.7" resname="month.short.7">
+				<source>Jul</source>
+				<target>Jul</target>
+			</trans-unit>
+			<trans-unit id="month.short.8" resname="month.short.8">
+				<source>Aug</source>
+				<target>Aug</target>
+			</trans-unit>
+			<trans-unit id="month.short.9" resname="month.short.9">
+				<source>Sep</source>
+				<target>Sep</target>
+			</trans-unit>
+			<trans-unit id="month.short.10" resname="month.short.10">
+				<source>Oct</source>
+				<target>Okt</target>
+			</trans-unit>
+			<trans-unit id="month.short.11" resname="month.short.11">
+				<source>Nov</source>
+				<target>Nov</target>
+			</trans-unit>
+			<trans-unit id="month.short.12" resname="month.short.12">
+				<source>Dec</source>
+				<target>Dez</target>
+			</trans-unit>
 			<trans-unit id="linkblock.doi" resname="linkblock.doi">
 				<source>DOI</source>
 				<target>DOI</target>
