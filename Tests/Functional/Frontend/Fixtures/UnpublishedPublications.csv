@@ -1,0 +1,31 @@
+"pages"
+"","uid","pid","title","slug","doktype","sorting"
+"",1,0,"Home","/",1,10
+"",2,1,"Storage","/storage",254,20
+"",10,1,"Citestyle 0","/citestyle-0",1,100
+"",11,1,"Citestyle 1","/citestyle-1",1,110
+"",12,1,"Citestyle 4","/citestyle-4",1,120
+"",13,1,"Citestyle 6","/citestyle-6",1,130
+"",14,1,"Citestyle 9","/citestyle-9",1,140
+"tt_content"
+"","uid","pid","CType","list_type","colPos","sorting","pi_flexform"
+"",10,10,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">0</value></field></language></sheet></data></T3FlexForms>"
+"",11,11,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">1</value></field></language></sheet></data></T3FlexForms>"
+"",12,12,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">4</value></field></language></sheet></data></T3FlexForms>"
+"",13,13,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">6</value></field></language></sheet></data></T3FlexForms>"
+"",14,14,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">9</value></field></language></sheet></data></T3FlexForms>"
+"tx_publications_domain_model_publication"
+"","uid","pid","sys_language_uid","citeid","bibtype","title","year","month","note","language","institution","abstract","authors"
+"",1,2,-1,"example-unpublished","unpublished","A synthetic unpublished work","2025","","Submitted for review","English","Example University","A synthetic abstract.",1
+"",2,2,-1,"example-unpublished-minimal","unpublished","A synthetic unpublished work without status","","","","","","",2
+"",3,2,-1,"example-unpublished-period","unpublished","A synthetic unpublished work with a dated status","2024","3","Manuscript in preparation.","","","",1
+"tx_publications_domain_model_author"
+"","uid","pid","first_name","last_name"
+"",1,2,"Uma","Example"
+"",2,2,"Sam","Sample"
+"tx_publications_publication_author_mm"
+"","uid_local","uid_foreign","sorting","sorting_foreign"
+"",1,1,1,1
+"",2,1,1,1
+"",2,2,2,1
+"",3,2,1,2
