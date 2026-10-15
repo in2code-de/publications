@@ -195,7 +195,11 @@ TODO
 
 
 <f:section name="bibtype_unpublished">
-TODO
+	<f:render section="authors" arguments="{_all}"/>
+	<f:if condition="{publication.title}">{publication.title}.</f:if>
+	<f:render section="date" arguments="{_all}"/>
+	<f:if condition="{publication.note}">{publication.note}.</f:if>
+	<f:render partial="List/Citestyle/LinkBlock-Inline" section="linkblock-inline" arguments="{_all}"/>
 </f:section>
 
 

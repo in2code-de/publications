@@ -335,8 +335,12 @@
 
 
 <f:section name="unpublished">
+	<f:render section="language"  arguments="{_all}"/>
 	<f:render section="authors" arguments="{_all}"/>
 	<f:render section="title" arguments="{_all}"/>
+	<f:if condition="{publication.note}">
+		<br/>{publication.note}
+	</f:if>
 	<f:render section="affiliation"  arguments="{_all}"/>
 	<f:render section="date_year-month" arguments="{_all}"/>
 	<f:render section="linkblock" arguments="{_all}"/>
