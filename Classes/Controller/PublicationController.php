@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace In2code\Publications\Controller;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
+use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Domain\Service\PublicationService;
 use In2code\Publications\Pagination\NumberedPagination;
@@ -15,6 +16,7 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -101,7 +103,7 @@ class PublicationController extends ActionController
         $this->view->assignMultiple(
             [
                 'filter' => $filter,
-                'publications' => $publications
+                'publications' => $this->renderPublicationsLinks($publications)
             ]
         );
 
@@ -130,7 +132,7 @@ class PublicationController extends ActionController
         $this->view->assignMultiple(
             [
                 'filter' => $filter,
-                'publications' => $publications
+                'publications' => $this->renderPublicationsLinks($publications)
             ]
         );
 
@@ -181,6 +183,41 @@ class PublicationController extends ActionController
 
         $this->request = $this->request->withArgument('filter', $filter);
         $this->request = $this->request->withArgument('currentContentObject', $this->getContentObject());
+    }
+
+    /**
+     * Render Typolinks in publications attributes
+     *
+     * @param Publication[] $publications
+     * @return Publication[]
+     */
+    protected function renderPublicationsLinks(array $publications): array
+    {
+        // Get the name of all columns that might store typolinks in the publications model
+        $linkCols = array_keys(array_filter(
+            $GLOBALS['TCA']['tx_publications_domain_model_publication']['columns'],
+            static fn ($value) => 'typolink' === ($value['config']['softref'] ?? '')
+        ));
+
+        foreach ($publications as &$publication) {
+            foreach ($linkCols as $propertyName) {
+                $value = ObjectAccess::getProperty($publication, $propertyName);
+
+                // Only consider typo3 internal links (t3://…)
+                if (is_string($value) && 't3' === parse_url($value, PHP_URL_SCHEME)) {
+                    // Try to generate the corresponding URL
+                    $url = $this->getContentObject()->createUrl([
+                        'parameter' => $value,
+                        'forceAbsoluteUrl' => true,
+                    ]);
+                    if ($url) {
+                        ObjectAccess::setProperty($publication, $propertyName, $url);
+                    }
+                }
+            }
+        }
+
+        return $publications;
     }
 
     protected function getContentObject(): ?ContentObjectRenderer
