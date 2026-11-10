@@ -9,7 +9,10 @@
 			<f:if condition="{publication.doi}">
 				<tr>
 					<td class="publications publications__linkblock">DOI:</td>
-					<td class="publications publications__linkblock"><f:link.external uri="https://doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external></td>
+					<td class="publications publications__linkblock"><f:if condition="{f:startsWith(search: '_10.', subject: '_{publication.doi}')}">
+						<f:then><f:link.external uri="https://doi.org/{publication.doi}" target="_blank">{publication.doi}</f:link.external></f:then>
+						<f:else>{publication.doi}</f:else>
+					</f:if></td>
 				</tr>
 			</f:if>
 			<f:if condition="{publication.pmid}">
