@@ -129,8 +129,9 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
-| 13.2.0  | 2026-09-21 | Bugfix  | fix and improve bibtex import, add unit tests and upgrade documentation for                                                       |
-| 13.1.0  | 2026-06-14 | Feature | add TSConfig-based groupby options, dd absolute date range filter, add configurable sorting                                       |
+| 13.3.0  | 2026-11-10 | Bugfix  | render unpublished publications in all citation styles, fix month abbreviations and author name spacing                           |
+| 13.2.0  | 2026-09-21 | Bugfix  | fix and improve bibtex import, add unit tests and upgrade documentation for existing publications                                 |
+| 13.1.0  | 2026-06-14 | Feature | add TSConfig-based groupby options, add absolute date range filter, add configurable sorting                                      |
 | 13.0.2  | 2026-01-27 | Bugfix  | Bugfix release. For further information see:[Commits](https://github.com/in2code-de/publications/commits/13.0.2)                  |
 | 13.0.1  | 2026-01-21 | Bugfix  | Prevent undefined array key exception, fix SQL definition                                                                         |
 | 13.0.0  | 2025-08-08 | Feature | Support TYPO3 13                                                                                                                  |
