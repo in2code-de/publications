@@ -16,7 +16,7 @@
 &nbsp;&nbsp;&nbsp;<i class="fas fa-link "></i>&nbsp;
 </f:if>
 			<f:if condition="{publication.doi}">
-					<f:link.typolink parameter="https://dx.doi.org/{publication.doi}" target="_blank"><span class="publications-link"><i class="ai ai-doi-square ai-lg" title="{f:translate(key:'linkblock.doi')}"></i><span class="sr-only">[{f:translate(key:'linkblock.doi')}]</span></span></f:link.typolink>&nbsp;
+					<f:link.typolink parameter="https://doi.org/{publication.doi}" target="_blank"><span class="publications-link"><i class="ai ai-doi-square ai-lg" title="{f:translate(key:'linkblock.doi')}"></i><span class="sr-only">[{f:translate(key:'linkblock.doi')}]</span></span></f:link.typolink>&nbsp;
 			</f:if>
 			<f:if condition="{publication.pmid}">
 						<f:link.typolink parameter="https://pubmed.ncbi.nlm.nih.gov/{publication.pmid}" target="_blank"><span class="publications-link"><i class="ai ai-pubmed-square ai-lg" title="{f:translate(key:'linkblock.pmid')}"></i><span class="sr-only">[{f:translate(key:'linkblock.pmid')}]</span></span></f:link.typolink>&nbsp;
