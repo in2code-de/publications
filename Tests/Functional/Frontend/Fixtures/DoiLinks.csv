@@ -1,0 +1,23 @@
+"pages"
+"","uid","pid","title","slug","doktype","sorting"
+"",1,0,"Home","/",1,10
+"",2,1,"Storage","/storage",254,20
+"",10,1,"Citestyle 0","/citestyle-0",1,100
+"",14,1,"Citestyle 9","/citestyle-9",1,140
+"tt_content"
+"","uid","pid","CType","list_type","colPos","sorting","pi_flexform"
+"",10,10,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">0</value></field></language></sheet></data></T3FlexForms>"
+"",14,14,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">9</value></field></language></sheet></data></T3FlexForms>"
+"tx_publications_domain_model_publication"
+"","uid","pid","sys_language_uid","citeid","bibtype","title","year","doi","authors"
+"",1,2,-1,"doi-resolver-url","unpublished","A publication with a resolver URL as DOI","2025","https://dx.doi.org/10.1234/example",1
+"",2,2,-1,"doi-latex-url","unpublished","A publication with a LaTeX url command as DOI","2025","DOI: \url{10.1234/other}",1
+"",3,2,-1,"doi-invalid","unpublished","A publication with an invalid DOI","2025","10. Auflage",1
+"tx_publications_domain_model_author"
+"","uid","pid","first_name","last_name"
+"",1,2,"Uma","Example"
+"tx_publications_publication_author_mm"
+"","uid_local","uid_foreign","sorting","sorting_foreign"
+"",1,1,1,1
+"",2,1,1,2
+"",3,1,1,3
