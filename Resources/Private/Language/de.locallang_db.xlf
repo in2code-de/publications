@@ -698,6 +698,14 @@
 				<source>XML</source>
 				<target state="translated">XML</target>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.singleDownload">
+				<source>Download of single publications</source>
+				<target state="translated">Download einzelner Publikationen</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.singleDownload.label">
+				<source>Show download links for the allowed export formats at each publication</source>
+				<target state="translated">Download-Links für die erlaubten Exportformate bei jeder Publikation anzeigen</target>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.hideFilter">
 				<source>Hide filter?</source>
 				<target state="translated">Filter verbergen?</target>

@@ -365,6 +365,7 @@
 	</f:if>
 
 	<f:render section="date_year-month" arguments="{_all}"/>
+	<f:render section="linkblock" arguments="{_all}"/>
 </f:section>
 
 <f:comment><!-- Sections for data in bibtypes --></f:comment>
@@ -442,8 +443,8 @@
 </f:section>
 
 <f:section name="linkblock">
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}" />
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}" />
 	</f:if>
 </f:section>
 

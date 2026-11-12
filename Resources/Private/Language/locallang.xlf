@@ -210,6 +210,9 @@
 			<trans-unit id="linkblock.weburl2" resname="linkblock.weburl2">
 				<source>Weblink</source>
 			</trans-unit>
+			<trans-unit id="linkblock.download" resname="linkblock.download">
+				<source>Download</source>
+			</trans-unit>
 			<trans-unit id="citestyle0.volume" resname="citestyle0.volume">
 				<source>Volume</source>
 			</trans-unit>

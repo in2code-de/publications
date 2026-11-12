@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace In2code\Publications\Controller;
 
 use In2code\Publications\Domain\Model\Dto\Filter;
+use In2code\Publications\Domain\Model\Publication;
 use In2code\Publications\Domain\Repository\PublicationRepository;
 use In2code\Publications\Domain\Service\PublicationExportService;
 use In2code\Publications\Domain\Service\PublicationService;
@@ -17,6 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 
 /**
  * Class PublicationController
@@ -26,15 +28,18 @@ class PublicationController extends ActionController
     protected ?PublicationRepository $publicationRepository = null;
     protected ?PublicationService $publicationService = null;
     protected ?PublicationExportService $publicationExportService = null;
+    protected ?ErrorController $errorController = null;
 
     public function __construct(
         PublicationService $publicationService,
         PublicationRepository $publicationRepository,
-        PublicationExportService $publicationExportService
+        PublicationExportService $publicationExportService,
+        ErrorController $errorController
     ) {
         $this->publicationService = $publicationService;
         $this->publicationRepository = $publicationRepository;
         $this->publicationExportService = $publicationExportService;
+        $this->errorController = $errorController;
     }
 
     /**
@@ -100,9 +105,9 @@ class PublicationController extends ActionController
     /**
      * @throws InvalidQueryException|PropagateResponseException
      */
-    public function downloadBibtexAction(Filter $filter): ResponseInterface
+    public function downloadBibtexAction(Filter $filter, int $publicationUid = 0): ResponseInterface
     {
-        $publications = $this->publicationRepository->findByFilter($filter);
+        $publications = $this->getPublicationsForDownload($filter, $publicationUid);
 
         $this->view->assignMultiple(
             [
@@ -134,9 +139,9 @@ class PublicationController extends ActionController
     /**
      * @throws InvalidQueryException|PropagateResponseException
      */
-    public function downloadXmlAction(Filter $filter): ResponseInterface
+    public function downloadXmlAction(Filter $filter, int $publicationUid = 0): ResponseInterface
     {
-        $publications = $this->publicationRepository->findByFilter($filter);
+        $publications = $this->getPublicationsForDownload($filter, $publicationUid);
         $this->view->assignMultiple(
             [
                 'filter' => $filter,
@@ -156,6 +161,26 @@ class PublicationController extends ActionController
             ->withBody($this->streamFactory->createStream($this->view->render()));
 
         throw new PropagateResponseException($response, 200);
+    }
+
+    /**
+     * @return Publication[]
+     * @throws InvalidQueryException|PropagateResponseException
+     */
+    protected function getPublicationsForDownload(Filter $filter, int $publicationUid): array
+    {
+        if ($publicationUid === 0) {
+            $publications = $this->publicationRepository->findByFilter($filter);
+        } else {
+            $publications = $this->publicationRepository->findByFilterAndUid($filter, $publicationUid);
+            if ($publications === []) {
+                throw new PropagateResponseException(
+                    $this->errorController->pageNotFoundAction($this->request, 'Publication not found'),
+                    404
+                );
+            }
+        }
+        return $publications;
     }
 
     protected function setFilterArguments(): void

@@ -126,6 +126,8 @@ class Filter
      */
     protected array $export = [];
 
+    protected bool $singleDownload = false;
+
     /**
      * @var int recursive level
      */
@@ -173,6 +175,7 @@ class Filter
         $this->setRecursive((int)($settings['recursive'] ?? 0));
         $this->setRecords(GeneralUtility::intExplode(',', $settings['records'] ?? '', true));
         $this->setExport(GeneralUtility::intExplode(',', $settings['export'] ?? '', true));
+        $this->setSingleDownload((bool)($settings['singleDownload'] ?? false));
         $this->setFilterType($settings['filterType'] ?? 'classic');
     }
 
@@ -851,6 +854,29 @@ class Filter
     {
         $this->export = $export;
         return $this;
+    }
+
+    public function isSingleDownload(): bool
+    {
+        return $this->singleDownload;
+    }
+
+    public function setSingleDownload(bool $singleDownload): self
+    {
+        $this->singleDownload = $singleDownload;
+        return $this;
+    }
+
+    /**
+     * @return int[]
+     */
+    public function getSingleDownloadFormats(): array
+    {
+        $formats = [];
+        if ($this->isSingleDownload()) {
+            $formats = $this->getExport();
+        }
+        return $formats;
     }
 
     /**

@@ -179,6 +179,7 @@ TODO
 		<f:if condition="{publication.month} || {publication.year}">,</f:if>
 	</f:if>
 	<f:render section="date" arguments="{_all}"/>
+	<f:render partial="List/Citestyle/LinkBlock-Inline" section="linkblock-inline" arguments="{_all}"/>
 </f:section>
 
 <f:section name="bibtype_techreport">

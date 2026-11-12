@@ -42,8 +42,8 @@
 	</f:if>
 	<f:if condition="{publication.webUrl}"><f:link.typolink parameter="{publication.webUrl}" target="_blank"/><f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -60,8 +60,8 @@
 		{publication.year}.
 	</f:if>
 	<f:if condition="{publication.howpublished}">{publication.howpublished}</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -86,8 +86,8 @@
 		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -104,8 +104,8 @@
 		{publication.year}<f:if condition="{publication.pages}"><f:then>,</f:then><f:else>.</f:else></f:if>
 	</f:if>
 	<f:if condition="{publication.pages}">pp. {publication.pages}.</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -122,8 +122,8 @@
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}
 	</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -144,8 +144,8 @@
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}.
 	</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -157,6 +157,9 @@
 	<f:if condition="{publication.month} || {publication.year}">
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -185,8 +188,8 @@
 			{publication.year}.
 		</f:if>
 	</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -208,8 +211,8 @@
 		{publication.year}.
 	</f:if>
 
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -229,8 +232,8 @@
 	</f:if><f:if condition="{publication.month} || {publication.year}"><f:then>,
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}.</f:then><f:else>.</f:else></f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -241,8 +244,8 @@
 	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.webUrl} || {publication.webUrlDate}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.webUrl}">{publication.webUrl}<f:if condition="{publication.webUrlDate}"><f:else>.</f:else></f:if></f:if>
 	<f:if condition="{publication.webUrlDate}">[{publication.webUrlDate}].</f:if>
-	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} ">
-		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false}"/>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:false,filter:filter}"/>
 	</f:if>
 </f:section>
 
@@ -255,6 +258,9 @@
 	<f:if condition="{publication.month} || {publication.year}">
 		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
 		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
 	</f:if>
 </f:section>
 
