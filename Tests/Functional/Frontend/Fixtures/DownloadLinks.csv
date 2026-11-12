@@ -1,0 +1,14 @@
+"pages"
+"","uid","pid","title","slug","doktype","sorting","hidden"
+"",1,0,"Home","/",1,10,0
+"",2,1,"Storage","/storage",254,20,0
+"",10,1,"Publications","/publications",1,100,0
+"",20,1,"Target","/target",1,200,0
+"",21,1,"Hidden target","/hidden-target",1,210,1
+"tt_content"
+"","uid","pid","CType","list_type","colPos","sorting","pi_flexform"
+"",10,10,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.citestyle""><value index=""vDEF"">0</value></field></language></sheet></data></T3FlexForms>"
+"tx_publications_domain_model_publication"
+"","uid","pid","sys_language_uid","citeid","bibtype","title","year","web_url","web_url2","file_url"
+"",1,2,-1,"resolvable-links","misc","Research & development","2025","t3://page?uid=20","t3://page?uid=20&tx_example[id]=3","https://example.org/paper.pdf"
+"",2,2,-1,"unresolvable-link","misc","A publication linking a hidden page","2024","t3://page?uid=21","",""
