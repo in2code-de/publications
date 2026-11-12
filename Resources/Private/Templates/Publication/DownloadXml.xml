@@ -10,15 +10,15 @@
 	</comment>
 	<f:for each="{publications}" as="publication">
 	<reference>
-	<f:for each="{publication.propertiesForXmlExport}" as="value" key="property" iteration="iteration">
-		<{property}>{value}</{property}>
+	<f:for each="{exportProperties.{publication.uid}}" as="value" key="property" iteration="iteration">
+		<{property}>{value -> f:format.htmlspecialchars()}</{property}>
 	</f:for>
 	<f:if condition="{publication.authors}">
 		<authors>
 		<f:for each="{publication.authors}" as="author">
 			<person>
-				<fn>{author.firstName}</fn>
-				<sn>{author.lastName}</sn>
+				<fn>{author.firstName -> f:format.htmlspecialchars()}</fn>
+				<sn>{author.lastName -> f:format.htmlspecialchars()}</sn>
 			</person>
 		</f:for>
 		</authors>
