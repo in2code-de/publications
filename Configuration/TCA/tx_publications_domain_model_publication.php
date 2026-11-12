@@ -772,6 +772,7 @@ $tca = [
             'label' => $llTable . '.doi',
             'config' => [
                 'type' => 'input',
+                'placeholder' => '10.1234/example',
                 'eval' => 'trim',
                 'default' => ''
             ]

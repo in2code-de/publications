@@ -623,11 +623,23 @@ class Publication extends AbstractEntity
     }
 
     /**
+     * Will try to remove all invalid prefixes editors might have added before the DOI, e.g.:
+     * - \url…
+     * - https://dx.doi.org/…
+     * - https://doi.org/…
+     * - DOI:…
+     * - doi=…
+     *
      * @return string
      */
     public function getDoi(): string
     {
-        return $this->doi;
+        // Try to remove all possible prefixes of valid DOIs
+        return trim(preg_replace(
+            '~^((\\\url)|((https?://)?(dx\.)?doi\.org/)|DOI[:=]?)~mi',
+            '',
+            trim($this->doi)
+        ));
     }
 
     /**
