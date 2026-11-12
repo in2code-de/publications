@@ -56,3 +56,12 @@ publication language and the abstract.
 The test compares each citation as the browser displays it: tags are removed, line
 breaks become ` | ` and whitespace is collapsed. Spaces before or after punctuation
 are kept, so spacing errors such as "Example,Uma" make the test fail.
+
+# Recursive records tests
+
+`Functional/Frontend/RecursiveRecordsTest.php` covers issue #88. It renders the list
+plugin with `settings.records` and `settings.recursive = 1` from
+`Functional/Frontend/Fixtures/RecursiveRecords.csv`. The first plugin uses a storage
+folder without subpages, which threw a TypeError in `PageUtility::getTreeList()` before
+it returned the page uid as string. The second plugin uses a storage folder with two
+levels of subfolders and checks that only the publications of the first level are added.
