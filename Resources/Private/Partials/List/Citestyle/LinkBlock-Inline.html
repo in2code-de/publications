@@ -16,8 +16,8 @@
 &nbsp;&nbsp;&nbsp;<i class="fas fa-link "></i>&nbsp;
 </f:if>
 			<f:if condition="{publication.doi}">
-				<f:if condition="{f:startsWith(search: '_10.', subject: '_{publication.doi}')}">
-					<f:then><f:link.typolink parameter="https://doi.org/{publication.doi}" target="_blank"><span class="publications-link"><i class="ai ai-doi-square ai-lg" title="{f:translate(key:'linkblock.doi')}"></i><span class="sr-only">[{f:translate(key:'linkblock.doi')}]</span></span></f:link.typolink></f:then>
+				<f:if condition="{publication.doiUrl}">
+					<f:then><f:link.typolink parameter="{publication.doiUrl}" target="_blank"><span class="publications-link"><i class="ai ai-doi-square ai-lg" title="{f:translate(key:'linkblock.doi')}"></i><span class="sr-only">[{f:translate(key:'linkblock.doi')}]</span></span></f:link.typolink></f:then>
 					<f:else>{publication.doi}</f:else>
 				</f:if>&nbsp;
 			</f:if>

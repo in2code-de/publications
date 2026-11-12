@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace In2code\Publications\Domain\Model;
 
+use In2code\Publications\Utility\DoiUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -622,24 +623,14 @@ class Publication extends AbstractEntity
         return $this;
     }
 
-    /**
-     * Will try to remove all invalid prefixes editors might have added before the DOI, e.g.:
-     * - \url…
-     * - https://dx.doi.org/…
-     * - https://doi.org/…
-     * - DOI:…
-     * - doi=…
-     *
-     * @return string
-     */
     public function getDoi(): string
     {
-        // Try to remove all possible prefixes of valid DOIs
-        return trim(preg_replace(
-            '~^((\\\url)|((https?://)?(dx\.)?doi\.org/)|DOI[:=]?)~mi',
-            '',
-            trim($this->doi)
-        ));
+        return DoiUtility::normalize($this->doi);
+    }
+
+    public function getDoiUrl(): string
+    {
+        return DoiUtility::getUrl($this->doi);
     }
 
     /**
