@@ -279,6 +279,10 @@
 				<source>Weblink</source>
 				<target>Weblink</target>
 			</trans-unit>
+			<trans-unit id="linkblock.download" resname="linkblock.download">
+				<source>Download</source>
+				<target>Download</target>
+			</trans-unit>
 			<trans-unit id="citestyle0.volume" resname="citestyle0.volume">
 				<source>Volume</source>
 				<target>Band</target>

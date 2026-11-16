@@ -1,0 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:section name="downloadlinks"><f:spaceless>
+	<f:for each="{filter.singleDownloadFormats}" as="export" iteration="iteration">
+		<f:switch expression="{export}">
+			<f:case value="1">
+				<f:link.action action="downloadBibtex" arguments="{publicationUid: publication.uid}" target="_blank" rel="nofollow" class="publications-download" title="{f:translate(key:'linkblock.download')} BibTeX">BibTeX</f:link.action>
+			</f:case>
+			<f:case value="2">
+				<f:link.action action="downloadXml" arguments="{publicationUid: publication.uid}" target="_blank" rel="nofollow" class="publications-download" title="{f:translate(key:'linkblock.download')} XML">XML</f:link.action>
+			</f:case>
+		</f:switch>
+		<f:if condition="{iteration.isLast}"><f:else>&nbsp;|&nbsp;</f:else></f:if>
+	</f:for>
+</f:spaceless></f:section>
+
+</html>

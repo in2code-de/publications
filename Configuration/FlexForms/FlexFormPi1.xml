@@ -217,6 +217,19 @@
               <maxitems>100</maxitems>
             </config>
           </settings.export>
+          <settings.singleDownload>
+            <exclude>1</exclude>
+            <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.singleDownload</label>
+            <config>
+              <type>check</type>
+              <default>0</default>
+              <items type="array">
+                <numIndex index="0" type="array">
+                  <label>LLL:EXT:publications/Resources/Private/Language/locallang_db.xlf:flexform.pi1.template.singleDownload.label</label>
+                </numIndex>
+              </items>
+            </config>
+          </settings.singleDownload>
         </el>
       </ROOT>
     </template>

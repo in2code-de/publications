@@ -8,6 +8,7 @@ use DateTime;
 use In2code\Publications\Domain\Model\Dto\Filter;
 use In2code\Publications\Domain\Model\Publication;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -32,6 +33,22 @@ class PublicationRepository extends AbstractRepository
     }
 
     /**
+     * @return Publication[]
+     * @throws InvalidQueryException
+     */
+    public function findByFilterAndUid(Filter $filter, int $uid): array
+    {
+        $query = $this->createQuery();
+        $constraints = [$query->equals('uid', $uid)];
+        $filterConstraint = $this->getFilterConstraint($query, $filter);
+        if ($filterConstraint !== null) {
+            $constraints[] = $filterConstraint;
+        }
+        $query->matching($query->logicalAnd(...$constraints));
+        return $this->filterByDateRange($this->convertToArray($query->execute()), $filter);
+    }
+
+    /**
      * @param QueryInterface $query
      * @param Filter $filter
      * @return void
@@ -39,6 +56,18 @@ class PublicationRepository extends AbstractRepository
      */
     protected function filterQuery(QueryInterface $query, Filter $filter)
     {
+        $constraint = $this->getFilterConstraint($query, $filter);
+        if ($constraint !== null) {
+            $query->matching($constraint);
+        }
+    }
+
+    /**
+     * @throws InvalidQueryException
+     */
+    protected function getFilterConstraint(QueryInterface $query, Filter $filter): ?ConstraintInterface
+    {
+        $constraint = null;
         $concat = [];
         if ($filter->isFilterFlexFormSet()) {
             $concat = $this->filterQueryByKeywords($query, $filter, $concat);
@@ -59,10 +88,11 @@ class PublicationRepository extends AbstractRepository
             $concat = $this->filterQueryByTitle($query, $filter, $concat);
         }
         if ($concat !== [] && $filter->getConcatination() === 'or') {
-            $query->matching($query->logicalOr(...$concat));
+            $constraint = $query->logicalOr(...$concat);
         } elseif ($concat !== []) {
-            $query->matching($query->logicalAnd(...$concat));
+            $constraint = $query->logicalAnd(...$concat);
         }
+        return $constraint;
     }
 
     /**

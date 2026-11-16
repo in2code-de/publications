@@ -12,7 +12,7 @@
 	<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">--></f:comment>
 
 <f:section name="linkblock-inline">
-<f:if condition="{publication.doi} || {publication.pmid} || {publication.webUrl} || {publication.webUrl2} ">
+<f:if condition="{publication.doi} || {publication.pmid} || {publication.webUrl} || {publication.webUrl2} || {filter.singleDownloadFormats}">
 &nbsp;&nbsp;&nbsp;<i class="fas fa-link "></i>&nbsp;
 </f:if>
 			<f:if condition="{publication.doi}">
@@ -33,6 +33,9 @@
 				<f:if condition="{publication.fileUrl}">
 						&nbsp;&nbsp;&nbsp;<i class="ai ai-open-access ai-lg"></i>&nbsp;<f:link.typolink parameter="{publication.fileUrl}" target="_blank"><span class="publications-link"><i class="fas fa-file-alt " title="{f:translate(key:'linkblock.file')}"></i><span class="sr-only">[{f:translate(key:'linkblock.file')}]</span></span></f:link.typolink>&nbsp;
 						<!--	<f:link.typolink parameter="{publication.fileUrl}" target="_blank" /> -->
+				</f:if>
+				<f:if condition="{filter.singleDownloadFormats}">
+						<span class="publications-link"><i class="fas fa-download" title="{f:translate(key:'linkblock.download')}"></i><span class="sr-only">[{f:translate(key:'linkblock.download')}]</span></span>&nbsp;<f:render partial="List/Citestyle/DownloadLinks" section="downloadlinks" arguments="{publication: publication, filter: filter}"/>&nbsp;
 				</f:if>
 </f:section>
 

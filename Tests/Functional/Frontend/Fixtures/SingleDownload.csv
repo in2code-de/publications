@@ -1,0 +1,18 @@
+"pages"
+"","uid","pid","title","slug","doktype","sorting"
+"",1,0,"Home","/",1,10
+"",2,1,"Storage","/storage",254,20
+"",3,1,"Other storage","/other-storage",254,30
+"",10,1,"Citestyle 0","/citestyle-0",1,100
+"",11,1,"Citestyle 0 without single download","/citestyle-0-without-single-download",1,110
+"",14,1,"Citestyle 9","/citestyle-9",1,140
+"tt_content"
+"","uid","pid","CType","list_type","colPos","sorting","pi_flexform"
+"",10,10,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.export""><value index=""vDEF"">1,2</value></field><field index=""settings.singleDownload""><value index=""vDEF"">1</value></field><field index=""settings.citestyle""><value index=""vDEF"">0</value></field></language></sheet></data></T3FlexForms>"
+"",11,11,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.export""><value index=""vDEF"">1,2</value></field><field index=""settings.citestyle""><value index=""vDEF"">0</value></field></language></sheet></data></T3FlexForms>"
+"",14,14,"list","publications_pi1",0,10,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.records""><value index=""vDEF"">2</value></field><field index=""settings.recordsPerPage""><value index=""vDEF"">25</value></field><field index=""settings.hideFilter""><value index=""vDEF"">1</value></field><field index=""settings.showGroupLinks""><value index=""vDEF"">0</value></field><field index=""settings.groupby""><value index=""vDEF"">0</value></field><field index=""settings.hideEnumeration""><value index=""vDEF"">0</value></field><field index=""settings.export""><value index=""vDEF"">1,2</value></field><field index=""settings.singleDownload""><value index=""vDEF"">1</value></field><field index=""settings.citestyle""><value index=""vDEF"">9</value></field></language></sheet></data></T3FlexForms>"
+"tx_publications_domain_model_publication"
+"","uid","pid","sys_language_uid","citeid","bibtype","title","year","web_url"
+"",1,2,-1,"single-misc","misc","A miscellaneous publication","2025","https://example.org/misc"
+"",2,2,-1,"single-article","article","An article without links","2024",""
+"",3,3,-1,"outside-records","article","A publication outside the plugin records","2023",""

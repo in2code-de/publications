@@ -544,6 +544,12 @@
 			<trans-unit id="flexform.pi1.template.export.1">
 				<source>XML</source>
 			</trans-unit>
+			<trans-unit id="flexform.pi1.template.singleDownload">
+				<source>Download of single publications</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi1.template.singleDownload.label">
+				<source>Show download links for the allowed export formats at each publication</source>
+			</trans-unit>
 			<trans-unit id="flexform.pi1.template.hideFilter">
 				<source>Hide filter?</source>
 			</trans-unit>

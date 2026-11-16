@@ -53,6 +53,12 @@
 					</td>
 				</tr>
 			</f:if>
+			<f:if condition="{filter.singleDownloadFormats}">
+				<tr>
+					<td class="publications publications__linkblock"><f:translate key="linkblock.download" />:</td>
+					<td class="publications publications__linkblock"><f:render partial="List/Citestyle/DownloadLinks" section="downloadlinks" arguments="{publication: publication, filter: filter}"/></td>
+				</tr>
+			</f:if>
 		</table>
 	</f:spaceless>
 </f:section>
