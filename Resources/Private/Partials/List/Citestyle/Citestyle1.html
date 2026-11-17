@@ -67,7 +67,18 @@
 
 
 <f:section name="bibtype_booklet">
-	TODO
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:if condition="{publication.title}">"{publication.title}"<f:if condition="{publication.howpublished} || {publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished -> f:format.trim(characters: ' .', side: 'right')}<f:if condition="{publication.address} || {publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.address}">{publication.address}<f:if condition="{publication.month} || {publication.year}"><f:then>,</f:then><f:else>.</f:else></f:if></f:if>
+	<f:if condition="{publication.month} || {publication.year}">
+		<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>
+		{publication.year}.
+	</f:if>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
+	</f:if>
 </f:section>
 
 
@@ -129,7 +140,7 @@
 
 
 <f:section name="bibtype_manuscript">
-	TODO
+	<f:render section="bibtype_unpublished" arguments="{_all}"/>
 </f:section>
 
 

@@ -162,10 +162,15 @@
 
 
 <f:section name="bibtype_manuscript">
-TODO
+	<f:render section="bibtype_unpublished" arguments="{_all}"/>
 </f:section>
+
 <f:section name="bibtype_misc">
-TODO
+	<f:render section="authors" arguments="{_all}"/>
+	<f:if condition="{publication.title}">{publication.title}.</f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished -> f:format.trim(characters: ' .', side: 'right')}.</f:if>
+	<f:render section="date" arguments="{_all}"/>
+	<f:render partial="List/Citestyle/LinkBlock-Inline" section="linkblock-inline" arguments="{_all}"/>
 </f:section>
 
 <f:section name="bibtype_manual">

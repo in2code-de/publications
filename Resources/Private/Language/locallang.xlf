@@ -243,6 +243,9 @@
 			<trans-unit id="citestyle4.noDate" resname="citestyle4.noDate">
 				<source>n.d.</source>
 			</trans-unit>
+			<trans-unit id="citestyle4.unpublishedManuscript" resname="citestyle4.unpublishedManuscript">
+				<source>Unpublished manuscript</source>
+			</trans-unit>
 			<trans-unit id="citestyle6.abstract" resname="citestyle6.abstract">
 				<source>Abstract</source>
 			</trans-unit>
