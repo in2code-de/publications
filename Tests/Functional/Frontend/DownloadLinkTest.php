@@ -61,6 +61,15 @@ final class DownloadLinkTest extends FunctionalTestCase
     }
 
     #[Test]
+    public function bibtexExportUsesCiteidOrStableCitationKeyFromUid(): void
+    {
+        $bibtex = $this->download('downloadBibtex');
+
+        self::assertStringContainsString('@Misc { resolvable-links,', $bibtex);
+        self::assertStringContainsString('@Misc { publication-3,', $bibtex);
+    }
+
+    #[Test]
     public function xmlExportIsWellFormedAndContainsAbsoluteUrls(): void
     {
         $references = [];
