@@ -13,8 +13,6 @@ use TYPO3\CMS\Frontend\Typolink\UnableToLinkException;
 
 readonly class PublicationExportService
 {
-    private const LINK_FIELDS = ['web_url', 'web_url2', 'file_url'];
-
     public function __construct(
         private LinkFactory $linkFactory
     ) {
@@ -73,7 +71,7 @@ readonly class PublicationExportService
      */
     private function resolveLinks(array $properties, ContentObjectRenderer $contentObject): array
     {
-        foreach (array_intersect(self::LINK_FIELDS, array_keys($properties)) as $field) {
+        foreach (array_intersect(Publication::LINK_FIELDS, array_keys($properties)) as $field) {
             $url = $this->getAbsoluteUrl($properties[$field], $contentObject);
             if ($url === '') {
                 unset($properties[$field]);

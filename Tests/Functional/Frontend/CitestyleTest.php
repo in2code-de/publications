@@ -12,8 +12,8 @@ use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * Renders the list plugin with unpublished publications in every citation style and compares the citations as the
- * browser shows them: tags are removed, line breaks are rendered as " | " and whitespace is collapsed.
+ * Renders the list plugin in every citation style and compares the citations as the browser shows them: tags are
+ * removed, line breaks are rendered as " | " and whitespace is collapsed.
  */
 final class CitestyleTest extends FunctionalTestCase
 {
@@ -117,6 +117,54 @@ final class CitestyleTest extends FunctionalTestCase
     public function rendersUnpublishedPublications(int $citestyle, string $language, array $expectedCitations): void
     {
         self::assertSame($expectedCitations, $this->renderCitations($citestyle, $language));
+    }
+
+    public static function bookletManuscriptMiscPublicationsDataProvider(): array
+    {
+        $ieeeGerman = [
+            'U. Example, "A synthetic booklet", Distributed at the workshop, Ulm, Mai 2023.',
+            'U. Example, "A synthetic manuscript", nicht veröffentlicht, 2022.',
+        ];
+        $ieeeEnglish = [
+            'U. Example, "A synthetic booklet", Distributed at the workshop, Ulm, May 2023.',
+            'U. Example, "A synthetic manuscript", unpublished, 2022.',
+        ];
+
+        return [
+            'IEEE, German' => [1, self::LANGUAGE_GERMAN, $ieeeGerman],
+            'IEEE, English' => [1, self::LANGUAGE_ENGLISH, $ieeeEnglish],
+            'APA, German' => [4, self::LANGUAGE_GERMAN, [
+                'Example, U. (2023, Mai). A synthetic booklet. Distributed at the workshop.',
+                'Example, U. (2022). A synthetic manuscript [Unveröffentlichtes Manuskript]. Example University.',
+            ]],
+            'APA, English' => [4, self::LANGUAGE_ENGLISH, [
+                'Example, U. (2023, May). A synthetic booklet. Distributed at the workshop.',
+                'Example, U. (2022). A synthetic manuscript [Unpublished manuscript]. Example University.',
+            ]],
+            'IEEE with abstract, German' => [6, self::LANGUAGE_GERMAN, $ieeeGerman],
+            'IEEE with abstract, English' => [6, self::LANGUAGE_ENGLISH, $ieeeEnglish],
+            'Vancouver-based, German' => [9, self::LANGUAGE_GERMAN, [
+                'Example U. A synthetic manuscript. 2022.',
+                'Example U, Sample S. A synthetic miscellaneous work. Online dataset. 2021 Mrz.',
+            ]],
+            'Vancouver-based, English' => [9, self::LANGUAGE_ENGLISH, [
+                'Example U. A synthetic manuscript. 2022.',
+                'Example U, Sample S. A synthetic miscellaneous work. Online dataset. 2021 Mar.',
+            ]],
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('bookletManuscriptMiscPublicationsDataProvider')]
+    public function rendersBookletManuscriptAndMiscPublications(
+        int $citestyle,
+        string $language,
+        array $expectedCitations
+    ): void {
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/BookletManuscriptMiscPublications.csv');
+        $citations = $this->renderCitations($citestyle, $language);
+
+        self::assertSame($expectedCitations, array_values(array_intersect($citations, $expectedCitations)));
     }
 
     /**

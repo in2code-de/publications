@@ -113,7 +113,27 @@
 
 
 <f:section name="bibtype_booklet">
-	TODO
+	<f:if condition="{publication.language}">[{publication.language}]</f:if>
+	<f:render section="authors" arguments="{_all}"/>
+	<f:if condition="{publication.year}">
+		<f:then>
+			<f:if condition="{publication.month}">
+				<f:then>
+					({publication.year},
+					<publications:format.monthNameFromNumber month="{publication.month}" limit="3"/>).
+				</f:then>
+				<f:else>
+					({publication.year}).
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>(<f:translate key="citestyle4.noDate"/>).</f:else>
+	</f:if>
+	<f:if condition="{publication.title}"><i>{publication.title}</i>.</f:if>
+	<f:if condition="{publication.howpublished}">{publication.howpublished -> f:format.trim(characters: ' .', side: 'right')}.</f:if>
+	<f:if condition="{publication.doi} || {publication.isbn} || {publication.webUrl} || {publication.webUrl2} || {publication.fileUrl} || {filter.singleDownloadFormats}">
+		<f:render partial="List/Citestyle/LinkBlock" section="linkblock" arguments="{publication:publication,showWebUrl:true,filter:filter}"/>
+	</f:if>
 </f:section>
 
 
@@ -280,7 +300,7 @@
 
 
 <f:section name="bibtype_manuscript">
-	TODO
+	<f:render section="bibtype_unpublished" arguments="{_all}"/>
 </f:section>
 
 
@@ -480,6 +500,7 @@
 	<f:if condition="{publication.title}"><i>{publication.title}</i></f:if>
 	<f:if condition="{publication.note}">
 		<f:then>[{publication.note -> f:format.trim(characters: ' .', side: 'right')}].</f:then>
+		<f:else if="{publication.bibtype} == 'manuscript'">[<f:translate key="citestyle4.unpublishedManuscript"/>].</f:else>
 		<f:else>[<f:translate key="bibtype.unpublished"/>].</f:else>
 	</f:if>
 	<f:if condition="{publication.affiliation}">

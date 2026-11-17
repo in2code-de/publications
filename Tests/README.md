@@ -53,6 +53,13 @@ status, a note ending in a period, the localized fallback without a note, a miss
 year, a month abbreviation (German "Mrz", English "Mar"), the institution, the
 publication language and the abstract.
 
+The same test covers issue #97 with
+`Functional/Frontend/Fixtures/BookletManuscriptMiscPublications.csv`. It renders a
+booklet, a manuscript and a miscellaneous publication in the IEEE, APA, IEEE with
+abstract and Vancouver-based citation styles. The records cover `howpublished` with
+a trailing period, the address, month abbreviations, the institution and the APA
+status "Unpublished manuscript" for manuscripts without a note.
+
 The test compares each citation as the browser displays it: tags are removed, line
 breaks become ` | ` and whitespace is collapsed. Spaces before or after punctuation
 are kept, so spacing errors such as "Example,Uma" make the test fail.

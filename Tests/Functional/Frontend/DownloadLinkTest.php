@@ -53,10 +53,20 @@ final class DownloadLinkTest extends FunctionalTestCase
         $bibtex = $this->download('downloadBibtex');
 
         self::assertStringContainsString('web_url = {' . self::TARGET_URL . '}', $bibtex);
-        self::assertStringContainsString('web_url2 = {' . self::TARGET_URL . '?', $bibtex);
+        self::assertStringContainsString('web_url2 = {' . self::TARGET_URL_WITH_PARAMETERS, $bibtex);
         self::assertStringContainsString('file_url = {' . self::EXTERNAL_URL . '}', $bibtex);
         self::assertSame(1, substr_count($bibtex, 'web_url = '));
         self::assertStringNotContainsString('t3://', $bibtex);
+        self::assertStringContainsString('title = {Research \& development}', $bibtex);
+    }
+
+    #[Test]
+    public function bibtexExportUsesCiteidOrStableCitationKeyFromUid(): void
+    {
+        $bibtex = $this->download('downloadBibtex');
+
+        self::assertStringContainsString('@Misc { resolvable-links,', $bibtex);
+        self::assertStringContainsString('@Misc { publication-3,', $bibtex);
     }
 
     #[Test]

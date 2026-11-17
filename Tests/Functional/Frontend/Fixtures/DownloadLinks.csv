@@ -12,3 +12,4 @@
 "","uid","pid","sys_language_uid","citeid","bibtype","title","year","web_url","web_url2","file_url"
 "",1,2,-1,"resolvable-links","misc","Research & development","2025","t3://page?uid=20","t3://page?uid=20&tx_example[id]=3","https://example.org/paper.pdf"
 "",2,2,-1,"unresolvable-link","misc","A publication linking a hidden page","2024","t3://page?uid=21","",""
+"",3,2,-1,"","misc","A publication without citation key","2023","","",""

@@ -1,0 +1,11 @@
+"tx_publications_domain_model_publication"
+"","uid","pid","sys_language_uid","citeid","bibtype","title","year","month","howpublished","address","institution","authors"
+"",11,2,-1,"example-booklet","booklet","A synthetic booklet","2023","5","Distributed at the workshop.","Ulm","",1
+"",12,2,-1,"example-manuscript","manuscript","A synthetic manuscript","2022","","","","Example University",1
+"",13,2,-1,"example-misc","misc","A synthetic miscellaneous work","2021","3","Online dataset","","",2
+"tx_publications_publication_author_mm"
+"","uid_local","uid_foreign","sorting","sorting_foreign"
+"",11,1,1,1
+"",12,1,1,1
+"",13,1,1,1
+"",13,2,2,1
