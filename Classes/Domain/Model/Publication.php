@@ -15,6 +15,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 class Publication extends AbstractEntity
 {
     public const TABLE_NAME = 'tx_publications_domain_model_publication';
+    public const LINK_FIELDS = ['web_url', 'web_url2', 'file_url'];
 
     /**
      * @var string

@@ -91,6 +91,11 @@ class BibTexUtility
         return str_replace(self::$encoding, self::$encoded, $string);
     }
 
+    public static function encodeUrl(string $url): string
+    {
+        return str_replace(['{', '}'], ['%7B', '%7D'], $url);
+    }
+
     /**
      * @param string $string
      * @return string
