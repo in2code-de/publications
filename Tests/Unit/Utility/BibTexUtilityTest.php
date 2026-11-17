@@ -9,6 +9,15 @@ use PHPUnit\Framework\TestCase;
 
 final class BibTexUtilityTest extends TestCase
 {
+    public function testEncodesUrlWithoutLatexEscapingAndKeepsFieldDelimitersBalanced(): void
+    {
+        self::assertSame(
+            'https://example.org/page?tx_example%5Bid%5D=3&cHash=a1#top',
+            BibTexUtility::encodeUrl('https://example.org/page?tx_example%5Bid%5D=3&cHash=a1#top')
+        );
+        self::assertSame('https://example.org/%7Bid%7D.pdf', BibTexUtility::encodeUrl('https://example.org/{id}.pdf'));
+    }
+
     public function testDecodesTexCommandWithoutReplacingLongerCommandNames(): void
     {
         self::assertSame('TeX: The Program', BibTexUtility::decode('{\\TeX}: The Program'));
