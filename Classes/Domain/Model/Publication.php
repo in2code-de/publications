@@ -16,6 +16,7 @@ class Publication extends AbstractEntity
 {
     public const TABLE_NAME = 'tx_publications_domain_model_publication';
     public const LINK_FIELDS = ['web_url', 'web_url2', 'file_url'];
+    private const CITEID_PREFIX_FOR_EXPORT = 'publication-';
 
     /**
      * @var string
@@ -565,15 +566,13 @@ class Publication extends AbstractEntity
     }
 
     /**
-     * Always get a citeid for export (to not break the bibtex files)
-     *
      * @return string
      */
     public function getCiteidForExport(): string
     {
         $citeid = $this->getCiteid();
-        if (empty($citeid)) {
-            $citeid = (string)rand(100000000000, 999999999999) . '_' . $this->getYear();
+        if ($citeid === '') {
+            $citeid = self::CITEID_PREFIX_FOR_EXPORT . $this->getUid();
         }
         return $citeid;
     }
