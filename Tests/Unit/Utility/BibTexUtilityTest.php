@@ -9,6 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 final class BibTexUtilityTest extends TestCase
 {
+    public function testEncodesAmpersandOnce(): void
+    {
+        self::assertSame('Research \\& development', BibTexUtility::encode('Research & development'));
+    }
+
     public function testEncodesUrlWithoutLatexEscapingAndKeepsFieldDelimitersBalanced(): void
     {
         self::assertSame(

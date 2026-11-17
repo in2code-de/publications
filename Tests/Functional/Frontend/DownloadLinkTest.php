@@ -57,7 +57,7 @@ final class DownloadLinkTest extends FunctionalTestCase
         self::assertStringContainsString('file_url = {' . self::EXTERNAL_URL . '}', $bibtex);
         self::assertSame(1, substr_count($bibtex, 'web_url = '));
         self::assertStringNotContainsString('t3://', $bibtex);
-        self::assertStringNotContainsString('title = {Research & development}', $bibtex);
+        self::assertStringContainsString('title = {Research \& development}', $bibtex);
     }
 
     #[Test]
