@@ -16,8 +16,25 @@ jobs:
       TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
       TYPO3_API_USERNAME: ${{ secrets.TYPO3_API_USERNAME }}
       TYPO3_API_PASSWORD: ${{ secrets.TYPO3_API_PASSWORD }}
+      PUBLIC_RELEASE_BRANCHES: 'typo3-12 typo3-13'
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Allow only tags on a public release branch
+        run: |
+          for branch in $PUBLIC_RELEASE_BRANCHES; do
+            if git merge-base --is-ancestor "$GITHUB_SHA" "origin/$branch" 2>/dev/null; then
+              echo "Tag $GITHUB_REF_NAME is on the public release branch $branch"
+              exit 0
+            fi
+          done
+          echo "::error::Tag $GITHUB_REF_NAME is not on a public release branch ($PUBLIC_RELEASE_BRANCHES), no TER upload"
+          exit 1
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
