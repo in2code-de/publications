@@ -129,6 +129,7 @@ ddev ssh
 
 | Version | Date       | State   | Description                                                                                                                       |
 |---------|------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 13.4.0  | 2026-11-23 | Feature | download single publications as BibTeX or XML, fix DOI handling, links and escaping in exports, render more publication types     |
 | 13.3.0  | 2026-11-10 | Bugfix  | render unpublished publications in all citation styles, fix month abbreviations and author name spacing                           |
 | 13.2.0  | 2026-09-21 | Bugfix  | fix and improve bibtex import, add unit tests and upgrade documentation for existing publications                                 |
 | 13.1.0  | 2026-06-14 | Feature | add TSConfig-based groupby options, add absolute date range filter, add configurable sorting                                      |
